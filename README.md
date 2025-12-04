@@ -2,11 +2,12 @@
 
 This directory is a drop-in payload for [`github.com/TheDarkLightX/AlignmentTheorem`](https://github.com/TheDarkLightX/AlignmentTheorem). It contains the paper, Lean proof, simulations, and verification scripts described throughout the Tau Alignment Theorem workstream.
 
+How can we ensure that autonomous economic agents, human or non-human, act in ways that respect the values of the communities that host them? Traditional approaches to AI alignment try to encode values directly into models through hand-written rules, reinforcement learning from human feedback, or constitutional documents. These approaches are hard to keep consistent and easy to game. They also tend to be model- and vendor-specific. Tau Net offers a different approach. Users express their ethical views as logical theories in Tau Language. Tau aggregates these theories into a shared, on-chain ethical worldview. From that worldview it computes a live scalar signal, the Ethical–Eco Transaction Factor (EETF), and feeds this signal into economic agents such as the Virtuous Cycle Compounder (VCC). Because scarcity-driven rewards are tied directly to the EETF, rational agents find that aligning with the community’s worldview is the only profit-maximizing strategy.
+
 ## Contents
 
 | Path | Purpose |
 | --- | --- |
-| `docs/Alignment_Theorem_Academic.tex` | LaTeX source for the journal-ready paper |
 | `docs/Alignment_Theorem_Academic.pdf` | Pre-built PDF for quick review |
 | `docs/SIMULATION_RESULTS.md` | Narrative summary of convergence experiments |
 | `docs/THREAT_MODEL.md` | Aggregation/MEV/pointwise-revision threat catalog |
