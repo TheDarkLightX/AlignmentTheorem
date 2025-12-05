@@ -1,0 +1,31 @@
+# ALIGNMENT THEOREM DEMO: ETHICAL REWARDS
+# Shows compounding rewards over time under high pressure
+# Ethical actors accumulate wealth faster as the system matures
+
+i0:bv[16] = in file("inputs/supply.in").
+i1:bv[16] = in file("inputs/eetf.in").
+i2:sbf = in file("inputs/is_ethical.in").
+
+o0:bv[16] = out file("outputs/pressure2.out").
+o1:bv[16] = out file("outputs/ethical_reward.out").
+o2:bv[16] = out file("outputs/cumulative_reward.out").
+o3:sbf = out file("outputs/is_ethical_echo.out").
+
+defs
+r (
+    (o0[t] = ({60000}:bv[16] / i0[t]) * i1[t] / {100}:bv[16]) &&
+    (o3[t] = i2[t]) &&
+    (o1[t] = o0[t]) &&
+    (o2[t] = o2[t-1] + o1[t]) && (o2[0] = {0}:bv[16])
+)
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+q

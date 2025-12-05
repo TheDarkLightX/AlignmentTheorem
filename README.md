@@ -14,6 +14,7 @@ How can we ensure that autonomous economic agents, human or non-human, act in wa
 | `docs/VERIFICATION_SUMMARY.md` | Lean, simulator, FSM, and stress-test results |
 | `analysis/simulations/` | Python scripts + CSV data for convergence sweeps |
 | `verification/` | Tau exact simulator, completeness checker, SMT harness |
+| `demos/` | Executable Tau demos (Alignment, Intelligent Agent, Virtue Shares) |
 | `proofs/AlignmentTheorem.lean` | Lean 4 proof with no `sorry` placeholders |
 
 ## Build & Verification Instructions
@@ -47,6 +48,18 @@ python3 tau_exact_simulator.py  # runs reference traces
 python3 tau_completeness_checker.py ../docs/Alignment_Theorem_Academic.tex
 python3 verify_transitions_tau.py            # optional SMT spot checks
 ```
+
+### Demo Specifications
+
+Each demo folder ships with inputs, outputs, and a `run_all.sh` helper that targets the bundled Tau binary:
+
+```bash
+cd demos/alignment_theorem && ./run_all.sh
+cd demos/intelligent_agent && ./run_all.sh
+cd demos/virtue_shares && ./run_all.sh
+```
+
+The scripts wipe previous outputs, execute the specs via `tau-lang-latest/build-Release/tau`, and print readable summaries so you can verify traces at a glance.
 
 ## Repository Usage
 

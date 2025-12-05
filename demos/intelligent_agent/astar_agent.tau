@@ -1,0 +1,45 @@
+i0:sbf = in file("inputs/price_signal.in").
+i1:sbf = in file("inputs/eetf_high.in").
+i2:sbf = in file("inputs/volume_ok.in").
+i3:bv[16] = in file("inputs/scarcity.in").
+
+o0:sbf = out file("outputs/in_position.out").
+o1:sbf = out file("outputs/buy_signal.out").
+o2:sbf = out file("outputs/sell_signal.out").
+o3:bv[16] = out file("outputs/scarcity_echo.out").
+o4:sbf = out file("outputs/state_idle_low.out").
+o5:sbf = out file("outputs/state_idle_high.out").
+o6:sbf = out file("outputs/state_pos_low.out").
+o7:sbf = out file("outputs/state_pos_high.out").
+o8:bv[16] = out file("outputs/profit.out").
+o9:sbf = out file("outputs/trade_count_b0.out").
+
+defs
+r (
+    (o3[t] = i3[t]) &&
+    (o4[t] = o0[t]' & i1[t]') &&
+    (o5[t] = o0[t]' & i1[t]) &&
+    (o6[t] = o0[t] & i1[t]') &&
+    (o7[t] = o0[t] & i1[t]) &&
+    (o1[t] = o0[t-1]' & i1[t] & i2[t] & i0[t]') &&
+    (o2[t] = o0[t-1] & i0[t]) &&
+    (o0[t] = o1[t] | (o0[t-1] & o2[t]')) &&
+    (o8[t] = o8[t-1] + i3[t]) && (o8[0] = {0}:bv[16]) &&
+    (o9[t] = (o2[t] & o9[t-1]') | (o2[t]' & o9[t-1]))
+)
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+q

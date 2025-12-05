@@ -1,0 +1,28 @@
+i0:bv[16] = in file("inputs/supply.in").
+i1:bv[16] = in file("inputs/eetf.in").
+i2:sbf = in file("inputs/participation.in").
+o0:bv[16] = out file("outputs/supply_track.out").
+o1:bv[16] = out file("outputs/burn_amount.out").
+o2:bv[16] = out file("outputs/total_burned.out").
+o3:bv[16] = out file("outputs/new_supply.out").
+o4:bv[16] = out file("outputs/burn_rate.out").
+
+defs
+r (
+    (o0[t] = i0[t]) &&
+    (o4[t] = {20}:bv[16] * i1[t] / {100}:bv[16]) &&
+    (o1[t] = i0[t] * o4[t] / {1000}:bv[16]) &&
+    (o3[t] = i0[t] - o1[t]) &&
+    (o2[t] = o2[t-1] + o1[t]) && (o2[0] = {0}:bv[16])
+)
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+q

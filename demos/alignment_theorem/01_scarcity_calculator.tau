@@ -1,0 +1,24 @@
+# ALIGNMENT THEOREM DEMO: SCARCITY CALCULATOR
+# As supply decreases, scarcity multiplier increases
+# Formula: Scarcity = 60000 / Supply
+
+i0:bv[16] = in file("inputs/supply.in").
+o0:bv[16] = out file("outputs/scarcity_mult.out").
+o1:bv[16] = out file("outputs/supply_echo.out").
+
+defs
+r (
+    (o1[t] = i0[t]) &&
+    (o0[t] = {60000}:bv[16] / i0[t])
+)
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+q

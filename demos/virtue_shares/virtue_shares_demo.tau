@@ -1,0 +1,40 @@
+i0:sbf = in file("inputs/create_lock.in").
+i1:sbf = in file("inputs/early_exit.in").
+i2:sbf = in file("inputs/eetf_high.in").
+i3:bv[16] = in file("inputs/time.in").
+
+o0:sbf = out file("outputs/lock_active.out").
+o1:sbf = out file("outputs/lock_expired.out").
+o2:sbf = out file("outputs/penalty_triggered.out").
+o3:bv[16] = out file("outputs/vshares.out").
+o4:bv[16] = out file("outputs/voting_power.out").
+o5:bv[16] = out file("outputs/remaining.out").
+o6:sbf = out file("outputs/fsm_unlocked.out").
+o7:sbf = out file("outputs/fsm_locked.out").
+o8:sbf = out file("outputs/fsm_exited.out").
+o9:bv[16] = out file("outputs/boost.out").
+
+defs
+r (
+    (o0[t] = (i0[t] | o0[t-1]) & i1[t]') &&
+    (o1[t] = o0[t-1] & i1[t]) &&
+    (o2[t] = o1[t]) &&
+    (o6[t] = o0[t]' & o1[t]') &&
+    (o7[t] = o0[t] & o1[t]') &&
+    (o8[t] = o1[t]) &&
+    (o5[t] = i3[t]) &&
+    (o3[t] = o3[t-1] + {100}:bv[16]) && (o3[0] = {0}:bv[16]) &&
+    (o4[t] = o3[t]) &&
+    (o9[t] = o9[t-1] + {10}:bv[16]) && (o9[0] = {100}:bv[16])
+)
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+q
