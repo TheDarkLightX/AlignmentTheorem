@@ -38,7 +38,6 @@ Version 2 theorem. See [V1_TO_V2_CORRECTIONS.md](docs/V1_TO_V2_CORRECTIONS.md).
 | Path | Purpose |
 | --- | --- |
 | `paper/v2/alignment_theorem_v2.pdf` | Version 2 paper |
-| `paper/v2/alignment_theorem_v2.tex` | Paper source |
 | `proofs/v2/AlignmentTheoremV2.lean` | Finite theorem, gate, and reserve proofs |
 | `tau/v2/alignment_policy_gate_v2.tau` | Current-Tau admission kernel |
 | `verification/alignment_v2_model.py` | Exact finite reference model |
@@ -70,12 +69,6 @@ python3 verification/run_tau_v2.py \
   --json
 ```
 
-Paper:
-
-```bash
-cd paper/v2
-latexmk -pdf -interaction=nonstopmode -halt-on-error alignment_theorem_v2.tex
-```
 
 ## Evidence boundary
 
