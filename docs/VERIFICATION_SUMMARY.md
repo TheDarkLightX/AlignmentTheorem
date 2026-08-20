@@ -1,6 +1,15 @@
 # VERIFICATION SUMMARY
 ## The Alignment Theorem - Formal Verification Results
 
+> **Historical Version 1 report.** The counts and verdicts below describe the
+> original finite test campaigns and legacy artifacts. They do not establish a
+> universal alignment theorem, real-world convergence, current Tau
+> compatibility, or production readiness. Current claim-scoped evidence lives
+> in `proofs/v1_1/`, `proofs/v2/`, `tau/v1_1/`, `tau/v2/`, and their
+> source-bound receipts. Version 1.1 machine-checks the repaired
+> hyperdeflationary threshold; its exact-current-Tau interpreter replay remains
+> pending.
+
 ---
 
 ## 🎯 Executive Summary
@@ -260,4 +269,3 @@ Translation: Above some scarcity threshold, ethical behavior
 **Total Test Iterations**: 691,000 (stress) + 15 (core) + 1,000 (convergence) = 692,015
 **Failures**: 0
 **Status**: EMPIRICALLY VERIFIED ✓ (Formal proof structure complete, awaiting full Lean proofs)
-

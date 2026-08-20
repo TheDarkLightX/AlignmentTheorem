@@ -1,0 +1,8 @@
+import AlignmentTheoremV1_1
+
+#print axioms AlignmentTheoremV1_1.minimum_scarcity_multiplier_is_strict
+#print axioms AlignmentTheoremV1_1.strict_margin_at_or_above_minimum
+#print axioms AlignmentTheoremV1_1.strict_margin_forces_epsilon_optimal_choice_ethical
+#print axioms AlignmentTheoremV1_1.finite_hyperdeflationary_alignment
+#print axioms AlignmentTheoremV1_1.hyperdeflation_eventually_aligns_bounded_deviations
+#print axioms AlignmentTheoremV1_1.relative_growth_eventually_has_strict_margin

@@ -1,0 +1,64 @@
+{
+  "axiom_audit_returncode": 0,
+  "axiom_reports": {
+    "AlignmentTheoremV1_1.finite_hyperdeflationary_alignment": [
+      "propext",
+      "Quot.sound"
+    ],
+    "AlignmentTheoremV1_1.hyperdeflation_eventually_aligns_bounded_deviations": [
+      "propext",
+      "Quot.sound"
+    ],
+    "AlignmentTheoremV1_1.minimum_scarcity_multiplier_is_strict": [
+      "propext"
+    ],
+    "AlignmentTheoremV1_1.relative_growth_eventually_has_strict_margin": [
+      "propext"
+    ],
+    "AlignmentTheoremV1_1.strict_margin_at_or_above_minimum": [
+      "propext"
+    ],
+    "AlignmentTheoremV1_1.strict_margin_forces_epsilon_optimal_choice_ethical": [
+      "propext",
+      "Quot.sound"
+    ]
+  },
+  "build_returncode": 0,
+  "checker_sha256": "2e9f70ad3949d681e8601771aae32abe38724cdec7a5a6265fe4d8793fd9fe19",
+  "error": "",
+  "expected_axiom_reports": {
+    "AlignmentTheoremV1_1.finite_hyperdeflationary_alignment": [
+      "propext",
+      "Quot.sound"
+    ],
+    "AlignmentTheoremV1_1.hyperdeflation_eventually_aligns_bounded_deviations": [
+      "propext",
+      "Quot.sound"
+    ],
+    "AlignmentTheoremV1_1.minimum_scarcity_multiplier_is_strict": [
+      "propext"
+    ],
+    "AlignmentTheoremV1_1.relative_growth_eventually_has_strict_margin": [
+      "propext"
+    ],
+    "AlignmentTheoremV1_1.strict_margin_at_or_above_minimum": [
+      "propext"
+    ],
+    "AlignmentTheoremV1_1.strict_margin_forces_epsilon_optimal_choice_ethical": [
+      "propext",
+      "Quot.sound"
+    ]
+  },
+  "lean_version": "Lean (version 4.33.0, x86_64-unknown-linux-gnu, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)",
+  "passed": true,
+  "placeholders": [],
+  "schema": "alignment-theorem-v1-1-lean-build-v1",
+  "source_bundle_sha256": "761431d0e699cc4e6b75d186eacda90a8969f2cbcbaff1d197b706e6d6f2d869",
+  "source_files_sha256": {
+    "AlignmentTheoremV1_1.lean": "64b81f6ebca34b52ccc35fccb4480b84e0db04cc3ef8900b4cf89eb7d79dbadf",
+    "AxiomAudit.lean": "fac105defea767bd6feb27bd3f3e7bf44df928771fdae40ee868b3cc15905e93",
+    "lake-manifest.json": "88da9a0eb83d1af15224b73ddca94d0857dfc1be609418cb8694179d128115c3",
+    "lakefile.lean": "437c8d6665dbfe9c5266b22efe0024f43fa7c3bede25648906ad25de4e6967e2",
+    "lean-toolchain": "302cd63c54178885b89e669f33b38f12f4dd7ae7e5cac537b3203e3768d8fb2b"
+  }
+}

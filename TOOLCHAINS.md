@@ -1,7 +1,37 @@
 # Reproducible Toolchain Pins
 
-Version 2 evidence is tied to exact source and binary identities. A later tool
-version must generate a new receipt rather than inherit these results.
+Version 1.1 and Version 2 evidence is tied to exact source and binary
+identities. A later tool version must generate a new receipt rather than
+inherit these results.
+
+## Version 1.1
+
+### Lean
+
+- Lean release: `v4.33.0`
+- Toolchain file: `proofs/v1_1/lean-toolchain`
+- Standard library only
+
+Replay:
+
+```bash
+python3 verification/run_lean_v1_1.py \
+  --output verification/receipts/lean_v1_1_v4.33.0.json \
+  --json
+```
+
+The receipt binds the finite threshold, asymptotic bounded-deviation, and
+relative-growth theorem sources. It also records the exact expected standard
+axiom dependencies.
+
+### Tau
+
+`tau/v1_1/` uses the same current declaration shape as the Version 2 packet and
+contains all 16 Boolean rows for its four semantic facts. Static semantic parity
+is tested. No Version 1.1 interpreter receipt is currently promoted because the
+exact source-pinned `fd137e8` executable was unavailable during this update.
+An older available `401d756b` executable segfaulted on the current declaration
+shape and supplies no evidence.
 
 ## Version 2 source baseline
 

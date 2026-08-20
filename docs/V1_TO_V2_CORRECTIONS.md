@@ -5,13 +5,19 @@ network so humans and automated agents have a reason to choose it. It changes
 the formal claim to match what the mathematics and executable artifacts can
 actually establish.
 
+Version 1.1 is a separate repair of Version 1's hyperdeflationary mechanism.
+It restores scarcity as a conditional multiplier under the exact strict-margin
+condition `M(t) * K(t) > B(t)`. Version 2 remains the finite publication and
+settlement boundary. The two results answer different questions and can be
+used together.
+
 ## Corrections
 
 | Version 1 problem | Version 2 correction |
 |---|---|
 | “Ethical” was defined as an account EETF at least one, then the agent was allowed to choose that EETF directly. | A human or agent proposes an observable action. A versioned policy and authenticated evidence determine whether the action is policy compliant. |
 | The payoff definition made compliant utility positive and noncompliant utility negative at every positive scarcity value. | A finite strict-margin theorem states the exact reward, expected enforcement, private deviation-gain, compliance-cost, and optimizer-error assumptions. |
-| The paper said scarcity moved the indifference threshold, although scarcity cancels from the printed threshold equation. | Infinite scarcity is removed from the theorem. Scarcity may be studied separately as a bounded economic parameter and cannot stand in for an incentive margin. |
+| The paper said scarcity moved the indifference threshold, although scarcity cancels from the printed threshold equation. | Version 2 removes scarcity from its finite publication theorem. Version 1.1 repairs the scarcity mechanism separately by multiplying a positive ethical reward and forfeiture exposure, then requiring that product to strictly exceed the complete opposing bound. |
 | Real-valued supply approached zero under assumed infinite divisibility. | Settlement uses integer atoms, explicit maximum values, reserve-backed payouts, and reject-without-effect behavior. |
 | EETF was described as an ethics oracle. | Community policy is versioned and provenance bound. A score may rank actions only after hard policy constraints pass. It is a community-selected policy output, not objective moral truth. |
 | Preference aggregation was asserted without a complete identity, weighting, missing-data, manipulation, or revision model. | The aggregation mechanism is an explicit future module. Any theorem using it must state its participant domain, identity assumptions, rule, adversarial weight bound, and update constitution. |

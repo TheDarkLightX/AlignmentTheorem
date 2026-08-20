@@ -1,0 +1,24 @@
+# Alignment Theorem V1.1: finite hyperdeflation eligibility gate.
+#
+# The host derives strict_hyperdeflation_margin from bounded integer
+# arithmetic. EETF authentication and reward funding are external facts. The
+# gate fails closed unless the classified action is ethical and every fact is
+# true. See docs/v1-1-hyperdeflationary-alignment.html.
+
+eetf_authenticated:sbf := in file("inputs/eetf_authenticated.in").
+action_ethical:sbf := in file("inputs/action_ethical.in").
+strict_hyperdeflation_margin:sbf := in file("inputs/strict_hyperdeflation_margin.in").
+reward_funded:sbf := in file("inputs/reward_funded.in").
+
+eligible:sbf := out file("outputs/eligible.out").
+
+defs
+r (
+    eligible[t] = (
+        eetf_authenticated[t]
+        & action_ethical[t]
+        & strict_hyperdeflation_margin[t]
+        & reward_funded[t]
+    )
+)
+q

@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ethical Work Under Hyperdeflation — Alignment Theorem V1.1</title>
+  <style>
+    :root {
+      --ink: #172033;
+      --muted: #526079;
+      --line: #cbd5e1;
+      --paper: #ffffff;
+      --wash: #f1f5f9;
+      --blue: #164e8a;
+      --gold: #8a5a00;
+      --red: #8a2432;
+      --green: #17633a;
+    }
+    @page { size: Letter; margin: 0.72in; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: #e8edf4;
+      color: var(--ink);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 16px;
+      line-height: 1.55;
+    }
+    main {
+      width: min(8.5in, calc(100% - 28px));
+      margin: 28px auto;
+      padding: 0.72in;
+      background: var(--paper);
+      box-shadow: 0 14px 40px rgba(23, 32, 51, 0.15);
+    }
+    header {
+      padding-bottom: 24px;
+      border-bottom: 3px solid var(--blue);
+      margin-bottom: 28px;
+    }
+    .eyebrow {
+      color: var(--blue);
+      font-family: Arial, sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    h1 {
+      margin: 10px 0 8px;
+      font-size: 2.15rem;
+      line-height: 1.12;
+    }
+    .subtitle { color: var(--muted); font-size: 1.15rem; }
+    .byline { margin-top: 18px; font-family: Arial, sans-serif; font-size: 0.9rem; }
+    h2 {
+      color: var(--blue);
+      font-size: 1.42rem;
+      margin: 34px 0 12px;
+      padding-bottom: 5px;
+      border-bottom: 1px solid var(--line);
+      break-after: avoid;
+    }
+    h3 { font-size: 1.08rem; margin: 24px 0 8px; break-after: avoid; }
+    p { margin: 10px 0; }
+    a { color: var(--blue); }
+    .abstract, .theorem, .counterexample, .status {
+      border-left: 5px solid var(--blue);
+      background: var(--wash);
+      padding: 15px 18px;
+      margin: 18px 0;
+      break-inside: avoid;
+    }
+    .theorem { border-left-color: var(--green); }
+    .counterexample { border-left-color: var(--red); }
+    .status { border-left-color: var(--gold); }
+    .label {
+      display: block;
+      margin-bottom: 5px;
+      font-family: Arial, sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .equation {
+      margin: 16px auto;
+      padding: 13px 16px;
+      border: 1px solid var(--line);
+      background: #fbfdff;
+      font-family: "DejaVu Sans Mono", Consolas, monospace;
+      font-size: 0.92rem;
+      text-align: center;
+      white-space: pre-wrap;
+      break-inside: avoid;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      font-size: 0.93rem;
+      break-inside: avoid;
+    }
+    th, td { border: 1px solid var(--line); padding: 8px 10px; vertical-align: top; }
+    th { background: var(--wash); text-align: left; font-family: Arial, sans-serif; }
+    code { font-family: "DejaVu Sans Mono", Consolas, monospace; font-size: 0.88em; }
+    li { margin: 6px 0; }
+    .small { color: var(--muted); font-size: 0.9rem; }
+    footer {
+      border-top: 1px solid var(--line);
+      margin-top: 38px;
+      padding-top: 14px;
+      color: var(--muted);
+      font-family: Arial, sans-serif;
+      font-size: 0.82rem;
+    }
+    @media print {
+      body { background: white; font-size: 11pt; }
+      main { width: auto; margin: 0; padding: 0; box-shadow: none; }
+      a { color: inherit; text-decoration: none; }
+      h2 { break-before: auto; }
+    }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="eyebrow">Alignment Theorem Version 1.1 · Research Draft</div>
+    <h1>Ethical Work Under Hyperdeflation</h1>
+    <div class="subtitle">A restricted theorem preserving Version 1's scarcity-driven mechanism</div>
+    <div class="byline">Dana Edwards / DarkLightX · August 2026</div>
+  </header>
+
+  <section class="abstract">
+    <span class="label">Abstract</span>
+    Version 1 proposed that increasing monetary scarcity could make ethical work
+    uniquely profitable. Its Lean model assigned positive utility to ethical
+    behavior and negative utility to non-ethical behavior at every positive
+    scarcity level, producing a threshold of zero. Version 1.1 repairs that
+    model while preserving its original hyperdeflationary idea. A finite
+    purchasing-power multiplier amplifies an ethical reward entitlement and an
+    optional non-ethical forfeiture. These effects compete against private
+    deviation gain, extra compliance cost, and optimizer error. The exact
+    threshold is finite. Unbounded hyperdeflation crosses it eventually when
+    the opposing opportunity remains bounded, or grows more slowly after
+    normalization. Lean 4.33.0 checks the finite, asymptotic, and relative-growth
+    statements. An exact bounded-integer model retains equality, common-scaling,
+    faster-deviation, unauthenticated-EETF, and overflow counterexamples.
+  </section>
+
+  <h2>1. The idea retained from Version 1</h2>
+  <p>
+    Version 1's human claim remains the target: a sufficiently deflationary
+    economy can make ethical participation the most profitable strategy. As the
+    settlement asset buys more real output, access to ethically conditioned
+    rewards becomes more valuable. Losing that access also becomes more costly.
+    Rational, profit-seeking humans and LLM agents then have an economic reason
+    to choose eligible work.
+  </p>
+  <p>
+    Version 1.1 treats “ethical” as a classification of an observable action
+    under authenticated EETF evidence. An agent proposes the action. The agent
+    does not select its own EETF score. This semantic repair leaves the
+    deflationary mechanism intact.
+  </p>
+
+  <table>
+    <thead><tr><th>Version 1 component</th><th>Version 1.1 treatment</th></tr></thead>
+    <tbody>
+      <tr><td>Scarcity multiplier</td><td>Finite purchasing-power index at every executable epoch.</td></tr>
+      <tr><td>EETF-conditioned rewards</td><td>Authenticated action classification controls eligibility.</td></tr>
+      <tr><td>Non-ethical penalty</td><td>Optional forfeiture coefficient that scales with purchasing power.</td></tr>
+      <tr><td>Rational convergence</td><td>Strict threshold theorem with explicit deviation and error bounds.</td></tr>
+      <tr><td>Infinite scarcity</td><td>Asymptotic statement: every finite threshold is eventually crossed.</td></tr>
+    </tbody>
+  </table>
+
+  <h2>2. Economic model</h2>
+  <p>At epoch <code>t</code>, define:</p>
+  <table>
+    <thead><tr><th>Symbol</th><th>Meaning</th></tr></thead>
+    <tbody>
+      <tr><td><code>M(t)</code></td><td>Finite real purchasing-power or hyperdeflation multiplier.</td></tr>
+      <tr><td><code>r(t)</code></td><td>Ethical reward exposure per unit of the multiplier.</td></tr>
+      <tr><td><code>f(t)</code></td><td>Entitlement forfeited by a non-ethical action per multiplier unit.</td></tr>
+      <tr><td><code>G(t)</code></td><td>Maximum private gain available from a modeled deviation.</td></tr>
+      <tr><td><code>C(t)</code></td><td>Maximum extra cost of choosing the ethical alternative.</td></tr>
+      <tr><td><code>epsilon(t)</code></td><td>Permitted optimization error.</td></tr>
+    </tbody>
+  </table>
+
+  <p>Using a common baseline utility <code>V(t)</code>, assume the bounds:</p>
+  <div class="equation">U_ethical(t)    &gt;= V(t) + M(t) r(t) - C(t)
+U_nonethical(t) &lt;= V(t) + G(t) - M(t) f(t)</div>
+  <p>The resulting utility gap satisfies:</p>
+  <div class="equation">U_ethical(t) - U_nonethical(t)
+  &gt;= M(t) [r(t) + f(t)] - [G(t) + C(t)]</div>
+
+  <p>Write:</p>
+  <div class="equation">K(t) = r(t) + f(t)
+B(t) = G(t) + C(t) + epsilon(t)</div>
+  <p>The finite V1.1 condition is:</p>
+  <div class="equation">M(t) K(t) &gt; B(t)</div>
+
+  <h2>3. Finite Hyperdeflationary Alignment Theorem</h2>
+  <section class="theorem">
+    <span class="label">Theorem 1 · Finite threshold</span>
+    Fix one epoch with <code>K &gt; 0</code> and finite nonnegative integers
+    <code>M</code> and <code>B</code>. If <code>M K &gt; B</code>, every
+    <code>epsilon</code>-optimal choice in the stated two-action model is
+    ethical. The smallest integer multiplier that guarantees the strict margin
+    is <code>floor(B / K) + 1</code>.
+  </section>
+  <p>
+    <strong>Proof.</strong> The payoff bounds give
+    <code>U_ethical - U_nonethical &gt; epsilon</code>. A non-ethical
+    <code>epsilon</code>-optimal choice would require
+    <code>U_nonethical + epsilon &gt;= U_ethical</code>, which contradicts that
+    strict inequality. Euclidean division gives
+    <code>B &lt; K [floor(B/K) + 1]</code>. ∎
+  </p>
+
+  <h2>4. Infinite scarcity as an asymptotic theorem</h2>
+  <p>
+    Literal infinity never enters an executable transaction. The economic path
+    is a sequence of finite multipliers. “Hyperdeflation tends to infinity”
+    means that for every finite bound, the sequence eventually remains at or
+    above that bound.
+  </p>
+  <section class="theorem">
+    <span class="label">Theorem 2 · Bounded-deviation asymptotic form</span>
+    Let <code>M(t)</code> eventually exceed every finite bound. Fix
+    <code>K &gt; 0</code> and a finite complete opposing bound <code>B</code>.
+    There exists a finite epoch <code>T</code> such that every
+    <code>epsilon</code>-optimal modeled choice is ethical for all
+    <code>t &gt;= T</code>.
+  </section>
+  <p>
+    <strong>Proof.</strong> The threshold
+    <code>floor(B/K) + 1</code> is finite. Unbounded <code>M(t)</code>
+    eventually reaches it. Theorem 1 applies thereafter. ∎
+  </p>
+
+  <h2>5. Relative growth and the AGI case</h2>
+  <p>
+    AGI can increase productive abundance while also increasing the scale of
+    attacks, arbitrage, and external opportunities. A fixed bound on
+    <code>G(t)</code> may therefore be too strong. Version 1.1 uses a
+    relative-growth statement for this case.
+  </p>
+  <section class="theorem">
+    <span class="label">Theorem 3 · Relative-growth form</span>
+    Suppose <code>K(t) &gt; 0</code>. If, from some finite epoch onward,
+    <code>B(t) / K(t) &lt; M(t)</code>, then the strict hyperdeflation margin
+    holds from that epoch onward.
+  </section>
+  <p>
+    This condition makes the growth-rate dependency visible. In an illustrative
+    exponential scenario, scarcity may grow as <code>(1+d)^t</code> while the
+    opposing opportunity grows as <code>(1+g)^t</code>. A persistent positive
+    coefficient and <code>d &gt; g</code> eventually favor the ethical action.
+    Equal growth rates require a coefficient comparison. Faster deviation
+    growth defeats this mechanism.
+  </p>
+  <p>
+    Research on AGI economics supports scenario analysis rather than a single
+    inevitable price path. Automation outcomes depend on capital accumulation,
+    compute, task structure, and irreproducible bottlenecks. Version 1.1 therefore
+    states hyperdeflation as an assumption to test, rather than a guaranteed
+    consequence of AGI.
+  </p>
+
+  <h2>6. Bitcoin-style scarcity</h2>
+  <p>
+    Bitcoin's block subsidy halves on a controlled schedule and its monetary
+    supply approaches a finite cap. Outstanding supply does not follow Version
+    1's geometric burn-to-zero equation. A Bitcoin-like Version 1.1 model uses
+    <code>M(t)</code> as purchasing power per spendable coin. The multiplier can
+    rise when real output or demand grows relative to the monetary stock.
+  </p>
+  <p>
+    The cap establishes controlled issuance. Market demand, productivity,
+    velocity, liquidity, and competing assets determine purchasing power. The
+    theorem is conditional on the resulting multiplier path. It does not derive
+    that path from Bitcoin consensus rules alone.
+  </p>
+
+  <h2>7. Counterexamples retained</h2>
+  <section class="counterexample">
+    <span class="label">Counterexample family A · Common scaling</span>
+    If <code>G(t) = M(t) K(t)</code> and the other terms are zero, the two sides
+    remain equal. Scarcity grows without producing a strict preference.
+  </section>
+  <section class="counterexample">
+    <span class="label">Counterexample family B · Faster deviations</span>
+    If <code>K(t)=1</code> and <code>G(t)=M(t)^2</code>, non-ethical opportunity
+    dominates the linear scarcity entitlement for every <code>M(t) &gt; 1</code>.
+  </section>
+  <section class="counterexample">
+    <span class="label">Counterexample family C · Zero exposure</span>
+    If <code>K(t)=0</code>, no amount of scarcity changes the ranking.
+  </section>
+  <section class="counterexample">
+    <span class="label">Counterexample family D · Unauthenticated scoring</span>
+    A self-attested EETF lets the actor label a profitable deviation ethical.
+    Economic arithmetic cannot repair a forged classification.
+  </section>
+  <section class="counterexample">
+    <span class="label">Counterexample family E · Unfunded entitlement</span>
+    A nominal reward with no committed reserve may never be paid. It cannot
+    supply the payoff assumed by the theorem.
+  </section>
+
+  <h2>8. Executable and formal evidence</h2>
+  <table>
+    <thead><tr><th>Layer</th><th>Established scope</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>Lean 4.33.0</td>
+        <td>Exact integer threshold, threshold monotonicity, finite choice theorem, bounded-deviation asymptotic theorem, and relative-growth theorem.</td>
+        <td>Checked; source-bound receipt; expected standard axioms only.</td>
+      </tr>
+      <tr>
+        <td>Python reference</td>
+        <td>Finite u64 envelope, strict boundary, exact-type rejection, overflow rejection, and direct raw-utility parity over 3,125 configurations.</td>
+        <td>Deterministic tests pass for the stated finite domains.</td>
+      </tr>
+      <tr>
+        <td>Tau packet</td>
+        <td>Conjunction of authenticated EETF, ethical action, strict margin, and funded reward facts over all 16 Boolean rows.</td>
+        <td>Exhaustive semantic packet present. Source-pinned interpreter replay remains pending.</td>
+      </tr>
+    </tbody>
+  </table>
+  <p>
+    Tau does not receive “infinity.” The host computes each finite integer
+    margin with explicit no-overflow checks. Tau combines the derived strict
+    margin with authenticated classification and funding facts. A production
+    system would also require signatures, replay protection, state roots,
+    reserve settlement, and governance over the active EETF policy.
+  </p>
+
+  <h2>9. Relationship to Version 2</h2>
+  <p>
+    Version 1.1 and Version 2 answer different questions. Version 1.1 asks when
+    hyperdeflationary economics eventually makes ethical work most profitable.
+    Version 2 asks what a policy-governed network may publish and reward at a
+    finite epoch. A future network can combine both: V1.1 supplies the economic
+    mechanism, while V2 supplies a deterministic publication boundary.
+  </p>
+
+  <h2>10. Limitations and nonclaims</h2>
+  <ul>
+    <li>The theorem is policy-relative and does not establish objective moral truth.</li>
+    <li>It does not prove AGI occurs or causes economy-wide hyperdeflation.</li>
+    <li>It does not prove Bitcoin purchasing power diverges.</li>
+    <li>It does not authenticate EETF evidence, market prices, sensors, or oracles.</li>
+    <li>It does not cover unbounded or faster-growing deviations outside the relative-growth condition.</li>
+    <li>It does not establish coalition, sybil, governance-capture, liquidity, or market-manipulation safety.</li>
+    <li>It does not resolve infinite-horizon discounting, hoarding, utility saturation, or transversality by itself.</li>
+    <li>It does not establish Tau Net deployment or production readiness.</li>
+  </ul>
+
+  <h2>References</h2>
+  <ol class="small">
+    <li>P. Wuille, <a href="https://github.com/bitcoin/bips/blob/master/bip-0042.mediawiki">BIP 42: A finite monetary supply for Bitcoin</a>.</li>
+    <li>A. Korinek and D. Suh, <a href="https://www.nber.org/papers/w32255">Scenarios for the Transition to AGI</a>, NBER Working Paper 32255, 2024.</li>
+    <li>P. Restrepo, <a href="https://www.nber.org/papers/w34423">We Won't be Missed: Work and Growth in the AGI World</a>, NBER Working Paper 34423, 2025.</li>
+    <li>J. A. Gray and S. W. Salant, <a href="https://www.federalreserve.gov/econres/ifdp/transversality-conditions-in-infinite-horizon-models.htm">Transversality Conditions in Infinite Horizon Models</a>, Federal Reserve IFDP 172, 1981.</li>
+    <li><a href="https://github.com/TheDarkLightX/AlignmentTheorem">AlignmentTheorem repository</a>, Version 1.1 Lean, Tau, and exact-model artifacts.</li>
+  </ol>
+
+  <section class="status">
+    <span class="label">Evidence boundary</span>
+    Version 1.1 is a restricted, machine-checked theorem over declared
+    assumptions. Its economic forecasts and authentication premises remain
+    empirical and institutional obligations.
+  </section>
+
+  <footer>
+    Alignment Theorem Version 1.1 · Hyperdeflationary research extension · August 2026
+  </footer>
+</main>
+</body>
+</html>
