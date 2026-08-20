@@ -73,6 +73,7 @@ supplies that separate theorem. See
 | `proofs/v1_1/AlignmentTheoremV1_1.lean` | Finite, asymptotic, and relative-growth theorems |
 | `verification/alignment_v1_1_model.py` | Exact bounded-integer reference model |
 | `tau/v1_1/` | Exhaustive 16-row finite semantic gate packet |
+| `verification/capture_tau_v1_1_candidate.py` | Non-authoritative Runpod build-manifest capture |
 | `verification/run_tau_v1_1.py` | Fail-closed exact-binary Tau replay runner |
 | `verification/receipts/v1_1_assurance.json` | Source-bound claim and nonclaim receipt |
 
@@ -117,6 +118,14 @@ Current Tau execution, after obtaining the exact reviewed binary identity from
 `TOOLCHAINS.md`:
 
 ```bash
+python3 verification/capture_tau_v1_1_candidate.py \
+  --tau-source /path/to/tau-lang \
+  --tau-bin /path/to/tau-lang/build-Release/tau \
+  --runpod-image 'registry/image@sha256:<64-hex-digest>' \
+  --build-command 'TAU_BUILD_JOBS=1 ./dev release' \
+  --output /path/to/export/tau_v1_1_candidate.json \
+  --json
+
 python3 verification/run_tau_v1_1.py \
   --tau-bin /path/to/tau-lang/build-Release/tau \
   --output verification/receipts/tau_v1_1_fd137e8.json \

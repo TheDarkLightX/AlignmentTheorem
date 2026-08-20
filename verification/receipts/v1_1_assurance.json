@@ -1,8 +1,8 @@
 {
   "authority_status": "REFERENCE_ONLY_NO_PUBLICATION_OR_VALUE_AUTHORITY",
   "bound_files_sha256": {
-    "README.md": "3697e0707e3df1be6659de2851f3cc40d2f36289014477a0f0e68bec7445c1ca",
-    "TOOLCHAINS.md": "7dbb08c3e8efd68b7e8eeee75f3cd7944bb579ffcb01dec4fd8e67dc9fa19067",
+    "README.md": "dfbebd6a70ff9662cf8ea316e73da965b3f93cab2bb2fc9866a3f2fc8d52e6a3",
+    "TOOLCHAINS.md": "4ce471f7b0512723af1ba3c854b463fdeb8a37c93a98282c1f799e8d1c5a13c1",
     "docs/Alignment_Theorem_Academic.pdf": "321dba74873cec419c1f945f5f6df27abdfb774368208bd90dbc3820b4aa771c",
     "docs/Alignment_Theorem_V1_1_Hyperdeflationary.pdf": "6f78bddf39bd0041b342739df05e326d74e295f33747b516ff610a2c5e14d3aa",
     "docs/SIMULATION_RESULTS.md": "533048ccf9f38b0926106ded4bc9a82f5f98d6dece8e1d63bbb3d5d843c54bea",
@@ -27,16 +27,18 @@
     "tests/test_alignment_v1_1_model.py": "c0da8a36222e53fd7d8a144bc49f057da9f50f282cf175f73dc3e3d71d79238f",
     "tests/test_lean_v1_1_receipt.py": "d7ab6b32e4d6b572062ea5ce9e1ee376048f1341d7ef2b497f2fa0af039f0a83",
     "tests/test_tau_v1_1.py": "a4b1e4cd9c22d15bd2570d76bd5f1b8115e8bbd1582e2a32c315423dca66825a",
+    "tests/test_tau_v1_1_candidate_manifest.py": "5f1da199e02c559ffaab8443f17aaddac3dcbf8b2de9ab16395c94ee63554f74",
     "tests/test_tau_v1_1_runner.py": "0e88e7d0b6b0f71559f929d645d905cfffa5b26b762538e819b4ca452fa9456c",
     "tests/test_v1_1_assurance_receipt.py": "c61157d008bad813a95eeb2afdf2e8cebbada214e04a71f82687a1d114a71f4a",
-    "tests/test_v1_1_publication.py": "2f93c99fb790322dd53265bd273ff612e29df4ccbdb82169e513f8023e44c16f",
+    "tests/test_v1_1_publication.py": "f44cbc8ca3eaba07e68d7d5a7a91164fbc79d72556604a1fc9708a5bf7f462a3",
     "verification/alignment_v1_1_model.py": "c8c28b5173b79496b66e364e0cb3336f8ddeaa2e41aeaae0d0408579d59f5c00",
+    "verification/capture_tau_v1_1_candidate.py": "efcc84e78dd9ef672de83dec45fba1457c6492253bc7168ca742cb5e3bf5349a",
     "verification/generate_tau_v1_1_packet.py": "16f1145553b52140f76ca9ce20b92166e99dd1a10742e3c1eabccdeb3378974b",
     "verification/receipts/lean_v1_1_v4.33.0.json": "bdadcee22ff78816935ad0b8a4bc2dd8aaacbe720333aadaf9e93bab05bc8b20",
     "verification/run_lean_v1_1.py": "110845dd555fea02bd770267586fda3c626330d771658820f526c7f90c0c3d96",
     "verification/run_tau_v1_1.py": "813c1109c5d8a3e30ec65adc04752e2ed8337b6f6d6c72dd12324eeaee41e1b8"
   },
-  "checker_sha256": "e778ae57167b004fbe8a3ed5a0a344e394a8a06afc99d59793f7e0ca839fa70b",
+  "checker_sha256": "d968f5a5be04871751503071eeb00fb399a2db89ee3179f867c58bbb3f643ec0",
   "error": "",
   "lean_passed": true,
   "lean_source_bundle_sha256": "bf1868a8018c23f6d4cb766bce2551ea73fce38b0e7b78f32aebf9244416350a",
@@ -44,6 +46,7 @@
   "python_test_modules": [
     "tests.test_alignment_v1_1_model",
     "tests.test_tau_v1_1",
+    "tests.test_tau_v1_1_candidate_manifest",
     "tests.test_tau_v1_1_runner",
     "tests.test_lean_v1_1_receipt",
     "tests.test_v1_1_publication"
@@ -51,7 +54,7 @@
   "python_test_returncode": 0,
   "python_version": "3.12.3",
   "schema": "alignment-theorem-v1-1-assurance-v2",
-  "source_bundle_sha256": "9760a96319963b47e9b25d7d51f7dea43d9bdda1bd8c9abdf2634478040ac1b6",
+  "source_bundle_sha256": "5b0cd8df16ba21456e4116347ec72d745d963862ead361aa59b9520066836441",
   "tau_interpreter_replay_status": "PENDING_PINNED_TAU_BINARY_REPLAY",
   "tau_semantic_packet_rows": 16
 }

@@ -55,11 +55,25 @@ after every check passes.
 Replay on the faster machine:
 
 ```bash
+python3 verification/capture_tau_v1_1_candidate.py \
+  --tau-source /path/to/tau-lang \
+  --tau-bin /path/to/tau-lang/build-Release/tau \
+  --runpod-image 'registry/image@sha256:<64-hex-digest>' \
+  --build-command 'TAU_BUILD_JOBS=1 ./dev release' \
+  --output /path/to/export/tau_v1_1_candidate.json \
+  --json
+
 python3 verification/run_tau_v1_1.py \
   --tau-bin /path/to/tau-lang/build-Release/tau \
   --output verification/receipts/tau_v1_1_fd137e8.json \
   --json
 ```
+
+The candidate-manifest command does not execute Tau. It records source state,
+submodules, the candidate binary hash, declared image/build identities, platform
+shape, and tool versions. `capture_complete` means those fields were collected.
+Every candidate manifest fixes `promotion_eligible` and `replay_executed` to
+false. Keep the manifest outside `verification/receipts/` until review.
 
 The accepted execution identity is the Tau version and Linux binary hash listed
 below. The source and parser commits are expected provenance pins. This runner
@@ -67,7 +81,8 @@ does not rebuild the executable, attest the source-to-binary relationship, or
 pin the host libraries and kernel. Its receipt records those boundaries
 explicitly.
 
-Before reviewing a different Runpod-built candidate, retain this evidence:
+The capture tool replaces the following manual checklist. If the tool cannot
+run, retain this evidence directly:
 
 ```bash
 git -C /path/to/tau-lang rev-parse HEAD

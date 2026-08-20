@@ -89,6 +89,8 @@ class V1_1PublicationTests(unittest.TestCase):
         self.assertIn("does not rebuild the executable", toolchains)
         self.assertIn("immutable image digest", toolchains)
         self.assertIn("do not edit the accepted hash solely", toolchains)
+        self.assertIn("capture_tau_v1_1_candidate.py", toolchains)
+        self.assertIn("promotion_eligible", toolchains)
 
 
 if __name__ == "__main__":
