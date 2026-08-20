@@ -73,6 +73,7 @@ supplies that separate theorem. See
 | `proofs/v1_1/AlignmentTheoremV1_1.lean` | Finite, asymptotic, and relative-growth theorems |
 | `verification/alignment_v1_1_model.py` | Exact bounded-integer reference model |
 | `tau/v1_1/` | Exhaustive 16-row finite semantic gate packet |
+| `verification/run_tau_v1_1.py` | Fail-closed exact-binary Tau replay runner |
 | `verification/receipts/v1_1_assurance.json` | Source-bound claim and nonclaim receipt |
 
 ## Version 2 artifacts
@@ -112,10 +113,15 @@ python3 verification/run_lean_v1_1.py --json
 python3 -m verification.run_v1_1_assurance --json
 ```
 
-Current Tau execution, after building the exact source pin from
+Current Tau execution, after obtaining the exact reviewed binary identity from
 `TOOLCHAINS.md`:
 
 ```bash
+python3 verification/run_tau_v1_1.py \
+  --tau-bin /path/to/tau-lang/build-Release/tau \
+  --output verification/receipts/tau_v1_1_fd137e8.json \
+  --json
+
 python3 verification/run_tau_v2.py \
   --tau-bin /path/to/tau-lang/build-Release/tau \
   --json
@@ -123,8 +129,9 @@ python3 verification/run_tau_v2.py \
 
 The Version 1.1 Tau packet has exhaustive semantic parity tests over four
 assumed propositions. It does not authenticate them or create authority.
-Interpreter replay on the exact current source pin remains pending and is not
-claimed.
+Its runner checks the exact binary hash and version before execution, requires
+byte-exact canonical output, and writes a receipt only after a passing replay.
+That pinned-binary replay remains pending and is not claimed.
 
 
 ## Evidence boundary

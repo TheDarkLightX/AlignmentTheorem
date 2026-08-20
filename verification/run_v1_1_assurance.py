@@ -42,16 +42,19 @@ BOUND_FILES = (
     "tests/test_alignment_v1_1_model.py",
     "tests/test_lean_v1_1_receipt.py",
     "tests/test_tau_v1_1.py",
+    "tests/test_tau_v1_1_runner.py",
     "tests/test_v1_1_assurance_receipt.py",
     "tests/test_v1_1_publication.py",
     "verification/alignment_v1_1_model.py",
     "verification/generate_tau_v1_1_packet.py",
     "verification/receipts/lean_v1_1_v4.33.0.json",
     "verification/run_lean_v1_1.py",
+    "verification/run_tau_v1_1.py",
 )
 TEST_MODULES = (
     "tests.test_alignment_v1_1_model",
     "tests.test_tau_v1_1",
+    "tests.test_tau_v1_1_runner",
     "tests.test_lean_v1_1_receipt",
     "tests.test_v1_1_publication",
 )
@@ -88,7 +91,7 @@ def run() -> dict[str, object]:
     lean = run_lean()
     passed = tests.returncode == 0 and lean["passed"] is True
     return {
-        "schema": "alignment-theorem-v1-1-assurance-v1",
+        "schema": "alignment-theorem-v1-1-assurance-v2",
         "checker_sha256": _sha256(Path(__file__).read_bytes()),
         "bound_files_sha256": bound_hashes,
         "source_bundle_sha256": _bundle_sha256(bound_hashes),
@@ -98,7 +101,7 @@ def run() -> dict[str, object]:
         "lean_source_bundle_sha256": lean["source_bundle_sha256"],
         "lean_passed": lean["passed"],
         "tau_semantic_packet_rows": 16,
-        "tau_interpreter_replay_status": "PENDING_EXACT_SOURCE_PIN",
+        "tau_interpreter_replay_status": "PENDING_PINNED_TAU_BINARY_REPLAY",
         "authority_status": "REFERENCE_ONLY_NO_PUBLICATION_OR_VALUE_AUTHORITY",
         "passed": passed,
         "error": "" if passed else tests.stdout + tests.stderr + str(lean["error"]),

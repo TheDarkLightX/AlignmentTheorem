@@ -33,9 +33,10 @@ python3 -m verification.run_v1_1_assurance \
   --json
 ```
 
-This receipt binds the V1.1 proof, model, semantic Tau packet, tests, public
-pages, HTML paper, and rendered PDF. It records the Python/Tau surfaces as
-reference-only and records exact-current Tau interpreter replay as pending.
+This receipt binds the V1.1 proof, model, semantic Tau packet, replay runner,
+tests, public pages, HTML paper, and rendered PDF. It records the Python/Tau
+surfaces as reference-only and records exact-current Tau interpreter replay as
+pending.
 After generation, validate the stored receipt against the bound files:
 
 ```bash
@@ -46,10 +47,27 @@ python3 -m unittest tests.test_v1_1_assurance_receipt -v
 
 `tau/v1_1/` uses the same current declaration shape as the Version 2 packet and
 contains all 16 Boolean rows for its four semantic facts. Static semantic parity
-is tested. No Version 1.1 interpreter receipt is currently promoted because the
-exact source-pinned `fd137e8` executable was unavailable during this update.
-An older available `401d756b` executable segfaulted on the current declaration
-shape and supplies no evidence.
+is tested. `verification/run_tau_v1_1.py` snapshots the candidate executable and
+packet, checks the exact source-derived binary identity before execution,
+requires the exact version string and byte-canonical 16-row output, and writes a
+receipt only after every check passes.
+
+Replay on the faster machine:
+
+```bash
+python3 verification/run_tau_v1_1.py \
+  --tau-bin /path/to/tau-lang/build-Release/tau \
+  --output verification/receipts/tau_v1_1_fd137e8.json \
+  --json
+```
+
+The accepted executable identity is the Tau source, parser, version, and Linux
+binary pin listed below. A rebuilt executable with different bytes is a new
+candidate and requires an intentional pin review before it can produce this
+receipt. No Version 1.1 interpreter receipt is currently promoted because that
+exact executable was unavailable during this update. An older available
+`401d756b` executable segfaulted on the current declaration shape and supplies
+no evidence.
 
 ## Version 2 source baseline
 
