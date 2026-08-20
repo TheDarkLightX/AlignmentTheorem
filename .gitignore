@@ -1,0 +1,15 @@
+__pycache__/
+*.py[cod]
+
+# Lean build output
+.lake/
+
+# LaTeX intermediates; the Version 2 PDF is intentionally tracked.
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+paper/v2/*.out
+docs/Alignment_Theorem_V2.out
