@@ -6,6 +6,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 README = ROOT / "README.md"
+TOOLCHAINS = ROOT / "TOOLCHAINS.md"
 PAGE = ROOT / "docs" / "v1-1-hyperdeflationary-alignment.html"
 INDEX = ROOT / "docs" / "index.html"
 PDF = ROOT / "docs" / "Alignment_Theorem_V1_1_Hyperdeflationary.pdf"
@@ -79,6 +80,15 @@ class V1_1PublicationTests(unittest.TestCase):
         local_targets = re.findall(r'href="(?!https?://|#)([^"]+)"', paper)
         for target in local_targets:
             self.assertTrue((PAGE.parent / target).is_file(), target)
+
+    def test_tau_replay_docs_separate_binary_checks_from_build_provenance(self) -> None:
+        # Arrange / Act
+        toolchains = " ".join(TOOLCHAINS.read_text().split())
+
+        # Assert
+        self.assertIn("does not rebuild the executable", toolchains)
+        self.assertIn("immutable image digest", toolchains)
+        self.assertIn("do not edit the accepted hash solely", toolchains)
 
 
 if __name__ == "__main__":

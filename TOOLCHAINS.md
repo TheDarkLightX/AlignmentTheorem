@@ -48,9 +48,9 @@ python3 -m unittest tests.test_v1_1_assurance_receipt -v
 `tau/v1_1/` uses the same current declaration shape as the Version 2 packet and
 contains all 16 Boolean rows for its four semantic facts. Static semantic parity
 is tested. `verification/run_tau_v1_1.py` snapshots the candidate executable and
-packet, checks the exact source-derived binary identity before execution,
-requires the exact version string and byte-canonical 16-row output, and writes a
-receipt only after every check passes.
+packet, checks the exact reviewed binary hash before execution, requires the
+exact version string and byte-canonical 16-row output, and writes a receipt only
+after every check passes.
 
 Replay on the faster machine:
 
@@ -61,13 +61,33 @@ python3 verification/run_tau_v1_1.py \
   --json
 ```
 
-The accepted executable identity is the Tau source, parser, version, and Linux
-binary pin listed below. A rebuilt executable with different bytes is a new
-candidate and requires an intentional pin review before it can produce this
-receipt. No Version 1.1 interpreter receipt is currently promoted because that
-exact executable was unavailable during this update. An older available
-`401d756b` executable segfaulted on the current declaration shape and supplies
-no evidence.
+The accepted execution identity is the Tau version and Linux binary hash listed
+below. The source and parser commits are expected provenance pins. This runner
+does not rebuild the executable, attest the source-to-binary relationship, or
+pin the host libraries and kernel. Its receipt records those boundaries
+explicitly.
+
+Before reviewing a different Runpod-built candidate, retain this evidence:
+
+```bash
+git -C /path/to/tau-lang rev-parse HEAD
+git -C /path/to/tau-lang status --porcelain=v1
+git -C /path/to/tau-lang submodule status --recursive
+/path/to/tau-lang/build-Release/tau --version
+sha256sum /path/to/tau-lang/build-Release/tau
+cmake --version
+c++ --version
+ldd --version
+uname -a
+```
+
+Also retain the Runpod image name and immutable image digest, build command,
+CPU architecture, and build log. A rebuilt executable with different bytes is a
+new candidate. Preserve its manifest and review the new pin intentionally; do
+not edit the accepted hash solely to make the runner pass. No Version 1.1
+interpreter receipt is currently promoted because the accepted executable was
+unavailable during this update. An older available `401d756b` executable
+segfaulted on the current declaration shape and supplies no evidence.
 
 ## Version 2 source baseline
 

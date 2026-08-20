@@ -131,7 +131,9 @@ The Version 1.1 Tau packet has exhaustive semantic parity tests over four
 assumed propositions. It does not authenticate them or create authority.
 Its runner checks the exact binary hash and version before execution, requires
 byte-exact canonical output, and writes a receipt only after a passing replay.
-That pinned-binary replay remains pending and is not claimed.
+The runner records that source-to-binary provenance and the host execution
+environment are not independently attested by this replay. The pinned-binary
+replay remains pending and is not claimed.
 
 
 ## Evidence boundary

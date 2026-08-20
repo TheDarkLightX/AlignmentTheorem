@@ -172,9 +172,26 @@ class TauV1_1RunnerGradingTests(unittest.TestCase):
 
         # Assert
         self.assertTrue(report["passed"])
+        self.assertEqual(report["schema"], "alignment-theorem-v1-1-tau-run-v2")
         self.assertEqual(report["failure_codes"], [])
-        self.assertEqual(report["tau_source_commit"], EXPECTED_TAU_SOURCE_COMMIT)
-        self.assertEqual(report["tau_parser_commit"], EXPECTED_TAU_PARSER_COMMIT)
+        self.assertEqual(
+            report["expected_tau_source_commit"],
+            EXPECTED_TAU_SOURCE_COMMIT,
+        )
+        self.assertEqual(
+            report["expected_tau_parser_commit"],
+            EXPECTED_TAU_PARSER_COMMIT,
+        )
+        self.assertNotIn("tau_source_commit", report)
+        self.assertNotIn("tau_parser_commit", report)
+        self.assertEqual(
+            report["source_provenance_status"],
+            "DECLARED_SOURCE_PIN_NOT_REBUILT_OR_ATTESTED_BY_THIS_RUNNER",
+        )
+        self.assertEqual(
+            report["execution_environment_status"],
+            "HOST_ENVIRONMENT_NOT_HERMETICALLY_PINNED",
+        )
         self.assertEqual(
             report["tau_spec_sha256"],
             hashlib.sha256((TAU_PACKET / SPEC_NAME).read_bytes()).hexdigest(),

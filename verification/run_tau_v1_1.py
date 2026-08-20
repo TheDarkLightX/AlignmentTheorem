@@ -29,6 +29,10 @@ EXPECTED_TAU_BINARY_SHA256 = (
     "c49267404e07a1f540c941b618e786710f70001eecbd05bb7c6d8eec0c5645fa"
 )
 AUTHORITY_STATUS = "INTERPRETER_REPLAY_ONLY_NO_PUBLICATION_OR_VALUE_AUTHORITY"
+SOURCE_PROVENANCE_STATUS = (
+    "DECLARED_SOURCE_PIN_NOT_REBUILT_OR_ATTESTED_BY_THIS_RUNNER"
+)
+EXECUTION_ENVIRONMENT_STATUS = "HOST_ENVIRONMENT_NOT_HERMETICALLY_PINNED"
 MAX_DIAGNOSTIC_BYTES = 8_192
 
 
@@ -190,13 +194,15 @@ def _report(
     )
     passed = not failure_codes
     return {
-        "schema": "alignment-theorem-v1-1-tau-run-v1",
+        "schema": "alignment-theorem-v1-1-tau-run-v2",
         "checker_sha256": _sha256(Path(__file__)),
         "generator_sha256": _sha256(
             REPO_ROOT / "verification" / "generate_tau_v1_1_packet.py"
         ),
-        "tau_source_commit": EXPECTED_TAU_SOURCE_COMMIT,
-        "tau_parser_commit": EXPECTED_TAU_PARSER_COMMIT,
+        "expected_tau_source_commit": EXPECTED_TAU_SOURCE_COMMIT,
+        "expected_tau_parser_commit": EXPECTED_TAU_PARSER_COMMIT,
+        "source_provenance_status": SOURCE_PROVENANCE_STATUS,
+        "execution_environment_status": EXECUTION_ENVIRONMENT_STATUS,
         "tau_version": tau_version,
         "tau_binary_sha256": tau_binary_sha256,
         "tau_spec_sha256": tau_spec_sha256,
