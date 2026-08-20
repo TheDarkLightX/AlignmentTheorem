@@ -1,7 +1,108 @@
 # Reproducible Toolchain Pins
 
-Version 2 evidence is tied to exact source and binary identities. A later tool
-version must generate a new receipt rather than inherit these results.
+Version 1.1 and Version 2 evidence is tied to exact source identities and to
+binary identities wherever interpreter execution is claimed. A later tool
+version must generate a new receipt rather than
+inherit these results.
+
+## Version 1.1
+
+### Lean
+
+- Lean release: `v4.33.0`
+- Toolchain file: `proofs/v1_1/lean-toolchain`
+- Standard library only
+
+Replay:
+
+```bash
+python3 verification/run_lean_v1_1.py \
+  --output verification/receipts/lean_v1_1_v4.33.0.json \
+  --json
+```
+
+The receipt binds the paper utility bridge, exact least threshold, finite
+choice, asymptotic bounded-deviation, and relative-growth theorem sources. It
+also records the exact expected standard axiom dependencies.
+
+### Claim-scoped assurance
+
+```bash
+python3 -m verification.run_v1_1_assurance \
+  --output verification/receipts/v1_1_assurance.json \
+  --json
+```
+
+This receipt binds the V1.1 proof, model, semantic Tau packet, replay runner,
+tests, public pages, HTML paper, and rendered PDF. It records the Python/Tau
+surfaces as reference-only and records exact-current Tau interpreter replay as
+pending.
+After generation, validate the stored receipt against the bound files:
+
+```bash
+python3 -m unittest tests.test_v1_1_assurance_receipt -v
+```
+
+### Tau
+
+`tau/v1_1/` uses the same current declaration shape as the Version 2 packet and
+contains all 16 Boolean rows for its four semantic facts. Static semantic parity
+is tested. `verification/run_tau_v1_1.py` snapshots the candidate executable and
+packet, checks the exact reviewed binary hash before execution, requires the
+exact version string and byte-canonical 16-row output, and writes a receipt only
+after every check passes.
+
+Replay on the faster machine:
+
+```bash
+python3 verification/capture_tau_v1_1_candidate.py \
+  --tau-source /path/to/tau-lang \
+  --tau-bin /path/to/tau-lang/build-Release/tau \
+  --runpod-image 'registry/image@sha256:<64-hex-digest>' \
+  --build-command 'TAU_BUILD_JOBS=1 ./dev release' \
+  --output /path/to/export/tau_v1_1_candidate.json \
+  --json
+
+python3 verification/run_tau_v1_1.py \
+  --tau-bin /path/to/tau-lang/build-Release/tau \
+  --output verification/receipts/tau_v1_1_fd137e8.json \
+  --json
+```
+
+The candidate-manifest command does not execute Tau. It records source state,
+submodules, the candidate binary hash, declared image/build identities, platform
+shape, and tool versions. `capture_complete` means those fields were collected.
+Every candidate manifest fixes `promotion_eligible` and `replay_executed` to
+false. Keep the manifest outside `verification/receipts/` until review.
+
+The accepted execution identity is the Tau version and Linux binary hash listed
+below. The source and parser commits are expected provenance pins. This runner
+does not rebuild the executable, attest the source-to-binary relationship, or
+pin the host libraries and kernel. Its receipt records those boundaries
+explicitly.
+
+The capture tool replaces the following manual checklist. If the tool cannot
+run, retain this evidence directly:
+
+```bash
+git -C /path/to/tau-lang rev-parse HEAD
+git -C /path/to/tau-lang status --porcelain=v1
+git -C /path/to/tau-lang submodule status --recursive
+/path/to/tau-lang/build-Release/tau --version
+sha256sum /path/to/tau-lang/build-Release/tau
+cmake --version
+c++ --version
+ldd --version
+uname -a
+```
+
+Also retain the Runpod image name and immutable image digest, build command,
+CPU architecture, and build log. A rebuilt executable with different bytes is a
+new candidate. Preserve its manifest and review the new pin intentionally; do
+not edit the accepted hash solely to make the runner pass. No Version 1.1
+interpreter receipt is currently promoted because the accepted executable was
+unavailable during this update. An older available `401d756b` executable
+segfaulted on the current declaration shape and supplies no evidence.
 
 ## Version 2 source baseline
 

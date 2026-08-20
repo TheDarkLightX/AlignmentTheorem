@@ -1,0 +1,88 @@
+{
+  "axiom_audit_returncode": 0,
+  "axiom_reports": {
+    "AlignmentTheoremV1_1.finite_hyperdeflationary_alignment": [
+      "propext",
+      "Quot.sound"
+    ],
+    "AlignmentTheoremV1_1.hyperdeflation_eventually_aligns_bounded_deviations": [
+      "propext",
+      "Quot.sound"
+    ],
+    "AlignmentTheoremV1_1.minimum_scarcity_multiplier_is_least": [
+      "propext",
+      "Quot.sound"
+    ],
+    "AlignmentTheoremV1_1.minimum_scarcity_multiplier_is_strict": [
+      "propext"
+    ],
+    "AlignmentTheoremV1_1.paper_utility_bounds_force_epsilon_optimal_choice_ethical": [
+      "propext",
+      "Quot.sound"
+    ],
+    "AlignmentTheoremV1_1.relative_growth_eventually_has_strict_margin": [
+      "propext"
+    ],
+    "AlignmentTheoremV1_1.scarcity_below_minimum_is_not_strict": [
+      "propext",
+      "Quot.sound"
+    ],
+    "AlignmentTheoremV1_1.strict_margin_at_or_above_minimum": [
+      "propext"
+    ],
+    "AlignmentTheoremV1_1.strict_margin_forces_epsilon_optimal_choice_ethical": [
+      "propext",
+      "Quot.sound"
+    ]
+  },
+  "build_returncode": 0,
+  "checker_sha256": "110845dd555fea02bd770267586fda3c626330d771658820f526c7f90c0c3d96",
+  "error": "",
+  "expected_axiom_reports": {
+    "AlignmentTheoremV1_1.finite_hyperdeflationary_alignment": [
+      "propext",
+      "Quot.sound"
+    ],
+    "AlignmentTheoremV1_1.hyperdeflation_eventually_aligns_bounded_deviations": [
+      "propext",
+      "Quot.sound"
+    ],
+    "AlignmentTheoremV1_1.minimum_scarcity_multiplier_is_least": [
+      "propext",
+      "Quot.sound"
+    ],
+    "AlignmentTheoremV1_1.minimum_scarcity_multiplier_is_strict": [
+      "propext"
+    ],
+    "AlignmentTheoremV1_1.paper_utility_bounds_force_epsilon_optimal_choice_ethical": [
+      "propext",
+      "Quot.sound"
+    ],
+    "AlignmentTheoremV1_1.relative_growth_eventually_has_strict_margin": [
+      "propext"
+    ],
+    "AlignmentTheoremV1_1.scarcity_below_minimum_is_not_strict": [
+      "propext",
+      "Quot.sound"
+    ],
+    "AlignmentTheoremV1_1.strict_margin_at_or_above_minimum": [
+      "propext"
+    ],
+    "AlignmentTheoremV1_1.strict_margin_forces_epsilon_optimal_choice_ethical": [
+      "propext",
+      "Quot.sound"
+    ]
+  },
+  "lean_version": "Lean (version 4.33.0, x86_64-unknown-linux-gnu, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)",
+  "passed": true,
+  "placeholders": [],
+  "schema": "alignment-theorem-v1-1-lean-build-v1",
+  "source_bundle_sha256": "bf1868a8018c23f6d4cb766bce2551ea73fce38b0e7b78f32aebf9244416350a",
+  "source_files_sha256": {
+    "AlignmentTheoremV1_1.lean": "50d844d35cbdd0c80cde1949059962c3669b49daadad6bad9800a0f328f169f5",
+    "AxiomAudit.lean": "851ee34a5470d6d1bf6c62d434d6614c96332c27cbf412f85841e125d6fd9801",
+    "lake-manifest.json": "88da9a0eb83d1af15224b73ddca94d0857dfc1be609418cb8694179d128115c3",
+    "lakefile.lean": "437c8d6665dbfe9c5266b22efe0024f43fa7c3bede25648906ad25de4e6967e2",
+    "lean-toolchain": "302cd63c54178885b89e669f33b38f12f4dd7ae7e5cac537b3203e3768d8fb2b"
+  }
+}

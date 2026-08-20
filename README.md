@@ -1,11 +1,40 @@
-# Alignment Theorem Version 2
+# Alignment Theorem
 
 Can LLM agents be ethically aligned and profit-seeking at the same time? This
-project gives a finite, testable answer for a policy-governed network:
+project develops two compatible answers for a policy-governed network:
 
 > LLM agents can be trained to follow ethical constraints while pursuing
 > profitable useful work. If the ethical path is the most profitable path, the
 > network can run more smoothly.
+
+Version 1.1 repairs the original scarcity-driven idea. Version 2 defines the
+finite publication and settlement boundary.
+
+## Version 1.1: hyperdeflationary alignment
+
+At epoch `t`, let `M(t)` be a finite purchasing-power multiplier, let
+`K(t)` be the ethical reward exposure plus non-ethical forfeiture exposure, and
+let `B(t)` be the complete deviation-gain, compliance-cost, and optimizer-error
+bound. The repaired Version 1 condition is:
+
+```text
+M(t) * K(t) > B(t)
+```
+
+For fixed positive `K` and finite `B`, the exact integer threshold is
+`floor(B / K) + 1`. If hyperdeflation eventually exceeds every finite bound,
+then it eventually crosses this threshold. The relative-growth theorem also
+allows `B(t)` to grow when `B(t) / K(t) < M(t)` eventually.
+
+Version 1.1 preserves V1's economic mechanism. It treats hyperdeflation as a
+declared scenario, EETF authentication as an external adapter obligation, and
+every runtime epoch as finite. It does not prove that Bitcoin purchasing power
+diverges or that AGI necessarily causes hyperdeflation.
+
+Read the [Version 1.1 paper](docs/v1-1-hyperdeflationary-alignment.html) or
+[download the PDF](docs/Alignment_Theorem_V1_1_Hyperdeflationary.pdf).
+
+## Version 2: finite policy boundary
 
 Version 2 defines ethics relative to an explicit community policy over
 observable actions. An LLM or human may propose work. A deterministic Tau gate
@@ -29,9 +58,24 @@ Expected enforcement may be zero. In the reward-only corollary, the funded
 reward advantage for compliant work alone exceeds the bounded deviation gain,
 compliance cost, and optimizer error.
 
-Version 1 remains in the repository as historical research. Its scarcity
-argument, original Tau demos, simulations, and Lean file do not establish the
-Version 2 theorem. See [V1_TO_V2_CORRECTIONS.md](docs/V1_TO_V2_CORRECTIONS.md).
+Original Version 1 remains in the repository as historical research. Its old
+Lean file does not establish the repaired scarcity threshold. Version 1.1
+supplies that separate theorem. See
+[V1_TO_V2_CORRECTIONS.md](docs/V1_TO_V2_CORRECTIONS.md) for the reasons Version
+2 changed the publication model.
+
+## Version 1.1 artifacts
+
+| Path | Purpose |
+| --- | --- |
+| `docs/v1-1-hyperdeflationary-alignment.html` | Human-readable Version 1.1 paper |
+| `docs/Alignment_Theorem_V1_1_Hyperdeflationary.pdf` | Rendered seven-page paper |
+| `proofs/v1_1/AlignmentTheoremV1_1.lean` | Finite, asymptotic, and relative-growth theorems |
+| `verification/alignment_v1_1_model.py` | Exact bounded-integer reference model |
+| `tau/v1_1/` | Exhaustive 16-row finite semantic gate packet |
+| `verification/capture_tau_v1_1_candidate.py` | Non-authoritative Runpod build-manifest capture |
+| `verification/run_tau_v1_1.py` | Fail-closed exact-binary Tau replay runner |
+| `verification/receipts/v1_1_assurance.json` | Source-bound claim and nonclaim receipt |
 
 ## Version 2 artifacts
 
@@ -60,20 +104,52 @@ cd proofs/v2
 lake build
 ```
 
-Current Tau execution, after building the exact source pin from
+Version 1.1 Lean proof and receipt:
+
+```bash
+cd proofs/v1_1
+lake build
+cd ../..
+python3 verification/run_lean_v1_1.py --json
+python3 -m verification.run_v1_1_assurance --json
+```
+
+Current Tau execution, after obtaining the exact reviewed binary identity from
 `TOOLCHAINS.md`:
 
 ```bash
+python3 verification/capture_tau_v1_1_candidate.py \
+  --tau-source /path/to/tau-lang \
+  --tau-bin /path/to/tau-lang/build-Release/tau \
+  --runpod-image 'registry/image@sha256:<64-hex-digest>' \
+  --build-command 'TAU_BUILD_JOBS=1 ./dev release' \
+  --output /path/to/export/tau_v1_1_candidate.json \
+  --json
+
+python3 verification/run_tau_v1_1.py \
+  --tau-bin /path/to/tau-lang/build-Release/tau \
+  --output verification/receipts/tau_v1_1_fd137e8.json \
+  --json
+
 python3 verification/run_tau_v2.py \
   --tau-bin /path/to/tau-lang/build-Release/tau \
   --json
 ```
 
+The Version 1.1 Tau packet has exhaustive semantic parity tests over four
+assumed propositions. It does not authenticate them or create authority.
+Its runner checks the exact binary hash and version before execution, requires
+byte-exact canonical output, and writes a receipt only after a passing replay.
+The runner records that source-to-binary provenance and the host execution
+environment are not independently attested by this replay. The pinned-binary
+replay remains pending and is not claimed.
+
 
 ## Evidence boundary
 
-The checked artifacts establish a finite theorem, exact reserve properties, a
-fail-closed Boolean policy kernel on the pinned Tau alpha, and reference-model
-behavior over the tested domains. They do not deploy a network, train an LLM,
-authenticate real-world evidence, prove coalition bounds, or establish
-production readiness.
+The checked artifacts establish restricted finite and asymptotic theorems,
+exact reserve properties, a fail-closed Version 2 Boolean policy kernel on the
+pinned Tau alpha, and non-authoritative reference-model behavior over the
+tested domains. They do
+not deploy a network, train an LLM, authenticate real-world evidence, prove
+coalition bounds, forecast asset prices, or establish production readiness.

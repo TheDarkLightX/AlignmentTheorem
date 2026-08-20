@@ -1,5 +1,23 @@
 # Alignment Theorem Threat Model (Tau Net)
 
+## Version 1.1 Hyperdeflationary Boundary
+
+- **Relative-growth failure**: increasing purchasing power helps only while the
+  complete deviation, compliance-cost, and optimizer-error bound remains below
+  the scarcity-amplified ethical reward and forfeiture exposure. Common scaling
+  or faster deviation growth defeats the theorem.
+- **Zero exposure**: if ethical reward plus non-ethical forfeiture exposure is
+  zero, no scarcity threshold exists. The exact model rejects threshold
+  construction in this case.
+- **Forged classification**: EETF is authenticated action evidence. An actor or
+  LLM cannot supply its own authoritative ethical classification.
+- **Unfunded reward**: the finite gate requires a funded reward fact. Production
+  settlement still needs reserve custody, replay protection, and an atomic
+  value-moving implementation.
+- **Forecast uncertainty**: Bitcoin-style issuance scarcity and AGI abundance
+  do not establish the required purchasing-power path. The multiplier and its
+  opposing bound remain explicit scenario inputs.
+
 ## Aggregation Layer ($\mathcal{A}$)
 - **Sybil/credential spam**: require stake-weighted or credentialed submissions; plan to prove that adversarial weight $\leq \lambda$ cannot move $E(t)$ more than $\delta$. Future work: formalize aggregator contract, run zk-attested identities.
 - **Collusion / preference utilitarian abuse**: implement median/trimmed-mean fallback when stake concentration exceeds policy bounds; for utilitarian aggregation, enforce normalization constraints and publish proofs (or audits) of any weight scaling so no coalition can inflate its utilities.
