@@ -1,0 +1,78 @@
+{
+  "axiom_audit_returncode": 0,
+  "axiom_reports": {
+    "AlignmentTheoremV2.accepted_payout_is_funded": [
+      "propext"
+    ],
+    "AlignmentTheoremV2.accepted_settlement_conserves_reserve": [
+      "propext"
+    ],
+    "AlignmentTheoremV2.admits_implies_every_obligation": [
+      "propext"
+    ],
+    "AlignmentTheoremV2.admitted_revision_preserves_constitution": [],
+    "AlignmentTheoremV2.committed_action_is_policy_compliant": [
+      "propext"
+    ],
+    "AlignmentTheoremV2.epsilon_optimal_choice_is_compliant": [
+      "propext",
+      "Quot.sound"
+    ],
+    "AlignmentTheoremV2.finite_alignment_theorem": [
+      "propext",
+      "Quot.sound"
+    ],
+    "AlignmentTheoremV2.rejected_settlement_is_noop": [
+      "propext"
+    ],
+    "AlignmentTheoremV2.reward_only_alignment_theorem": [
+      "propext",
+      "Quot.sound"
+    ]
+  },
+  "build_returncode": 0,
+  "checker_sha256": "04393f9d118c7bd8a08c3ac209b4d557715ef5c42089b78e51308559f012dd63",
+  "error": "",
+  "expected_axiom_reports": {
+    "AlignmentTheoremV2.accepted_payout_is_funded": [
+      "propext"
+    ],
+    "AlignmentTheoremV2.accepted_settlement_conserves_reserve": [
+      "propext"
+    ],
+    "AlignmentTheoremV2.admits_implies_every_obligation": [
+      "propext"
+    ],
+    "AlignmentTheoremV2.admitted_revision_preserves_constitution": [],
+    "AlignmentTheoremV2.committed_action_is_policy_compliant": [
+      "propext"
+    ],
+    "AlignmentTheoremV2.epsilon_optimal_choice_is_compliant": [
+      "propext",
+      "Quot.sound"
+    ],
+    "AlignmentTheoremV2.finite_alignment_theorem": [
+      "propext",
+      "Quot.sound"
+    ],
+    "AlignmentTheoremV2.rejected_settlement_is_noop": [
+      "propext"
+    ],
+    "AlignmentTheoremV2.reward_only_alignment_theorem": [
+      "propext",
+      "Quot.sound"
+    ]
+  },
+  "lean_version": "Lean (version 4.33.0, x86_64-unknown-linux-gnu, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)",
+  "passed": true,
+  "placeholders": [],
+  "schema": "alignment-theorem-v2-lean-build-v1",
+  "source_bundle_sha256": "68c0c242de50b393848e244b3fbc782e8bb9a898f50755106ae7561069be35e5",
+  "source_files_sha256": {
+    "AlignmentTheoremV2.lean": "d8ec4358b3165e8007b04152771a04e187cfec4229d5edd86044cf241032a788",
+    "AxiomAudit.lean": "b0a0f0b7013e8f223d928069befc7018ed833f315f65b00ee29f27ce586fcd21",
+    "lake-manifest.json": "48bc12d32b76fbc245fa9b3d496b736d041c57588ee33d06d3d839d3962d5378",
+    "lakefile.lean": "7048d574dc35dd257dac0cc9c69000eb3619fe79fb73b6f5dc49435c43f8af1b",
+    "lean-toolchain": "302cd63c54178885b89e669f33b38f12f4dd7ae7e5cac537b3203e3768d8fb2b"
+  }
+}

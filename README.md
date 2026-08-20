@@ -1,77 +1,86 @@
-# Alignment Theorem on Tau Net
+# Alignment Theorem Version 2
 
-This directory is a drop-in payload for [`github.com/TheDarkLightX/AlignmentTheorem`](https://github.com/TheDarkLightX/AlignmentTheorem). It contains the paper, Lean proof, simulations, and verification scripts described throughout the Tau Alignment Theorem workstream.
+Can LLM agents be ethically aligned and profit-seeking at the same time? This
+project gives a finite, testable answer for a policy-governed network:
 
-How can we ensure that autonomous economic agents, human or non-human, act in ways that respect the values of the communities that host them? Traditional approaches to AI alignment try to encode values directly into models through hand-written rules, reinforcement learning from human feedback, or constitutional documents. These approaches are hard to keep consistent and easy to game. They also tend to be model- and vendor-specific. Tau Net offers a different approach. Users express their ethical views as logical theories in Tau Language. Tau aggregates these theories into a shared, on-chain ethical worldview. From that worldview it computes a live scalar signal, the Ethical–Eco Transaction Factor (EETF), and feeds this signal into economic agents such as the Virtuous Cycle Compounder (VCC). Because scarcity-driven rewards are tied directly to the EETF, rational agents find that aligning with the community’s worldview is the only profit-maximizing strategy.
+> LLM agents can be trained to follow ethical constraints while pursuing
+> profitable useful work. If the ethical path is the most profitable path, the
+> network can run more smoothly.
 
-## Contents
+Version 2 defines ethics relative to an explicit community policy over
+observable actions. An LLM or human may propose work. A deterministic Tau gate
+controls publication and reward eligibility. A reserve-backed settlement model
+prevents rejected or unfunded actions from moving value.
+
+The finite incentive condition is:
+
+```text
+compliant reward - noncompliant reward + expected enforcement
+  > private deviation gain + extra compliance cost + optimizer error
+```
+
+Under the paper's stated bounds, every approximately profit-maximizing action
+in the modeled class is policy compliant. This is a conditional,
+policy-relative theorem. It does not claim objective moral truth, infallible LLM
+internal alignment, authenticated physical facts without an adapter, or safety
+outside the modeled action and coalition bounds.
+
+Expected enforcement may be zero. In the reward-only corollary, the funded
+reward advantage for compliant work alone exceeds the bounded deviation gain,
+compliance cost, and optimizer error.
+
+Version 1 remains in the repository as historical research. Its scarcity
+argument, original Tau demos, simulations, and Lean file do not establish the
+Version 2 theorem. See [V1_TO_V2_CORRECTIONS.md](docs/V1_TO_V2_CORRECTIONS.md).
+
+## Version 2 artifacts
 
 | Path | Purpose |
 | --- | --- |
-| `docs/Alignment_Theorem_Academic.pdf` | Pre-built PDF for quick review |
-| `docs/SIMULATION_RESULTS.md` | Narrative summary of convergence experiments |
-| `docs/THREAT_MODEL.md` | Aggregation/MEV/pointwise-revision threat catalog |
-| `docs/VERIFICATION_SUMMARY.md` | Lean, simulator, FSM, and stress-test results |
-| `analysis/simulations/` | Python scripts + CSV data for convergence sweeps |
-| `verification/` | Tau exact simulator, completeness checker, SMT harness |
-| `demos/` | Executable Tau demos (Alignment, Intelligent Agent, Virtue Shares) |
-| `proofs/AlignmentTheorem.lean` | Lean 4 proof with no `sorry` placeholders |
+| `paper/v2/alignment_theorem_v2.pdf` | Version 2 paper |
+| `paper/v2/alignment_theorem_v2.tex` | Paper source |
+| `proofs/v2/AlignmentTheoremV2.lean` | Finite theorem, gate, and reserve proofs |
+| `tau/v2/alignment_policy_gate_v2.tau` | Current-Tau admission kernel |
+| `verification/alignment_v2_model.py` | Exact finite reference model |
+| `verification/receipts/` | Source- and toolchain-bound replay evidence |
+| `tests/` | BVA, mutation-killing, exhaustive, and adversarial tests |
+| `TOOLCHAINS.md` | Exact Tau and Lean pins |
 
-## Build & Verification Instructions
+## Replay
 
-### Paper
+Python reference and packet tests:
 
 ```bash
-tectonic -o docs docs/Alignment_Theorem_Academic.tex
+python3 -m unittest discover -s tests -v
 ```
 
-### Lean Proof
+Lean 4.33.0 proof:
 
 ```bash
-cd proofs
+cd proofs/v2
 lake build
 ```
 
-### Simulations
+Current Tau execution, after building the exact source pin from
+`TOOLCHAINS.md`:
 
 ```bash
-cd analysis/simulations
-python3 run_alignment_simulations.py
-python3 plot_alignment_results.py
+python3 verification/run_tau_v2.py \
+  --tau-bin /path/to/tau-lang/build-Release/tau \
+  --json
 ```
 
-### Tau Trace Harness
+Paper:
 
 ```bash
-cd verification
-python3 tau_exact_simulator.py  # runs reference traces
-python3 tau_completeness_checker.py ../docs/Alignment_Theorem_Academic.tex
-python3 verify_transitions_tau.py            # optional SMT spot checks
+cd paper/v2
+latexmk -pdf -interaction=nonstopmode -halt-on-error alignment_theorem_v2.tex
 ```
 
-### Demo Specifications
+## Evidence boundary
 
-Each demo folder ships with inputs, outputs, and a `run_all.sh` helper that targets the bundled Tau binary:
-
-```bash
-cd demos/alignment_theorem && ./run_all.sh
-cd demos/intelligent_agent && ./run_all.sh
-cd demos/virtue_shares && ./run_all.sh
-```
-
-The scripts wipe previous outputs, execute the specs via `tau-lang-latest/build-Release/tau`, and print readable summaries so you can verify traces at a glance.
-
-## Repository Usage
-
-1. Initialize the target repo (or clone `git@github.com:TheDarkLightX/AlignmentTheorem.git`).
-2. Copy the contents of this directory into that repository root.
-3. Commit and push:
-
-```bash
-git add .
-git commit -m "Import Alignment Theorem artifacts"
-git push origin main
-```
-
-Feel free to add additional Tau specifications, dashboards, or CI workflows on top of this foundation.
-
+The checked artifacts establish a finite theorem, exact reserve properties, a
+fail-closed Boolean policy kernel on the pinned Tau alpha, and reference-model
+behavior over the tested domains. They do not deploy a network, train an LLM,
+authenticate real-world evidence, prove coalition bounds, or establish
+production readiness.

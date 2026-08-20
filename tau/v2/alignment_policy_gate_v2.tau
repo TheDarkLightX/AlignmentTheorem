@@ -1,0 +1,31 @@
+# Alignment Theorem V2: current-Tau policy admission kernel.
+#
+# Each input is an authenticated host fact.  The gate permits publication only
+# when every obligation is true.  Unknown actions and unfunded rewards are
+# represented by false action_known and reward_funded inputs, respectively.
+#
+# Tested toolchain pin: see TOOLCHAINS.md.
+
+policy_root_ok:sbf := in file("inputs/policy_root_ok.in").
+evidence_authenticated:sbf := in file("inputs/evidence_authenticated.in").
+action_known:sbf := in file("inputs/action_known.in").
+action_policy_compliant:sbf := in file("inputs/action_policy_compliant.in").
+nonce_fresh:sbf := in file("inputs/nonce_fresh.in").
+task_unclaimed:sbf := in file("inputs/task_unclaimed.in").
+reward_funded:sbf := in file("inputs/reward_funded.in").
+
+allow:sbf := out file("outputs/allow.out").
+
+defs
+r (
+    allow[t] = (
+        policy_root_ok[t]
+        & evidence_authenticated[t]
+        & action_known[t]
+        & action_policy_compliant[t]
+        & nonce_fresh[t]
+        & task_unclaimed[t]
+        & reward_funded[t]
+    )
+)
+q

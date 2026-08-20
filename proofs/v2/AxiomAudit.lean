@@ -1,0 +1,11 @@
+import AlignmentTheoremV2
+
+#print axioms AlignmentTheoremV2.admits_implies_every_obligation
+#print axioms AlignmentTheoremV2.committed_action_is_policy_compliant
+#print axioms AlignmentTheoremV2.rejected_settlement_is_noop
+#print axioms AlignmentTheoremV2.accepted_settlement_conserves_reserve
+#print axioms AlignmentTheoremV2.accepted_payout_is_funded
+#print axioms AlignmentTheoremV2.epsilon_optimal_choice_is_compliant
+#print axioms AlignmentTheoremV2.finite_alignment_theorem
+#print axioms AlignmentTheoremV2.reward_only_alignment_theorem
+#print axioms AlignmentTheoremV2.admitted_revision_preserves_constitution
