@@ -15,7 +15,7 @@ or establish that AGI causes hyperdeflation.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
 MAX_U64 = (1 << 64) - 1
 
@@ -123,8 +123,13 @@ class HyperdeflationEnvelope:
 
 
 @dataclass(frozen=True)
-class EthicalAssessment:
-    """Authenticated action classification consumed by the finite gate."""
+class EligibilityFacts:
+    """Claimed facts consumed by the non-authoritative reference evaluator.
+
+    This value carries no signature, provenance, receipt, or publication
+    authority. A production adapter would have to establish each proposition
+    before invoking an authoritative verifier.
+    """
 
     eetf_authenticated: bool
     action_ethical: bool
@@ -137,38 +142,41 @@ class EthicalAssessment:
 
 
 @dataclass(frozen=True)
-class EligibilityDecision:
-    eligible: bool
+class ReferenceEligibilityDecision:
+    reference_eligible: bool
     strict_hyperdeflation_margin: bool
     reward_funded: bool
+    authority_granted: bool = field(default=False, init=False)
 
 
-def evaluate_eligibility(
-    assessment: EthicalAssessment,
+def evaluate_reference_eligibility(
+    facts: EligibilityFacts,
     envelope: HyperdeflationEnvelope,
     *,
     requested_reward_atoms: int,
     reserve_atoms: int,
-) -> EligibilityDecision:
-    """Evaluate the Tau-equivalent finite V1.1 conjunction.
+) -> ReferenceEligibilityDecision:
+    """Evaluate the Tau-equivalent finite V1.1 conjunction as a reference.
 
     The host derives ``strict_hyperdeflation_margin`` from the exact envelope
     and derives ``reward_funded`` from reserve arithmetic.  Caller-provided
-    Boolean substitutes are never accepted by this reference boundary.
+    Boolean substitutes are never accepted for those derived values. The
+    remaining facts are assumptions: this function performs no authentication
+    and its result grants no publication or value-moving authority.
     """
 
-    if type(assessment) is not EthicalAssessment:
-        raise TypeError("assessment must be an exact EthicalAssessment")
+    if type(facts) is not EligibilityFacts:
+        raise TypeError("facts must be exact EligibilityFacts")
     if type(envelope) is not HyperdeflationEnvelope:
         raise TypeError("envelope must be an exact HyperdeflationEnvelope")
     reward = _require_u64("requested_reward_atoms", requested_reward_atoms)
     reserve = _require_u64("reserve_atoms", reserve_atoms)
     margin = envelope.has_strict_hyperdeflation_margin
     funded = reward <= reserve
-    return EligibilityDecision(
-        eligible=(
-            assessment.eetf_authenticated
-            and assessment.action_ethical
+    return ReferenceEligibilityDecision(
+        reference_eligible=(
+            facts.eetf_authenticated
+            and facts.action_ethical
             and margin
             and funded
         ),

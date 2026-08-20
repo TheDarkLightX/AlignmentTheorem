@@ -1220,6 +1220,10 @@ mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
 }
 </style></head>
 <body>
+    <div style="position: relative; z-index: 1000; padding: 16px 24px; background: #3b1d0b; border-bottom: 2px solid #f59e0b; color: #fff7ed; text-align: center; font: 600 16px/1.5 system-ui, sans-serif;">
+        Historical Version 1 visualization. Its universal and zero-threshold claims were withdrawn.
+        <a href="v1-1-hyperdeflationary-alignment.html" style="color: #fde68a;">Version 1.1 states the repaired conditional theorem and counterexamples.</a>
+    </div>
     <!-- Animated Background -->
     <div class="bg-grid"></div>
     <div class="bg-glow bg-glow-1"></div>
@@ -1237,7 +1241,7 @@ mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
         </div>
         
         <div class="hero-content">
-            <span class="hero-badge">Formally Proven</span>
+            <span class="hero-badge">Historical Version 1 Hypothesis</span>
             <h1>The Alignment Theorem</h1>
             <p class="hero-tagline">What if being ethical was the <strong>most profitable</strong> strategy?</p>
             
@@ -1248,11 +1252,11 @@ mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
                 </div>
                 <div class="hero-stat">
                     <div class="hero-stat-value">Z3</div>
-                    <div class="hero-stat-label">Formally Proven</div>
+                    <div class="hero-stat-label">Legacy Solver Experiments</div>
                 </div>
                 <div class="hero-stat">
                     <div class="hero-stat-value">691K+</div>
-                    <div class="hero-stat-label">Tests Passed</div>
+                    <div class="hero-stat-label">Historical Test Runs</div>
                 </div>
             </div>
         </div>
@@ -1271,7 +1275,7 @@ mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
             <div class="container">
                 <div class="big-idea-label">The Core Insight</div>
                 <p class="big-idea-text">
-                    "As token scarcity grows without bound, any strategy that ignores the community's ethics signal <strong>throws away unbounded value</strong>, while alignment with that signal becomes <strong>the only profitable long-run choice</strong> for any rational agent."
+                    Version 1 hypothesized that unbounded token scarcity could amplify ethically conditioned rewards enough to dominate competing opportunities. Version 1.1 makes the required relative-growth condition explicit.
                 </p>
                 <p class="big-idea-attribution">The Alignment Theorem</p>
             </div>
@@ -1291,8 +1295,8 @@ mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
                 <div class="problem-solution">
                     <div class="problem-card">
                         <div class="card-icon">🚫</div>
-                        <div class="card-title">Traditional Approaches Fail</div>
-                        <p class="card-text">Hand-coded rules are rigid. RLHF is gameable. Constitutional AI is vendor-locked. All try to <em>force</em> ethics from the outside.</p>
+                        <div class="card-title">Traditional Approaches Have Limits</div>
+                        <p class="card-text">Hand-coded rules can be rigid, learned policies can be gamed, and centralized constitutions can concentrate control.</p>
                     </div>
                     <div class="solution-card">
                         <div class="card-icon">✨</div>
@@ -1304,7 +1308,7 @@ mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
                 <div class="punchline">
                     <p class="punchline-text">
                         The protocol doesn't decide what's good. <em>Society does.</em><br>
-                        The protocol just makes ignoring that consensus <em>economically suicidal.</em>
+                        The protocol can make violations <em>less profitable within the modeled bounds.</em>
                     </p>
                 </div>
             </div>
@@ -1325,7 +1329,7 @@ mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
                     <div class="eq-box">
                         <div class="eq-icon">📉</div>
                         <div class="eq-label">Scarcity</div>
-                        <div class="eq-sublabel">M(t) → ∞</div>
+                        <div class="eq-sublabel">M(t) unbounded (assumption)</div>
                     </div>
                     <div class="eq-operator">×</div>
                     <div class="eq-box">
@@ -1337,7 +1341,7 @@ mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
                     <div class="eq-box eq-result">
                         <div class="eq-icon">🎯</div>
                         <div class="eq-label">Economic Pressure</div>
-                        <div class="eq-sublabel">P(t) → ∞</div>
+                        <div class="eq-sublabel">M(t)K(t) &gt; B(t)</div>
                     </div>
                 </div>
 
@@ -1347,10 +1351,10 @@ mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
                     <p>The EETF isn't a fixed moral code. It's a <strong>living consensus</strong> that evolves as the community debates, refines, and updates their ethical models.</p>
 
                     <h3>Deflation Creates Scarcity</h3>
-                    <p>The token supply shrinks over time. Each period, some fraction is burned. As supply approaches zero, scarcity approaches infinity. This isn't a bug. It's the engine that powers the whole system.</p>
+                    <p>Version 1 assumes a shrinking spendable supply and an unbounded purchasing-power multiplier. Version 1.1 treats that path as an external economic scenario. Finite supply rules alone do not prove purchasing power diverges.</p>
 
                     <h3>Pressure Makes Ethics Profitable</h3>
-                    <p>Economic pressure = scarcity × EETF. When pressure is low, agents can ignore ethics with little consequence. As pressure grows, the same deviations cost more and more, until eventually, <strong>any strategy that ignores ethics loses so much value that no rational agent can afford it.</strong></p>
+                    <p>Economic pressure can favor eligible work when scarcity amplifies a positive reward or forfeiture exposure faster than the complete deviation, compliance-cost, and optimizer-error bound. Faster-growing deviations defeat the mechanism.</p>
                 </div>
             </div>
         </section>
@@ -1363,26 +1367,26 @@ mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
                 <div class="section-header">
                     <div class="section-number">Section 03</div>
                     <h2 class="section-title">The Theorem</h2>
-                    <p class="section-subtitle">A mathematical guarantee, not just a hope</p>
+                    <p class="section-subtitle">The historical claim and its Version 1.1 repair</p>
                 </div>
 
                 <div class="theorem-box">
-                    <span class="theorem-badge">Formally Proven</span>
-                    <h3 class="theorem-title">The Alignment Theorem</h3>
+                    <span class="theorem-badge">Corrected by Version 1.1</span>
+                    <h3 class="theorem-title">Restricted Hyperdeflationary Alignment Theorem</h3>
                     <div class="theorem-content">
                         <p><strong>Given:</strong></p>
                         <ul>
-                            <li><strong>Deflationary scarcity:</strong> Supply shrinks each period, so M(t) → ∞</li>
-                            <li><strong>Bounded ethics signal:</strong> EETF ∈ [0, 3] and eventually positive</li>
-                            <li><strong>Rational agents:</strong> They maximize expected value</li>
+                            <li><strong>Finite executable epochs:</strong> Every M(t), K(t), and B(t) is finite at runtime.</li>
+                            <li><strong>Positive ethical exposure:</strong> K(t) contains authenticated reward and optional forfeiture exposure.</li>
+                            <li><strong>Strict relative margin:</strong> M(t)K(t) &gt; B(t), including optimizer error.</li>
                         </ul>
-                        <p><strong>Then:</strong> There exists a time T such that for all t ≥ T, <strong>any rational agent chooses an ethical strategy (EETF ≥ 1) and stays there.</strong></p>
+                        <p><strong>Then:</strong> Every epsilon-optimal choice in the declared two-action utility model is classified as ethical. The asymptotic result requires the strict margin eventually to remain true.</p>
                     </div>
                 </div>
 
                 <div class="punchline">
                     <p class="punchline-text">
-                        In plain English: <em>when scarcity is high enough, ethics becomes the only winning move.</em>
+                        In plain English: <em>scarcity helps only when ethically conditioned exposure grows faster than the complete opposing opportunity.</em>
                     </p>
                 </div>
             </div>
@@ -1394,36 +1398,36 @@ mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
                 <div class="section-header">
                     <div class="section-number">Section 04</div>
                     <h2 class="section-title">The Proof</h2>
-                    <p class="section-subtitle">Four steps to guaranteed alignment</p>
+                    <p class="section-subtitle">Four obligations in the repaired argument</p>
                 </div>
 
                 <div class="proof-steps">
                     <div class="proof-step">
                         <div class="proof-step-number">1</div>
                         <div class="proof-step-content">
-                            <h4>Unethical = Negative Expected Value</h4>
-                            <p>When EETF &lt; 1, the tier multiplier is zero (no rewards), but opportunity costs grow with pressure. Result: <strong>EV &lt; 0 once pressure is positive.</strong></p>
+                            <h4>Bound Both Utilities</h4>
+                            <p>State an ethical lower bound and a non-ethical upper bound using the same baseline, units, and epoch.</p>
                         </div>
                     </div>
                     <div class="proof-step">
                         <div class="proof-step-number">2</div>
                         <div class="proof-step-content">
-                            <h4>Ethical = Positive Expected Value</h4>
-                            <p>When EETF ≥ 1, the tier multiplier is positive (rewards flow in) and opportunity costs vanish. Result: <strong>EV &gt; 0 as long as scarcity is positive.</strong></p>
+                            <h4>Include Every Opposing Term</h4>
+                            <p>Put private deviation gain, extra compliance cost, and optimizer error into B(t). Authenticate the action classification and fund any reward.</p>
                         </div>
                     </div>
                     <div class="proof-step">
                         <div class="proof-step-number">3</div>
                         <div class="proof-step-content">
-                            <h4>Ethical Dominates Eventually</h4>
-                            <p>Since scarcity → ∞ and EETF is eventually positive, pressure eventually becomes positive. From that point on, <strong>ethical choices strictly dominate unethical ones.</strong></p>
+                            <h4>Require a Strict Margin</h4>
+                            <p>Check M(t)K(t) &gt; B(t). Equality is a retained counterexample and does not force an ethical choice.</p>
                         </div>
                     </div>
                     <div class="proof-step">
                         <div class="proof-step-number">4</div>
                         <div class="proof-step-content">
-                            <h4>Rational Agents Must Choose Ethics</h4>
-                            <p>A rational agent always picks the strategy with maximum EV. When unethical strategies are strictly dominated, <strong>the only rational choice is ethical behavior.</strong> ∎</p>
+                            <h4>Conclude Within the Model</h4>
+                            <p>The strict utility gap excludes a non-ethical epsilon-optimal choice. This conclusion remains conditional on the stated bounds and two-action model. ∎</p>
                         </div>
                     </div>
                 </div>
@@ -1485,40 +1489,40 @@ mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
             <div class="wide-container">
                 <div class="section-header">
                     <div class="section-number">Section 06</div>
-                    <h2 class="section-title">Formally Verified</h2>
-                    <p class="section-subtitle">Not just theory. Machine-checked proofs.</p>
+                    <h2 class="section-title">Historical Evidence and Current Repair</h2>
+                    <p class="section-subtitle">Legacy runs are exploratory; Version 1.1 carries the current machine-checked claim.</p>
                 </div>
 
                 <div class="verification-grid">
                     <div class="verification-card verified">
-                        <div class="verification-status">✓ Proven</div>
-                        <div class="verification-title">Z3 SMT Solver</div>
-                        <p class="verification-desc">The theorem is formally proven using the Z3 SMT solver</p>
+                        <div class="verification-status">Historical</div>
+                        <div class="verification-title">Z3 Experiments</div>
+                        <p class="verification-desc">Bounded legacy checks; no universal theorem claim.</p>
                     </div>
                     <div class="verification-card verified">
-                        <div class="verification-status">✓ Verified</div>
-                        <div class="verification-title">Tau Execution</div>
-                        <p class="verification-desc">14/14 test scenarios pass on native Tau binary</p>
+                        <div class="verification-status">Historical</div>
+                        <div class="verification-title">Tau Scenarios</div>
+                        <p class="verification-desc">Legacy scenarios; V1.1 exact-current interpreter replay remains pending.</p>
                     </div>
                     <div class="verification-card verified">
-                        <div class="verification-status">✓ Passed</div>
+                        <div class="verification-status">Historical</div>
                         <div class="verification-title">691K+ Stress Tests</div>
                         <p class="verification-desc">Zero failures across 691,000 randomized iterations</p>
                     </div>
                     <div class="verification-card verified">
-                        <div class="verification-status">✓ Complete</div>
+                        <div class="verification-status">Historical</div>
                         <div class="verification-title">FSM Coverage</div>
                         <p class="verification-desc">100% state coverage, no deadlocks detected</p>
                     </div>
                     <div class="verification-card verified">
-                        <div class="verification-status">✓ Proven</div>
-                        <div class="verification-title">Lean 4 Proof</div>
-                        <p class="verification-desc">Machine-checked mathematical proof structure</p>
+                        <div class="verification-status">V1.1 Checked</div>
+                        <div class="verification-title">Lean 4.33.0</div>
+                        <p class="verification-desc">Utility bridge, least threshold, finite choice, and conditional asymptotic results.</p>
                     </div>
                     <div class="verification-card verified">
-                        <div class="verification-status">✓ Verified</div>
-                        <div class="verification-title">All Lemmas</div>
-                        <p class="verification-desc">Supply, scarcity, and EV limits all proven</p>
+                        <div class="verification-status">Explicit Limits</div>
+                        <div class="verification-title">Counterexamples</div>
+                        <p class="verification-desc">Equality, zero exposure, forged evidence, unfunded rewards, and faster deviations remain failures.</p>
                     </div>
                 </div>
             </div>
@@ -1529,8 +1533,8 @@ mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
             <div class="container">
                 <div class="punchline" style="margin: 0; border: none; background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(6, 182, 212, 0.05) 100%); border-radius: 24px;">
                     <p class="punchline-text" style="font-size: clamp(1.4rem, 3.5vw, 2rem);">
-                        When scarcity grows without bound and ethics is wired into rewards,<br>
-                        <em>being good stops being a choice. It becomes the only way to win.</em>
+                        When scarcity-amplified ethical exposure strictly dominates every modeled opposing term,<br>
+                        <em>epsilon-optimal choice favors the policy-eligible action within the declared model.</em>
                     </p>
                 </div>
             </div>

@@ -9,6 +9,8 @@ README = ROOT / "README.md"
 PAGE = ROOT / "docs" / "v1-1-hyperdeflationary-alignment.html"
 INDEX = ROOT / "docs" / "index.html"
 PDF = ROOT / "docs" / "Alignment_Theorem_V1_1_Hyperdeflationary.pdf"
+ARCHIVE_NOTICE = ROOT / "docs" / "alignment-theorem-v1-archive-notice.html"
+ACADEMIC_PDF = ROOT / "docs" / "Alignment_Theorem_Academic.pdf"
 
 
 class V1_1PublicationTests(unittest.TestCase):
@@ -21,6 +23,23 @@ class V1_1PublicationTests(unittest.TestCase):
         self.assertGreater(PDF.stat().st_size, 10_000)
         self.assertEqual(pdf_prefix, b"%PDF-")
 
+    def test_live_version_1_pdf_is_an_embedded_withdrawal_notice(self) -> None:
+        # Arrange / Act
+        notice = ARCHIVE_NOTICE.read_text()
+        normalized_notice = " ".join(notice.split())
+        pdf_prefix = ACADEMIC_PDF.read_bytes()[:5]
+
+        # Assert
+        self.assertIn("universal convergence", normalized_notice)
+        self.assertIn(
+            "claims in the original Version 1 PDF are withdrawn",
+            normalized_notice,
+        )
+        self.assertIn("M(t)K(t) &gt; B(t)", normalized_notice)
+        self.assertIn("a28695f", normalized_notice)
+        self.assertEqual(pdf_prefix, b"%PDF-")
+        self.assertGreater(ACADEMIC_PDF.stat().st_size, 5_000)
+
     def test_paper_states_the_exact_margin_and_nonclaims(self) -> None:
         # Arrange / Act
         paper = PAGE.read_text()
@@ -30,6 +49,7 @@ class V1_1PublicationTests(unittest.TestCase):
         self.assertIn("floor(B / K) + 1", paper)
         self.assertIn("does not prove", paper.lower())
         self.assertIn("interpreter replay remains pending", paper.lower())
+        self.assertIn("no publication or value-moving authority", paper.lower())
 
     def test_public_pages_link_to_version_1_1_artifacts(self) -> None:
         # Arrange
@@ -47,6 +67,7 @@ class V1_1PublicationTests(unittest.TestCase):
         self.assertIn(
             'href="Alignment_Theorem_V1_1_Hyperdeflationary.pdf"', index
         )
+        self.assertIn('href="Alignment_Theorem_Academic.pdf"', index)
 
     def test_paper_has_no_machine_local_link_or_path(self) -> None:
         # Arrange / Act

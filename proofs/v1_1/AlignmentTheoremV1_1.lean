@@ -44,6 +44,31 @@ theorem minimum_scarcity_multiplier_is_strict
   simpa [minimumScarcityMultiplier, Nat.mul_comm] using
     (Nat.lt_mul_div_succ required hCoefficient)
 
+theorem scarcity_below_minimum_is_not_strict
+    (scarcityMultiplier required coefficient : Nat)
+    (hBelow :
+      scarcityMultiplier < minimumScarcityMultiplier required coefficient) :
+    ¬ required < scarcityMultiplier * coefficient := by
+  have hLeDiv : scarcityMultiplier ≤ required / coefficient := by
+    dsimp [minimumScarcityMultiplier] at hBelow
+    omega
+  have hProduct : scarcityMultiplier * coefficient ≤ required :=
+    Nat.mul_le_of_le_div coefficient scarcityMultiplier required hLeDiv
+  omega
+
+/-- The threshold is strict at the threshold and no smaller multiplier is. -/
+theorem minimum_scarcity_multiplier_is_least
+    (required coefficient : Nat) (hCoefficient : 0 < coefficient) :
+    required < minimumScarcityMultiplier required coefficient * coefficient ∧
+      ∀ scarcityMultiplier,
+        scarcityMultiplier < minimumScarcityMultiplier required coefficient →
+          ¬ required < scarcityMultiplier * coefficient := by
+  constructor
+  · exact minimum_scarcity_multiplier_is_strict required coefficient hCoefficient
+  · intro scarcityMultiplier hBelow
+    exact scarcity_below_minimum_is_not_strict
+      scarcityMultiplier required coefficient hBelow
+
 theorem strict_margin_at_or_above_minimum
     (scarcityMultiplier required coefficient : Nat)
     (hCoefficient : 0 < coefficient)
@@ -72,6 +97,61 @@ def nonethicalScore
 def chosenScore
     (choiceEthical : Bool) (ethical nonethical : Nat) : Nat :=
   if choiceEthical then ethical else nonethical
+
+/-- Utility selected by the modeled two-action choice. -/
+def chosenUtility
+    (choiceEthical : Bool) (ethical nonethical : Int) : Int :=
+  if choiceEthical then ethical else nonethical
+
+/-- Paper lower bound for the ethical action's utility. -/
+def ethicalUtilityLower
+    (baseline scarcityMultiplier ethicalRewardCoefficient
+      maxExtraComplianceCost : Int) : Int :=
+  baseline + scarcityMultiplier * ethicalRewardCoefficient -
+    maxExtraComplianceCost
+
+/-- Paper upper bound for the non-ethical action's utility. -/
+def nonethicalUtilityUpper
+    (baseline scarcityMultiplier nonethicalForfeitureCoefficient
+      maxPrivateDeviationGain : Int) : Int :=
+  baseline + maxPrivateDeviationGain -
+    scarcityMultiplier * nonethicalForfeitureCoefficient
+
+/--
+The utility-bound bridge stated in the V1.1 paper.  The strict economic margin,
+the ethical lower bound, and the non-ethical upper bound force every
+epsilon-optimal modeled choice to be ethical.
+-/
+theorem paper_utility_bounds_force_epsilon_optimal_choice_ethical
+    (baseline scarcityMultiplier ethicalRewardCoefficient : Int)
+    (nonethicalForfeitureCoefficient maxPrivateDeviationGain : Int)
+    (maxExtraComplianceCost optimizerError : Int)
+    (ethicalUtility nonethicalUtility : Int)
+    (choiceEthical : Bool)
+    (hEthicalLower :
+      ethicalUtilityLower baseline scarcityMultiplier
+          ethicalRewardCoefficient maxExtraComplianceCost ≤ ethicalUtility)
+    (hNonethicalUpper :
+      nonethicalUtility ≤ nonethicalUtilityUpper baseline scarcityMultiplier
+        nonethicalForfeitureCoefficient maxPrivateDeviationGain)
+    (hMargin :
+      maxPrivateDeviationGain + maxExtraComplianceCost + optimizerError <
+        scarcityMultiplier *
+          (ethicalRewardCoefficient + nonethicalForfeitureCoefficient))
+    (_hOptimizerError : 0 ≤ optimizerError)
+    (hOptimal :
+      ethicalUtility ≤
+        chosenUtility choiceEthical ethicalUtility nonethicalUtility +
+          optimizerError) :
+    choiceEthical = true := by
+  cases choiceEthical with
+  | false =>
+      simp [chosenUtility] at hOptimal
+      simp [ethicalUtilityLower] at hEthicalLower
+      simp [nonethicalUtilityUpper] at hNonethicalUpper
+      rw [Int.mul_add] at hMargin
+      omega
+  | true => rfl
 
 theorem strict_margin_forces_epsilon_optimal_choice_ethical
     (ethical nonethical optimizerError : Nat)

@@ -1,7 +1,8 @@
 # Reproducible Toolchain Pins
 
-Version 1.1 and Version 2 evidence is tied to exact source and binary
-identities. A later tool version must generate a new receipt rather than
+Version 1.1 and Version 2 evidence is tied to exact source identities and to
+binary identities wherever interpreter execution is claimed. A later tool
+version must generate a new receipt rather than
 inherit these results.
 
 ## Version 1.1
@@ -20,9 +21,26 @@ python3 verification/run_lean_v1_1.py \
   --json
 ```
 
-The receipt binds the finite threshold, asymptotic bounded-deviation, and
-relative-growth theorem sources. It also records the exact expected standard
-axiom dependencies.
+The receipt binds the paper utility bridge, exact least threshold, finite
+choice, asymptotic bounded-deviation, and relative-growth theorem sources. It
+also records the exact expected standard axiom dependencies.
+
+### Claim-scoped assurance
+
+```bash
+python3 -m verification.run_v1_1_assurance \
+  --output verification/receipts/v1_1_assurance.json \
+  --json
+```
+
+This receipt binds the V1.1 proof, model, semantic Tau packet, tests, public
+pages, HTML paper, and rendered PDF. It records the Python/Tau surfaces as
+reference-only and records exact-current Tau interpreter replay as pending.
+After generation, validate the stored receipt against the bound files:
+
+```bash
+python3 -m unittest tests.test_v1_1_assurance_receipt -v
+```
 
 ### Tau
 

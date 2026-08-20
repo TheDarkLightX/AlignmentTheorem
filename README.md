@@ -27,8 +27,8 @@ then it eventually crosses this threshold. The relative-growth theorem also
 allows `B(t)` to grow when `B(t) / K(t) < M(t)` eventually.
 
 Version 1.1 preserves V1's economic mechanism. It treats hyperdeflation as a
-declared scenario, EETF as an authenticated action classification, and every
-runtime epoch as finite. It does not prove that Bitcoin purchasing power
+declared scenario, EETF authentication as an external adapter obligation, and
+every runtime epoch as finite. It does not prove that Bitcoin purchasing power
 diverges or that AGI necessarily causes hyperdeflation.
 
 Read the [Version 1.1 paper](docs/v1-1-hyperdeflationary-alignment.html) or
@@ -73,6 +73,7 @@ supplies that separate theorem. See
 | `proofs/v1_1/AlignmentTheoremV1_1.lean` | Finite, asymptotic, and relative-growth theorems |
 | `verification/alignment_v1_1_model.py` | Exact bounded-integer reference model |
 | `tau/v1_1/` | Exhaustive 16-row finite semantic gate packet |
+| `verification/receipts/v1_1_assurance.json` | Source-bound claim and nonclaim receipt |
 
 ## Version 2 artifacts
 
@@ -108,6 +109,7 @@ cd proofs/v1_1
 lake build
 cd ../..
 python3 verification/run_lean_v1_1.py --json
+python3 -m verification.run_v1_1_assurance --json
 ```
 
 Current Tau execution, after building the exact source pin from
@@ -119,14 +121,17 @@ python3 verification/run_tau_v2.py \
   --json
 ```
 
-The Version 1.1 Tau packet has exhaustive semantic parity tests. Interpreter
-replay on the exact current source pin remains pending and is not claimed.
+The Version 1.1 Tau packet has exhaustive semantic parity tests over four
+assumed propositions. It does not authenticate them or create authority.
+Interpreter replay on the exact current source pin remains pending and is not
+claimed.
 
 
 ## Evidence boundary
 
 The checked artifacts establish restricted finite and asymptotic theorems,
 exact reserve properties, a fail-closed Version 2 Boolean policy kernel on the
-pinned Tau alpha, and reference-model behavior over the tested domains. They do
+pinned Tau alpha, and non-authoritative reference-model behavior over the
+tested domains. They do
 not deploy a network, train an LLM, authenticate real-world evidence, prove
 coalition bounds, forecast asset prices, or establish production readiness.

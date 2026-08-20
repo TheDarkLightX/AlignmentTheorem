@@ -41,7 +41,7 @@ def main() -> int:
         rendered = "".join("1\n" if row[column] else "0\n" for row in table)
         (PACKET / "inputs" / f"{obligation}.in").write_text(rendered)
     expected = "".join("1\n" if all(row) else "0\n" for row in table)
-    (PACKET / "expected" / "eligible.out").write_text(expected)
+    (PACKET / "expected" / "reference_eligible.out").write_text(expected)
     return 0
 
 

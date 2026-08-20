@@ -17,7 +17,9 @@ class TauV1_1TruthTableTests(unittest.TestCase):
             name: (PACKET / "inputs" / f"{name}.in").read_text().split()
             for name in OBLIGATIONS
         }
-        expected = (PACKET / "expected" / "eligible.out").read_text().split()
+        expected = (
+            PACKET / "expected" / "reference_eligible.out"
+        ).read_text().split()
 
         # Act
         observed = [
@@ -58,8 +60,11 @@ class TauV1_1TruthTableTests(unittest.TestCase):
         # Act / Assert
         for name in OBLIGATIONS:
             self.assertIn(f"{name}[t]", spec)
-        self.assertIn("eligible[t] =", spec)
+        self.assertIn("reference_eligible[t] =", spec)
+        self.assertNotIn("\neligible:sbf", spec)
         self.assertNotIn("is_ethical_echo", spec)
+        self.assertIn("does not authenticate", spec)
+        self.assertIn("value-moving authority", spec)
 
     def test_generator_order_contains_every_boolean_row(self) -> None:
         # Arrange / Act

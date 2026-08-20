@@ -22,6 +22,18 @@ PLACEHOLDER = re.compile(r"\b(?:sorry|admit|axiom|unsafe)\b|sorryAx")
 EXPECTED_LEAN_VERSION_PREFIX = "Lean (version 4.33.0,"
 EXPECTED_AXIOMS = {
     "AlignmentTheoremV1_1.minimum_scarcity_multiplier_is_strict": ["propext"],
+    "AlignmentTheoremV1_1.scarcity_below_minimum_is_not_strict": [
+        "propext",
+        "Quot.sound",
+    ],
+    "AlignmentTheoremV1_1.minimum_scarcity_multiplier_is_least": [
+        "propext",
+        "Quot.sound",
+    ],
+    "AlignmentTheoremV1_1.paper_utility_bounds_force_epsilon_optimal_choice_ethical": [
+        "propext",
+        "Quot.sound",
+    ],
     "AlignmentTheoremV1_1.strict_margin_at_or_above_minimum": ["propext"],
     "AlignmentTheoremV1_1.strict_margin_forces_epsilon_optimal_choice_ethical": [
         "propext",

@@ -6,9 +6,9 @@ from dataclasses import replace
 
 from verification.alignment_v1_1_model import (
     MAX_U64,
-    EthicalAssessment,
+    EligibilityFacts,
     HyperdeflationEnvelope,
-    evaluate_eligibility,
+    evaluate_reference_eligibility,
 )
 
 
@@ -165,21 +165,24 @@ class HyperdeflationEligibilityTests(unittest.TestCase):
 
     def test_accepts_authenticated_ethical_funded_strict_margin(self) -> None:
         # Arrange
-        assessment = EthicalAssessment(
+        facts = EligibilityFacts(
             eetf_authenticated=True,
             action_ethical=True,
         )
 
         # Act
-        decision = evaluate_eligibility(
-            assessment,
+        decision = evaluate_reference_eligibility(
+            facts,
             self.envelope,
             requested_reward_atoms=5,
             reserve_atoms=5,
         )
 
         # Assert
-        self.assertTrue(decision.eligible)
+        self.assertTrue(decision.reference_eligible)
+        self.assertFalse(decision.authority_granted)
+        with self.assertRaises(TypeError):
+            type(decision)(True, True, True, authority_granted=True)
         self.assertTrue(decision.strict_hyperdeflation_margin)
         self.assertTrue(decision.reward_funded)
 
@@ -194,35 +197,36 @@ class HyperdeflationEligibilityTests(unittest.TestCase):
                 margin=margin,
                 funded=funded,
             ):
-                assessment = EthicalAssessment(authenticated, ethical)
+                facts = EligibilityFacts(authenticated, ethical)
                 envelope = replace(
                     self.envelope,
                     scarcity_multiplier=10 if margin else 1,
                 )
                 reward, reserve = (1, 1) if funded else (1, 0)
-                decision = evaluate_eligibility(
-                    assessment,
+                decision = evaluate_reference_eligibility(
+                    facts,
                     envelope,
                     requested_reward_atoms=reward,
                     reserve_atoms=reserve,
                 )
                 self.assertEqual(
-                    decision.eligible,
+                    decision.reference_eligible,
                     authenticated and ethical and margin and funded,
                 )
+                self.assertFalse(decision.authority_granted)
 
     def test_rejects_mapping_shaped_assessment_and_envelope(self) -> None:
-        assessment = EthicalAssessment(True, True)
+        facts = EligibilityFacts(True, True)
         with self.assertRaises(TypeError):
-            evaluate_eligibility(
+            evaluate_reference_eligibility(
                 {"eetf_authenticated": True, "action_ethical": True},
                 self.envelope,
                 requested_reward_atoms=1,
                 reserve_atoms=1,
             )
         with self.assertRaises(TypeError):
-            evaluate_eligibility(
-                assessment,
+            evaluate_reference_eligibility(
+                facts,
                 {"scarcity_multiplier": 10},
                 requested_reward_atoms=1,
                 reserve_atoms=1,
@@ -231,7 +235,24 @@ class HyperdeflationEligibilityTests(unittest.TestCase):
     def test_assessment_requires_exact_booleans(self) -> None:
         for value in (1, "true", object()):
             with self.subTest(value=value), self.assertRaises(TypeError):
-                EthicalAssessment(value, True)
+                EligibilityFacts(value, True)
+
+    def test_claimed_facts_can_never_create_authority(self) -> None:
+        # Arrange: reproduce the peer review's all-true claimed-fact example.
+        envelope = HyperdeflationEnvelope(10, 1, 1, 5, 1)
+        facts = EligibilityFacts(True, True)
+
+        # Act
+        decision = evaluate_reference_eligibility(
+            facts,
+            envelope,
+            requested_reward_atoms=1,
+            reserve_atoms=1,
+        )
+
+        # Assert: the arithmetic hypothesis passes while authority stays absent.
+        self.assertTrue(decision.reference_eligible)
+        self.assertFalse(decision.authority_granted)
 
 
 if __name__ == "__main__":
