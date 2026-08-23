@@ -1,392 +1,705 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Ethical Work Under Hyperdeflation — Alignment Theorem Version 1.1. A restricted theorem preserving Version 1's scarcity-driven mechanism.">
+  <meta name="theme-color" content="#0d1526">
+  <link rel="canonical" href="https://thedarklightx.github.io/AlignmentTheorem/v1-1-hyperdeflationary-alignment.html">
   <title>Ethical Work Under Hyperdeflation — Alignment Theorem V1.1</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --ink: #172033;
-      --muted: #526079;
-      --line: #cbd5e1;
+      --bg: #fafafa;
       --paper: #ffffff;
-      --wash: #f1f5f9;
-      --blue: #164e8a;
-      --gold: #8a5a00;
-      --red: #8a2432;
-      --green: #17633a;
+      --ink: #0d1526;
+      --ink-2: #1e293b;
+      --body: #475569;
+      --muted: #94a3b8;
+      --line: #e2e8f0;
+      --accent: #0e7490;
+      --accent-ink: #0b5563;
+      --accent-soft: #ecfeff;
+      --accent-bright: #06b6d4;
+      --ok: #15803d;
+      --ok-soft: #f0fdf4;
+      --bad: #b91c1c;
+      --bad-soft: #fef2f2;
+      --warn: #b45309;
+      --warn-soft: #fffbeb;
+      --dark: #0d1526;
+      --dark-2: #1e293b;
+      --dark-line: rgba(255,255,255,.1);
+      --dark-body: #94a3b8;
+      --dark-muted: #64748b;
+      --font-display: "Fraunces", Georgia, serif;
+      --font-ui: "Space Grotesk", system-ui, sans-serif;
+      --font-body: "Inter", system-ui, sans-serif;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      --maxw: 1280px;
+      --content-w: 760px;
+      --sidebar-w: 220px;
     }
-    @page { size: Letter; margin: 0.72in; }
     * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
-      margin: 0;
-      background: #e8edf4;
-      color: var(--ink);
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 16px;
-      line-height: 1.55;
+      margin: 0; background: var(--bg); color: var(--body);
+      font-family: var(--font-body); font-size: 17px; line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
     }
-    main {
-      width: min(8.5in, calc(100% - 28px));
-      margin: 28px auto;
-      padding: 0.72in;
-      background: var(--paper);
-      box-shadow: 0 14px 40px rgba(23, 32, 51, 0.15);
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { color: var(--accent-ink); text-decoration: underline; }
+    :focus-visible { outline: 3px solid var(--accent-bright); outline-offset: 3px; border-radius: 4px; }
+
+    .skip-link {
+      position: fixed; top: 12px; left: 12px; z-index: 200;
+      padding: 10px 16px; border-radius: 8px;
+      background: var(--ink); color: #fff;
+      font-family: var(--font-ui); font-weight: 600; font-size: .88rem;
+      transform: translateY(-180%); transition: transform .18s ease;
     }
-    header {
-      padding-bottom: 24px;
-      border-bottom: 3px solid var(--blue);
-      margin-bottom: 28px;
+    .skip-link:focus { transform: translateY(0); color: #fff; text-decoration: none; }
+
+    .topbar {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--ink); border-bottom: 1px solid var(--dark-line);
     }
-    .eyebrow {
-      color: var(--blue);
-      font-family: Arial, sans-serif;
-      font-size: 0.78rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
+    .topbar-inner {
+      max-width: var(--maxw); margin: 0 auto;
+      display: flex; align-items: center; gap: 20px; padding: 12px 24px;
     }
-    h1 {
-      margin: 10px 0 8px;
-      font-size: 2.15rem;
-      line-height: 1.12;
+    .brand {
+      font-family: var(--font-ui); font-weight: 700; font-size: .95rem;
+      color: #fff; white-space: nowrap;
     }
-    .subtitle { color: var(--muted); font-size: 1.15rem; }
-    .byline { margin-top: 18px; font-family: Arial, sans-serif; font-size: 0.9rem; }
-    h2 {
-      color: var(--blue);
-      font-size: 1.42rem;
-      margin: 34px 0 12px;
-      padding-bottom: 5px;
-      border-bottom: 1px solid var(--line);
-      break-after: avoid;
+    .brand span { color: var(--accent-bright); }
+    .brand:hover { text-decoration: none; color: var(--accent-bright); }
+    .topbar-links { display: flex; gap: 16px; margin-left: auto; flex-wrap: wrap; }
+    .topbar-links a {
+      color: var(--dark-body); font-family: var(--font-ui);
+      font-size: .8rem; font-weight: 500;
     }
-    h3 { font-size: 1.08rem; margin: 24px 0 8px; break-after: avoid; }
-    p { margin: 10px 0; }
-    a { color: var(--blue); }
-    .abstract, .theorem, .counterexample, .status {
-      border-left: 5px solid var(--blue);
-      background: var(--wash);
-      padding: 15px 18px;
-      margin: 18px 0;
-      break-inside: avoid;
+    .topbar-links a:hover { color: #fff; text-decoration: none; }
+    .mobile-nav-hint { display: none; color: var(--dark-muted); font-family: var(--font-ui); font-size: .66rem; letter-spacing: .08em; text-transform: uppercase; }
+
+    .hero {
+      background: var(--ink); color: #fff;
+      padding: 56px 24px 48px; text-align: center;
     }
-    .theorem { border-left-color: var(--green); }
-    .counterexample { border-left-color: var(--red); }
-    .status { border-left-color: var(--gold); }
-    .label {
-      display: block;
-      margin-bottom: 5px;
-      font-family: Arial, sans-serif;
-      font-size: 0.78rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+    .hero-inner { max-width: 760px; margin: 0 auto; }
+    .hero-kicker {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 6px 14px; border-radius: 999px;
+      background: rgba(6,182,212,.15); border: 1px solid rgba(6,182,212,.3);
+      color: var(--accent-bright);
+      font-family: var(--font-ui); font-size: .72rem; font-weight: 600;
+      letter-spacing: .12em; text-transform: uppercase;
+      margin-bottom: 20px;
     }
+    .hero h1 {
+      font-family: var(--font-display); font-weight: 700;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      line-height: 1.1; letter-spacing: -.03em;
+      color: #fff; margin: 0 0 12px;
+    }
+    .hero-sub { font-size: 1.15rem; color: var(--dark-body); margin: 0 0 16px; }
+    .hero-byline { font-family: var(--font-ui); font-size: .85rem; color: var(--dark-muted); }
+
+    .abstract {
+      max-width: 760px; margin: -32px auto 0; position: relative; z-index: 1;
+      padding: 28px 32px; border-radius: 14px;
+      background: var(--paper); border: 1px solid var(--line);
+      border-left: 4px solid var(--accent);
+      box-shadow: 0 4px 20px rgba(0,0,0,.06);
+    }
+    .abstract-label {
+      font-family: var(--font-ui); font-size: .72rem; font-weight: 600;
+      letter-spacing: .12em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 10px;
+    }
+    .abstract p { margin: 0; color: var(--body); font-size: .96rem; line-height: 1.65; }
+
+    .body-wrap {
+      max-width: var(--maxw); margin: 0 auto;
+      display: grid; grid-template-columns: var(--sidebar-w) 1fr; gap: 0;
+    }
+    .toc {
+      position: sticky; top: 50px; align-self: start;
+      padding: 40px 20px 40px 24px;
+      max-height: calc(100vh - 50px); overflow-y: auto;
+    }
+    .toc-title {
+      font-family: var(--font-ui); font-size: .68rem; font-weight: 600;
+      letter-spacing: .12em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 14px;
+    }
+    .toc ol { list-style: none; padding: 0; margin: 0; counter-reset: toc; }
+    .toc li { counter-increment: toc; margin-bottom: 2px; }
+    .toc li a {
+      display: block; padding: 7px 10px; border-radius: 6px;
+      color: var(--body); font-family: var(--font-ui);
+      font-size: .82rem; font-weight: 500; line-height: 1.3;
+    }
+    .toc li a::before {
+      content: counter(toc, decimal-leading-zero);
+      color: var(--muted); font-size: .72rem; margin-right: 8px;
+    }
+    .toc li a:hover { background: var(--accent-soft); color: var(--accent-ink); text-decoration: none; }
+
+    .content { padding: 0 48px 80px 0; max-width: var(--content-w); }
+
+    .section { padding: 48px 0; }
+    .section-num {
+      font-family: var(--font-display); font-size: 3rem; font-weight: 700;
+      color: var(--line); line-height: 1; margin-bottom: -6px;
+    }
+    .section-kicker {
+      font-family: var(--font-ui); font-size: .74rem; font-weight: 600;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 6px;
+    }
+    h2.section-h {
+      font-family: var(--font-display); font-weight: 700;
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      line-height: 1.2; letter-spacing: -.02em;
+      color: var(--ink); margin: 4px 0 18px;
+    }
+    h3 {
+      font-family: var(--font-ui); font-size: 1.05rem; font-weight: 600;
+      color: var(--ink); margin: 24px 0 8px;
+    }
+    p { margin: 12px 0; color: var(--body); }
+    strong { color: var(--ink); font-weight: 600; }
+    code {
+      font-family: var(--mono); background: var(--accent-soft);
+      padding: 2px 6px; border-radius: 4px; font-size: .88em;
+      color: var(--accent-ink);
+    }
+
+    .dark-section {
+      background: var(--ink); color: #fff; padding: 56px 0; margin: 0;
+    }
+    .dark-section .inner { max-width: var(--content-w); margin: 0 auto; padding: 0 48px 0 24px; }
+    .dark-section .section-kicker { color: var(--accent-bright); }
+    .dark-section .section-h { color: #fff; }
+    .dark-section .section-num { color: rgba(255,255,255,.08); }
+    .dark-section p { color: var(--dark-body); }
+    .dark-section strong { color: #fff; }
+    .dark-section code { background: rgba(6,182,212,.1); color: var(--accent-bright); }
+    .dark-section a { color: var(--accent-bright); }
+
     .equation {
-      margin: 16px auto;
-      padding: 13px 16px;
-      border: 1px solid var(--line);
-      background: #fbfdff;
-      font-family: "DejaVu Sans Mono", Consolas, monospace;
-      font-size: 0.92rem;
-      text-align: center;
-      white-space: pre-wrap;
-      break-inside: avoid;
+      margin: 24px 0; padding: 22px 26px;
+      background: var(--paper); border: 1px solid var(--line);
+      border-radius: 12px; font-family: var(--mono);
+      font-size: .92rem; color: var(--ink);
+      text-align: center; white-space: pre-wrap; overflow-x: auto;
+      box-shadow: 0 1px 3px rgba(0,0,0,.04);
     }
+    .dark-section .equation {
+      background: rgba(255,255,255,.04); border-color: var(--dark-line); color: #fff;
+    }
+
+    .theorem {
+      margin: 24px 0; padding: 24px 28px; border-radius: 12px;
+      background: var(--ok-soft); border: 1px solid #bbf7d0;
+      border-left: 4px solid var(--ok);
+    }
+    .theorem-label {
+      display: block; margin-bottom: 8px;
+      font-family: var(--font-ui); font-size: .74rem; font-weight: 600;
+      letter-spacing: .1em; text-transform: uppercase; color: var(--ok);
+    }
+    .theorem p { margin: 0; color: var(--ink-2); }
+
+    .counterexample {
+      margin: 18px 0; padding: 20px 24px; border-radius: 12px;
+      background: var(--bad-soft); border: 1px solid #fecaca;
+      border-left: 4px solid var(--bad);
+    }
+    .counterexample-label {
+      display: block; margin-bottom: 6px;
+      font-family: var(--font-ui); font-size: .74rem; font-weight: 600;
+      letter-spacing: .1em; text-transform: uppercase; color: var(--bad);
+    }
+    .counterexample p { margin: 0; color: var(--ink-2); }
+
+    .status-box {
+      margin: 24px 0; padding: 22px 26px; border-radius: 12px;
+      background: var(--warn-soft); border: 1px solid #fde68a;
+      border-left: 4px solid var(--warn);
+    }
+    .status-label {
+      display: block; margin-bottom: 8px;
+      font-family: var(--font-ui); font-size: .74rem; font-weight: 600;
+      letter-spacing: .1em; text-transform: uppercase; color: var(--warn);
+    }
+    .status-box p { margin: 0; color: var(--ink-2); }
+
     table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 16px 0;
-      font-size: 0.93rem;
-      break-inside: avoid;
+      width: 100%; border-collapse: collapse; margin: 24px 0; font-size: .92rem;
     }
-    th, td { border: 1px solid var(--line); padding: 8px 10px; vertical-align: top; }
-    th { background: var(--wash); text-align: left; font-family: Arial, sans-serif; }
-    code { font-family: "DejaVu Sans Mono", Consolas, monospace; font-size: 0.88em; }
-    li { margin: 6px 0; }
-    .small { color: var(--muted); font-size: 0.9rem; }
+    th, td { padding: 12px 14px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+    th { color: var(--accent-ink); font-family: var(--font-ui); font-size: .72rem; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; }
+    td { color: var(--body); }
+    .dark-section table th { color: var(--accent-bright); }
+    .dark-section table td { color: var(--dark-body); border-color: var(--dark-line); }
+
+    ul { margin: 16px 0; padding-left: 0; list-style: none; }
+    li {
+      position: relative; padding-left: 22px; margin-bottom: 8px;
+      color: var(--body);
+    }
+    li::before {
+      content: "\2192"; position: absolute; left: 0;
+      color: var(--accent); font-weight: 700;
+    }
+    .dark-section li { color: var(--dark-body); }
+    .dark-section li::before { color: var(--accent-bright); }
+
+    ol.refs { counter-reset: ref; padding-left: 0; list-style: none; }
+    ol.refs li {
+      counter-increment: ref; padding-left: 28px; margin-bottom: 10px;
+      font-size: .9rem; color: var(--body);
+    }
+    ol.refs li::before {
+      content: "[" counter(ref) "]"; position: absolute; left: 0;
+      color: var(--accent); font-weight: 600; font-family: var(--font-ui);
+    }
+
+    .btn {
+      display: inline-flex; align-items: center;
+      padding: 11px 20px; border-radius: 8px;
+      font-family: var(--font-ui); font-size: .86rem; font-weight: 600;
+      transition: transform .15s ease, background .15s ease;
+    }
+    .btn:hover { transform: translateY(-1px); text-decoration: none; }
+    .btn-primary { background: var(--accent-bright); color: var(--ink); }
+    .btn-primary:hover { background: #22d3ee; color: var(--ink); }
+    .btn-ghost { background: rgba(255,255,255,.06); color: #fff; border: 1px solid var(--dark-line); }
+    .btn-ghost:hover { background: rgba(255,255,255,.1); color: #fff; }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 24px 0 0; }
+
     footer {
-      border-top: 1px solid var(--line);
-      margin-top: 38px;
-      padding-top: 14px;
-      color: var(--muted);
-      font-family: Arial, sans-serif;
-      font-size: 0.82rem;
+      text-align: center; padding: 40px 24px;
+      color: var(--muted); font-size: .88rem;
+      border-top: 1px solid var(--line); margin-top: 48px;
+    }
+
+    @media (max-width: 980px) {
+      .body-wrap { grid-template-columns: 1fr; }
+      .toc { display: none; }
+      .content { padding: 0 24px 80px; max-width: 100%; }
+      .dark-section .inner { padding: 0 24px; }
+    }
+    @media (max-width: 780px) {
+      .topbar-links {
+        display: flex; width: 100%; flex-wrap: nowrap;
+        justify-content: flex-start; overflow-x: auto;
+        overscroll-behavior-inline: contain; scrollbar-width: none;
+        padding: 2px 0 4px; margin-left: 0;
+        mask-image: linear-gradient(to right, transparent 0, black 12px, black calc(100% - 20px), transparent 100%);
+      }
+      .topbar-links::-webkit-scrollbar { display: none; }
+      .topbar-links a { flex: 0 0 auto; padding: 4px 2px; }
+      .mobile-nav-hint { display: block; }
+      .topbar-inner { flex-wrap: wrap; padding: 10px 16px; gap: 6px; }
+      .abstract { margin: -24px 16px 0; padding: 22px 20px; }
+      .section { padding: 36px 0; }
+      .dark-section { padding: 48px 0; }
+      .section-num { font-size: 2.2rem; }
+    }
+    @media (max-width: 520px) {
+      body { font-size: 16px; }
+      .hero h1 { font-size: clamp(1.6rem, 7vw, 2.2rem); }
+      .actions .btn { width: 100%; justify-content: center; }
     }
     @media print {
-      body { background: white; font-size: 11pt; }
-      main { width: auto; margin: 0; padding: 0; box-shadow: none; }
-      a { color: inherit; text-decoration: none; }
-      h2 { break-before: auto; }
+      .topbar, .toc, .skip-link { display: none; }
+      .body-wrap { grid-template-columns: 1fr; }
+      .content { padding: 0; max-width: 100%; }
+      .hero { padding: 24px 0; }
+      .abstract { margin: 0; box-shadow: none; }
+      .dark-section { background: #fff; color: #000; }
+      .dark-section .inner { padding: 0; }
+      .dark-section p, .dark-section strong, .dark-section li { color: #000; }
+      .dark-section .section-h { color: #000; }
+      .equation { break-inside: avoid; }
+      .theorem, .counterexample, .status-box { break-inside: avoid; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+      }
     }
   </style>
 </head>
-<body>
-<main>
-  <header>
-    <div class="eyebrow">Alignment Theorem Version 1.1 · Research Draft</div>
-    <h1>Ethical Work Under Hyperdeflation</h1>
-    <div class="subtitle">An abstract relative-growth theorem for Version 1's scarcity-driven mechanism</div>
-    <div class="byline">Dana Edwards / DarkLightX · August 2026</div>
+<body id="top">
+  <a class="skip-link" href="#main-content">Skip to the paper</a>
+
+  <nav class="topbar" aria-label="Paper navigation">
+    <div class="topbar-inner">
+      <a class="brand" href="index.html">Alignment<span> Theorem</span></a>
+      <span class="mobile-nav-hint" aria-hidden="true">Swipe for sections</span>
+      <div class="topbar-links">
+        <a href="index.html">Home</a>
+        <a href="#abstract">Abstract</a>
+        <a href="#model">Economic model</a>
+        <a href="#theorem">Theorem</a>
+        <a href="#counterexamples">Counterexamples</a>
+        <a href="#evidence">Evidence</a>
+        <a href="#limits">Limitations</a>
+        <a href="data-center-social-contract.html">Data Center Bargain</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="hero-inner">
+      <span class="hero-kicker">Alignment Theorem Version 1.1 &middot; Research Draft</span>
+      <h1>Ethical Work Under Hyperdeflation</h1>
+      <p class="hero-sub">A restricted theorem preserving Version 1&rsquo;s scarcity-driven mechanism</p>
+      <p class="hero-byline">Dana Edwards / DarkLightX &middot; August 2026</p>
+    </div>
   </header>
 
-  <section class="abstract">
-    <span class="label">Abstract</span>
-    Version 1 proposed that increasing monetary scarcity could make ethical work
-    uniquely profitable through EETF-gated rewards and exclusion from
-    scarcity-amplified upside. Version 1.1 generalizes that concrete mechanism.
-    A finite purchasing-power multiplier amplifies eligible direct-reward and
-    exclusive-upside coefficients. These effects compete against private
-    deviation gain, extra compliance cost, and optimizer error. The exact
-    threshold is finite. Unbounded hyperdeflation crosses it eventually when
-    the opposing opportunity remains bounded, or grows more slowly after
-    normalization. Lean 4.33.0 checks the finite, asymptotic, and relative-growth
-    statements. An exact bounded-integer model retains equality, common-scaling,
-    faster-deviation, unauthenticated-EETF, and overflow counterexamples.
-  </section>
+  <div class="abstract" id="abstract">
+    <div class="abstract-label">Abstract</div>
+    <p>
+      Version 1 proposed that increasing monetary scarcity could make ethical work
+      uniquely profitable. Its Lean model assigned positive utility to ethical
+      behavior and negative utility to non-ethical behavior at every positive
+      scarcity level, producing a threshold of zero. Version 1.1 repairs that
+      model while preserving its original hyperdeflationary idea. A finite
+      purchasing-power multiplier amplifies an ethical reward entitlement and an
+      optional non-ethical forfeiture. These effects compete against private
+      deviation gain, extra compliance cost, and optimizer error. The exact
+      threshold is finite. Unbounded hyperdeflation crosses it eventually when
+      the opposing opportunity remains bounded, or grows more slowly after
+      normalization. Lean 4.33.0 checks the finite, asymptotic, and relative-growth
+      statements. An exact bounded-integer model retains equality, common-scaling,
+      faster-deviation, unauthenticated-EETF, and overflow counterexamples.
+    </p>
+  </div>
 
-  <h2>1. The idea retained from Version 1</h2>
-  <p>
-    Version 1's human claim remains the target: a sufficiently deflationary
-    economy can make ethical participation the most profitable strategy. As the
-    settlement asset buys more real output, access to ethically conditioned
-    rewards becomes more valuable. The value gap between access and exclusion
-    grows with scarcity.
-    Rational, profit-seeking humans and LLM agents then have an economic reason
-    to choose eligible work.
-  </p>
-  <p>
-    Version 1.1 treats “ethical” as a classification of an observable action
-    under authenticated EETF evidence. An agent proposes the action. The agent
-    does not select its own EETF score. This semantic repair leaves the
-    deflationary mechanism intact.
-  </p>
+  <div class="body-wrap">
+    <aside class="toc" aria-label="Table of contents">
+      <div class="toc-title">Contents</div>
+      <ol>
+        <li><a href="#idea">The idea retained</a></li>
+        <li><a href="#model">Economic model</a></li>
+        <li><a href="#theorem">Finite theorem</a></li>
+        <li><a href="#asymptotic">Asymptotic form</a></li>
+        <li><a href="#relative">Relative growth</a></li>
+        <li><a href="#bitcoin">Bitcoin scarcity</a></li>
+        <li><a href="#counterexamples">Counterexamples</a></li>
+        <li><a href="#evidence">Executable evidence</a></li>
+        <li><a href="#v2">Relationship to V2</a></li>
+        <li><a href="#limits">Limitations</a></li>
+        <li><a href="#refs">References</a></li>
+      </ol>
+    </aside>
 
-  <table>
-    <thead><tr><th>Version 1 component</th><th>Version 1.1 treatment</th></tr></thead>
-    <tbody>
-      <tr><td>Scarcity multiplier</td><td>Finite purchasing-power index at every executable epoch.</td></tr>
-      <tr><td>EETF-conditioned rewards</td><td>Authenticated action classification controls eligibility.</td></tr>
-      <tr><td>Eligibility exclusion</td><td>Opportunity cost of scarcity upside unavailable to the excluded branch; no punitive debit.</td></tr>
-      <tr><td>Rational convergence</td><td>Strict threshold theorem with explicit deviation and error bounds.</td></tr>
-      <tr><td>Infinite scarcity</td><td>Asymptotic statement: every finite threshold is eventually crossed.</td></tr>
-    </tbody>
-  </table>
+    <main id="main-content" class="content">
 
-  <h2>2. Economic model</h2>
-  <p>At epoch <code>t</code>, define:</p>
-  <table>
-    <thead><tr><th>Symbol</th><th>Meaning</th></tr></thead>
-    <tbody>
-      <tr><td><code>M(t)</code></td><td>Finite real purchasing-power or hyperdeflation multiplier.</td></tr>
-      <tr><td><code>r(t)</code></td><td>Ethical reward exposure per unit of the multiplier.</td></tr>
-      <tr><td><code>l(t)</code></td><td>Scarcity-sensitive upside available only to the eligible action per multiplier unit.</td></tr>
-      <tr><td><code>G(t)</code></td><td>Maximum private gain available from a modeled deviation.</td></tr>
-      <tr><td><code>C(t)</code></td><td>Maximum extra cost of choosing the ethical alternative.</td></tr>
-      <tr><td><code>epsilon(t)</code></td><td>Permitted optimization error.</td></tr>
-    </tbody>
-  </table>
+      <section class="section" id="idea">
+        <div class="section-num">01</div>
+        <div class="section-kicker">The idea retained from Version 1</div>
+        <h2 class="section-h">Scarcity can make ethical work the most profitable strategy.</h2>
+        <p>
+          Version 1&rsquo;s human claim remains the target: a sufficiently deflationary
+          economy can make ethical participation the most profitable strategy. As the
+          settlement asset buys more real output, access to ethically conditioned
+          rewards becomes more valuable. Losing that access also becomes more costly.
+          Rational, profit-seeking humans and LLM agents then have an economic reason
+          to choose eligible work.
+        </p>
+        <p>
+          Version 1.1 treats &ldquo;ethical&rdquo; as a classification of an observable action
+          under authenticated EETF evidence. An agent proposes the action. The agent
+          does not select its own EETF score. This semantic repair leaves the
+          deflationary mechanism intact.
+        </p>
+        <table>
+          <thead><tr><th>Version 1 component</th><th>Version 1.1 treatment</th></tr></thead>
+          <tbody>
+            <tr><td>Scarcity multiplier</td><td>Finite purchasing-power index at every executable epoch.</td></tr>
+            <tr><td>EETF-conditioned rewards</td><td>Authenticated action classification controls eligibility.</td></tr>
+            <tr><td>Non-ethical penalty</td><td>Optional forfeiture coefficient that scales with purchasing power.</td></tr>
+            <tr><td>Rational convergence</td><td>Strict threshold theorem with explicit deviation and error bounds.</td></tr>
+            <tr><td>Infinite scarcity</td><td>Asymptotic statement: every finite threshold is eventually crossed.</td></tr>
+          </tbody>
+        </table>
+      </section>
 
-  <p>Using a common baseline utility <code>V(t)</code>, write the no-debit bounds:</p>
-  <div class="equation">U_eligible(t) &gt;= V(t) + M(t) [r(t) + l(t)] - C(t)
-U_excluded(t) &lt;= V(t) + G(t)</div>
-  <p>The resulting utility gap satisfies:</p>
-  <div class="equation">U_eligible(t) - U_excluded(t)
-  &gt;= M(t) [r(t) + l(t)] - [G(t) + C(t)]</div>
-
-  <p>Write:</p>
-  <div class="equation">K(t) = r(t) + l(t)
+      <section class="section" id="model">
+        <div class="section-num">02</div>
+        <div class="section-kicker">Economic model</div>
+        <h2 class="section-h">A finite multiplier amplifies ethical exposure against a bounded opponent.</h2>
+        <p>At epoch <code>t</code>, define:</p>
+        <table>
+          <thead><tr><th>Symbol</th><th>Meaning</th></tr></thead>
+          <tbody>
+            <tr><td><code>M(t)</code></td><td>Finite real purchasing-power or hyperdeflation multiplier.</td></tr>
+            <tr><td><code>r(t)</code></td><td>Ethical reward exposure per unit of the multiplier.</td></tr>
+            <tr><td><code>f(t)</code></td><td>Entitlement forfeited by a non-ethical action per multiplier unit.</td></tr>
+            <tr><td><code>G(t)</code></td><td>Maximum private gain available from a modeled deviation.</td></tr>
+            <tr><td><code>C(t)</code></td><td>Maximum extra cost of choosing the ethical alternative.</td></tr>
+            <tr><td><code>epsilon(t)</code></td><td>Permitted optimization error.</td></tr>
+          </tbody>
+        </table>
+        <p>Using a common baseline utility <code>V(t)</code>, assume the bounds:</p>
+        <div class="equation">U_ethical(t)    &gt;= V(t) + M(t) r(t) - C(t)
+U_nonethical(t) &lt;= V(t) + G(t) - M(t) f(t)</div>
+        <p>The resulting utility gap satisfies:</p>
+        <div class="equation">U_ethical(t) - U_nonethical(t)
+  &gt;= M(t) [r(t) + f(t)] - [G(t) + C(t)]</div>
+        <p>Write:</p>
+        <div class="equation">K(t) = r(t) + f(t)
 B(t) = G(t) + C(t) + epsilon(t)</div>
-  <p>The finite V1.1 condition is:</p>
-  <div class="equation">M(t) K(t) &gt; B(t)</div>
+        <p>The finite V1.1 condition is:</p>
+        <div class="equation">M(t) K(t) &gt; B(t)</div>
+      </section>
 
-  <h2>3. Finite Hyperdeflationary Alignment Theorem</h2>
-  <section class="theorem">
-    <span class="label">Theorem 1 · Finite threshold</span>
-    Fix one epoch with <code>K &gt; 0</code> and finite nonnegative integers
-    <code>M</code> and <code>B</code>. If <code>M K &gt; B</code>, every
-    <code>epsilon</code>-optimal choice in the stated two-action model is
-    ethical. The smallest integer multiplier that guarantees the strict margin
-    is <code>floor(B / K) + 1</code>.
-  </section>
-  <p>
-    <strong>Proof.</strong> The payoff bounds give
-    <code>U_eligible - U_excluded &gt; epsilon</code>. An excluded
-    <code>epsilon</code>-optimal choice would require
-    <code>U_excluded + epsilon &gt;= U_eligible</code>, which contradicts that
-    strict inequality. Euclidean division gives
-    <code>B &lt; K [floor(B/K) + 1]</code>. ∎
-  </p>
+      <section class="section" id="theorem">
+        <div class="section-num">03</div>
+        <div class="section-kicker">Finite Hyperdeflationary Alignment Theorem</div>
+        <h2 class="section-h">The exact threshold is finite and computable.</h2>
+        <div class="theorem">
+          <span class="theorem-label">Theorem 1 &middot; Finite threshold</span>
+          <p>
+            Fix one epoch with <code>K &gt; 0</code> and finite nonnegative integers
+            <code>M</code> and <code>B</code>. If <code>M K &gt; B</code>, every
+            <code>epsilon</code>-optimal choice in the stated two-action model is
+            ethical. The smallest integer multiplier that guarantees the strict margin
+            is <code>floor(B / K) + 1</code>.
+          </p>
+        </div>
+        <p>
+          <strong>Proof.</strong> The payoff bounds give
+          <code>U_ethical - U_nonethical &gt; epsilon</code>. A non-ethical
+          <code>epsilon</code>-optimal choice would require
+          <code>U_nonethical + epsilon &gt;= U_ethical</code>, which contradicts that
+          strict inequality. Euclidean division gives
+          <code>B &lt; K [floor(B/K) + 1]</code>. &#8718;
+        </p>
+      </section>
 
-  <h2>4. Infinite scarcity as an asymptotic theorem</h2>
-  <p>
-    Literal infinity never enters an executable transaction. The economic path
-    is a sequence of finite multipliers. “Hyperdeflation tends to infinity”
-    means that for every finite bound, the sequence eventually remains at or
-    above that bound.
-  </p>
-  <section class="theorem">
-    <span class="label">Theorem 2 · Bounded-deviation asymptotic form</span>
-    Let <code>M(t)</code> eventually exceed every finite bound. Fix
-    <code>K &gt; 0</code> and a finite complete opposing bound <code>B</code>.
-    There exists a finite epoch <code>T</code> such that every
-    <code>epsilon</code>-optimal modeled choice is ethical for all
-    <code>t &gt;= T</code>.
-  </section>
-  <p>
-    <strong>Proof.</strong> The threshold
-    <code>floor(B/K) + 1</code> is finite. Unbounded <code>M(t)</code>
-    eventually reaches it. Theorem 1 applies thereafter. ∎
-  </p>
+      <section class="section" id="asymptotic">
+        <div class="section-num">04</div>
+        <div class="section-kicker">Infinite scarcity as an asymptotic theorem</div>
+        <h2 class="section-h">Literal infinity never enters an executable transaction.</h2>
+        <p>
+          The economic path is a sequence of finite multipliers. &ldquo;Hyperdeflation
+          tends to infinity&rdquo; means that for every finite bound, the sequence
+          eventually remains at or above that bound.
+        </p>
+        <div class="theorem">
+          <span class="theorem-label">Theorem 2 &middot; Bounded-deviation asymptotic form</span>
+          <p>
+            Let <code>M(t)</code> eventually exceed every finite bound. Fix
+            <code>K &gt; 0</code> and a finite complete opposing bound <code>B</code>.
+            There exists a finite epoch <code>T</code> such that every
+            <code>epsilon</code>-optimal modeled choice is ethical for all
+            <code>t &gt;= T</code>.
+          </p>
+        </div>
+        <p>
+          <strong>Proof.</strong> The threshold
+          <code>floor(B/K) + 1</code> is finite. Unbounded <code>M(t)</code>
+          eventually reaches it. Theorem 1 applies thereafter. &#8718;
+        </p>
+      </section>
 
-  <h2>5. Relative growth and the AGI case</h2>
-  <p>
-    AGI can increase productive abundance while also increasing the scale of
-    attacks, arbitrage, and external opportunities. A fixed bound on
-    <code>G(t)</code> may therefore be too strong. Version 1.1 uses a
-    relative-growth statement for this case.
-  </p>
-  <section class="theorem">
-    <span class="label">Theorem 3 · Relative-growth form</span>
-    Suppose <code>K(t) &gt; 0</code>. If, from some finite epoch onward,
-    <code>B(t) / K(t) &lt; M(t)</code>, then the strict hyperdeflation margin
-    holds from that epoch onward.
-  </section>
-  <p>
-    This condition makes the growth-rate dependency visible. In an illustrative
-    exponential scenario, scarcity may grow as <code>(1+d)^t</code> while the
-    opposing opportunity grows as <code>(1+g)^t</code>. A persistent positive
-    coefficient and <code>d &gt; g</code> eventually favor the ethical action.
-    Equal growth rates require a coefficient comparison. Faster deviation
-    growth defeats this mechanism.
-  </p>
-  <p>
-    Research on AGI economics supports scenario analysis rather than a single
-    inevitable price path. Automation outcomes depend on capital accumulation,
-    compute, task structure, and irreproducible bottlenecks. Version 1.1 therefore
-    states hyperdeflation as an assumption to test, rather than a guaranteed
-    consequence of AGI.
-  </p>
+      <section class="section" id="relative">
+        <div class="section-num">05</div>
+        <div class="section-kicker">Relative growth and the AGI case</div>
+        <h2 class="section-h">AGI can increase both abundance and deviation opportunity.</h2>
+        <p>
+          AGI can increase productive abundance while also increasing the scale of
+          attacks, arbitrage, and external opportunities. A fixed bound on
+          <code>G(t)</code> may therefore be too strong. Version 1.1 uses a
+          relative-growth statement for this case.
+        </p>
+        <div class="theorem">
+          <span class="theorem-label">Theorem 3 &middot; Relative-growth form</span>
+          <p>
+            Suppose <code>K(t) &gt; 0</code>. If, from some finite epoch onward,
+            <code>B(t) / K(t) &lt; M(t)</code>, then the strict hyperdeflation margin
+            holds from that epoch onward.
+          </p>
+        </div>
+        <p>
+          This condition makes the growth-rate dependency visible. In an illustrative
+          exponential scenario, scarcity may grow as <code>(1+d)^t</code> while the
+          opposing opportunity grows as <code>(1+g)^t</code>. A persistent positive
+          coefficient and <code>d &gt; g</code> eventually favor the ethical action.
+          Equal growth rates require a coefficient comparison. Faster deviation
+          growth defeats this mechanism.
+        </p>
+        <p>
+          Research on AGI economics supports scenario analysis rather than a single
+          inevitable price path. Automation outcomes depend on capital accumulation,
+          compute, task structure, and irreproducible bottlenecks. Version 1.1 therefore
+          states hyperdeflation as an assumption to test, rather than a guaranteed
+          consequence of AGI.
+        </p>
+      </section>
 
-  <h2>6. Bitcoin-style scarcity</h2>
-  <p>
-    Bitcoin's block subsidy halves on a controlled schedule and its monetary
-    supply approaches a finite cap. Outstanding supply does not follow Version
-    1's geometric burn-to-zero equation. A Bitcoin-like Version 1.1 model uses
-    <code>M(t)</code> as purchasing power per spendable coin. The multiplier can
-    rise when real output or demand grows relative to the monetary stock.
-  </p>
-  <p>
-    The cap establishes controlled issuance. Market demand, productivity,
-    velocity, liquidity, and competing assets determine purchasing power. The
-    theorem is conditional on the resulting multiplier path. It does not derive
-    that path from Bitcoin consensus rules alone.
-  </p>
+      <section class="section" id="bitcoin">
+        <div class="section-num">06</div>
+        <div class="section-kicker">Bitcoin-style scarcity</div>
+        <h2 class="section-h">Controlled issuance does not by itself prove purchasing power.</h2>
+        <p>
+          Bitcoin&rsquo;s block subsidy halves on a controlled schedule and its monetary
+          supply approaches a finite cap. Outstanding supply does not follow Version
+          1&rsquo;s geometric burn-to-zero equation. A Bitcoin-like Version 1.1 model uses
+          <code>M(t)</code> as purchasing power per spendable coin. The multiplier can
+          rise when real output or demand grows relative to the monetary stock.
+        </p>
+        <p>
+          The cap establishes controlled issuance. Market demand, productivity,
+          velocity, liquidity, and competing assets determine purchasing power. The
+          theorem is conditional on the resulting multiplier path. It does not derive
+          that path from Bitcoin consensus rules alone.
+        </p>
+      </section>
 
-  <h2>7. Counterexamples retained</h2>
-  <section class="counterexample">
-    <span class="label">Counterexample family A · Common scaling</span>
-    If <code>G(t) = M(t) K(t)</code> and the other terms are zero, the two sides
-    remain equal. Scarcity grows without producing a strict preference.
-  </section>
-  <section class="counterexample">
-    <span class="label">Counterexample family B · Faster deviations</span>
-    If <code>K(t)=1</code> and <code>G(t)=M(t)^2</code>, non-ethical opportunity
-    dominates the linear scarcity entitlement for every <code>M(t) &gt; 1</code>.
-  </section>
-  <section class="counterexample">
-    <span class="label">Counterexample family C · Zero exposure</span>
-    If <code>K(t)=0</code>, no amount of scarcity changes the ranking.
-  </section>
-  <section class="counterexample">
-    <span class="label">Counterexample family D · Unauthenticated scoring</span>
-    A self-attested EETF lets the actor label a profitable deviation ethical.
-    Economic arithmetic cannot repair a forged classification.
-  </section>
-  <section class="counterexample">
-    <span class="label">Counterexample family E · Unfunded entitlement</span>
-    A nominal reward with no committed reserve may never be paid. It cannot
-    supply the payoff assumed by the theorem.
-  </section>
+      <section class="section" id="counterexamples">
+        <div class="section-num">07</div>
+        <div class="section-kicker">Counterexamples retained</div>
+        <h2 class="section-h">Five families where the mechanism fails.</h2>
+        <div class="counterexample">
+          <span class="counterexample-label">Counterexample family A &middot; Common scaling</span>
+          <p>If <code>G(t) = M(t) K(t)</code> and the other terms are zero, the two sides remain equal. Scarcity grows without producing a strict preference.</p>
+        </div>
+        <div class="counterexample">
+          <span class="counterexample-label">Counterexample family B &middot; Faster deviations</span>
+          <p>If <code>K(t)=1</code> and <code>G(t)=M(t)^2</code>, non-ethical opportunity dominates the linear scarcity entitlement for every <code>M(t) &gt; 1</code>.</p>
+        </div>
+        <div class="counterexample">
+          <span class="counterexample-label">Counterexample family C &middot; Zero exposure</span>
+          <p>If <code>K(t)=0</code>, no amount of scarcity changes the ranking.</p>
+        </div>
+        <div class="counterexample">
+          <span class="counterexample-label">Counterexample family D &middot; Unauthenticated scoring</span>
+          <p>A self-attested EETF lets the actor label a profitable deviation ethical. Economic arithmetic cannot repair a forged classification.</p>
+        </div>
+        <div class="counterexample">
+          <span class="counterexample-label">Counterexample family E &middot; Unfunded entitlement</span>
+          <p>A nominal reward with no committed reserve may never be paid. It cannot supply the payoff assumed by the theorem.</p>
+        </div>
+      </section>
 
-  <h2>8. Executable and formal evidence</h2>
-  <table>
-    <thead><tr><th>Layer</th><th>Established scope</th><th>Status</th></tr></thead>
-    <tbody>
-      <tr>
-        <td>Lean 4.33.0</td>
-        <td>Paper utility-bound bridge, exact least integer threshold, threshold monotonicity, finite choice theorem, bounded-deviation asymptotic theorem, and relative-growth theorem.</td>
-        <td>Checked; source-bound receipt; expected standard axioms only.</td>
-      </tr>
-      <tr>
-        <td>Python reference</td>
-        <td>Finite u64 envelope, strict boundary, exact-type rejection, overflow rejection, and direct raw-utility parity over 3,125 configurations.</td>
-        <td>Non-authoritative deterministic reference; tests pass for the stated finite domains.</td>
-      </tr>
-      <tr>
-        <td>Tau packet</td>
-        <td>Conjunction of four assumed propositions: EETF authenticated, action ethical, strict margin, and reward funded, over all 16 Boolean rows.</td>
-        <td>Exhaustive semantic packet present. A current source-pinned local candidate matched all rows; reviewed-binary and public-node promotion remain pending.</td>
-      </tr>
-      <tr>
-        <td>Assurance receipt</td>
-        <td>Hashes the Lean sources and receipt, Python model and tests, Tau semantic packet, public pages, paper, and PDF.</td>
-        <td>Regenerated against the current source tree after the no-debit normalization.</td>
-      </tr>
-    </tbody>
-  </table>
-  <p>
-    Tau does not receive “infinity.” The host computes each finite integer
-    margin with explicit no-overflow checks. Tau combines the derived strict
-    margin with Boolean propositions supplied by its environment. The Python
-    evaluator and Tau packet do not authenticate those propositions and grant
-    no publication or value-moving authority. A production system would require
-    signatures, replay protection, state roots,
-    reserve settlement, and governance over the active EETF policy.
-  </p>
+      <section class="dark-section" id="evidence">
+        <div class="inner">
+          <div class="section-num">08</div>
+          <div class="section-kicker">Executable and formal evidence</div>
+          <h2 class="section-h">What has been checked and what remains pending.</h2>
+          <table>
+            <thead><tr><th>Layer</th><th>Established scope</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr>
+                <td>Lean 4.33.0</td>
+                <td>Paper utility-bound bridge, exact least integer threshold, threshold monotonicity, finite choice theorem, bounded-deviation asymptotic theorem, and relative-growth theorem.</td>
+                <td>Checked; source-bound receipt; expected standard axioms only.</td>
+              </tr>
+              <tr>
+                <td>Python reference</td>
+                <td>Finite u64 envelope, strict boundary, exact-type rejection, overflow rejection, and direct raw-utility parity over 3,125 configurations.</td>
+                <td>Non-authoritative deterministic reference; tests pass for the stated finite domains.</td>
+              </tr>
+              <tr>
+                <td>Tau packet</td>
+                <td>Conjunction of four assumed propositions: EETF authenticated, action ethical, strict margin, and reward funded, over all 16 Boolean rows.</td>
+                <td>Exhaustive semantic packet present. Source-pinned interpreter replay remains pending.</td>
+              </tr>
+              <tr>
+                <td>Assurance receipt</td>
+                <td>Hashes the Lean sources and receipt, Python model and tests, Tau semantic packet, public pages, paper, and PDF.</td>
+                <td>Claim-scoped source binding; explicitly records reference-only authority and pending Tau replay.</td>
+              </tr>
+            </tbody>
+          </table>
+          <p>
+            Tau does not receive &ldquo;infinity.&rdquo; The host computes each finite integer
+            margin with explicit no-overflow checks. Tau combines the derived strict
+            margin with Boolean propositions supplied by its environment. The Python
+            evaluator and Tau packet do not authenticate those propositions and grant
+            no publication or value-moving authority. A production system would require
+            signatures, replay protection, state roots, reserve settlement, and
+            governance over the active EETF policy.
+          </p>
+        </div>
+      </section>
 
-  <h2>9. Relationship to Version 2</h2>
-  <p>
-    Version 1.1 and Version 2 answer different questions. Version 1.1 asks when
-    hyperdeflationary economics eventually makes ethical work most profitable.
-    Version 2 asks what a policy-governed network may publish and reward at a
-    finite epoch. A future network can combine both: V1.1 supplies the economic
-    mechanism, while V2 supplies a deterministic publication boundary.
-  </p>
+      <section class="section" id="v2">
+        <div class="section-num">09</div>
+        <div class="section-kicker">Relationship to Version 2</div>
+        <h2 class="section-h">V1.1 supplies the mechanism; V2 supplies the publication boundary.</h2>
+        <p>
+          Version 1.1 and Version 2 answer different questions. Version 1.1 asks when
+          hyperdeflationary economics eventually makes ethical work most profitable.
+          Version 2 asks what a policy-governed network may publish and reward at a
+          finite epoch. A future network can combine both: V1.1 supplies the economic
+          mechanism, while V2 supplies a deterministic publication boundary.
+        </p>
+        <div class="actions">
+          <a class="btn btn-primary" href="data-center-social-contract.html">Read the Data Center Bargain (V2)</a>
+          <a class="btn btn-ghost" href="alignment-theorem-v1-archive-notice.html" style="background:var(--paper);color:var(--ink);border:1px solid var(--line)">Historical V1 notice</a>
+        </div>
+      </section>
 
-  <h2>10. Limitations and nonclaims</h2>
-  <ul>
-    <li>The theorem is policy-relative and does not establish objective moral truth.</li>
-    <li>It does not prove AGI occurs or causes economy-wide hyperdeflation.</li>
-    <li>It does not prove Bitcoin purchasing power diverges.</li>
-    <li>It does not authenticate EETF evidence, market prices, sensors, or oracles.</li>
-    <li>Its Python decision and Tau output are reference results, not authority witnesses.</li>
-    <li>It does not cover unbounded or faster-growing deviations outside the relative-growth condition.</li>
-    <li>It does not establish coalition, sybil, governance-capture, liquidity, or market-manipulation safety.</li>
-    <li>It does not resolve infinite-horizon discounting, hoarding, utility saturation, or transversality by itself.</li>
-    <li>It does not establish Tau Net deployment or production readiness.</li>
-  </ul>
+      <section class="dark-section" id="limits">
+        <div class="inner">
+          <div class="section-num">10</div>
+          <div class="section-kicker">Limitations and nonclaims</div>
+          <h2 class="section-h">What the theorem does not prove.</h2>
+          <ul>
+            <li>The theorem is policy-relative and does not establish objective moral truth.</li>
+            <li>It does not prove AGI occurs or causes economy-wide hyperdeflation.</li>
+            <li>It does not prove Bitcoin purchasing power diverges.</li>
+            <li>It does not authenticate EETF evidence, market prices, sensors, or oracles.</li>
+            <li>Its Python decision and Tau output are reference results, not authority witnesses.</li>
+            <li>It does not cover unbounded or faster-growing deviations outside the relative-growth condition.</li>
+            <li>It does not establish coalition, sybil, governance-capture, liquidity, or market-manipulation safety.</li>
+            <li>It does not resolve infinite-horizon discounting, hoarding, utility saturation, or transversality by itself.</li>
+            <li>It does not establish Tau Net deployment or production readiness.</li>
+          </ul>
+        </div>
+      </section>
 
-  <h2>References</h2>
-  <ol class="small">
-    <li>P. Wuille, <a href="https://github.com/bitcoin/bips/blob/master/bip-0042.mediawiki">BIP 42: A finite monetary supply for Bitcoin</a>.</li>
-    <li>A. Korinek and D. Suh, <a href="https://www.nber.org/papers/w32255">Scenarios for the Transition to AGI</a>, NBER Working Paper 32255, 2024.</li>
-    <li>P. Restrepo, <a href="https://www.nber.org/papers/w34423">We Won't be Missed: Work and Growth in the AGI World</a>, NBER Working Paper 34423, 2025.</li>
-    <li>J. A. Gray and S. W. Salant, <a href="https://www.federalreserve.gov/econres/ifdp/transversality-conditions-in-infinite-horizon-models.htm">Transversality Conditions in Infinite Horizon Models</a>, Federal Reserve IFDP 172, 1981.</li>
-    <li><a href="https://github.com/TheDarkLightX/AlignmentTheorem">AlignmentTheorem repository</a>, Version 1.1 Lean, Tau, and exact-model artifacts.</li>
-  </ol>
+      <section class="section" id="refs">
+        <div class="section-num">11</div>
+        <div class="section-kicker">References</div>
+        <h2 class="section-h">Sources cited.</h2>
+        <ol class="refs">
+          <li>P. Wuille, <a href="https://github.com/bitcoin/bips/blob/master/bip-0042.mediawiki">BIP 42: A finite monetary supply for Bitcoin</a>.</li>
+          <li>A. Korinek and D. Suh, <a href="https://www.nber.org/papers/w32255">Scenarios for the Transition to AGI</a>, NBER Working Paper 32255, 2024.</li>
+          <li>P. Restrepo, <a href="https://www.nber.org/papers/w34423">We Won&rsquo;t be Missed: Work and Growth in the AGI World</a>, NBER Working Paper 34423, 2025.</li>
+          <li>J. A. Gray and S. W. Salant, <a href="https://www.federalreserve.gov/econres/ifdp/transversality-conditions-in-infinite-horizon-models.htm">Transversality Conditions in Infinite Horizon Models</a>, Federal Reserve IFDP 172, 1981.</li>
+          <li><a href="https://github.com/TheDarkLightX/AlignmentTheorem">AlignmentTheorem repository</a>, Version 1.1 Lean, Tau, and exact-model artifacts.</li>
+        </ol>
 
-  <section class="status">
-    <span class="label">Evidence boundary</span>
-    Version 1.1 is a restricted, machine-checked theorem over declared
-    assumptions. Its economic forecasts and authentication premises remain
-    empirical and institutional obligations.
-  </section>
+        <div class="status-box">
+          <span class="status-label">Evidence boundary</span>
+          <p>
+            Version 1.1 is a restricted, machine-checked theorem over declared
+            assumptions. Its economic forecasts and authentication premises remain
+            empirical and institutional obligations.
+          </p>
+        </div>
+      </section>
+
+    </main>
+  </div>
 
   <footer>
-    Alignment Theorem Version 1.1 · Hyperdeflationary research extension · August 2026
+    Alignment Theorem Version 1.1 &middot; Hyperdeflationary research extension &middot; August 2026
   </footer>
-</main>
 </body>
 </html>

@@ -1,18 +1,18 @@
 {
   "authority_status": "REFERENCE_ONLY_NO_PUBLICATION_OR_VALUE_AUTHORITY",
   "bound_files_sha256": {
-    "README.md": "01ca12e9eb0ecf4331938f8297e34c14b8421ccaae83f6c2b1dd524e4394e72c",
-    "TOOLCHAINS.md": "e6774672f3f2bc71acf52c59c765c1e0980b3b4baea95c6549418a5a6aa692e8",
+    "README.md": "6b2500338d4ef2e447c6a5cf78c31ef7a4c9cf3b09cf45dfbf505757586e9c07",
+    "TOOLCHAINS.md": "99d0d80cd815e1d31dad834dea687827a64ba95b6c7d07760fe7112ee5f2dde6",
     "docs/Alignment_Theorem_Academic.pdf": "321dba74873cec419c1f945f5f6df27abdfb774368208bd90dbc3820b4aa771c",
     "docs/Alignment_Theorem_V1_1_Hyperdeflationary.pdf": "6f78bddf39bd0041b342739df05e326d74e295f33747b516ff610a2c5e14d3aa",
     "docs/SIMULATION_RESULTS.md": "533048ccf9f38b0926106ded4bc9a82f5f98d6dece8e1d63bbb3d5d843c54bea",
     "docs/THREAT_MODEL.md": "8a4ff4ac6669b98871e65e2d7baf2b73b2ce748dc890fc0130e4d026dfd1adfa",
     "docs/V1_TO_V2_CORRECTIONS.md": "67217c215ce0522eed3be521ccbc3775f1a81e5889db776fd301d5a0b4c284c3",
     "docs/VERIFICATION_SUMMARY.md": "1aef0835d7a60803640bce577c77a9ed51faf40334b55c6bf75dcb5e666a59ca",
-    "docs/alignment-theorem-deep-dive.html": "22eb16a75327de97ddf527ba1d2889e43242c32ffa323f001b3e22dfb5589ff5",
-    "docs/alignment-theorem-v1-archive-notice.html": "52cc23967292a2ba189b822b5aa4429c879a899098cc795dc7be095e3d9edce8",
+    "docs/alignment-theorem-deep-dive.html": "f2310419de868d4601d34175b2e8f0d872d96db6149b0931331a0d261ec3c4a1",
+    "docs/alignment-theorem-v1-archive-notice.html": "1b083c5b7730afe89b44dd1feaf37ceeb6cd60d7e6e7cf4627f1de5d4d480e3f",
     "docs/index.html": "846efec0f44c552652c7e8ce167157e32da5a4ad2c017118524b313819faccfe",
-    "docs/v1-1-hyperdeflationary-alignment.html": "3fc175b70434eb135f47280293eb32b3c57db4f8e63ec952412f87d7cfb68515",
+    "docs/v1-1-hyperdeflationary-alignment.html": "f9ca02250b8e50014c6f8fa0018f3dd5bc683b6419fc5da15ef72f455459d32f",
     "proofs/v1_1/AlignmentTheoremV1_1.lean": "50d844d35cbdd0c80cde1949059962c3669b49daadad6bad9800a0f328f169f5",
     "proofs/v1_1/AxiomAudit.lean": "851ee34a5470d6d1bf6c62d434d6614c96332c27cbf412f85841e125d6fd9801",
     "proofs/v1_1/lake-manifest.json": "88da9a0eb83d1af15224b73ddca94d0857dfc1be609418cb8694179d128115c3",
@@ -54,7 +54,7 @@
   "python_test_returncode": 0,
   "python_version": "3.12.13",
   "schema": "alignment-theorem-v1-1-assurance-v2",
-  "source_bundle_sha256": "895f3e19dfe86b9b0f648997dcb889780eec2aea140280e8e8a92c14f99ac719",
+  "source_bundle_sha256": "297c68f01d6407e8e9c91f996c6792358a5f8b52909feb546c0231bd5950c303",
   "tau_interpreter_replay_status": "PENDING_PINNED_TAU_BINARY_REPLAY",
   "tau_semantic_packet_rows": 16
 }
