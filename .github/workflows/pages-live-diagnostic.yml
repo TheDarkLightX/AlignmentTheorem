@@ -1,0 +1,92 @@
+name: Capture GitHub Pages diagnostics
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/pages-live-diagnostic.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    env:
+      SITE_ROOT: https://thedarklightx.github.io/AlignmentTheorem
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12.13"
+      - name: Probe all public pages without hiding failures
+        shell: bash
+        run: |
+          set +e
+          mkdir -p live
+          nonce="${GITHUB_SHA}-$(date +%s)"
+          curl -L -sS -D live/index.headers -o live/index.html -w "%{http_code}" "${SITE_ROOT}/?diagnostic=${nonce}" > live/index.code
+          curl -L -sS -D live/data.headers -o live/data.html -w "%{http_code}" "${SITE_ROOT}/data-center-social-contract.html?diagnostic=${nonce}" > live/data.code
+          curl -L -sS -D live/deep.headers -o live/deep.html -w "%{http_code}" "${SITE_ROOT}/alignment-theorem-deep-dive.html?diagnostic=${nonce}" > live/deep.code
+          curl -L -sS -D live/v11.headers -o live/v11.html -w "%{http_code}" "${SITE_ROOT}/v1-1-hyperdeflationary-alignment.html?diagnostic=${nonce}" > live/v11.code
+          exit 0
+      - name: Write diagnostic receipt
+        run: |
+          python3 - <<'PY'
+          from __future__ import annotations
+          import datetime as dt
+          import hashlib
+          import json
+          import os
+          from pathlib import Path
+
+          def sha(path: Path):
+              return hashlib.sha256(path.read_bytes()).hexdigest() if path.exists() else None
+
+          def text(path: Path):
+              return path.read_text(errors="replace") if path.exists() else ""
+
+          specs = {
+              "homepage": (Path("docs/index.html"), Path("live/index.html"), Path("live/index.code"), "The Data Center Bargain"),
+              "data_center": (Path("docs/data-center-social-contract.html"), Path("live/data.html"), Path("live/data.code"), "The Data Center Bargain | Alignment Theorem"),
+              "deep_dive": (Path("docs/alignment-theorem-deep-dive.html"), Path("live/deep.html"), Path("live/deep.code"), "Making Ethics Profitable"),
+              "v1_1": (Path("docs/v1-1-hyperdeflationary-alignment.html"), Path("live/v11.html"), Path("live/v11.code"), "Ethical Work Under Hyperdeflation"),
+          }
+          pages = {}
+          for name, (source, body, code, marker) in specs.items():
+              source_hash, body_hash = sha(source), sha(body)
+              body_text = text(body)
+              pages[name] = {
+                  "http_code": text(code).strip(),
+                  "source_sha256": source_hash,
+                  "live_sha256": body_hash,
+                  "exact_match": bool(source_hash and source_hash == body_hash),
+                  "marker_present": marker in body_text,
+                  "live_bytes": body.stat().st_size if body.exists() else 0,
+                  "body_prefix": body_text[:200],
+              }
+          receipt = {
+              "schema": "alignment-theorem-pages-diagnostic-v1",
+              "captured_at_utc": dt.datetime.now(dt.timezone.utc).isoformat(),
+              "source_commit": os.environ["GITHUB_SHA"],
+              "site_root": os.environ["SITE_ROOT"],
+              "pages": pages,
+          }
+          out = Path("verification/receipts/github_pages_diagnostic.json")
+          out.parent.mkdir(parents=True, exist_ok=True)
+          out.write_text(json.dumps(receipt, indent=2, sort_keys=True) + "\n")
+          print(out.read_text())
+          PY
+      - name: Commit diagnostic receipt
+        run: |
+          git config user.name "TheDarkLightX"
+          git config user.email "TheDarkLightX@users.noreply.github.com"
+          git add verification/receipts/github_pages_diagnostic.json
+          git commit -m "verification: capture GitHub Pages deployment diagnostics"
+          git push origin HEAD:main
