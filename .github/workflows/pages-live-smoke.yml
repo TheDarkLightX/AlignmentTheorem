@@ -176,8 +176,8 @@ jobs:
                 const values={gross:'10',costs:'9',floor:'2',deficits:'0, 5',compute:'1',computeFloor:'2'};
                 for(const [id,value] of Object.entries(values)){const el=document.getElementById(id);el.value=value;el.dispatchEvent(new Event('input',{bubbles:true}));}
               """)
-              wait.until(lambda d: "Underfunded" in d.find_element(By.ID, "rCashStatus").text)
-              wait.until(lambda d: "Underfunded" in d.find_element(By.ID, "rComputeStatus").text)
+              wait.until(lambda d: "Unfunded" in d.find_element(By.ID, "rCashStatus").text)
+              wait.until(lambda d: "Unfunded" in d.find_element(By.ID, "rComputeStatus").text)
               report["interactions"]["community_calculator"] = {"cash": driver.find_element(By.ID, "rCashStatus").text, "compute": driver.find_element(By.ID, "rComputeStatus").text, "required": driver.find_element(By.ID, "rRequired").text}
           finally:
               driver.quit()

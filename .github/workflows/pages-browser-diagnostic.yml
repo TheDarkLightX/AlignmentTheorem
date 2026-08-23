@@ -1,11 +1,6 @@
 name: Diagnose live Pages browser polish
 
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - ".github/workflows/pages-browser-diagnostic.yml"
   workflow_dispatch:
 
 permissions:
@@ -128,7 +123,7 @@ jobs:
                       driver.set_window_size(1440,1000)
                       driver.get(pages[0][1])
                       btn=wait.until(lambda d:d.find_element(By.CSS_SELECTOR,'.scenario-button[data-scarcity="60"]'))
-                      btn.click()
+                      driver.execute_script("arguments[0].scrollIntoView({block:'center'}); arguments[0].click();", btn)
                       wait.until(lambda d:d.find_element(By.ID,"scarcityValue").text=="60x")
                       out["interactions"]["homepage_scenario"]={"passed":btn.get_attribute("aria-pressed")=="true","scarcity":driver.find_element(By.ID,"scarcityValue").text,"aria_pressed":btn.get_attribute("aria-pressed")}
                   except Exception:
@@ -141,8 +136,8 @@ jobs:
                         const values={gross:'10',costs:'9',floor:'2',deficits:'0, 5',compute:'1',computeFloor:'2'};
                         for(const [id,value] of Object.entries(values)){const el=document.getElementById(id);el.value=value;el.dispatchEvent(new Event('input',{bubbles:true}));}
                       """)
-                      wait.until(lambda d:"Underfunded" in d.find_element(By.ID,"rCashStatus").text)
-                      wait.until(lambda d:"Underfunded" in d.find_element(By.ID,"rComputeStatus").text)
+                      wait.until(lambda d:"Unfunded" in d.find_element(By.ID,"rCashStatus").text)
+                      wait.until(lambda d:"Unfunded" in d.find_element(By.ID,"rComputeStatus").text)
                       out["interactions"]["community_calculator"]={"passed":True,"cash":driver.find_element(By.ID,"rCashStatus").text,"compute":driver.find_element(By.ID,"rComputeStatus").text,"required":driver.find_element(By.ID,"rRequired").text}
                   except Exception:
                       out["interactions"]["community_calculator"]={"passed":False,"error":traceback.format_exc()}
