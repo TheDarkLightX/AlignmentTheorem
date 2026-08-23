@@ -1,0 +1,1 @@
+Responsive render QA is executed by .github/workflows/pages-render-qa.yml.
