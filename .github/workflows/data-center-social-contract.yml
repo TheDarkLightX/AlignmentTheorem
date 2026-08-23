@@ -35,7 +35,7 @@ jobs:
         working-directory: proofs/compute_dividend
         run: |
           lake build
-          lake env lean DataCenterSocialContract.lean
+          lake env lean -o .lake/build/lib/lean/DataCenterSocialContract.olean DataCenterSocialContract.lean
           lake env lean DataCenterAxiomAudit.lean
       - name: Run exact Python unit tests
         run: python3 -m unittest discover -s tests -v
