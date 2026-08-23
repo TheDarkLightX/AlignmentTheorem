@@ -733,12 +733,13 @@
   &amp; universal_dividend_compute_floor_funded[t]
   &amp; public_audit_receipt_current[t]</code></pre>
         <p>Tau does not authenticate the facts; it prevents the settlement layer from pretending that an absent, stale, disputed, or failed obligation has passed.</p>
+        <div class="callout warning"><strong>The trust boundary is external.</strong> The gate enforces that the declared relation was followed. It cannot verify that the facts fed into that relation were true. A meter can be miscalibrated, an oracle can be bribed, and an attestation can be forged&mdash;the chain faithfully executes on whatever validly-signed inputs it receives. This is why the architecture requires independent meters, audit rotation, conflict disclosure, dispute mechanisms, and escrow for contested amounts. The theorem assumes honest authentication; it does not provide it.</div>
 
         <div class="flow">
           <div class="step">Local law and agreement</div>
           <div class="step">Signed meter, bond, audit and approval facts</div>
           <div class="step tau">Tau constitutional gate</div>
-          <div class="step">Escrow / permit / settlement adapter</div>
+          <div class="step">Escrow / permit / settlement</div>
           <div class="step">Cash, compute and public receipts</div>
           <div class="step tau">Proof-constrained revision</div>
         </div>

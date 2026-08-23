@@ -630,9 +630,19 @@ B(t) = G(t) + C(t) + epsilon(t)</div>
             margin with explicit no-overflow checks. Tau combines the derived strict
             margin with Boolean propositions supplied by its environment. The Python
             evaluator and Tau packet do not authenticate those propositions. They grant
-            no publication or value-moving authority. A production system would require
-            signatures, replay protection, state roots, reserve settlement, and
-            governance over the active EETF policy.
+            no publication or value-moving authority.
+          </p>
+          <p>
+            The trust boundary is external. The gate enforces that the declared
+            relation was followed. It cannot verify that the facts fed into that
+            relation were true. An oracle can report a false price, a meter can be
+            miscalibrated, and a self-attested EETF can label a profitable deviation
+            ethical. The chain faithfully executes on whatever validly-signed inputs
+            it receives. A production system would require independent evidence
+            providers (oracles, meters, signed attestations), dispute mechanisms,
+            replay protection, state roots, reserve settlement, and governance over
+            the active EETF policy. The theorem assumes honest authentication; it
+            does not provide it.
           </p>
         </div>
       </section>
@@ -647,6 +657,16 @@ B(t) = G(t) + C(t) + epsilon(t)</div>
           Version 2 asks what a policy-governed network may publish and reward at a
           finite epoch. A future network can combine both: V1.1 supplies the economic
           mechanism, while V2 supplies a deterministic publication boundary.
+        </p>
+        <p>
+          The operational difference matters. In V1.1, a non-ethical action can still
+          occur&mdash;it simply does not receive the ethical reward and may face
+          forfeiture. Alignment comes from the utility gap, not from prevention. In V2,
+          a non-ethical action is rejected at the gate as a no-op. It is not published
+          and pays nothing. V1.1 makes the bad choice less profitable; V2 blocks it
+          from settling. The two mechanisms can compose: V2 controls what the network
+          admits, while V1.1 shapes the incentives around what agents choose to
+          propose.
         </p>
         <div class="actions">
           <a class="btn btn-primary" href="data-center-social-contract.html">Read the Data Center Bargain (V2)</a>

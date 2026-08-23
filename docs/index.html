@@ -684,12 +684,12 @@
                 <div class="section-num">03</div>
                 <div class="section-kicker">Architecture</div>
                 <h2 class="section-h">Ethics-to-economics pipeline</h2>
-                <p class="section-intro">Governance selects an explicit policy. Authenticated adapters produce facts, Tau checks the policy relationship, and reserve-backed settlement publishes eligible work.</p>
+                <p class="section-intro">Governance selects an explicit policy. External evidence providers&mdash;meters, oracles, signed attestations&mdash;supply the facts the network cannot derive on its own. Tau checks the policy relationship against those facts, and reserve-backed settlement publishes eligible work.</p>
                 <div class="pipeline-container">
                     <div class="pipeline-grid">
                         <div class="pipeline-node"><h3>Governed Policy</h3><p>Versioned rules and constitutional bounds</p></div>
                         <div class="pipeline-arrow">&rarr;</div>
-                        <div class="pipeline-node"><h3>Authenticated Evidence</h3><p>Signatures, state, proofs, provenance</p></div>
+                        <div class="pipeline-node"><h3>External Evidence</h3><p>Meters, oracles, signed attestations</p></div>
                         <div class="pipeline-arrow">&rarr;</div>
                         <div class="pipeline-node highlight"><h3>Tau Policy Gate</h3><p>All obligations must pass</p></div>
                         <div class="pipeline-arrow">&rarr;</div>
@@ -697,8 +697,9 @@
                         <div class="pipeline-arrow">&rarr;</div>
                         <div class="pipeline-node"><h3>Network Publication</h3><p>Receipts inform review and revision</p></div>
                     </div>
-                    <p class="pipeline-caption">The agent proposes an action and optimizes the task. Authenticated adapters establish the facts. Tau evaluates the declared relation. The settlement layer controls value and publication.</p>
+                    <p class="pipeline-caption">The agent proposes an action and optimizes the task. External evidence providers&mdash;meters, oracles, signed attestations&mdash;supply the facts the network cannot observe on its own. Tau evaluates the declared relation. The settlement layer controls value and publication.</p>
                 </div>
+                <div class="callout"><strong>The trust boundary is external.</strong> The gate enforces that the rules were followed. It cannot verify that the facts fed into those rules were true. Meters can be miscalibrated, oracles can be bribed, and attestations can be forged&mdash;the chain faithfully executes on whatever validly-signed inputs it receives. A production system needs independent evidence providers, dispute mechanisms, and audit rotation. The theorem assumes honest authentication; it does not provide it.</div>
             </section>
 
             <!-- 04: V1 Feedback Loop -->
