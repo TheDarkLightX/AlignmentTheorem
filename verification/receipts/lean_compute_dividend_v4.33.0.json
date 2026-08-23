@@ -1,0 +1,103 @@
+{
+  "axiom_audit_returncode": 0,
+  "axiom_reports": {
+    "ComputeDividend.accepted_dividend_conserves_reserve": [
+      "propext"
+    ],
+    "ComputeDividend.allocation_member_respects_share_cap": [],
+    "ComputeDividend.bounded_loss_preserves_protected_floor": [
+      "propext",
+      "Quot.sound"
+    ],
+    "ComputeDividend.committed_wealth_action_has_modeled_limits": [
+      "propext"
+    ],
+    "ComputeDividend.dividend_admission_implies_every_obligation": [
+      "propext"
+    ],
+    "ComputeDividend.funded_rent_conserves_gross": [
+      "propext"
+    ],
+    "ComputeDividend.gross_rent_threshold_supports_universal_floor": [
+      "propext",
+      "Quot.sound"
+    ],
+    "ComputeDividend.progressive_transfer_weakly_improves": [],
+    "ComputeDividend.rejected_dividend_is_noop": [
+      "propext"
+    ],
+    "ComputeDividend.universal_floor_cost_lower_bound": [
+      "propext",
+      "Quot.sound"
+    ],
+    "ComputeDividend.universal_floor_feasible_iff": [
+      "propext",
+      "Quot.sound"
+    ],
+    "ComputeDividend.wealth_admission_implies_every_obligation": [
+      "propext"
+    ]
+  },
+  "build_returncode": 0,
+  "checker_sha256": "e705cdd9af9f51b0f597cb775e2b9c411c32838fd22fb92dfbed02db189c01a5",
+  "compatibility_shim_source_sha256": "e2c2f8c8261af494d4989336dce44efa42337109812ac95460bedb15b472151f",
+  "error": "",
+  "execution_environment_status": "HOST_KERNEL_LIBRARIES_AND_SANDBOX_NOT_HERMETICALLY_ATTESTED",
+  "expected_axiom_reports": {
+    "ComputeDividend.accepted_dividend_conserves_reserve": [
+      "propext"
+    ],
+    "ComputeDividend.allocation_member_respects_share_cap": [],
+    "ComputeDividend.bounded_loss_preserves_protected_floor": [
+      "propext",
+      "Quot.sound"
+    ],
+    "ComputeDividend.committed_wealth_action_has_modeled_limits": [
+      "propext"
+    ],
+    "ComputeDividend.dividend_admission_implies_every_obligation": [
+      "propext"
+    ],
+    "ComputeDividend.funded_rent_conserves_gross": [
+      "propext"
+    ],
+    "ComputeDividend.gross_rent_threshold_supports_universal_floor": [
+      "propext",
+      "Quot.sound"
+    ],
+    "ComputeDividend.progressive_transfer_weakly_improves": [],
+    "ComputeDividend.rejected_dividend_is_noop": [
+      "propext"
+    ],
+    "ComputeDividend.universal_floor_cost_lower_bound": [
+      "propext",
+      "Quot.sound"
+    ],
+    "ComputeDividend.universal_floor_feasible_iff": [
+      "propext",
+      "Quot.sound"
+    ],
+    "ComputeDividend.wealth_admission_implies_every_obligation": [
+      "propext"
+    ]
+  },
+  "ld_preload": [
+    {
+      "basename": "lean_proc_self_compat.so",
+      "sha256": "3441d32bcbb490af75f890752e42708b3cf6ede3fd1ed3d410b79571c6702b66"
+    }
+  ],
+  "lean_version": "Lean (version 4.33.0, x86_64-unknown-linux-gnu, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)",
+  "passed": true,
+  "placeholders": [],
+  "schema": "alignment-theorem-compute-dividend-lean-build-v1",
+  "source_bundle_sha256": "0b9a68fa388613c38710c1f2143b0f8ca1a1b1febd84a241ea4531c9a7bc25b1",
+  "source_files_sha256": {
+    "AxiomAudit.lean": "90d78c45b1e164057e3e7e46291fc20c07f59e21512369acc149fd9b6b652db9",
+    "ComputeDividend.lean": "ab4b3fa5eb877440c4433517b38ead1a39f7d7d4c72237cd1284e47f22fb7706",
+    "lake-manifest.json": "8c05892dbbcbf096d0f6fef8d78dfa279505057b5e4323f518c296814ad82495",
+    "lakefile.lean": "ab65825c4947ac608fcea38978c5c5b4598ead51964c1fbe2a12593c6720def8",
+    "lean-toolchain": "302cd63c54178885b89e669f33b38f12f4dd7ae7e5cac537b3203e3768d8fb2b"
+  },
+  "source_to_executable_status": "LEAN_VERSION_REPORTED_BINARY_BUILD_PROVENANCE_NOT_ATTESTED"
+}

@@ -1,0 +1,37 @@
+{
+  "schema": "alignment-theorem-v1-1-tau-replay-plan-v1",
+  "status": "PENDING_EXACT_REVIEWED_BINARY",
+  "execution_evidence": false,
+  "expected_tau_source_commit": "fd137e860b60083b36f9159ec8090cb1a3c3cb5a",
+  "expected_tau_parser_commit": "5dd036358e194e55a08fd2ec255441bedfe83765",
+  "expected_tau_version": "Tau Language Framework version 0.7.0-alpha (fd137e8)",
+  "expected_tau_binary_sha256": "c49267404e07a1f540c941b618e786710f70001eecbd05bb7c6d8eec0c5645fa",
+  "tau_packet_sha256": "0bc31f07e245059b29b1707dfcbbc86509d4f70edefac7e29cd7074cad4c75fb",
+  "tau_spec_sha256": "59297cc3516e7f5983c9457492d888e0914c02eb0b6b4f3c46eaa4500071d23a",
+  "expected_output_sha256": "cc4592c6b0ae6e199ab1c9f383dab2157d5361beea5d36d51a01658edb1997a4",
+  "checker_sha256": "813c1109c5d8a3e30ec65adc04752e2ed8337b6f6d6c72dd12324eeaee41e1b8",
+  "generator_sha256": "16f1145553b52140f76ca9ce20b92166e99dd1a10742e3c1eabccdeb3378974b",
+  "semantic_packet_rows": 16,
+  "accepted_rows": [0],
+  "authority_status": "PLAN_ONLY_NO_INTERPRETER_PUBLICATION_OR_VALUE_AUTHORITY",
+  "source_provenance_status": "EXPECTED_PINS_ONLY_NOT_SOURCE_TO_BINARY_ATTESTATION",
+  "execution_environment_status": "NO_EXECUTION_ENVIRONMENT_EVIDENCE",
+  "next_command": {
+    "argv": [
+      "python3",
+      "verification/run_tau_v1_1.py",
+      "--tau-bin",
+      "/path/to/reviewed/tau",
+      "--output",
+      "verification/receipts/tau_v1_1_fd137e8.json",
+      "--json"
+    ],
+    "cwd": "."
+  },
+  "nonclaims": [
+    "This plan is not a Tau interpreter receipt.",
+    "The declared source and parser pins are not authenticated as the origin of the reviewed binary.",
+    "No host environment is attested.",
+    "The prior V2 receipt is evidence for its own seven-input packet, not this V1.1 packet."
+  ]
+}

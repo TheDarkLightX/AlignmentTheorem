@@ -1,0 +1,115 @@
+{
+  "allocation_campaign": {
+    "base_resources_atoms": [
+      0,
+      1,
+      2
+    ],
+    "cases": 10836,
+    "earmarked_budget_atoms": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "feasible_cases": 8646,
+    "household_count": [
+      1,
+      2,
+      3
+    ],
+    "infeasible_cases": 2190,
+    "max_earmarked_budget_shares": [
+      {
+        "denominator": 1,
+        "numerator": 1
+      },
+      {
+        "denominator": 2,
+        "numerator": 1
+      },
+      {
+        "denominator": 3,
+        "numerator": 2
+      }
+    ],
+    "mismatches": [],
+    "priority_weights": [
+      1,
+      2
+    ],
+    "universal_floor_atoms": [
+      0,
+      1
+    ]
+  },
+  "authority_status": "RESEARCH_REFERENCE_ONLY_NO_FINANCIAL_OR_VALUE_AUTHORITY",
+  "bound_files_sha256": {
+    "tests/test_compute_dividend_model.py": "91467717f2ab90acacade5faa60b8c25fa7308fa8233b88cac3d10cca4bb4fc9",
+    "tests/test_tau_compute_dividend.py": "1ca36266df31d508c77c74554d2da4f21770b21150f4dd286632cc206bb3765f",
+    "verification/compute_dividend_model.py": "fb4b8804b943ef71794a16bf30c7fbcac5a7b4a520d7d9e3debacf360075f738",
+    "verification/generate_tau_compute_dividend_packets.py": "cc50df7c7a7993cbabfe34f0f89ddafbe07df0c4bf925c7c9a9837432ef45d60",
+    "verification/receipts/lean_compute_dividend_v4.33.0.json": "832713cd1582a1509232620f65d67385608b77977e00402df889504b13020a88"
+  },
+  "checker_sha256": "aa4c4c0e4e3715251204defe4e17fea5bcfb8032c5f285bb14362c740175042f",
+  "lean_receipt_passed": true,
+  "nonclaims": [
+    "No household identity or Sybil resistance is authenticated.",
+    "No data-center rent, grid cost, reserve, or compute receipt is authenticated.",
+    "The exhaustive domain is finite and does not establish unrestricted optimizer correctness.",
+    "The atom-by-atom allocator rejects earmarked budgets above 10,000 atoms.",
+    "Finite scenario loss checks do not bound out-of-sample loss.",
+    "No investment return, FIRE date, suitability, fiduciary compliance, or generational wealth is guaranteed.",
+    "Static Tau parity is not Tau interpreter execution.",
+    "Lean compilation does not attest its host environment or toolchain source-to-binary provenance."
+  ],
+  "passed": true,
+  "progressive_transfer_campaign": {
+    "cases": 1024,
+    "mismatches": [],
+    "poorer_post_atoms": [
+      0,
+      31
+    ],
+    "richer_post_atoms": [
+      1,
+      32
+    ]
+  },
+  "python_version": "3.12.13",
+  "randomness": "NONE_EXHAUSTIVE_ENUMERATION_ONLY",
+  "schema": "alignment-theorem-compute-dividend-campaign-v1",
+  "status": "SUPPORTED_BOUNDED",
+  "tau_interpreter_replay_status": "PENDING_REVIEWED_BINARY_c4926740",
+  "tau_static_packets": {
+    "dividend": {
+      "accepted_rows": [
+        0
+      ],
+      "packet_sha256": "2fc1df6a84242b49858af2c4538d831ac14242eaa7365682fdc218877f95d447",
+      "rows": 256,
+      "semantic_conjunction_match": true
+    },
+    "wealth": {
+      "accepted_rows": [
+        0
+      ],
+      "packet_sha256": "feb124f0fae34f5cec7b4e8e1b2480528c06f2612023866bb761e05020614fc8",
+      "rows": 256,
+      "semantic_conjunction_match": true
+    }
+  },
+  "wealth_agent_campaign": {
+    "finite_scenario_envelope_counterexample": {
+      "accepted_in_sample": true,
+      "demonstrates_no_out_of_sample_guarantee": true,
+      "in_sample_tail_limit_atoms": 10,
+      "unmodeled_loss_atoms": 1000000
+    },
+    "selected_plan": "diversified-index",
+    "unsafe_high_score_plan_rejected": true
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "schema": "alignment-theorem-local-research-kernel-status-v1",
+  "status": "PROTOCOL_SHAPED_LOCAL_PACKET_NOT_MCP_RECEIPT",
+  "research_kernel_mcp": "UNAVAILABLE_IN_SESSION",
+  "leap_adapter": "UNAVAILABLE_IN_SESSION",
+  "esso_adapter": "UNAVAILABLE_IN_SESSION",
+  "morph_adapter": "UNAVAILABLE_IN_SESSION",
+  "sage_adapter": "UNAVAILABLE_IN_SESSION",
+  "executed_lanes": ["lean", "reference-model", "vectors", "actual-tau-negative-probes", "actual-tau-candidate-native-execution"],
+  "promotion_invoked": false,
+  "mcp_run_started": false,
+  "nonclaims": [
+    "This file is not a Research Kernel run receipt.",
+    "No LEAP synthesis or review result exists.",
+    "No ESSO or Morph lane is represented as completed.",
+    "No SAGE computation or certificate exists.",
+    "Local evidence status does not imply Research Kernel promotion."
+  ],
+  "next_actions": [
+    "Import the source, hypothesis, experiment, and graph ledgers into an available Research Kernel MCP run without rewriting IDs or statuses.",
+    "Assign PO-CD-01 to an independent Lean or Mathlib lane.",
+    "Assign PO-CD-02 to pinned ESSO and Lean adapters when available.",
+    "Run PO-CD-04 only on the exact reviewed Tau executable."
+  ]
+}
