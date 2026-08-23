@@ -57,8 +57,8 @@ class V1_1PublicationTests(unittest.TestCase):
         self.assertIn("M(t) K(t) &gt; B(t)", paper)
         self.assertIn("floor(B / K) + 1", paper)
         self.assertIn("does not prove", paper.lower())
-        self.assertIn("current source-pinned local candidate matched", paper.lower())
-        self.assertIn("reviewed-binary and public-node promotion remain pending", paper.lower())
+        self.assertIn("local tau build pinned to a specific source commit matched", paper.lower())
+        self.assertIn("review of the compiled binary and public-node deployment remain pending", paper.lower())
         self.assertIn("no publication or value-moving authority", paper.lower())
 
     def test_active_v1_1_surfaces_use_the_no_debit_exclusion_model(self) -> None:

@@ -418,8 +418,10 @@
       threshold is finite. Unbounded hyperdeflation crosses it eventually when
       the opposing opportunity remains bounded, or grows more slowly after
       normalization. Lean 4.33.0 checks the finite, asymptotic, and relative-growth
-      statements. An exact bounded-integer model retains equality, common-scaling,
-      faster-deviation, unauthenticated-EETF, and overflow counterexamples.
+      statements. An exact bounded-integer model also retains five counterexamples
+      showing where the theorem fails: equal margins (no strict gap), scaled-up
+      deviation (grows faster than scarcity), zero ethical exposure (nothing to
+      amplify), forged EETF scores (self-attested ethics), and arithmetic overflow.
     </p>
   </div>
 
@@ -506,13 +508,13 @@ B(t) = G(t) + C(t) + epsilon(t)</div>
       <section class="section" id="theorem">
         <div class="section-num">03</div>
         <div class="section-kicker">Finite Hyperdeflationary Alignment Theorem</div>
-        <h2 class="section-h">A strict margin excludes every non-ethical epsilon-optimal choice.</h2>
+        <h2 class="section-h">A strict margin excludes every non-ethical near-optimal choice.</h2>
         <div class="theorem">
           <span class="theorem-label">Theorem 1 &middot; Finite threshold</span>
           <p>
             Fix one epoch with <code>K &gt; 0</code> and finite nonnegative integers
             <code>M</code> and <code>B</code>. If <code>M K &gt; B</code>, every
-            <code>epsilon</code>-optimal choice in the stated two-action model is
+            near-optimal choice in the stated two-action model is
             ethical. The smallest integer multiplier that guarantees the strict margin
             is <code>floor(B / K) + 1</code>.
           </p>
@@ -523,7 +525,7 @@ B(t) = G(t) + C(t) + epsilon(t)</div>
             <p>
               The payoff bounds give
               <code>U_eligible - U_excluded &gt; epsilon</code>. An excluded
-              <code>epsilon</code>-optimal choice would require
+              near-optimal choice would require
               <code>U_excluded + epsilon &gt;= U_eligible</code>, which contradicts that
               strict inequality. Euclidean division gives
               <code>B &lt; K [floor(B/K) + 1]</code>. &#8718;
@@ -547,7 +549,7 @@ B(t) = G(t) + C(t) + epsilon(t)</div>
             Let <code>M(t)</code> eventually exceed every finite bound. Fix
             <code>K &gt; 0</code> and a finite complete opposing bound <code>B</code>.
             There exists a finite epoch <code>T</code> such that every
-            <code>epsilon</code>-optimal modeled choice is ethical for all
+            near-optimal modeled choice is ethical for all
             <code>t &gt;= T</code>.
           </p>
         </div>
@@ -659,13 +661,13 @@ B(t) = G(t) + C(t) + epsilon(t)</div>
               </tr>
               <tr>
                 <td>Python reference</td>
-                <td>Finite u64 envelope, strict boundary, exact-type rejection, overflow rejection, and direct raw-utility parity over 3,125 configurations.</td>
+                <td>Finite integer arithmetic with overflow checks, strict boundary tests, type rejection, and direct payoff comparison over 3,125 configurations.</td>
                 <td>Non-authoritative deterministic reference; tests pass for the stated finite domains.</td>
               </tr>
               <tr>
                 <td>Tau packet</td>
                 <td>Conjunction of four assumed propositions: EETF authenticated, action ethical, strict margin, and reward funded, over all 16 Boolean rows.</td>
-                <td>Exhaustive semantic packet present. A current source-pinned local candidate matched all 16 rows; reviewed-binary and public-node promotion remain pending.</td>
+                <td>Exhaustive semantic packet present. A local Tau build pinned to a specific source commit matched all 16 rows; review of the compiled binary and public-node deployment remain pending.</td>
               </tr>
               <tr>
                 <td>Assurance receipt</td>

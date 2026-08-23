@@ -573,7 +573,7 @@
                     <div class="theorem-box" style="margin-top:20px;background:rgba(255,255,255,.04);border-color:var(--dark-line);border-left-color:#f59e0b">
                         <span class="theorem-badge" style="background:rgba(245,158,11,.13);color:#fbbf24">Version 1.1 &middot; abstract generalization</span>
                         <div class="theorem-title" style="color:#fff">Restricted Hyperdeflationary Alignment Theorem</div>
-                        <p>V1.1 writes <code>K(t)=R(t)+L(t)</code> and places deviation gain, compliance cost, and optimizer error in <code>B(t)</code>. If <code>M(t)K(t)&gt;B(t)</code>, every epsilon-optimal modeled choice is eligible. Its relative-growth theorem covers time-varying opposing bounds.</p>
+                        <p>V1.1 writes <code>K(t)=R(t)+L(t)</code> and places deviation gain, compliance cost, and optimizer error in <code>B(t)</code>. If <code>M(t)K(t)&gt;B(t)</code>, every profit-maximizing strategy that comes close enough to the best payoff (within a small error margin) is eligible. Its relative-growth theorem covers time-varying opposing bounds.</p>
                     </div>
                     <div class="punchline">
                         <p class="punchline-text">
@@ -592,7 +592,7 @@
                         <div class="proof-step-num">1</div>
                         <div>
                             <h4>Normalize exclusion correctly</h4>
-                            <p>Write the historical pair as <code>U_eligible=MR</code> and <code>U_excluded=G-ML</code>. Adding <code>ML</code> to both alternatives yields the equivalent no-debit comparison.</p>
+                            <p>The eligible branch earns <code>MR</code> (scarcity-amplified reward). The excluded branch earns <code>G - ML</code> (deviation gain minus the scarcity upside it cannot access). Adding <code>ML</code> to both sides shows the same comparison without any debit to the excluded branch.</p>
                         </div>
                     </div>
                     <div class="proof-step">
@@ -613,7 +613,7 @@
                         <div class="proof-step-num">4</div>
                         <div>
                             <h4>Conclude within the model</h4>
-                            <p>The strict gap forces the eligible exact choice in V1 and the eligible epsilon-optimal choice in V1.1. Both remain conditional on the declared alternatives and authenticated bounds. &#8718;</p>
+                            <p>The strict gap forces the eligible exact choice in V1 and the eligible near-optimal choice in V1.1. Both remain conditional on the declared alternatives and authenticated bounds. &#8718;</p>
                         </div>
                     </div>
                 </div>
@@ -645,11 +645,11 @@
                 </div>
                 <p>The historical <strong>Virtuous Cycle Compounder (VCC)</strong> proposes three modules around this feedback loop:</p>
                 <ul>
-                    <li><strong>Dynamic Base Reward (DBR)</strong>: Rewards scale with your EETF score</li>
-                    <li><strong>Hyper-Compounding Rewards (HCR)</strong>: Stay ethical longer, compound faster</li>
-                    <li><strong>Aggressive Ethical Burn (AEB)</strong>: Ethical participation triggers burns, increasing scarcity</li>
+                    <li><strong>Dynamic Base Reward (DBR)</strong>: The higher your ethical score, the more reward you earn for eligible work.</li>
+                    <li><strong>Hyper-Compounding Rewards (HCR)</strong>: The longer you stay ethical, the faster your rewards compound.</li>
+                    <li><strong>Scarcity Buyback (AEB)</strong>: Ethical participation triggers buybacks of the settlement asset, reducing its circulating supply and increasing its purchasing power.</li>
                 </ul>
-                <p>If authenticated participation raises EETF, funded rewards are paid, burns affect a valued scarcity measure, and the protected upside remains exclusive, the loop can reinforce eligible behavior. Each arrow is a separate empirical or protocol premise.</p>
+                <p>If authenticated participation raises EETF, funded rewards are paid, buybacks reduce the circulating supply of a valued asset, and the protected upside remains exclusive, the loop can reinforce eligible behavior. Each arrow is a separate empirical or protocol premise.</p>
                 <div class="actions">
                     <a class="btn btn-primary" href="intelligence-hyperdeflation-flywheel.html">Explore the intelligence flywheel</a>
                 </div>
@@ -684,12 +684,12 @@
                         <div class="verification-card status-checked">
                             <div class="verification-status">V1 Checked</div>
                             <div class="verification-title">Lean 4.33.0</div>
-                            <p class="verification-desc">EETF tiers, opportunity-cost normalization, exact threshold, exact choice, unbounded-scarcity implication, and common-upside cancellation.</p>
+                            <p class="verification-desc">EETF tiers, opportunity-cost framing, the exact scarcity threshold, the eligible-choice guarantee, the unbounded-scarcity implication, and proof that upside shared by both branches cancels.</p>
                         </div>
                         <div class="verification-card status-current">
                             <div class="verification-status">Current Tau Candidate</div>
                             <div class="verification-title">128 V1 Rows</div>
-                            <p class="verification-desc">The source-pinned <code>9b191af</code> candidate matched all rows; only the all-true row is accepted. Facts remain externally supplied.</p>
+                            <p class="verification-desc">A local Tau build pinned to source commit <code>9b191af</code> matched all 128 rows; only the all-true row is accepted. Facts remain externally supplied.</p>
                         </div>
                     </div>
                 </div>
@@ -699,7 +699,7 @@
                 <div class="punchline" style="border:1px solid var(--line);border-radius:18px;background:var(--accent-soft);margin:0">
                     <p class="punchline-text" style="font-size:clamp(1.3rem,3vw,1.8rem)">
                         When scarcity-amplified ethical exposure strictly dominates every modeled opposing term,<br>
-                        <em>epsilon-optimal choice favors the policy-eligible action within the declared model.</em>
+                        <em>every near-optimal profit strategy favors the policy-eligible action within the declared model.</em>
                     </p>
                 </div>
                 <div class="actions" style="justify-content:center">
