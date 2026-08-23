@@ -1,0 +1,45 @@
+name: GitHub Pages render QA
+
+on:
+  push:
+    branches:
+      - research/compute-dividend-wealth-agent
+      - main
+    paths:
+      - "docs/**"
+      - "verification/run_pages_render_qa.py"
+      - "tests/test_public_site_navigation.py"
+      - ".github/workflows/pages-render-qa.yml"
+  pull_request:
+    paths:
+      - "docs/**"
+      - "verification/run_pages_render_qa.py"
+      - "tests/test_public_site_navigation.py"
+      - ".github/workflows/pages-render-qa.yml"
+  workflow_dispatch:
+
+jobs:
+  render-qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install browser QA dependencies
+        run: |
+          python -m pip install --disable-pip-version-check playwright
+          python -m playwright install --with-deps chromium
+      - name: Run publication source tests
+        run: python -m unittest tests.test_public_site_navigation -v
+      - name: Render desktop and mobile pages
+        run: python verification/run_pages_render_qa.py
+      - name: Upload render receipts and screenshots
+        uses: actions/upload-artifact@v4
+        with:
+          name: alignment-pages-render-qa
+          path: |
+            verification/receipts/pages_render_qa.json
+            verification/receipts/pages_screenshots
+          if-no-files-found: error
