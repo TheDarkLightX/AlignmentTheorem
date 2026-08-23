@@ -1,11 +1,11 @@
 {
   "authority_status": "RESEARCH_REFERENCE_ONLY_NO_MACROECONOMIC_TAU_NET_OR_VALUE_AUTHORITY",
   "bound_files_sha256": {
-    "research/intelligence_flywheel/tau_candidate_probe.json": "7d66d418b2dda43c33d6056ccdccd6c2cf7ce49a6e4cb9bf50dc65abefc938d8",
-    "research/intelligence_flywheel/tau_net_native_probe.json": "192abe74e9631aad987d236df2babfab53ffa1c219128cd5e98651fec45c4079",
+    "research/intelligence_flywheel/tau_candidate_probe.json": "8d67fe879805a239c90a014ca0ee7bc004c2f68fbefd3ab40c64585a4c45b634",
+    "research/intelligence_flywheel/tau_net_native_probe.json": "8819e3fd876e7db4467c35265c832f0d56ed64151946e14a02cdae6c8f21d418",
     "tests/test_intelligence_flywheel_model.py": "4afc462eef042fb469d3aea8bd02db7c997de669d866a69dbb0a0d0af5744a1b",
     "verification/intelligence_flywheel_model.py": "5a21e34b928e66c28fab530e7e398c611b2f91b885d84abda6a6e7c65bc3010c",
-    "verification/receipts/lean_intelligence_flywheel_v4.33.0.json": "69eb19f0e4ddfea071b2a07f59e0cc60b2a3c1b1f4a6b7171b4d067058444066"
+    "verification/receipts/lean_intelligence_flywheel_v4.33.0.json": "d7dd29adde1ca68806b259a0a24dffee088b6def2ce917c59f950a9a696a0467"
   },
   "bridge_enumeration": {
     "cases": 544,
@@ -95,7 +95,7 @@
     "Tau custom inputs are claims, not authenticated economic facts, in the tested alpha ABI."
   ],
   "passed": true,
-  "python_version": "3.12.13",
+  "python_version": "3.12.3",
   "randomness": "NONE_EXACT_FINITE_ENUMERATION_ONLY",
   "schema": "alignment-theorem-intelligence-flywheel-campaign-v1",
   "status": "SUPPORTED_BOUNDED",

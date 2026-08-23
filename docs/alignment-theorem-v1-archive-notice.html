@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Historical Version 1 withdrawal notice for the Alignment Theorem. The original Academic PDF has been superseded by Version 1.1.">
+  <meta name="description" content="Alignment Theorem Version 1 claim boundary: the EETF/VCC scarcity-upside exclusion mechanism, exact corrections, proof, and original-paper provenance.">
   <meta name="theme-color" content="#0d1526">
   <link rel="canonical" href="https://thedarklightx.github.io/AlignmentTheorem/alignment-theorem-v1-archive-notice.html">
-  <title>Alignment Theorem Version 1 Historical Notice</title>
+  <title>Alignment Theorem Version 1 Claim Boundary</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&display=swap" rel="stylesheet">
@@ -160,17 +160,34 @@
         transition-duration: .01ms !important;
       }
     }
+    @media print {
+      @page { size: letter; margin: .55in; }
+      .skip-link, .topbar { display: none !important; }
+      body { background: #fff; color: var(--ink); font-size: 11pt; }
+      .hero {
+        padding: 28px 0 24px; background: #fff; color: var(--ink);
+        border-bottom: 2px solid var(--accent);
+      }
+      .hero h1 { color: var(--ink); font-size: 28pt; }
+      .hero-sub { color: var(--body); }
+      .hero-kicker { color: var(--accent-ink); background: var(--accent-soft); }
+      .main { max-width: none; padding: 24px 0 12px; }
+      .notice, .provenance { break-inside: avoid; box-shadow: none; }
+      footer { margin-top: 24px; padding: 16px 0 0; }
+    }
   </style>
 </head>
 <body id="top">
-  <a class="skip-link" href="#main-content">Skip to the notice</a>
+  <a class="skip-link" href="#main-content">Skip to the claim boundary</a>
 
   <nav class="topbar" aria-label="Site navigation">
     <div class="topbar-inner">
       <a class="brand" href="index.html">Alignment<span> Theorem</span></a>
       <div class="topbar-links">
         <a href="index.html">Home</a>
+        <a href="alignment-theorem-deep-dive.html">Version 1</a>
         <a href="v1-1-hyperdeflationary-alignment.html">Version 1.1</a>
+        <a href="current-tau-net-integration.html">Current Tau</a>
         <a href="data-center-social-contract.html">Data Center Bargain</a>
       </div>
     </div>
@@ -178,48 +195,69 @@
 
   <header class="hero">
     <div class="hero-inner">
-      <span class="hero-kicker">Historical Version 1 artifact &middot; withdrawal notice</span>
-      <h1>The original Academic PDF has been superseded</h1>
-      <p class="hero-sub">The universal convergence and &ldquo;only profitable strategy&rdquo; claims in the original Version 1 PDF are withdrawn.</p>
+      <span class="hero-kicker">Version 1 &middot; retained mechanism and claim boundary</span>
+      <h1>The V1 mechanism remains</h1>
+      <p class="hero-sub">EETF eligibility, VCC scarcity, rewards, and exclusion form a valid conditional mechanism. Several printed and universal claims need precise scope.</p>
     </div>
   </header>
 
   <main id="main-content" class="main">
     <div class="notice">
-      <strong>The universal convergence and &ldquo;only profitable strategy&rdquo; claims in the original Version 1 PDF are withdrawn.</strong> Its payoff model made the result true at every positive scarcity level and did not prove the intended hyperdeflationary threshold.
+      <strong>Version 1&rsquo;s EETF, VCC, reward, scarcity, and exclusion mechanism is retained.</strong> The paper&rsquo;s negative &ldquo;penalty&rdquo; term is the upside missed because a branch is excluded from scarcity-linked value. It is an opportunity-cost encoding. No tax, fine, burn, confiscation, or balance debit is applied.
     </div>
 
     <section>
-      <div class="section-kicker">Current result</div>
-      <h2>Version 1.1 preserves the idea under a strict margin</h2>
+      <div class="section-kicker">Retained Version 1 result</div>
+      <h2>EETF-gated scarcity-upside exclusion</h2>
       <p>
-        Version 1.1 preserves the scarcity-driven idea under the conditional strict
-        margin <code>M(t)K(t) &gt; B(t)</code>. It proves the paper utility-bound
-        implication, the exact least integer threshold, a bounded-deviation
-        asymptotic result, and a relative-growth result. The conclusion applies only
-        to the declared two-action model and authenticated external assumptions.
+        Let <code>M</code> be the scarcity multiplier, <code>R</code> the funded
+        direct-reward coefficient, <code>L</code> the scarcity-upside coefficient
+        available only to the EETF-eligible branch, and <code>G</code> the complete
+        bounded deviation gain available to the excluded branch. If exclusion is
+        enforceable and <code>G &lt; M(R+L)</code>, every exact maximizer over the
+        declared alternatives selects eligibility. For integers with
+        <code>R+L &gt; 0</code>, the least strict multiplier is
+        <code>floor(G/(R+L))+1</code>.
+      </p>
+      <p>
+        The historical placement <code>U_eligible=M R</code> and
+        <code>U_excluded=G-M L</code> has the same ordering. Adding
+        <code>M L</code> to both alternatives gives the normalized no-debit form
+        above. Upside shared by both branches cancels, so enforceable exclusion is
+        load-bearing.
+      </p>
+      <p>
+        Version 1.1 remains a separate generalization under
+        <code>M(t)K(t) &gt; B(t)</code>. It adds compliance cost, optimizer error,
+        and time-varying relative-growth cases; it does not replace a V1
+        deployment whose concrete premises fit.
       </p>
       <div class="actions">
+        <a class="btn btn-primary" href="alignment-theorem-deep-dive.html">Read the V1 deep dive</a>
         <a class="btn btn-primary" href="v1-1-hyperdeflationary-alignment.html">Read the Version 1.1 paper</a>
-        <a class="btn btn-ghost" href="Alignment_Theorem_V1_1_Hyperdeflationary.pdf">Download the V1.1 PDF</a>
+        <a class="btn btn-ghost" href="current-tau-net-integration.html">See all three Tau profiles</a>
       </div>
     </section>
 
     <section class="provenance">
       <div class="section-kicker">Provenance</div>
-      <h2>The withdrawn PDF remains recoverable</h2>
+      <h2>The uncorrected 16-page paper is preserved</h2>
       <p>
-        The withdrawn PDF remains recoverable from Git commit <code>a28695f</code>.
-        Its SHA-256 was
+        The exact original academic paper from Git commit <code>a28695f</code> is
+        published as a historical artifact. Its SHA-256 is
         <code>f5dca5a1e7bcd069441f16410664cdecac3eeebe4a5af8f128dd0efa7043c8bc</code>.
-        This notice replaces the live public copy so historical claims cannot be
-        mistaken for current evidence.
+        The original wording supplies provenance; this page states the current
+        checked claim and corrections.
       </p>
+      <div class="actions">
+        <a class="btn btn-primary" href="Alignment_Theorem_V1_Original_2025.pdf">Read the original 16-page paper</a>
+        <a class="btn btn-ghost" href="Alignment_Theorem_Academic.pdf">Download this claim boundary</a>
+      </div>
     </section>
   </main>
 
   <footer>
-    Alignment Theorem &middot; Version 1 historical notice &middot; August 2026
+    Alignment Theorem &middot; Version 1 claim boundary &middot; August 2026
   </footer>
 </body>
 </html>

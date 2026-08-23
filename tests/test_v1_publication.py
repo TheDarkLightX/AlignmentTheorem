@@ -3,7 +3,6 @@ from __future__ import annotations
 import unittest
 from pathlib import Path
 
-
 ROOT = Path(__file__).resolve().parents[1]
 README = ROOT / "README.md"
 INDEX = ROOT / "docs" / "index.html"
@@ -12,6 +11,7 @@ CLAIM_BOUNDARY = ROOT / "docs" / "alignment-theorem-v1-archive-notice.html"
 CORRECTIONS = ROOT / "docs" / "V1_TO_V2_CORRECTIONS.md"
 AUDIT = ROOT / "research" / "v1" / "ACADEMIC_PAPER_AUDIT.md"
 CURRENT_TAU = ROOT / "docs" / "current-tau-net-integration.html"
+VERIFICATION_SUMMARY = ROOT / "docs" / "VERIFICATION_SUMMARY.md"
 
 
 class V1PublicationTests(unittest.TestCase):
@@ -27,11 +27,12 @@ class V1PublicationTests(unittest.TestCase):
         self.assertIn("No tax or balance debit", deep_dive)
 
     def test_public_wording_does_not_reduce_v1_to_sign_separation(self) -> None:
-        for path in (README, INDEX, DEEP_DIVE, CURRENT_TAU):
+        for path in (README, INDEX, DEEP_DIVE, CURRENT_TAU, VERIFICATION_SUMMARY):
             with self.subTest(path=path):
                 text = path.read_text().lower()
                 self.assertNotIn("version 1: sign-separated", text)
                 self.assertNotIn("v1 sign-separated", text)
+                self.assertNotIn("semantic claim superseded", text)
         index = INDEX.read_text()
         self.assertIn("exclusive scarcity upside", index)
         self.assertIn("does not impose a tax", README.read_text())

@@ -28,7 +28,7 @@ class V1_1AssuranceReceiptTests(unittest.TestCase):
 
         # Assert
         self.assertTrue(receipt["passed"])
-        self.assertEqual(receipt["schema"], "alignment-theorem-v1-1-assurance-v2")
+        self.assertEqual(receipt["schema"], "alignment-theorem-v1-1-assurance-v3")
         self.assertEqual(receipt["bound_files_sha256"], current_hashes)
         self.assertEqual(receipt["source_bundle_sha256"], current_bundle)
         self.assertEqual(receipt["checker_sha256"], _sha256(CHECKER.read_bytes()))
@@ -37,8 +37,14 @@ class V1_1AssuranceReceiptTests(unittest.TestCase):
         self.assertEqual(receipt["tau_semantic_packet_rows"], 16)
         self.assertEqual(
             receipt["tau_interpreter_replay_status"],
-            "PENDING_PINNED_TAU_BINARY_REPLAY",
+            "SUPPORTED_LOCAL_SOURCE_CANDIDATE_REVIEWED_BINARY_AND_PUBLIC_NODE_PENDING",
         )
+        current_tau = receipt["current_tau_candidate"]
+        self.assertTrue(current_tau["semantic_match"])
+        self.assertEqual(current_tau["v1_1_rows"], 16)
+        self.assertEqual(current_tau["accepted_rows"], [0])
+        self.assertIn("NOT_INDEPENDENTLY_ATTESTED", current_tau["source_to_binary_status"])
+        self.assertIn("NO_TAU_NET", current_tau["authority_status"])
         self.assertEqual(
             receipt["authority_status"],
             "REFERENCE_ONLY_NO_PUBLICATION_OR_VALUE_AUTHORITY",

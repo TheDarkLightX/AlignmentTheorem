@@ -370,14 +370,12 @@
   <div class="abstract" id="abstract">
     <div class="abstract-label">Abstract</div>
     <p>
-      Version 1 proposed that increasing monetary scarcity could make ethical work
-      uniquely profitable. Its Lean model assigned positive utility to ethical
-      behavior and negative utility to non-ethical behavior at every positive
-      scarcity level, producing a threshold of zero. Version 1.1 repairs that
-      model while preserving its original hyperdeflationary idea. A finite
-      purchasing-power multiplier amplifies the ethical reward and any
-      non-ethical forfeiture. Those gains compete against private deviation,
-      extra compliance cost, and optimizer error. The exact
+      Version 1 proposed that increasing monetary scarcity could make eligible work
+      uniquely profitable through EETF-gated rewards and exclusion from
+      scarcity-linked upside. Version 1.1 generalizes that concrete mechanism. A
+      finite purchasing-power multiplier amplifies eligible direct-reward and
+      exclusive-upside coefficients. Those effects compete against private
+      deviation gain, extra compliance cost, and optimizer error. The exact
       threshold is finite. Unbounded hyperdeflation crosses it eventually when
       the opposing opportunity remains bounded, or grows more slowly after
       normalization. Lean 4.33.0 checks the finite, asymptotic, and relative-growth
@@ -414,7 +412,8 @@
           Version 1&rsquo;s human claim remains the target: a sufficiently deflationary
           economy can make ethical participation the most profitable strategy. As the
           settlement asset buys more real output, access to ethically conditioned
-          rewards becomes more valuable. Losing that access also becomes more costly.
+          rewards becomes more valuable. The value gap between access and exclusion
+          grows with scarcity.
           Rational, profit-seeking humans and LLM agents then have an economic reason
           to choose eligible work.
         </p>
@@ -429,7 +428,7 @@
           <tbody>
             <tr><td>Scarcity multiplier</td><td>Finite purchasing-power index at every executable epoch.</td></tr>
             <tr><td>EETF-conditioned rewards</td><td>Authenticated action classification controls eligibility.</td></tr>
-            <tr><td>Non-ethical penalty</td><td>Optional forfeiture coefficient that scales with purchasing power.</td></tr>
+            <tr><td>Eligibility exclusion</td><td>Scarcity upside available only to the eligible branch; no punitive debit.</td></tr>
             <tr><td>Rational convergence</td><td>Strict threshold theorem with explicit deviation and error bounds.</td></tr>
             <tr><td>Infinite scarcity</td><td>Asymptotic statement: every finite threshold is eventually crossed.</td></tr>
           </tbody>
@@ -446,20 +445,20 @@
           <tbody>
             <tr><td><code>M(t)</code></td><td>Finite real purchasing-power or hyperdeflation multiplier.</td></tr>
             <tr><td><code>r(t)</code></td><td>Ethical reward exposure per unit of the multiplier.</td></tr>
-            <tr><td><code>f(t)</code></td><td>Entitlement forfeited by a non-ethical action per multiplier unit.</td></tr>
+            <tr><td><code>L(t)</code></td><td>Scarcity-sensitive upside available only to the eligible action per multiplier unit.</td></tr>
             <tr><td><code>G(t)</code></td><td>Maximum private gain available from a modeled deviation.</td></tr>
             <tr><td><code>C(t)</code></td><td>Maximum extra cost of choosing the ethical alternative.</td></tr>
             <tr><td><code>epsilon(t)</code></td><td>Permitted optimization error.</td></tr>
           </tbody>
         </table>
-        <p>Using a common baseline utility <code>V(t)</code>, assume the bounds:</p>
-        <div class="equation">U_ethical(t)    &gt;= V(t) + M(t) r(t) - C(t)
-U_nonethical(t) &lt;= V(t) + G(t) - M(t) f(t)</div>
+        <p>Using a common baseline utility <code>V(t)</code>, write the no-debit bounds:</p>
+        <div class="equation">U_eligible(t) &gt;= V(t) + M(t) [r(t) + L(t)] - C(t)
+U_excluded(t) &lt;= V(t) + G(t)</div>
         <p>The resulting utility gap satisfies:</p>
-        <div class="equation">U_ethical(t) - U_nonethical(t)
-  &gt;= M(t) [r(t) + f(t)] - [G(t) + C(t)]</div>
+        <div class="equation">U_eligible(t) - U_excluded(t)
+  &gt;= M(t) [r(t) + L(t)] - [G(t) + C(t)]</div>
         <p>Write:</p>
-        <div class="equation">K(t) = r(t) + f(t)
+        <div class="equation">K(t) = r(t) + L(t)
 B(t) = G(t) + C(t) + epsilon(t)</div>
         <p>The finite V1.1 condition is:</p>
         <div class="equation">M(t) K(t) &gt; B(t)</div>
@@ -481,9 +480,9 @@ B(t) = G(t) + C(t) + epsilon(t)</div>
         </div>
         <p>
           <strong>Proof.</strong> The payoff bounds give
-          <code>U_ethical - U_nonethical &gt; epsilon</code>. A non-ethical
+          <code>U_eligible - U_excluded &gt; epsilon</code>. An excluded
           <code>epsilon</code>-optimal choice would require
-          <code>U_nonethical + epsilon &gt;= U_ethical</code>, which contradicts that
+          <code>U_excluded + epsilon &gt;= U_eligible</code>, which contradicts that
           strict inequality. Euclidean division gives
           <code>B &lt; K [floor(B/K) + 1]</code>. &#8718;
         </p>
@@ -616,12 +615,12 @@ B(t) = G(t) + C(t) + epsilon(t)</div>
               <tr>
                 <td>Tau packet</td>
                 <td>Conjunction of four assumed propositions: EETF authenticated, action ethical, strict margin, and reward funded, over all 16 Boolean rows.</td>
-                <td>Exhaustive semantic packet present. Source-pinned interpreter replay remains pending.</td>
+                <td>Exhaustive semantic packet present. A current source-pinned local candidate matched all 16 rows; reviewed-binary and public-node promotion remain pending.</td>
               </tr>
               <tr>
                 <td>Assurance receipt</td>
                 <td>Hashes the Lean sources and receipt, Python model and tests, Tau semantic packet, public pages, paper, and PDF.</td>
-                <td>Claim-scoped source binding; explicitly records reference-only authority and pending Tau replay.</td>
+                <td>Regenerated against the current no-debit source tree; explicitly records reference-only authority.</td>
               </tr>
             </tbody>
           </table>
@@ -659,18 +658,17 @@ B(t) = G(t) + C(t) + epsilon(t)</div>
           mechanism, while V2 supplies a deterministic publication boundary.
         </p>
         <p>
-          The operational difference matters. In V1.1, a non-ethical action can still
-          occur&mdash;it simply does not receive the ethical reward and may face
-          forfeiture. Alignment comes from the utility gap, not from prevention. In V2,
-          a non-ethical action is rejected at the gate as a no-op. It is not published
-          and pays nothing. V1.1 makes the bad choice less profitable; V2 blocks it
-          from settling. The two mechanisms can compose: V2 controls what the network
+          The operational difference matters. In V1.1, an excluded action can still
+          occur; it lacks the eligible reward and protected scarcity upside, with no
+          debit applied. Alignment comes from the utility gap. In V2, a noncompliant
+          action is rejected at the gate as a no-op, is not published, and pays
+          nothing. The two mechanisms can compose: V2 controls what the network
           admits, while V1.1 shapes the incentives around what agents choose to
           propose.
         </p>
         <div class="actions">
           <a class="btn btn-primary" href="data-center-social-contract.html">Read the Data Center Bargain (V2)</a>
-          <a class="btn btn-ghost" href="alignment-theorem-v1-archive-notice.html" style="background:var(--paper);color:var(--ink);border:1px solid var(--line)">Historical V1 notice</a>
+          <a class="btn btn-ghost" href="alignment-theorem-v1-archive-notice.html" style="background:var(--paper);color:var(--ink);border:1px solid var(--line)">Version 1 claim boundary</a>
         </div>
       </section>
 

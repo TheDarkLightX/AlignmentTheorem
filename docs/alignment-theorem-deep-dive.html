@@ -3,10 +3,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Historical Version 1 deep dive. Its universal and zero-threshold claims were withdrawn. Version 1.1 states the repaired conditional theorem.">
+    <meta name="description" content="Alignment Theorem Version 1 deep dive: EETF, VCC scarcity, exclusion from protected upside, exact corrections, Lean proof, and current Tau evidence.">
     <meta name="theme-color" content="#0d1526">
     <link rel="canonical" href="https://thedarklightx.github.io/AlignmentTheorem/alignment-theorem-deep-dive.html">
-    <title>The Alignment Theorem | Making Ethics Profitable — Historical Version 1</title>
+    <title>The Alignment Theorem | Making Ethics Profitable</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&display=swap" rel="stylesheet">
@@ -65,13 +65,13 @@
         }
         .skip-link:focus { transform: translateY(0); color: #fff; text-decoration: none; }
 
-        .withdrawal-banner {
+        .claim-banner {
             background: #78350f; border-bottom: 2px solid #f59e0b;
             color: #fff7ed; text-align: center;
             padding: 14px 24px;
             font: 600 15px/1.5 var(--font-ui);
         }
-        .withdrawal-banner a { color: #fde68a; }
+        .claim-banner a { color: #fde68a; }
 
         .topbar {
             position: sticky; top: 0; z-index: 100;
@@ -447,9 +447,9 @@
 <body id="top">
     <a class="skip-link" href="#main-content">Skip to the article</a>
 
-    <div class="withdrawal-banner" role="alert">
-        Historical Version 1 visualization. Its universal and zero-threshold claims were withdrawn.
-        <a href="v1-1-hyperdeflationary-alignment.html">Version 1.1 states the repaired conditional theorem and counterexamples.</a>
+    <div class="claim-banner" role="note">
+        Version 1&rsquo;s EETF/VCC exclusion mechanism is retained. Its lost-upside term is opportunity cost, with no tax or balance debit.
+        <a href="current-tau-net-integration.html">See the distinct V1, V1.1, and V2 profiles on current Tau.</a>
     </div>
 
     <nav class="topbar" aria-label="Article navigation">
@@ -472,13 +472,13 @@
 
     <header class="hero">
         <div class="hero-inner">
-            <span class="hero-kicker">Historical Version 1 Hypothesis</span>
+            <span class="hero-kicker">Version 1 &middot; concrete EETF/VCC mechanism</span>
             <h1>The Alignment Theorem</h1>
             <p class="hero-sub">What if being ethical was the <em style="color:var(--accent-bright);font-style:normal">most profitable</em> strategy?</p>
             <div class="hero-stats">
                 <div class="hero-stat">
-                    <div class="hero-stat-value">&infin;</div>
-                    <div class="hero-stat-label">Scarcity Drives Ethics</div>
+                    <div class="hero-stat-value" style="font-size:clamp(1.1rem,2.4vw,2rem)">G&lt;M(R+L)</div>
+                    <div class="hero-stat-label">Strict Conditional Margin</div>
                 </div>
                 <div class="hero-stat">
                     <div class="hero-stat-value">Z3</div>
@@ -502,7 +502,7 @@
                 <li><a href="#theorem">The theorem</a></li>
                 <li><a href="#proof">The proof</a></li>
                 <li><a href="#vcc">The virtuous cycle</a></li>
-                <li><a href="#evidence">Evidence &amp; repair</a></li>
+                <li><a href="#evidence">Evidence &amp; limits</a></li>
             </ul>
         </aside>
 
@@ -511,7 +511,7 @@
             <section class="section big-idea" id="idea">
                 <div class="section-kicker">The core insight</div>
                 <p class="big-idea-text">
-                    Version 1 hypothesized that unbounded token scarcity could amplify ethically conditioned rewards enough to dominate competing opportunities. <strong>Version 1.1 makes the required relative-growth condition explicit.</strong>
+                    Version 1 makes eligible work more profitable by combining funded EETF-tier rewards with scarcity-linked upside that the excluded branch cannot obtain. <strong>The exact finite condition is G &lt; M(R+L).</strong>
                 </p>
                 <p class="big-idea-attr">The Alignment Theorem</p>
             </section>
@@ -527,7 +527,7 @@
                     </div>
                     <div class="ps-card solution">
                         <h3>Tau&rsquo;s economic approach</h3>
-                        <p>Don&rsquo;t force ethics. Make it <em>profitable</em>. Wire the community&rsquo;s ethical consensus directly into the reward function. Let economics do the rest.</p>
+                        <p>Make policy-eligible work <em>profitable</em>. Bind a declared community policy to authenticated facts, funded rewards, and an enforceable entitlement boundary.</p>
                     </div>
                 </div>
                 <div class="punchline">
@@ -560,28 +560,33 @@
                 </div>
                 <h3>The EETF: Ethics as data</h3>
                 <p>Users publish formal ethical models in Tau Language. The network aggregates them into a single scalar: the <strong>Ethical-Eco Transaction Factor (EETF)</strong>. This number, between 0 and 3, represents what the community <em>currently</em> considers ethical.</p>
-                <p>The EETF isn&rsquo;t a fixed moral code. It&rsquo;s a <strong>living consensus</strong> that evolves as the community debates, refines, and updates their ethical models.</p>
+                <p>EETF is a declared policy output. A real deployment must specify identity, aggregation, adversarial weight bounds, missing-data behavior, and revision authority; the scalar does not establish objective moral truth.</p>
                 <h3>Deflation creates scarcity</h3>
                 <p>Version 1 assumes a shrinking spendable supply and an unbounded purchasing-power multiplier. Version 1.1 treats that path as an external economic scenario. Finite supply rules alone do not prove purchasing power diverges.</p>
                 <h3>Pressure makes ethics profitable</h3>
-                <p>Economic pressure can favor eligible work when scarcity amplifies a positive reward or forfeiture exposure faster than the complete deviation, compliance-cost, and optimizer-error bound. Faster-growing deviations defeat the mechanism.</p>
+                <p>Write <code>R</code> for direct reward exposure, <code>L</code> for scarcity upside protected by eligibility, and <code>G</code> for the complete bounded deviation gain. The historical negative &ldquo;penalty&rdquo; term is exactly the upside missed through exclusion. Moving that opportunity cost to the eligible side preserves the ordering and creates no punitive transfer.</p>
             </section>
 
             <section class="dark-section" id="theorem">
                 <div class="inner">
                     <div class="section-num">03</div>
                     <div class="section-kicker">The theorem</div>
-                    <h2 class="section-h">The historical claim and its Version 1.1 repair.</h2>
+                    <h2 class="section-h">The concrete V1 theorem and its V1.1 generalization.</h2>
                     <div class="theorem-box" style="background:rgba(255,255,255,.04);border-color:var(--dark-line);border-left-color:var(--accent-bright)">
-                        <span class="theorem-badge" style="background:rgba(6,182,212,.15);color:var(--accent-bright)">Corrected by Version 1.1</span>
-                        <div class="theorem-title" style="color:#fff">Restricted Hyperdeflationary Alignment Theorem</div>
+                        <span class="theorem-badge" style="background:rgba(6,182,212,.15);color:var(--accent-bright)">Version 1 &middot; reconstructed from the academic paper</span>
+                        <div class="theorem-title" style="color:#fff">EETF-Gated Scarcity-Upside Exclusion Theorem</div>
                         <p><strong style="color:var(--accent-bright)">Given:</strong></p>
                         <ul>
-                            <li><strong style="color:#fff">Finite executable epochs:</strong> Every M(t), K(t), and B(t) is finite at runtime.</li>
-                            <li><strong style="color:#fff">Positive ethical exposure:</strong> K(t) contains authenticated reward and optional forfeiture exposure.</li>
-                            <li><strong style="color:#fff">Strict relative margin:</strong> M(t)K(t) &gt; B(t), including optimizer error.</li>
+                            <li><strong style="color:#fff">Authenticated eligibility:</strong> The policy root, network EETF, and candidate EETF tier are fixed for the decision.</li>
+                            <li><strong style="color:#fff">Enforceable exclusion:</strong> The eligible branch has funded direct reward coefficient R and exclusive scarcity-upside coefficient L. The excluded branch cannot obtain either entitlement. No tax or balance debit is applied.</li>
+                            <li><strong style="color:#fff">Strict finite margin:</strong> M(R + L) &gt; G, and the agent exactly maximizes utility over the declared alternatives.</li>
                         </ul>
-                        <p><strong style="color:var(--accent-bright)">Then:</strong> Every epsilon-optimal choice in the declared two-action utility model is classified as ethical. The asymptotic result requires the strict margin eventually to remain true.</p>
+                        <p><strong style="color:var(--accent-bright)">Then:</strong> Every exact maximizer selects the eligible branch. For integers and R+L &gt; 0, the least strict multiplier is floor(G/(R+L))+1. If G=0, every positive M suffices.</p>
+                    </div>
+                    <div class="theorem-box" style="margin-top:20px;background:rgba(255,255,255,.04);border-color:var(--dark-line);border-left-color:#f59e0b">
+                        <span class="theorem-badge" style="background:rgba(245,158,11,.13);color:#fbbf24">Version 1.1 &middot; abstract generalization</span>
+                        <div class="theorem-title" style="color:#fff">Restricted Hyperdeflationary Alignment Theorem</div>
+                        <p>V1.1 writes <code>K(t)=R(t)+L(t)</code> and places deviation gain, compliance cost, and optimizer error in <code>B(t)</code>. If <code>M(t)K(t)&gt;B(t)</code>, every epsilon-optimal modeled choice is eligible. Its relative-growth theorem covers time-varying opposing bounds.</p>
                     </div>
                     <div class="punchline">
                         <p class="punchline-text">
@@ -594,34 +599,34 @@
             <section class="section" id="proof">
                 <div class="section-num">04</div>
                 <div class="section-kicker">The proof</div>
-                <h2 class="section-h">Four obligations in the repaired argument.</h2>
+                <h2 class="section-h">Four obligations in the V1 exclusion argument.</h2>
                 <div class="proof-steps">
                     <div class="proof-step">
                         <div class="proof-step-num">1</div>
                         <div>
-                            <h4>Bound both utilities</h4>
-                            <p>State an ethical lower bound and a non-ethical upper bound using the same baseline, units, and epoch.</p>
+                            <h4>Normalize exclusion correctly</h4>
+                            <p>Write the historical pair as <code>U_eligible=MR</code> and <code>U_excluded=G-ML</code>. Adding <code>ML</code> to both alternatives yields the equivalent no-debit comparison.</p>
                         </div>
                     </div>
                     <div class="proof-step">
                         <div class="proof-step-num">2</div>
                         <div>
-                            <h4>Include every opposing term</h4>
-                            <p>Put private deviation gain, extra compliance cost, and optimizer error into B(t). Authenticate the action classification and fund any reward.</p>
+                            <h4>Bind the exclusive entitlement</h4>
+                            <p>Authenticate EETF and scarcity, fund the reward, and prove that the excluded branch cannot claim L. Upside common to both branches cancels.</p>
                         </div>
                     </div>
                     <div class="proof-step">
                         <div class="proof-step-num">3</div>
                         <div>
                             <h4>Require a strict margin</h4>
-                            <p>Check M(t)K(t) &gt; B(t). Equality is a retained counterexample and does not force an ethical choice.</p>
+                            <p>For V1 check <code>M(t)[R(t)+L(t)] &gt; G(t)</code>. V1.1 folds costs and optimizer error into B(t). Equality does not force an eligible choice.</p>
                         </div>
                     </div>
                     <div class="proof-step">
                         <div class="proof-step-num">4</div>
                         <div>
                             <h4>Conclude within the model</h4>
-                            <p>The strict utility gap excludes a non-ethical epsilon-optimal choice. This conclusion remains conditional on the stated bounds and two-action model. &#8718;</p>
+                            <p>The strict gap forces the eligible exact choice in V1 and the eligible epsilon-optimal choice in V1.1. Both remain conditional on the declared alternatives and authenticated bounds. &#8718;</p>
                         </div>
                     </div>
                 </div>
@@ -651,20 +656,23 @@
                         </div>
                     </div>
                 </div>
-                <p>The <strong>Virtuous Cycle Compounder (VCC)</strong> turns this theorem into working code. Three modules work together:</p>
+                <p>The historical <strong>Virtuous Cycle Compounder (VCC)</strong> proposes three modules around this feedback loop:</p>
                 <ul>
                     <li><strong>Dynamic Base Reward (DBR)</strong>: Rewards scale with your EETF score</li>
                     <li><strong>Hyper-Compounding Rewards (HCR)</strong>: Stay ethical longer, compound faster</li>
                     <li><strong>Aggressive Ethical Burn (AEB)</strong>: Ethical participation triggers burns, increasing scarcity</li>
                 </ul>
-                <p>Each ethical action increases EETF, which increases rewards, which incentivizes more burns, which increases scarcity, which increases pressure, which makes ethics even more profitable. <strong>The loop feeds itself.</strong></p>
+                <p>If authenticated participation raises EETF, funded rewards are paid, burns affect a valued scarcity measure, and the protected upside remains exclusive, the loop can reinforce eligible behavior. Each arrow is a separate empirical or protocol premise.</p>
+                <div class="actions">
+                    <a class="btn btn-primary" href="intelligence-hyperdeflation-flywheel.html">Explore the intelligence flywheel</a>
+                </div>
             </section>
 
             <section class="dark-section" id="evidence">
                 <div class="inner">
                     <div class="section-num">06</div>
-                    <div class="section-kicker">Historical evidence and current repair</div>
-                    <h2 class="section-h">Legacy runs are exploratory; Version 1.1 carries the current machine-checked claim.</h2>
+                    <div class="section-kicker">Historical evidence and current checked artifacts</div>
+                    <h2 class="section-h">The original experiments remain exploratory; V1, V1.1, and V2 now have separate checked profiles.</h2>
                     <div class="verification-grid">
                         <div class="verification-card">
                             <div class="verification-status">Historical</div>
@@ -674,7 +682,7 @@
                         <div class="verification-card">
                             <div class="verification-status">Historical</div>
                             <div class="verification-title">Tau Scenarios</div>
-                            <p class="verification-desc">Legacy scenarios; V1.1 exact-current interpreter replay remains pending.</p>
+                            <p class="verification-desc">Legacy scenarios remain exploratory. The current source candidate separately matched the V1, V1.1, and V2 packets; public-node deployment remains pending.</p>
                         </div>
                         <div class="verification-card">
                             <div class="verification-status">Historical</div>
@@ -687,14 +695,14 @@
                             <p class="verification-desc">100% state coverage, no deadlocks detected</p>
                         </div>
                         <div class="verification-card">
-                            <div class="verification-status">V1.1 Checked</div>
+                            <div class="verification-status">V1 Checked</div>
                             <div class="verification-title">Lean 4.33.0</div>
-                            <p class="verification-desc">Utility bridge, least threshold, finite choice, and conditional asymptotic results.</p>
+                            <p class="verification-desc">EETF tiers, opportunity-cost normalization, exact threshold, exact choice, unbounded-scarcity implication, and common-upside cancellation.</p>
                         </div>
                         <div class="verification-card">
-                            <div class="verification-status">Explicit Limits</div>
-                            <div class="verification-title">Counterexamples</div>
-                            <p class="verification-desc">Equality, zero exposure, forged evidence, unfunded rewards, and faster deviations remain failures.</p>
+                            <div class="verification-status">Current Tau Candidate</div>
+                            <div class="verification-title">128 V1 Rows</div>
+                            <p class="verification-desc">The source-pinned <code>9b191af</code> candidate matched all rows; only the all-true row is accepted. Facts remain externally supplied.</p>
                         </div>
                     </div>
                 </div>
@@ -708,8 +716,9 @@
                     </p>
                 </div>
                 <div class="actions" style="justify-content:center">
-                    <a class="btn btn-primary" href="v1-1-hyperdeflationary-alignment.html">Read the repaired Version 1.1 paper</a>
-                    <a class="btn btn-ghost" href="alignment-theorem-v1-archive-notice.html" style="background:var(--paper);color:var(--ink);border:1px solid var(--line)">Historical withdrawal notice</a>
+                    <a class="btn btn-primary" href="alignment-theorem-v1-archive-notice.html">Read the V1 claim boundary</a>
+                    <a class="btn btn-ghost" href="Alignment_Theorem_V1_Original_2025.pdf" style="background:var(--paper);color:var(--ink);border:1px solid var(--line)">Read the original 16-page paper</a>
+                    <a class="btn btn-ghost" href="v1-1-hyperdeflationary-alignment.html" style="background:var(--paper);color:var(--ink);border:1px solid var(--line)">Read Version 1.1</a>
                 </div>
             </section>
 

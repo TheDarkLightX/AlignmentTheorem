@@ -28,20 +28,15 @@
   "compatibility_shim_source_sha256": "e2c2f8c8261af494d4989336dce44efa42337109812ac95460bedb15b472151f",
   "error": "",
   "execution_environment_status": "HOST_KERNEL_LIBRARIES_AND_SANDBOX_NOT_HERMETICALLY_ATTESTED",
-  "ld_preload": [
-    {
-      "basename": "lean_proc_self_compat.so",
-      "sha256": "3441d32bcbb490af75f890752e42708b3cf6ede3fd1ed3d410b79571c6702b66"
-    }
-  ],
+  "ld_preload": [],
   "lean_version": "Lean (version 4.33.0, x86_64-unknown-linux-gnu, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)",
   "passed": true,
   "placeholders": [],
   "schema": "alignment-theorem-intelligence-flywheel-lean-build-v1",
-  "source_bundle_sha256": "c83acaef99333af73841580377ba6a45ebe6b0bcac9a70e260f7f74aac1eb99a",
+  "source_bundle_sha256": "dd8c4b3dee8d2d938f4c1f5be30f0c790431726402527ca10c23ae4543d139ca",
   "source_files_sha256": {
     "AxiomAudit.lean": "24faf12b750b813a5c358189a6b02f5520d12ead5669fb691ab74003fcc0ba67",
-    "IntelligenceFlywheel.lean": "07241a926b4c7104cdbeb578794dea6e8ee397441c29632c748abebbe42c4d19",
+    "IntelligenceFlywheel.lean": "99e13c02d478d512499c27d01b1bbd88caea96c38ab7c3808415fc7731d60297",
     "lake-manifest.json": "6370649ac34e2271938bd7df795b0e8c4677b0304c66c51c437a422af61d5df8",
     "lakefile.lean": "08eb0985ae11bae99a3e711d9a2e98a08e4878ce40c9cc95e44156ff05c6bbf9",
     "lean-toolchain": "302cd63c54178885b89e669f33b38f12f4dd7ae7e5cac537b3203e3768d8fb2b"

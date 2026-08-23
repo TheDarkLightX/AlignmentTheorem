@@ -79,7 +79,7 @@
       32
     ]
   },
-  "python_version": "3.12.13",
+  "python_version": "3.12.3",
   "randomness": "NONE_EXHAUSTIVE_ENUMERATION_ONLY",
   "schema": "alignment-theorem-compute-dividend-campaign-v1",
   "status": "SUPPORTED_BOUNDED",
