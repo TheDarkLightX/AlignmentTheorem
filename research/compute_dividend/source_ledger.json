@@ -1,0 +1,102 @@
+{
+  "schema": "alignment-theorem-source-ledger-v1",
+  "accessed_on": "2026-08-22",
+  "sources": [
+    {
+      "id": "SRC-LBNL-2024-DATA-CENTER-ENERGY",
+      "kind": "official_research_report",
+      "title": "2024 United States Data Center Energy Usage Report",
+      "uri": "https://eta-publications.lbl.gov/sites/default/files/2024-12/lbnl-2024-united-states-data-center-energy-usage-report_1.pdf",
+      "use": "Historical 2023 electricity-use estimate and explicitly scenario-bounded 2028 range.",
+      "nonclaim": "The 2028 range is not treated as a point forecast or a welfare result."
+    },
+    {
+      "id": "SRC-FERC-2026-LARGE-LOAD",
+      "kind": "official_regulatory_action",
+      "title": "FERC Launches Aggressive Targeted Action to Speed Large Load Integration",
+      "uri": "https://www.ferc.gov/news-events/news/ferc-launches-aggressive-targeted-action-speed-large-load-integration",
+      "use": "Current U.S. large-load interconnection, affordability, and ratepayer-protection context.",
+      "nonclaim": "No FERC action is represented as authorizing this proposed dividend mechanism."
+    },
+    {
+      "id": "SRC-FERC-2026-COST-SHIFTING",
+      "kind": "official_regulatory_fact_sheet",
+      "title": "FERC Takes Action to Supercharge America's Grid for Efficiency, Reliability and Affordability",
+      "uri": "https://www.ferc.gov/news-events/news/fact-sheet-ferc-takes-action-supercharge-americas-grid-efficiency-reliability-and",
+      "use": "Federal transmission versus state retail cost-allocation boundary.",
+      "nonclaim": "The research note is mechanism design, not legal advice."
+    },
+    {
+      "id": "SRC-GAO-25-107172",
+      "kind": "official_government_assessment",
+      "title": "Generative AI's Environmental and Human Effects",
+      "uri": "https://www.gao.gov/products/gao-25-107172",
+      "use": "Uncertainty about AI-specific data-center demand and environmental effects.",
+      "nonclaim": "No uncertain quantity is converted into an authenticated model input."
+    },
+    {
+      "id": "SRC-APFC-FUND-STRUCTURE",
+      "kind": "official_institutional_description",
+      "title": "Alaska Permanent Fund: Fund Structure",
+      "uri": "https://apfc.org/the-fund/fund-structure/",
+      "use": "Public precedent for studying resource-rent saving, investment, services, and dividends.",
+      "nonclaim": "No causal transferability or endorsement is claimed."
+    },
+    {
+      "id": "SRC-ATKINSON-1970",
+      "kind": "primary_research_paper",
+      "title": "On the Measurement of Inequality",
+      "uri": "https://faculty.ucr.edu/~jorgea/econ261/atkinson_inequality.pdf",
+      "use": "Concave social-welfare and inequality-aversion foundation.",
+      "nonclaim": "The paper does not select this mechanism's parameters."
+    },
+    {
+      "id": "SRC-KELLY-MAULLOO-TAN-1998",
+      "kind": "primary_research_paper",
+      "title": "Rate Control for Communication Networks: Shadow Prices, Proportional Fairness and Stability",
+      "uri": "https://link.springer.com/article/10.1057/palgrave.jors.2600523",
+      "use": "Proportional-fair concave resource-allocation foundation.",
+      "nonclaim": "Network bandwidth fairness does not establish household welfare."
+    },
+    {
+      "id": "SRC-ROCKAFELLAR-URYASEV-2000",
+      "kind": "primary_research_paper",
+      "title": "Optimization of Conditional Value-at-Risk",
+      "uri": "https://ideas.repec.org/a/rsk/journ4/2161159.html",
+      "use": "Tail-loss optimization foundation.",
+      "nonclaim": "The reference model's finite worst-k mean is not a distributional risk guarantee."
+    },
+    {
+      "id": "SRC-SUN-BOYD-2018",
+      "kind": "primary_research_paper",
+      "title": "Distributional Robust Kelly Gambling",
+      "uri": "https://web.stanford.edu/~boyd/papers/pdf/robust_kelly.pdf",
+      "use": "Motivation for explicit distributional/model uncertainty.",
+      "nonclaim": "No Kelly or robust-Kelly portfolio is implemented here."
+    },
+    {
+      "id": "SRC-SEC-ROBO-2017",
+      "kind": "official_regulatory_guidance",
+      "title": "IM Guidance Update: Robo-Advisers",
+      "uri": "https://www.sec.gov/investment/im-guidance-2017-02.pdf",
+      "use": "Disclosure, suitable-advice, and compliance boundary for automated advisers.",
+      "nonclaim": "Passing the reference gate does not satisfy any legal duty."
+    },
+    {
+      "id": "SRC-NIST-AI-RMF",
+      "kind": "official_risk_framework",
+      "title": "AI Risk Management Framework",
+      "uri": "https://www.nist.gov/itl/ai-risk-management-framework",
+      "use": "Sociotechnical risk-management and evaluation context.",
+      "nonclaim": "No NIST conformance claim is made."
+    },
+    {
+      "id": "SRC-TAU-FD137E8",
+      "kind": "source_repository_revision",
+      "title": "Tau Language source revision fd137e8",
+      "uri": "https://github.com/IDNI/tau-lang/commit/fd137e860b60083b36f9159ec8090cb1a3c3cb5a",
+      "use": "Declared source and parser pins for candidate build work.",
+      "nonclaim": "The source revision is not proven to have produced the reviewed Linux binary."
+    }
+  ]
+}

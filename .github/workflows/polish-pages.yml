@@ -1,0 +1,44 @@
+name: Apply GitHub Pages polish
+
+on:
+  push:
+    branches:
+      - research/compute-dividend-wealth-agent
+    paths:
+      - "verification/polish_public_pages.py"
+      - ".github/workflows/polish-pages.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  polish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: research/compute-dividend-wealth-agent
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12.13"
+      - name: Apply deterministic page polish
+        run: python3 verification/polish_public_pages.py
+      - name: Validate clean patch
+        run: |
+          git diff --check
+          grep -q 'data-center-social-contract.html' docs/index.html
+          ! grep -q 'research/compute-dividend-wealth-agent' docs/data-center-social-contract.html
+      - name: Commit polished pages
+        run: |
+          if git diff --quiet -- docs/index.html docs/data-center-social-contract.html; then
+            echo "Pages already polished."
+            exit 0
+          fi
+          git config user.name "TheDarkLightX"
+          git config user.email "TheDarkLightX@users.noreply.github.com"
+          git add docs/index.html docs/data-center-social-contract.html
+          git commit -m "pages: integrate and polish the data-center essays"
+          git push origin HEAD:research/compute-dividend-wealth-agent

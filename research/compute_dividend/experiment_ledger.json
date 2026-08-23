@@ -1,0 +1,75 @@
+{
+  "schema": "alignment-theorem-experiment-ledger-v1",
+  "experiments": [
+    {
+      "id": "E-CD-LEAN-01",
+      "kind": "formal_proof",
+      "status": "passed",
+      "artifact": "verification/receipts/lean_compute_dividend_v4.33.0.json",
+      "result": "Lean 4.33.0 build and axiom audit passed; no placeholders; environment and source-to-executable nonclaims recorded."
+    },
+    {
+      "id": "E-CD-PYTHON-01",
+      "kind": "exhaustive_reference_model",
+      "status": "passed_bounded",
+      "artifact": "verification/receipts/compute_dividend_campaign.json",
+      "result": "10,836 allocation cases; 8,646 feasible; 2,190 infeasible; zero exhaustive-oracle mismatches."
+    },
+    {
+      "id": "E-CD-PYTHON-02",
+      "kind": "adversarial_reference_model",
+      "status": "passed_bounded",
+      "artifact": "tests/test_compute_dividend_model.py",
+      "result": "High-score leveraged plan rejected; lower-score admitted plan selected; no-op and every named rejection path tested."
+    },
+    {
+      "id": "E-CD-VECTORS-01",
+      "kind": "complete_boolean_vectors",
+      "status": "passed_bounded",
+      "artifact": "verification/receipts/compute_dividend_campaign.json",
+      "result": "Two 256-row complete unique truth tables; each accepts only the all-true row and matches conjunction semantics."
+    },
+    {
+      "id": "E-CD-COUNTEREXAMPLE-01",
+      "kind": "counterexample",
+      "status": "refuted",
+      "artifact": "tests/test_compute_dividend_model.py",
+      "result": "A rich household with weight 1,000 beats a poor household with weight 1 for the next atom."
+    },
+    {
+      "id": "E-CD-COUNTEREXAMPLE-02",
+      "kind": "counterexample",
+      "status": "refuted",
+      "artifact": "verification/receipts/compute_dividend_campaign.json",
+      "result": "A plan admitted under a 10-atom finite tail limit is paired with a separately posited 1,000,000-atom unmodeled loss."
+    },
+    {
+      "id": "E-CD-TAU-NEGATIVE-01",
+      "kind": "actual_tau_execution",
+      "status": "negative_result",
+      "artifact": "research/compute_dividend/TAU_REPLAY.md",
+      "result": "The public 2024 Tau 0.7 build 3912dcb rejected -X with return code 1; it is not the reviewed binary."
+    },
+    {
+      "id": "E-CD-TAU-BUILD-NEGATIVE-02",
+      "kind": "build_fault",
+      "status": "negative_result",
+      "artifact": "research/compute_dividend/TAU_REPLAY.md",
+      "result": "Pinned dep-cvc5.sh computes source and prefix paths before parsing TAU_SHARED_PREFIX and attempted read-only /root/.tau."
+    },
+    {
+      "id": "E-CD-TAU-CANDIDATE-03",
+      "kind": "actual_tau_candidate_execution",
+      "status": "passed_bounded_candidate",
+      "artifact": "research/compute_dividend/tau_source_candidate_probe.json",
+      "result": "Clean fd137e8/5dd036 source pins built candidate b2699306; native V1.1, dividend, and wealth outputs were canonical, but binary and exact version differ from the reviewed identity and the environment is not hermetic."
+    },
+    {
+      "id": "E-CD-COUNTEREXAMPLE-03",
+      "kind": "counterexample",
+      "status": "refuted",
+      "artifact": "tests/test_compute_dividend_model.py",
+      "result": "Zero gross rent leaves a zero distributable budget, so one household with a positive floor is infeasible."
+    }
+  ]
+}

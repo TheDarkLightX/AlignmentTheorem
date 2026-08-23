@@ -1,0 +1,24 @@
+{
+  "schema": "alignment-theorem-graph-ledger-v1",
+  "nodes": [
+    {"id": "N-CONTEXT", "label": "U.S. large-load cost and benefit debate"},
+    {"id": "N-RENT", "label": "Authenticated gross public rent"},
+    {"id": "N-SENIOR", "label": "Grid costs and public reserve"},
+    {"id": "N-DIVIDEND", "label": "Universal floor plus prioritarian surplus"},
+    {"id": "N-COMPUTE", "label": "Metered household compute entitlement"},
+    {"id": "N-AGENT", "label": "Fail-closed household wealth selector"},
+    {"id": "N-TAU", "label": "Tau Boolean constitutional kernels"},
+    {"id": "N-OUTCOME", "label": "Empirical household and community outcomes"}
+  ],
+  "edges": [
+    {"from": "N-CONTEXT", "to": "N-RENT", "relation": "motivates_negotiated_public_rent"},
+    {"from": "N-RENT", "to": "N-SENIOR", "relation": "funds_before_distribution"},
+    {"from": "N-SENIOR", "to": "N-DIVIDEND", "relation": "leaves_distributable_balance"},
+    {"from": "N-RENT", "to": "N-COMPUTE", "relation": "may_contract_for_service_entitlement"},
+    {"from": "N-COMPUTE", "to": "N-AGENT", "relation": "powers_subject_to_metering"},
+    {"from": "N-TAU", "to": "N-DIVIDEND", "relation": "admits_only_if_host_facts_all_true"},
+    {"from": "N-TAU", "to": "N-AGENT", "relation": "filters_plan_obligations"},
+    {"from": "N-DIVIDEND", "to": "N-OUTCOME", "relation": "requires_empirical_evaluation"},
+    {"from": "N-AGENT", "to": "N-OUTCOME", "relation": "requires_empirical_evaluation"}
+  ]
+}

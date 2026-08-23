@@ -154,3 +154,55 @@ and binds the Lean source, project, manifest, and toolchain hashes.
 The Version 1 Lean file is retained as historical research. Its old `lake
 build` claim was not repository-replayable because the project and dependency
 pins were absent.
+
+## Compute-dividend research kernel
+
+### Lean
+
+- Lean release: `v4.33.0`
+- toolchain file: `proofs/compute_dividend/lean-toolchain`
+- standard library only
+
+Replay:
+
+```bash
+python3 verification/run_lean_compute_dividend.py \
+  --output verification/receipts/lean_compute_dividend_v4.33.0.json \
+  --json
+```
+
+The recorded sandbox denied Lean's numeric `/proc/<pid>/exe` lookup while
+permitting `/proc/self/exe`.  The replay therefore used the narrow, source-bound
+compatibility shim at `verification/compat/lean_proc_self_compat.c`.  The
+receipt records the loaded object hash and explicitly does not attest the host
+kernel, libraries, sandbox, or Lean source-to-executable provenance.  Systems
+without that sandbox restriction should run without the shim and produce a new
+environment record.
+
+### Tau packets
+
+`tau/compute_dividend/dividend/` and `tau/compute_dividend/wealth/` each contain
+all 256 Boolean rows for eight host-derived obligations.  Static vector parity
+is source-bound by `verification/receipts/compute_dividend_campaign.json`.
+
+Exact native replay intentionally uses the same reviewed Tau binary identity as
+V1.1/V2 and does not accept a substitute candidate:
+
+```bash
+python3 verification/run_tau_compute_dividend.py \
+  --gate dividend --tau-bin /path/to/reviewed/tau --json
+python3 verification/run_tau_compute_dividend.py \
+  --gate wealth --tau-bin /path/to/reviewed/tau --json
+```
+
+No compute-dividend native-Tau receipt is promoted until those commands pass on
+the reviewed binary.  Source and parser revisions remain expected provenance
+pins rather than a source-to-binary attestation.
+
+An exact-source local build at the expected source/parser pins produced
+candidate SHA-256 `b2699306d75c977ae4466e4f69237838efe6caafcc86bec62bbfb6517161ec19`
+and reported `Tau Language Framework version 0.7.0-alpha (fd137e86)`.  It
+natively matched the V1.1 and both compute-dividend packets.  Because its hash
+and exact version differ from the reviewed identity, and because it executed
+with locally built cvc5 plus unpinned host libraries, this is candidate evidence
+only.  See `research/compute_dividend/tau_source_candidate_probe.json`.

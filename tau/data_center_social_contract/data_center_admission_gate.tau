@@ -1,0 +1,36 @@
+# Data-center social-contract admission gate.
+#
+# Every input is an authenticated host fact. Tau does not establish project
+# identity, causation, local consent, reserve custody, environmental compliance,
+# personhood, compute delivery, or the truth of audit receipts. Missing or
+# false evidence must be supplied as 0, so the gate fails closed.
+
+policy_root_ok:sbf := in file("inputs/policy_root_ok.in").
+project_identity_authenticated:sbf := in file("inputs/project_identity_authenticated.in").
+local_consent_authenticated:sbf := in file("inputs/local_consent_authenticated.in").
+incremental_energy_costs_reserved:sbf := in file("inputs/incremental_energy_costs_reserved.in").
+reliability_curtailment_plan_ok:sbf := in file("inputs/reliability_curtailment_plan_ok.in").
+water_emissions_land_limits_ok:sbf := in file("inputs/water_emissions_land_limits_ok.in").
+decommissioning_bond_funded:sbf := in file("inputs/decommissioning_bond_funded.in").
+no_harm_compensation_funded:sbf := in file("inputs/no_harm_compensation_funded.in").
+universal_dividend_compute_floor_funded:sbf := in file("inputs/universal_dividend_compute_floor_funded.in").
+public_audit_receipt_current:sbf := in file("inputs/public_audit_receipt_current.in").
+
+allow:sbf := out file("outputs/allow.out").
+
+defs
+r (
+    allow[t] = (
+        policy_root_ok[t]
+        & project_identity_authenticated[t]
+        & local_consent_authenticated[t]
+        & incremental_energy_costs_reserved[t]
+        & reliability_curtailment_plan_ok[t]
+        & water_emissions_land_limits_ok[t]
+        & decommissioning_bond_funded[t]
+        & no_harm_compensation_funded[t]
+        & universal_dividend_compute_floor_funded[t]
+        & public_audit_receipt_current[t]
+    )
+)
+q

@@ -89,12 +89,51 @@ supplies that separate theorem. See
 | `tests/` | BVA, mutation-killing, exhaustive, and adversarial tests |
 | `TOOLCHAINS.md` | Exact Tau and Lean pins |
 
+## Compute dividend + household wealth-agent research
+
+The current research packet asks whether a full-cost-recovery data-center rent
+can fund a universal household floor, a prioritarian capped surplus allocation,
+and a constrained personal wealth copilot.  The formal result is deliberately
+narrow: exact rent/reserve conservation, a sufficient gross-rent threshold for
+the floor, floor feasibility, discrete-concave transfer behavior, and
+verifier-conditioned admission gates.  A true one-period loss bound also
+preserves a declared protected floor, but the finite scenario gate does not
+prove that premise.  The packet does not guarantee investment
+returns, FIRE, generational wealth, identity integrity, real-world welfare, or
+legal compliance.
+
+The exact Python campaign checked 10,836 allocation instances against an
+independent exhaustive oracle with zero mismatches.  Two complete 256-row Tau
+semantic packets each accept only the all-true row.  Exact interpreter replay
+of these packets—and the V1.1 packet—still requires the reviewed Tau executable;
+the pending plan binds the current V1.1 packet, source/parser expectations,
+binary identity, checker, generator, and output without pretending it is an
+execution receipt.
+
+Separately, a clean build at the expected source/parser pins produced candidate
+`b2699306...` and natively matched the canonical V1.1 and both 256-row research
+outputs.  Its binary hash and exact reported version differ from the reviewed
+identity, and it used non-hermetic build-tree libraries, so the reviewed replay
+correctly remains pending.
+
+Read the [research note](research/compute_dividend/README.md),
+[claim boundary](research/compute_dividend/CLAIM_BOUNDARY.md), and
+[Tau replay handoff](research/compute_dividend/TAU_REPLAY.md).
+
 ## Replay
 
 Python reference and packet tests:
 
 ```bash
 python3 -m unittest discover -s tests -v
+```
+
+Compute-dividend reference campaign:
+
+```bash
+python3 -m verification.run_compute_dividend_campaign --json
+cd proofs/compute_dividend
+lake build
 ```
 
 Lean 4.33.0 proof:
@@ -142,7 +181,13 @@ Its runner checks the exact binary hash and version before execution, requires
 byte-exact canonical output, and writes a receipt only after a passing replay.
 The runner records that source-to-binary provenance and the host execution
 environment are not independently attested by this replay. The pinned-binary
-replay remains pending and is not claimed.
+replay remains pending and is not claimed.  Its exact, non-executed handoff is
+recorded at
+`verification/pending/tau_v1_1_fd137e8_replay_plan.json`; a plan is not a
+receipt.
+
+The atom-by-atom allocator is reference-only and rejects budgets above 10,000
+atoms; a scalable implementation needs a separate refinement proof.
 
 
 ## Evidence boundary

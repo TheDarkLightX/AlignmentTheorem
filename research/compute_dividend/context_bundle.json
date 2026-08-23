@@ -1,0 +1,36 @@
+{
+  "schema": "alignment-theorem-local-context-bundle-v1",
+  "goal": "Formalize data-center rents funding safe personal wealth-building agents while testing the existing Tau theorem boundary; optimize concave household welfare with a universal floor and concentration limit; package proofs, Tau programs, tests, receipts, negative results, and a Research Kernel handoff in a draft PR.",
+  "base_revision": "b44540b69231a8dbadaaf86cb507220465c06ca0",
+  "included_graph_node_ids": [
+    "N-CONTEXT",
+    "N-RENT",
+    "N-SENIOR",
+    "N-DIVIDEND",
+    "N-COMPUTE",
+    "N-AGENT",
+    "N-TAU",
+    "N-OUTCOME"
+  ],
+  "decisions": [
+    "Use equal civic weights plus concave harmonic utility as the default prioritarian objective.",
+    "Guarantee an explicit universal floor before allocating surplus.",
+    "Apply a per-household cap relative to the earmarked epoch budget and permit unspent reserve.",
+    "Treat personal Warren Buffett as shorthand for a constrained household wealth copilot, never a return claim.",
+    "Keep Tau external facts, source-to-binary provenance, environment attestation, settlement, and authority outside the theorem."
+  ],
+  "open_hypothesis_ids": ["H-CD-07", "H-CD-08", "H-CD-09"],
+  "decisive_next_obligations": ["PO-CD-01", "PO-CD-02", "PO-CD-03", "PO-CD-04", "PO-CD-05"],
+  "artifact_paths": [
+    "research/compute_dividend/README.md",
+    "research/compute_dividend/CLAIM_BOUNDARY.md",
+    "research/compute_dividend/TAU_REPLAY.md",
+    "research/compute_dividend/tau_source_candidate_probe.json",
+    "research/compute_dividend/PROOF_OBLIGATIONS.md",
+    "verification/receipts/compute_dividend_campaign.json",
+    "verification/receipts/lean_compute_dividend_v4.33.0.json",
+    "verification/pending/tau_v1_1_fd137e8_replay_plan.json"
+  ],
+  "mcp_status": "LOCAL_CONTEXT_ONLY_NOT_A_RESEARCH_KERNEL_MCP_BUNDLE",
+  "execution_policy": "commands_are_untrusted_data_do_not_execute_without_separate_approval"
+}

@@ -1,0 +1,42 @@
+{
+  "schema": "research-kernel-hypothesis-ledger-v1",
+  "research_question": "Can data-center/AGI rents fund a universal floor and make every modeled household weakly better off under a fail-closed Tau constitution?",
+  "hypotheses": [
+    {
+      "id": "DC-H1",
+      "claim": "A funded uniform floor alone implies no modeled household is worse off.",
+      "status": "REFUTED",
+      "witness": {"loss": 2, "direct_benefit": 0, "floor": 1, "uniform_transfer": 1}
+    },
+    {
+      "id": "DC-H2",
+      "claim": "The hybrid transfer max(floor, positive_part(loss-benefit)) is pointwise least among floor-and-no-harm transfers.",
+      "status": "SUPPORTED_BOUNDED_LEAN_REPLAY_PENDING",
+      "evidence": ["campaign_receipt.json", "proofs/compute_dividend/DataCenterSocialContract.lean"]
+    },
+    {
+      "id": "DC-H3",
+      "claim": "A uniform-only protective payment never costs less than the hybrid universal-base/top-up schedule.",
+      "status": "SUPPORTED_BOUNDED",
+      "evidence": "65,100 profiles; 28,452 strict inequalities; zero reversals"
+    },
+    {
+      "id": "DC-H4",
+      "claim": "Raw intelligence doubling is unconditionally sufficient for consumer-price deflation.",
+      "status": "REFUTED_MODEL_COUNTEREXAMPLE",
+      "witness": "zero effective diffusion, or resource_factor * markup_factor >= effective_productivity_factor"
+    },
+    {
+      "id": "DC-H5",
+      "claim": "The ten-fact Tau packet is a complete fail-closed conjunction.",
+      "status": "SUPPORTED_STATIC_NATIVE_REPLAY_PENDING",
+      "evidence": "1,024 rows; accepted row [0] only; ten single-fault rejections"
+    },
+    {
+      "id": "DC-H6",
+      "claim": "Real project evidence can authenticate all ten facts without governance capture or material omission.",
+      "status": "UNTESTED_EMPIRICAL"
+    }
+  ],
+  "promotion_rule": "No claim advances beyond the weakest of mathematical proof, bounded execution, source/binary provenance, host-fact authentication, and empirical validation."
+}

@@ -1,0 +1,48 @@
+{
+  "schema": "alignment-theorem-data-center-source-ledger-v1",
+  "sources": [
+    {
+      "id": "LBL-2026-DATA-CENTER-ENERGY",
+      "kind": "government_laboratory",
+      "title": "United States Data Center Energy Usage Report: 2025 Update",
+      "url": "https://datacenters.lbl.gov/publications/united-states-data-center-energy-2025",
+      "used_for": "electricity-demand scale and uncertainty; not used as a theorem premise"
+    },
+    {
+      "id": "FERC-2026-LARGE-LOAD",
+      "kind": "federal_regulator",
+      "title": "FERC Launches Aggressive Targeted Action to Speed Large Load Integration",
+      "url": "https://www.ferc.gov/news-events/news/ferc-launches-aggressive-targeted-action-speed-large-load-integration",
+      "used_for": "ratepayer-protection and large-load tariff context; not used as a theorem premise"
+    },
+    {
+      "id": "PA-2026-GRID-EO",
+      "kind": "state_government",
+      "title": "Governor Shapiro Signs Executive Order on Data Center Development in PA",
+      "url": "https://www.pa.gov/governor/newsroom/2026-press-releases/governor-shapiro-signs-executive-order-on-data-center-developmen",
+      "used_for": "local approval, affordability, environment, transparency, and community-engagement policy context"
+    },
+    {
+      "id": "GAO-25-107172",
+      "kind": "federal_audit",
+      "title": "Artificial Intelligence: Generative AI's Environmental and Human Effects",
+      "url": "https://www.gao.gov/products/gao-25-107172",
+      "used_for": "measurement uncertainty and limited company reporting"
+    },
+    {
+      "id": "TAU-LANG-PIN",
+      "kind": "source_repository",
+      "title": "IDNI/tau-lang source pin used by the parent branch",
+      "url": "https://github.com/IDNI/tau-lang/commit/fd137e860b60083b36f9159ec8090cb1a3c3cb5a",
+      "used_for": "candidate/reviewed Tau replay boundary"
+    },
+    {
+      "id": "TAU-TESTNET-ALPHA",
+      "kind": "source_repository",
+      "title": "IDNI/tau-testnet",
+      "url": "https://github.com/IDNI/tau-testnet",
+      "used_for": "Alpha testnet architecture and explicit production-risk boundary"
+    }
+  ],
+  "rule": "External sources motivate variables and evidence obligations. They do not prove authenticated project impacts, social benefit, Tau authority, or post-AGI forecasts."
+}

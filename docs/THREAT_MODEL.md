@@ -38,3 +38,35 @@
 2. Write Lean lemmas marking specific predicate families as immutable under pointwise revision.
 3. Add regression tests for commit-reveal and MEV monitors.
 4. Publish extended simulation plots + empirical tau-testnet data (see `docs/SIMULATION_RESULTS.md`).
+
+## Compute-Dividend and Household-Agent Boundary
+
+- **Cost shifting disguised as rent:** gross public rent is not distributable
+  until authenticated incremental grid/interconnection costs and the public
+  reserve are funded. The model does not measure those costs.
+- **Post-AGI rent collapse:** a profit share alone cannot guarantee a positive
+  floor when accounting profit can be zero. Any minimum capacity/land/permit
+  payment and reserve must be explicit, enforceable, and stress-tested.
+- **Speculative or stranded load:** contract and escrow adapters must retain
+  cost recovery even if the promised large load is delayed or never arrives.
+- **Sybil capture:** the current per-identifier share cap is not a beneficial-
+  owner cap. Personhood, duplicate detection, household composition, appeals,
+  and privacy remain external proof obligations.
+- **Political weights:** arbitrary priority weights can reverse poor-first
+  allocation even under concave utility. Equal civic weights are the default;
+  any alternative requires separately governed justification and tests.
+- **Forced concentration:** when all per-household caps bind, the reference
+  allocator leaves the balance unspent rather than relaxing a cap.
+- **Model-risk laundering:** a plan that passes a finite scenario tail-loss
+  limit can still suffer arbitrarily larger unmodeled loss. No return, FIRE,
+  suitability, or capital-preservation guarantee follows. The Lean
+  protected-floor result is conditional on a true loss bound and does not turn
+  this empirical statistic into one.
+- **Autonomy/custody:** household consent, custody authorization, market data,
+  and proposal evidence are host facts. Tau only evaluates their conjunction;
+  it does not establish or execute them.
+- **Environmental omission:** water, emissions, land, and reliability limits
+  are required pilot guardrails but are not authenticated or quantified by the
+  current research packet.
+- **Marketing overclaim:** “personal Warren Buffett” is product shorthand only.
+  The checked object is a constrained selector with a no-op baseline.

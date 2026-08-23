@@ -1,0 +1,14 @@
+import ComputeDividend
+
+#print axioms ComputeDividend.dividend_admission_implies_every_obligation
+#print axioms ComputeDividend.funded_rent_conserves_gross
+#print axioms ComputeDividend.gross_rent_threshold_supports_universal_floor
+#print axioms ComputeDividend.rejected_dividend_is_noop
+#print axioms ComputeDividend.accepted_dividend_conserves_reserve
+#print axioms ComputeDividend.universal_floor_cost_lower_bound
+#print axioms ComputeDividend.universal_floor_feasible_iff
+#print axioms ComputeDividend.allocation_member_respects_share_cap
+#print axioms ComputeDividend.progressive_transfer_weakly_improves
+#print axioms ComputeDividend.bounded_loss_preserves_protected_floor
+#print axioms ComputeDividend.wealth_admission_implies_every_obligation
+#print axioms ComputeDividend.committed_wealth_action_has_modeled_limits

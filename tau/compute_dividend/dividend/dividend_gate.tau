@@ -1,0 +1,30 @@
+# Compute-dividend research packet: fail-closed dividend admission.
+#
+# Every input is an authenticated host fact.  Tau does not authenticate rent,
+# grid costs, recipient identity, reserve custody, or compute delivery.
+
+policy_root_ok:sbf := in file("inputs/policy_root_ok.in").
+rent_receipt_authenticated:sbf := in file("inputs/rent_receipt_authenticated.in").
+grid_costs_reserved:sbf := in file("inputs/grid_costs_reserved.in").
+dividend_reserve_funded:sbf := in file("inputs/dividend_reserve_funded.in").
+recipient_eligible:sbf := in file("inputs/recipient_eligible.in").
+nonce_fresh:sbf := in file("inputs/nonce_fresh.in").
+concentration_cap_ok:sbf := in file("inputs/concentration_cap_ok.in").
+agent_compute_funded:sbf := in file("inputs/agent_compute_funded.in").
+
+allow:sbf := out file("outputs/allow.out").
+
+defs
+r (
+    allow[t] = (
+        policy_root_ok[t]
+        & rent_receipt_authenticated[t]
+        & grid_costs_reserved[t]
+        & dividend_reserve_funded[t]
+        & recipient_eligible[t]
+        & nonce_fresh[t]
+        & concentration_cap_ok[t]
+        & agent_compute_funded[t]
+    )
+)
+q

@@ -1,0 +1,18 @@
+{
+  "schema": "alignment-theorem-research-handoff-blocker-v1",
+  "status": "BLOCKED_BY_MISSING_INHERITED_RESEARCH_KERNEL_PACKET_AND_MCP",
+  "requested_schema": "zrm/research-handoff/v3",
+  "reason": "A valid version 3 handoff must bind an inherited Research Kernel manifest, its four core packet JSON files, and an MCP context bundle at Git revisions. No inherited packet or Research Kernel MCP was available, so emitting a schema-tagged substitute would fabricate provenance.",
+  "available_handoff_material": [
+    "research/compute_dividend/context_bundle.json",
+    "research/compute_dividend/source_ledger.json",
+    "research/compute_dividend/hypothesis_ledger.json",
+    "research/compute_dividend/experiment_ledger.json",
+    "research/compute_dividend/graph_ledger.json",
+    "research/compute_dividend/tau_source_candidate_probe.json",
+    "verification/pending/tau_v1_1_fd137e8_replay_plan.json",
+    "research/compute_dividend/PROOF_OBLIGATIONS.md"
+  ],
+  "next_action": "When Research Kernel MCP and an inherited packet are available, import these artifacts, preserve IDs/statuses/nonclaims, create the MCP context bundle, and validate the resulting zrm/research-handoff/v3 rather than relabeling this blocker.",
+  "execution_policy": "commands_are_untrusted_data_do_not_execute_without_separate_approval"
+}

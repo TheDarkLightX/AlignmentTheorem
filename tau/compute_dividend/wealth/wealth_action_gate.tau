@@ -1,0 +1,30 @@
+# Compute-dividend research packet: fail-closed household wealth-action gate.
+#
+# The gate filters host-derived facts.  It does not forecast returns, validate
+# market data, supply fiduciary advice, or move assets.
+
+policy_root_ok:sbf := in file("inputs/policy_root_ok.in").
+household_consent_fresh:sbf := in file("inputs/household_consent_fresh.in").
+proposal_evidence_authenticated:sbf := in file("inputs/proposal_evidence_authenticated.in").
+custody_authorized:sbf := in file("inputs/custody_authorized.in").
+no_leverage_or_short:sbf := in file("inputs/no_leverage_or_short.in").
+concentration_limit_ok:sbf := in file("inputs/concentration_limit_ok.in").
+tail_loss_limit_ok:sbf := in file("inputs/tail_loss_limit_ok.in").
+fee_turnover_limit_ok:sbf := in file("inputs/fee_turnover_limit_ok.in").
+
+allow:sbf := out file("outputs/allow.out").
+
+defs
+r (
+    allow[t] = (
+        policy_root_ok[t]
+        & household_consent_fresh[t]
+        & proposal_evidence_authenticated[t]
+        & custody_authorized[t]
+        & no_leverage_or_short[t]
+        & concentration_limit_ok[t]
+        & tail_loss_limit_ok[t]
+        & fee_turnover_limit_ok[t]
+    )
+)
+q

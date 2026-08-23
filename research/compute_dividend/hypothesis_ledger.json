@@ -1,0 +1,96 @@
+{
+  "schema": "alignment-theorem-hypothesis-ledger-v1",
+  "base_revision": "b44540b69231a8dbadaaf86cb507220465c06ca0",
+  "hypotheses": [
+    {
+      "id": "H-CD-01",
+      "status": "source_supported",
+      "statement": "Rapid U.S. data-center load growth creates material grid cost-allocation, reliability, affordability, and environmental questions.",
+      "assumptions": ["Official reports are used only for their stated historical estimates, scenarios, actions, and uncertainties."],
+      "falsifiers": ["The cited official sources do not contain the attributed estimates, actions, or uncertainties."],
+      "source_ids": ["SRC-LBNL-2024-DATA-CENTER-ENERGY", "SRC-FERC-2026-LARGE-LOAD", "SRC-GAO-25-107172"],
+      "evidence_ids": []
+    },
+    {
+      "id": "H-CD-02",
+      "status": "supported_bounded",
+      "statement": "On natural-number inputs, funded senior claims yield exact rent conservation, and gross rent at least C + S + n*m supplies an n-household universal floor m.",
+      "assumptions": ["Inputs are correct natural-number atoms.", "C + S is senior to the dividend.", "The eligible household count is fixed."],
+      "falsifiers": ["A Lean counterexample under the quantified assumptions.", "A placeholder or unexpected axiom in the checked theorem."],
+      "source_ids": [],
+      "evidence_ids": ["E-CD-LEAN-01"]
+    },
+    {
+      "id": "H-CD-03",
+      "status": "supported_bounded",
+      "statement": "The exact marginal-greedy allocator maximizes weighted harmonic welfare over the enumerated 10,836-case domain.",
+      "assumptions": ["Household count 1..3.", "Base resources 0..2.", "Weights in {1,2}.", "Budget 0..6.", "Floor in {0,1}.", "Share cap in {1,1/2,2/3}."],
+      "falsifiers": ["One enumerated feasible allocation with welfare above the greedy result."],
+      "source_ids": ["SRC-ATKINSON-1970", "SRC-KELLY-MAULLOO-TAN-1998"],
+      "evidence_ids": ["E-CD-PYTHON-01"]
+    },
+    {
+      "id": "H-CD-04",
+      "status": "supported_bounded",
+      "statement": "The checked reference selector excludes modeled unsafe plans even when their declared score dominates, and both Boolean packets are complete conjunction truth tables.",
+      "assumptions": ["Every Boolean fact is correctly host-derived.", "Selection occurs only through the checked reference function."],
+      "falsifiers": ["A rejected plan returned as selected.", "A Tau packet row differs from conjunction semantics."],
+      "source_ids": ["SRC-SEC-ROBO-2017", "SRC-ROCKAFELLAR-URYASEV-2000"],
+      "evidence_ids": ["E-CD-PYTHON-02", "E-CD-VECTORS-01"]
+    },
+    {
+      "id": "H-CD-05",
+      "status": "refuted",
+      "statement": "Concave utility guarantees poor-first allocation even with arbitrary household priority weights.",
+      "assumptions": ["Weights may be arbitrary positive integers."],
+      "falsifiers": ["A richer household with sufficiently larger weight receives the next atom."],
+      "source_ids": [],
+      "evidence_ids": ["E-CD-COUNTEREXAMPLE-01"]
+    },
+    {
+      "id": "H-CD-06",
+      "status": "refuted",
+      "statement": "Passing a finite empirical tail-loss gate bounds out-of-sample realized loss.",
+      "assumptions": ["No distributional coverage assumption links supplied scenarios to the future."],
+      "falsifiers": ["An admitted finite-scenario plan paired with a larger unmodeled loss."],
+      "source_ids": ["SRC-SUN-BOYD-2018"],
+      "evidence_ids": ["E-CD-COUNTEREXAMPLE-02"]
+    },
+    {
+      "id": "H-CD-07",
+      "status": "under_test",
+      "statement": "A full-cost-recovery data-center rent, cash floor, compute entitlement, and constrained agent improve prioritarian household welfare without violating ratepayer, reliability, environmental, or concentration guardrails.",
+      "assumptions": ["A lawful contract and credible counterfactual can be identified."],
+      "falsifiers": ["Failed benefit floors.", "Adverse ratepayer, reliability, or environmental effects.", "Benefit capture or worse household outcomes."],
+      "source_ids": ["SRC-FERC-2026-COST-SHIFTING", "SRC-NIST-AI-RMF"],
+      "evidence_ids": []
+    },
+    {
+      "id": "H-CD-08",
+      "status": "under_test",
+      "statement": "A constrained household wealth agent improves after-fee risk-adjusted outcomes or FIRE progress relative to simple baselines.",
+      "assumptions": ["Legal, fiduciary, custody, tax, and suitability requirements are independently satisfied."],
+      "falsifiers": ["Worse after-fee outcomes.", "Unacceptable loss, complaint, override, or abstention rates.", "No benefit beyond simple low-cost baselines."],
+      "source_ids": ["SRC-SEC-ROBO-2017", "SRC-SUN-BOYD-2018"],
+      "evidence_ids": []
+    },
+    {
+      "id": "H-CD-09",
+      "status": "under_test",
+      "statement": "The exact reviewed Tau binary produces canonical output for V1.1 and the two research packets.",
+      "assumptions": ["The file presented to the runner has the reviewed SHA-256."],
+      "falsifiers": ["Binary mismatch.", "Version mismatch.", "Crash or timeout.", "Missing, noncanonical, or wrong output."],
+      "source_ids": ["SRC-TAU-FD137E8"],
+      "evidence_ids": ["E-CD-TAU-NEGATIVE-01", "E-CD-TAU-CANDIDATE-03"]
+    },
+    {
+      "id": "H-CD-10",
+      "status": "refuted",
+      "statement": "A post-AGI data-center profit share alone universally guarantees a positive household floor.",
+      "assumptions": ["Gross public rent is only a non-negative share of operator accounting profit.", "No minimum payment or accumulated reserve is available."],
+      "falsifiers": ["Zero accounting profit with at least one household and a positive floor."],
+      "source_ids": [],
+      "evidence_ids": ["E-CD-COUNTEREXAMPLE-03"]
+    }
+  ]
+}
