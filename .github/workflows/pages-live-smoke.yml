@@ -133,7 +133,7 @@ jobs:
               ("home", f"{site}/?browser={nonce}", "Alignment Theorem - Ethical and Profitable LLM Agents", f"{site}/", "The Data Center Bargain"),
               ("data-center", f"{site}/data-center-social-contract.html?browser={nonce}", "The Data Center Bargain | Alignment Theorem", f"{site}/data-center-social-contract.html", "The Data Center Bargain"),
               ("deep-dive", f"{site}/alignment-theorem-deep-dive.html?browser={nonce}", "The Alignment Theorem | Making Ethics Profitable", f"{site}/alignment-theorem-deep-dive.html", "EETF-Gated Scarcity-Upside Exclusion Theorem"),
-              ("v1-1", f"{site}/v1-1-hyperdeflationary-alignment.html?browser={nonce}", "Ethical Work Under Hyperdeflation — Alignment Theorem V1.1", f"{site}/v1-1-hyperdeflationary-alignment.html", "Ethical Work Under Hyperdeflation"),
+              ("v1-1", f"{site}/v1-1-hyperdeflationary-alignment.html?browser={nonce}", "Ethical Work Under Hyperdeflation: Alignment Theorem V1.1", f"{site}/v1-1-hyperdeflationary-alignment.html", "Ethical Work Under Hyperdeflation"),
               ("playbook", f"{site}/local-government-policy-playbook.html?browser={nonce}", "Local Data-Center Policy Playbook | Alignment Theorem", f"{site}/local-government-policy-playbook.html", "The fourteen-part local package"),
               ("current-tau", f"{site}/current-tau-net-integration.html?browser={nonce}", "Three Alignment Profiles on Current Tau | Alignment Theorem", f"{site}/current-tau-net-integration.html", "27 / 27"),
               ("flywheel", f"{site}/intelligence-hyperdeflation-flywheel.html?browser={nonce}", "The Intelligence Dividend | Alignment Theorem × Tau Net", f"{site}/intelligence-hyperdeflation-flywheel.html", "not yet a node deployment"),

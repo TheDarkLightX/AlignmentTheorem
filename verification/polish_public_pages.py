@@ -31,6 +31,7 @@ CANONICALS = {
         if name != "index"
     },
 }
+EM_DASH_FORMS = ("—", "&mdash;", "&#8212;", "&#x2014;")
 
 
 class _StructureParser(HTMLParser):
@@ -227,6 +228,9 @@ def _requirements(pages: dict[str, str]) -> dict[str, bool]:
         )
         checks[f"{name} has no stale feature-branch link"] = (
             "research/compute-dividend-wealth-agent" not in page
+        )
+        checks[f"{name} has no em dashes"] = all(
+            form not in page.lower() for form in EM_DASH_FORMS
         )
         checks.update(_structure_checks(name, PUBLIC_PAGES[name], page))
 
