@@ -210,6 +210,14 @@
             color: var(--muted); margin-top: 16px;
         }
 
+        .key-takeaway {
+            max-width: 700px; margin: 32px auto 0; padding: 20px 24px;
+            border-radius: 12px; background: var(--accent-soft);
+            border: 1px solid #cffafe; text-align: left;
+        }
+        .key-takeaway strong { color: var(--accent-ink); }
+        .key-takeaway p { margin: 0; font-size: .94rem; color: var(--body); }
+
         .problem-solution {
             display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 28px 0;
         }
@@ -514,6 +522,9 @@
                     Version 1 makes eligible work more profitable by combining funded EETF-tier rewards with scarcity-linked upside that the excluded branch cannot obtain. <strong>The exact finite condition is G &lt; M(R+L).</strong>
                 </p>
                 <p class="big-idea-attr">The Alignment Theorem</p>
+                <div class="key-takeaway">
+                    <strong>Key takeaway:</strong> The exclusion mechanism is the core of V1. If the excluded branch can obtain the same upside, or the upside is common to both choices, the scarcity term cancels and cannot establish the alignment condition. The counterexamples are as important as the theorem.
+                </div>
             </section>
 
             <section class="section" id="challenge">

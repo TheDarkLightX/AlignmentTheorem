@@ -287,6 +287,38 @@
     .btn-ghost:hover { background: rgba(255,255,255,.1); color: #fff; }
     .actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 24px 0 0; }
 
+    details.disclosure {
+      margin: 24px 0; border: 1px solid var(--line); border-radius: 12px;
+      background: var(--paper); overflow: hidden;
+    }
+    details.disclosure summary {
+      padding: 16px 20px; cursor: pointer; list-style: none;
+      font-family: var(--font-ui); font-weight: 600; font-size: .92rem;
+      color: var(--accent-ink); user-select: none;
+      display: flex; align-items: center; gap: 10px;
+      transition: background .15s ease;
+    }
+    details.disclosure summary::before {
+      content: ""; width: 8px; height: 8px;
+      border-right: 2px solid var(--accent); border-bottom: 2px solid var(--accent);
+      transform: rotate(45deg); transition: transform .2s ease;
+      flex-shrink: 0;
+    }
+    details.disclosure[open] summary::before { transform: rotate(135deg); }
+    details.disclosure summary:hover { background: var(--accent-soft); }
+    details.disclosure summary::-webkit-details-marker { display: none; }
+    details.disclosure .disclosure-body {
+      padding: 0 20px 20px; border-top: 1px solid var(--line);
+    }
+    .dark-section details.disclosure {
+      background: rgba(255,255,255,.04); border-color: var(--dark-line);
+    }
+    .dark-section details.disclosure summary { color: var(--accent-bright); }
+    .dark-section details.disclosure summary::before { border-color: var(--accent-bright); }
+    .dark-section details.disclosure summary:hover { background: rgba(6,182,212,.08); }
+    .dark-section details.disclosure .disclosure-body { border-color: var(--dark-line); }
+    .dark-section details.disclosure .disclosure-body p { color: var(--dark-body); }
+
     footer {
       text-align: center; padding: 40px 24px;
       color: var(--muted); font-size: .88rem;
@@ -462,7 +494,7 @@ U_excluded(t) &lt;= V(t) + G(t)</div>
         <p>The resulting utility gap satisfies:</p>
         <div class="equation">U_eligible(t) - U_excluded(t)
   &gt;= M(t) [r(t) + L(t)] - [G(t) + C(t)]</div>
-        <p>Write:</p>
+        <p>Define:</p>
         <div class="equation">K(t) = r(t) + L(t)
 B(t) = G(t) + C(t) + epsilon(t)</div>
         <p>The finite V1.1 condition is:</p>
@@ -483,14 +515,19 @@ B(t) = G(t) + C(t) + epsilon(t)</div>
             is <code>floor(B / K) + 1</code>.
           </p>
         </div>
-        <p>
-          <strong>Proof.</strong> The payoff bounds give
-          <code>U_eligible - U_excluded &gt; epsilon</code>. An excluded
-          <code>epsilon</code>-optimal choice would require
-          <code>U_excluded + epsilon &gt;= U_eligible</code>, which contradicts that
-          strict inequality. Euclidean division gives
-          <code>B &lt; K [floor(B/K) + 1]</code>. &#8718;
-        </p>
+        <details class="disclosure">
+          <summary>View proof</summary>
+          <div class="disclosure-body">
+            <p>
+              The payoff bounds give
+              <code>U_eligible - U_excluded &gt; epsilon</code>. An excluded
+              <code>epsilon</code>-optimal choice would require
+              <code>U_excluded + epsilon &gt;= U_eligible</code>, which contradicts that
+              strict inequality. Euclidean division gives
+              <code>B &lt; K [floor(B/K) + 1]</code>. &#8718;
+            </p>
+          </div>
+        </details>
       </section>
 
       <section class="section" id="asymptotic">
@@ -512,11 +549,16 @@ B(t) = G(t) + C(t) + epsilon(t)</div>
             <code>t &gt;= T</code>.
           </p>
         </div>
-        <p>
-          <strong>Proof.</strong> The threshold
-          <code>floor(B/K) + 1</code> is finite. Unbounded <code>M(t)</code>
-          eventually reaches it. Theorem 1 applies thereafter. &#8718;
-        </p>
+        <details class="disclosure">
+          <summary>View proof</summary>
+          <div class="disclosure-body">
+            <p>
+              The threshold
+              <code>floor(B/K) + 1</code> is finite. Unbounded <code>M(t)</code>
+              eventually reaches it. Theorem 1 applies thereafter. &#8718;
+            </p>
+          </div>
+        </details>
       </section>
 
       <section class="section" id="relative">

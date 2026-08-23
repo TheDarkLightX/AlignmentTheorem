@@ -10,7 +10,7 @@
     <meta property="og:description" content="Formal incentive theorems, the Data Center Bargain, and Tau-governed economic alignment.">
     <meta property="og:url" content="https://thedarklightx.github.io/AlignmentTheorem/">
     <link rel="canonical" href="https://thedarklightx.github.io/AlignmentTheorem/">
-    <title>Alignment Theorem - Ethical and Profitable LLM Agents</title>
+    <title>Alignment Theorem - Ethical and Profitable Agents</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&display=swap" rel="stylesheet">
@@ -360,6 +360,38 @@
 
         a.inline-link { color: var(--accent); border-bottom: 1px dashed var(--accent); }
         a.inline-link:hover { color: var(--accent-ink); border-bottom-color: var(--accent-ink); text-decoration: none; }
+
+        /* Progressive disclosure */
+        details.disclosure {
+            margin: 24px 0; border: 1px solid var(--line); border-radius: 12px;
+            background: var(--paper); overflow: hidden;
+        }
+        details.disclosure summary {
+            padding: 16px 20px; cursor: pointer; list-style: none;
+            font-family: var(--font-ui); font-weight: 600; font-size: .92rem;
+            color: var(--accent-ink); user-select: none;
+            display: flex; align-items: center; gap: 10px;
+            transition: background .15s ease;
+        }
+        details.disclosure summary::before {
+            content: ""; width: 8px; height: 8px;
+            border-right: 2px solid var(--accent); border-bottom: 2px solid var(--accent);
+            transform: rotate(45deg); transition: transform .2s ease;
+            flex-shrink: 0;
+        }
+        details.disclosure[open] summary::before { transform: rotate(135deg); }
+        details.disclosure summary:hover { background: var(--accent-soft); }
+        details.disclosure summary::-webkit-details-marker { display: none; }
+        details.disclosure .disclosure-body {
+            padding: 0 20px 20px; border-top: 1px solid var(--line);
+        }
+        .dark-section details.disclosure {
+            background: rgba(255,255,255,.04); border-color: var(--dark-line);
+        }
+        .dark-section details.disclosure summary { color: var(--accent-bright); }
+        .dark-section details.disclosure summary::before { border-color: var(--accent-bright); }
+        .dark-section details.disclosure summary:hover { background: rgba(6,182,212,.08); }
+        .dark-section details.disclosure .disclosure-body { border-color: var(--dark-line); }
 
         /* Pipeline */
         .pipeline-container {
@@ -805,22 +837,27 @@
                 <div class="section-kicker">Artifacts</div>
                 <h2 class="section-h">Data packs &amp; downloads</h2>
                 <p class="section-intro">V1, V1.1, and V2 remain distinct profiles. The original paper is preserved unchanged for provenance beside the current claim boundary and reconstructed proof.</p>
-                <div class="table-scroll" role="region" aria-label="Data packs and downloads" tabindex="0">
-                <table class="data-table">
-                    <thead><tr><th>Artifact</th><th>Description</th><th>Location</th></tr></thead>
-                    <tbody>
-                        <tr><td>Version 1 Paper</td><td>Uncorrected 16-page academic paper preserved for provenance</td><td><a href="Alignment_Theorem_V1_Original_2025.pdf">original PDF</a></td></tr>
-                        <tr><td>Version 1 Claim Boundary</td><td>Retained EETF/VCC exclusion theorem, exact corrections, and nonclaims</td><td><a href="alignment-theorem-v1-archive-notice.html">HTML</a> &middot; <a href="Alignment_Theorem_Academic.pdf">PDF</a></td></tr>
-                        <tr><td>Version 1 Lean + Tau</td><td>Reconstructed exclusion theorem and complete 128-row packet</td><td><code>proofs/v1/</code>, <code>tau/v1/</code></td></tr>
-                        <tr><td>Version 1.1 Paper</td><td>Abstract hyperdeflationary threshold, AGI relative-growth model, and counterexamples</td><td><code>docs/v1-1-hyperdeflationary-alignment.html</code></td></tr>
-                        <tr><td>Version 1.1 Lean</td><td>Finite, asymptotic, and relative-growth theorems</td><td><code>proofs/v1_1/AlignmentTheoremV1_1.lean</code></td></tr>
-                        <tr><td>Version 2 Paper</td><td>Finite theorem, architecture, assumptions, and nonclaims</td><td><code>paper/v2/alignment_theorem_v2.pdf</code></td></tr>
-                        <tr><td>Lean Proof</td><td>Current machine-checked finite result</td><td><code>proofs/v2/AlignmentTheoremV2.lean</code></td></tr>
-                        <tr><td>Tau Policy</td><td>Current-Tau fail-closed policy gate and replay packet</td><td><code>tau/v2/</code></td></tr>
-                        <tr><td>Current Tau Matrix</td><td>Profile selection, exact source pins, bounded replays, and open authority layers</td><td><a href="current-tau-net-integration.html">current integration</a></td></tr>
-                    </tbody>
-                </table>
-                </div>
+                <details class="disclosure">
+                    <summary>View all artifacts and download locations</summary>
+                    <div class="disclosure-body">
+                        <div class="table-scroll" role="region" aria-label="Data packs and downloads" tabindex="0">
+                        <table class="data-table">
+                            <thead><tr><th>Artifact</th><th>Description</th><th>Location</th></tr></thead>
+                            <tbody>
+                                <tr><td>Version 1 Paper</td><td>Uncorrected 16-page academic paper preserved for provenance</td><td><a href="Alignment_Theorem_V1_Original_2025.pdf">original PDF</a></td></tr>
+                                <tr><td>Version 1 Claim Boundary</td><td>Retained EETF/VCC exclusion theorem, exact corrections, and nonclaims</td><td><a href="alignment-theorem-v1-archive-notice.html">HTML</a> &middot; <a href="Alignment_Theorem_Academic.pdf">PDF</a></td></tr>
+                                <tr><td>Version 1 Lean + Tau</td><td>Reconstructed exclusion theorem and complete 128-row packet</td><td><code>proofs/v1/</code>, <code>tau/v1/</code></td></tr>
+                                <tr><td>Version 1.1 Paper</td><td>Abstract hyperdeflationary threshold, AGI relative-growth model, and counterexamples</td><td><code>docs/v1-1-hyperdeflationary-alignment.html</code></td></tr>
+                                <tr><td>Version 1.1 Lean</td><td>Finite, asymptotic, and relative-growth theorems</td><td><code>proofs/v1_1/AlignmentTheoremV1_1.lean</code></td></tr>
+                                <tr><td>Version 2 Paper</td><td>Finite theorem, architecture, assumptions, and nonclaims</td><td><code>paper/v2/alignment_theorem_v2.pdf</code></td></tr>
+                                <tr><td>Lean Proof</td><td>Current machine-checked finite result</td><td><code>proofs/v2/AlignmentTheoremV2.lean</code></td></tr>
+                                <tr><td>Tau Policy</td><td>Current-Tau fail-closed policy gate and replay packet</td><td><code>tau/v2/</code></td></tr>
+                                <tr><td>Current Tau Matrix</td><td>Profile selection, exact source pins, bounded replays, and open authority layers</td><td><a href="current-tau-net-integration.html">current integration</a></td></tr>
+                            </tbody>
+                        </table>
+                        </div>
+                    </div>
+                </details>
             </section>
 
         </main>
