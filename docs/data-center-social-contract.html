@@ -4,6 +4,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="A local-government social contract for data centers and post-AGI economics, derived from the Alignment Theorem and designed for Tau Language.">
+  <meta name="theme-color" content="#05060a">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="The Data Center Bargain | Alignment Theorem">
+  <meta property="og:description" content="A constitutional bargain for data centers: full cost recovery, household protection, public benefit, and Tau-governed rule evolution.">
+  <meta property="og:url" content="https://thedarklightx.github.io/AlignmentTheorem/data-center-social-contract.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://thedarklightx.github.io/AlignmentTheorem/data-center-social-contract.html">
   <title>The Data Center Bargain | Alignment Theorem</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -43,6 +50,22 @@
 
     a { color: var(--cyan); }
     a:hover { color: var(--gold); }
+    :focus-visible { outline: 3px solid var(--gold); outline-offset: 4px; }
+    .skip-link {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      z-index: 100;
+      padding: 10px 14px;
+      border-radius: 10px;
+      background: var(--gold);
+      color: #071014;
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 700;
+      transform: translateY(-160%);
+      transition: transform .18s ease;
+    }
+    .skip-link:focus { transform: translateY(0); }
     code, .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
 
     .shell { width: min(1160px, calc(100% - 34px)); margin: 0 auto; }
@@ -144,10 +167,13 @@
       letter-spacing: .06em;
       text-transform: uppercase;
     }
+    .button { transition: transform .18s ease, border-color .18s ease, background .18s ease; }
+    .button:hover { transform: translateY(-2px); border-color: rgba(94,231,247,.45); }
     .button.primary { color: #071014; background: linear-gradient(120deg, var(--cyan), var(--gold)); border: 0; }
 
     main { padding-bottom: 80px; }
     section { padding: 58px 0; }
+    section[id] { scroll-margin-top: 90px; }
     .section-kicker {
       font-family: "Space Grotesk", sans-serif;
       color: var(--cyan);
@@ -249,6 +275,9 @@
       color: var(--text);
       font: inherit;
     }
+    input:focus { border-color: var(--cyan); box-shadow: 0 0 0 3px rgba(94,231,247,.12); outline: none; }
+    .field-help { display: block; margin-top: 7px; color: var(--faint); font-size: .7rem; letter-spacing: 0; text-transform: none; line-height: 1.35; }
+    .mobile-nav-hint { display: none; color: var(--faint); font-family: "Space Grotesk", sans-serif; font-size: .68rem; letter-spacing: .08em; text-transform: uppercase; }
     .results { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 12px; margin-top: 20px; }
     .result {
       padding: 18px;
@@ -277,21 +306,46 @@
       .grid.two, .grid.three, .form-grid { grid-template-columns: 1fr; }
       .results { grid-template-columns: repeat(2,minmax(0,1fr)); }
       .waterfall { grid-template-columns: repeat(2,minmax(0,1fr)); }
-      .nav-inner { align-items: flex-start; padding: 14px 0; }
-      .nav-links { display: none; }
+      .nav-inner { align-items: stretch; flex-direction: column; padding: 12px 0 10px; gap: 9px; }
+      .brand { align-self: flex-start; }
+      .nav-links {
+        display: flex;
+        width: 100%;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        overflow-x: auto;
+        overscroll-behavior-inline: contain;
+        scrollbar-width: none;
+        padding: 2px 2px 5px;
+        mask-image: linear-gradient(to right, transparent 0, black 12px, black calc(100% - 20px), transparent 100%);
+      }
+      .nav-links::-webkit-scrollbar { display: none; }
+      .nav-links a { flex: 0 0 auto; padding: 6px 3px; }
+      .mobile-nav-hint { display: block; }
+      section[id] { scroll-margin-top: 150px; }
     }
     @media (max-width: 520px) {
       body { font-size: 18px; }
-      .hero { padding-top: 68px; }
+      .shell { width: min(100% - 28px, 1160px); }
+      .hero { padding-top: 58px; }
+      .hero-actions .button { width: 100%; }
       .results, .waterfall { grid-template-columns: 1fr; }
       .card, .calculator { padding: 21px; }
+      table { font-size: .84rem; }
+      th, td { padding: 11px 9px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
     }
   </style>
 </head>
-<body>
-  <nav class="nav">
+<body id="top">
+  <a class="skip-link" href="#main-content">Skip to the article</a>
+  <nav class="nav" aria-label="Article navigation">
     <div class="shell nav-inner">
       <a class="brand" href="index.html">Alignment Theorem</a>
+      <span class="mobile-nav-hint" aria-hidden="true">Swipe for sections</span>
       <div class="nav-links">
         <a href="#theorem">Theorem</a>
         <a href="#policy">Local policy</a>
@@ -309,12 +363,12 @@
     <div class="hero-rule">No cost shifting. No unfunded benefit. No constitutional amendment that silently removes the guarantees.</div>
     <div class="hero-actions">
       <a class="button primary" href="#policy">Read the local policy package</a>
-      <a class="button" href="../research/data_center_social_contract/LOCAL_GOVERNMENT_POLICY_PLAYBOOK.md">Policy source</a>
-      <a class="button" href="https://github.com/TheDarkLightX/AlignmentTheorem/tree/research/compute-dividend-wealth-agent/research/data_center_social_contract">Research packet</a>
+      <a class="button" href="https://github.com/TheDarkLightX/AlignmentTheorem/blob/main/research/data_center_social_contract/LOCAL_GOVERNMENT_POLICY_PLAYBOOK.md">Policy source</a>
+      <a class="button" href="https://github.com/TheDarkLightX/AlignmentTheorem/tree/main/research/data_center_social_contract">Research packet</a>
     </div>
   </header>
 
-  <main>
+  <main id="main-content">
     <section class="shell">
       <div class="section-kicker">The debate has changed</div>
       <h2>Data centers are becoming public-scale infrastructure.</h2>
@@ -389,32 +443,27 @@
       <p class="lede">Enter one settlement epoch. “Deficits” are the authenticated household values \(d_i=(L_i-B_i)_+\), separated by commas. The calculator compares the distributable reserve with the exact hybrid floor and checks compute separately.</p>
       <div class="calculator">
         <div class="form-grid">
-          <label>Gross committed public value G
-            <input id="gross" type="number" min="0" step="1" value="30">
-          </label>
-          <label>Senior project claims C
-            <input id="costs" type="number" min="0" step="1" value="12">
-          </label>
-          <label>Universal household floor m
-            <input id="floor" type="number" min="0" step="1" value="2">
-          </label>
-          <label>Household uncompensated deficits
-            <input id="deficits" type="text" value="0, 1, 5, 2">
-          </label>
-          <label>Available compute reserve Q
-            <input id="compute" type="number" min="0" step="1" value="12">
-          </label>
-          <label>Compute floor per household c
-            <input id="computeFloor" type="number" min="0" step="1" value="2">
-          </label>
+          <label for="gross">Gross committed public value G</label>
+          <input id="gross" type="number" min="0" step="1" value="30" inputmode="decimal">
+          <label for="costs">Senior project claims C</label>
+          <input id="costs" type="number" min="0" step="1" value="12" inputmode="decimal">
+          <label for="floor">Universal household floor m</label>
+          <input id="floor" type="number" min="0" step="1" value="2" inputmode="decimal">
+          <label for="deficits">Household uncompensated deficits</label>
+          <input id="deficits" type="text" value="0, 1, 5, 2" inputmode="decimal" aria-describedby="deficits-help">
+          <span class="field-help" id="deficits-help">Comma-separated nonnegative values, one per household.</span>
+          <label for="compute">Available compute reserve Q</label>
+          <input id="compute" type="number" min="0" step="1" value="12" inputmode="decimal">
+          <label for="computeFloor">Compute floor per household c</label>
+          <input id="computeFloor" type="number" min="0" step="1" value="2" inputmode="decimal">
         </div>
-        <div class="results">
+        <div class="results" role="status" aria-live="polite" aria-atomic="true">
           <div class="result"><span>Distributable cash R</span><strong id="rCash">18</strong></div>
           <div class="result"><span>Required household reserve H(m)</span><strong id="rRequired">11</strong></div>
           <div class="result"><span>Cash result</span><strong id="rCashStatus" class="pass">Funded</strong></div>
           <div class="result"><span>Compute result</span><strong id="rComputeStatus" class="pass">Funded</strong></div>
         </div>
-        <p id="rDetail" class="mono" style="color:var(--muted);margin-bottom:0"></p>
+        <p id="rDetail" class="mono" aria-live="polite" style="color:var(--muted);margin-bottom:0"></p>
       </div>
     </section>
 
@@ -535,7 +584,7 @@
   </main>
 
   <footer>
-    <div class="shell">Alignment Theorem research. Policy-relative, conditional, and falsifiable. This page is a research and policy proposal, not legal, utility, investment, or engineering advice.</div>
+    <div class="shell">Alignment Theorem research. Policy-relative, conditional, and falsifiable. This page is a research and policy proposal, not legal, utility, investment, or engineering advice. <a href="#top">Back to top</a></div>
   </footer>
 
   <script>

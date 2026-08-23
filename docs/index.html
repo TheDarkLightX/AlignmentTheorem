@@ -3,6 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The Alignment Theorem: formal incentive, hyperdeflation, data-center social-contract, and Tau Language research.">
+    <meta name="theme-color" content="#0a0a0f">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="The Alignment Theorem">
+    <meta property="og:description" content="Formal incentive theorems, the Data Center Bargain, and Tau-governed economic alignment.">
+    <meta property="og:url" content="https://thedarklightx.github.io/AlignmentTheorem/">
+    <link rel="canonical" href="https://thedarklightx.github.io/AlignmentTheorem/">
     <title>Alignment Theorem - Ethical and Profitable LLM Agents</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
@@ -25,6 +32,27 @@
             padding: 0;
             box-sizing: border-box;
         }
+
+        html { scroll-behavior: smooth; }
+        :focus-visible {
+            outline: 3px solid var(--accent-gold);
+            outline-offset: 4px;
+        }
+        .skip-link {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            z-index: 100;
+            padding: 10px 14px;
+            border-radius: 10px;
+            background: var(--accent-gold);
+            color: #0a0a0f;
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 700;
+            transform: translateY(-160%);
+            transition: transform 0.18s ease;
+        }
+        .skip-link:focus { transform: translateY(0); }
         
         body {
             font-family: 'Rajdhani', sans-serif;
@@ -196,6 +224,7 @@
         
         .section {
             margin: 60px 0;
+            scroll-margin-top: 24px;
         }
         
         .section-title {
@@ -269,6 +298,9 @@
         
         .scenario-button {
             flex: 1;
+            appearance: none;
+            background: rgba(255,255,255,0.035);
+            font: inherit;
             min-width: 180px;
             text-align: center;
             padding: 12px;
@@ -533,6 +565,95 @@
             color: var(--accent-gold);
         }
         
+
+        .featured-essay {
+            position: relative;
+            overflow: hidden;
+            margin: 46px 0 64px;
+            padding: clamp(30px, 5vw, 56px);
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            border-radius: 24px;
+            background:
+                radial-gradient(circle at 90% 10%, rgba(157, 78, 221, 0.24), transparent 42%),
+                linear-gradient(135deg, rgba(0,255,255,0.08), rgba(255,215,0,0.055));
+            box-shadow: 0 24px 70px rgba(0,0,0,0.4);
+        }
+        .featured-essay::after {
+            content: '';
+            position: absolute;
+            width: 260px;
+            height: 260px;
+            right: -90px;
+            bottom: -120px;
+            border-radius: 50%;
+            background: rgba(0,255,136,0.08);
+            filter: blur(2px);
+            pointer-events: none;
+        }
+        .featured-grid {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: minmax(0, 1.55fr) minmax(250px, .75fr);
+            gap: 34px;
+            align-items: center;
+        }
+        .featured-kicker {
+            display: inline-flex;
+            padding: 7px 12px;
+            border-radius: 999px;
+            border: 1px solid rgba(0,255,255,0.28);
+            color: var(--accent-cyan);
+            font-size: .78rem;
+            text-transform: uppercase;
+            letter-spacing: .12em;
+            font-weight: 700;
+        }
+        .featured-essay h2 {
+            margin: 18px 0 16px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(1.8rem, 4vw, 3rem);
+            line-height: 1.15;
+            color: var(--text-primary);
+        }
+        .featured-essay p {
+            max-width: 780px;
+            color: var(--text-secondary);
+            line-height: 1.75;
+            font-size: 1.12rem;
+        }
+        .featured-equation {
+            margin: 22px 0 0;
+            padding: 16px 18px;
+            border-left: 3px solid var(--accent-green);
+            background: rgba(0,0,0,.28);
+            color: var(--accent-green);
+            font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+            overflow-x: auto;
+        }
+        .featured-stats { display: grid; gap: 12px; }
+        .featured-stat {
+            padding: 18px;
+            border: 1px solid rgba(255,255,255,.1);
+            border-radius: 15px;
+            background: rgba(0,0,0,.28);
+        }
+        .featured-stat strong {
+            display: block;
+            font-family: 'Orbitron', sans-serif;
+            color: var(--accent-gold);
+            font-size: 1.45rem;
+        }
+        .featured-stat span { color: var(--text-secondary); line-height: 1.35; }
+        .table-scroll {
+            max-width: 100%;
+            overflow-x: auto;
+            margin-top: 20px;
+            border: 1px solid rgba(255,255,255,.08);
+            border-radius: 14px;
+            scrollbar-color: var(--accent-cyan) rgba(255,255,255,.05);
+        }
+        .table-scroll .data-table { min-width: 700px; margin-top: 0; }
         .data-table {
             width: 100%;
             border-collapse: collapse;
@@ -556,14 +677,43 @@
             color: var(--accent-gold);
             text-decoration: none;
         }
+
+        @media (max-width: 780px) {
+            .container { padding: 28px 20px; }
+            .featured-grid { grid-template-columns: 1fr; }
+            .featured-stats { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+            .top-nav { gap: 14px 18px; }
+            .top-nav a { font-size: .78rem; }
+            .chart-container, .proof-container { padding: 26px 20px; }
+        }
+        @media (max-width: 520px) {
+            h1 { font-size: clamp(2.5rem, 15vw, 4.2rem); letter-spacing: 2px; }
+            .subtitle { font-size: 1.24rem; }
+            .cta-buttons .cta-button { width: min(100%, 300px); text-align: center; }
+            .featured-stats { grid-template-columns: 1fr; }
+            .featured-essay { padding: 28px 22px; }
+            .theorem-box { padding: 28px 20px; }
+            .theorem-text { font-size: 1.25rem; }
+            .section-title { font-size: 1.65rem; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            *, *::before, *::after {
+                animation-duration: .01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: .01ms !important;
+            }
+        }
     </style>
 </head>
-<body>
-    <div class="stars"></div>
+<body id="top">
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <div class="stars" aria-hidden="true"></div>
     
     <div class="container">
         <header>
-            <div class="top-nav">
+            <nav class="top-nav" aria-label="Main navigation">
+                <a href="data-center-social-contract.html">Data Center Bargain</a>
                 <a href="#core">Core Insight</a>
                 <a href="#hyperdeflation">V1.1 Hyperdeflation</a>
                 <a href="#calculator">Calculator</a>
@@ -573,25 +723,46 @@
                 <a href="#verifications">Verification</a>
                 <a href="#data">Data Packs</a>
                 <a href="alignment-theorem-deep-dive.html">Historical Version 1</a>
-            </div>
+            </nav>
             <h1>THE ALIGNMENT THEOREM</h1>
             <p class="subtitle">Hyperdeflationary and Finite Incentive Theorems for Ethical, Profit-Seeking LLM Agents</p>
             <div class="cta-buttons">
-                <a class="cta-button primary" href="Alignment_Theorem_V2.pdf" target="_blank" rel="noopener">Download Version 2</a>
+                <a class="cta-button primary" href="data-center-social-contract.html">Read the Data Center Bargain</a>
+                <a class="cta-button secondary" href="Alignment_Theorem_V2.pdf" target="_blank" rel="noopener">Download Version 2</a>
                 <a class="cta-button secondary" href="v1-1-hyperdeflationary-alignment.html">Read Version 1.1</a>
                 <a class="cta-button secondary" href="https://github.com/TheDarkLightX/AlignmentTheorem" target="_blank" rel="noopener">GitHub Repo</a>
                 <a class="cta-button secondary" href="https://github.com/TheDarkLightX/VCC-concept-visualizer" target="_blank" rel="noopener">VCC Visualizer</a>
                 <a class="cta-button secondary" href="alignment-theorem-deep-dive.html">Historical Version 1</a>
             </div>
         </header>
-        
+
+        <main id="main-content">
         <div class="theorem-box">
             <p class="theorem-text">
                 Compliant reward − noncompliant reward + expected enforcement<br>
                 &gt; deviation gain + compliance cost + optimizer error
             </p>
         </div>
-        
+
+        <section class="featured-essay" id="data-center">
+            <div class="featured-grid">
+                <div>
+                    <span class="featured-kicker">New research · local government · post-AGI economics</span>
+                    <h2>The Data Center Bargain</h2>
+                    <p>Local communities do not have to choose between rejecting AI infrastructure and subsidizing it. The new social-contract theorem puts grid, water, safety, public-service, household-loss, audit, and decommissioning claims first—then shares only the authenticated residual.</p>
+                    <div class="featured-equation">H(m) = Σ max(m, (loss − direct benefit)⁺)</div>
+                    <div class="cta-buttons" style="justify-content:flex-start">
+                        <a class="cta-button primary" href="data-center-social-contract.html">Open the interactive essay</a>
+                        <a class="cta-button secondary" href="https://github.com/TheDarkLightX/AlignmentTheorem/blob/main/research/data_center_social_contract/LOCAL_GOVERNMENT_POLICY_PLAYBOOK.md" target="_blank" rel="noopener">Local policy playbook</a>
+                    </div>
+                </div>
+                <div class="featured-stats" aria-label="Research validation highlights">
+                    <div class="featured-stat"><strong>65,100</strong><span>household and floor profiles tested</span></div>
+                    <div class="featured-stat"><strong>1,024</strong><span>Tau semantic rows; only all-true admits</span></div>
+                    <div class="featured-stat"><strong>0</strong><span>modeled welfare regressions or lifecycle invariant failures</span></div>
+                </div>
+            </div>
+        </section>
         <section class="section" id="core">
             <h2 class="section-title">⚡ The Core Insight</h2>
             <div class="card-grid">
@@ -654,14 +825,14 @@
                 <h3 class="chart-title">Explore the Alignment Dynamics</h3>
                 
                 <div class="scenario-buttons">
-                    <div class="scenario-button active" data-scarcity="10" data-eetf="10">Baseline</div>
-                    <div class="scenario-button" data-scarcity="60" data-eetf="15">Accelerated</div>
-                    <div class="scenario-button" data-scarcity="80" data-eetf="8">Adversarial Shock</div>
+                    <button type="button" class="scenario-button active" data-scarcity="10" data-eetf="10">Baseline</button>
+                    <button type="button" class="scenario-button" data-scarcity="60" data-eetf="15">Accelerated</button>
+                    <button type="button" class="scenario-button" data-scarcity="80" data-eetf="8">Adversarial Shock</button>
                 </div>
                 
                 <div class="slider-container">
                     <div class="slider-label">
-                        <span>Scarcity Multiplier</span>
+                        <label for="scarcitySlider">Scarcity Multiplier</label>
                         <span class="slider-value" id="scarcityValue">10x</span>
                     </div>
                     <input type="range" id="scarcitySlider" min="1" max="1000" value="10" step="1">
@@ -669,13 +840,13 @@
                 
                 <div class="slider-container">
                     <div class="slider-label">
-                        <span>Agent EETF Score</span>
+                        <label for="eetfSlider">Agent EETF Score</label>
                         <span class="slider-value" id="eetfValue">1.0</span>
                     </div>
                     <input type="range" id="eetfSlider" min="0" max="30" value="10" step="1">
                 </div>
                 
-                <div class="result-display">
+                <div class="result-display" role="status" aria-live="polite" aria-atomic="true">
                     <div class="result-item">
                         <div class="result-label">Economic Pressure</div>
                         <div class="result-value neutral" id="pressureResult">10</div>
@@ -845,6 +1016,7 @@
         <section class="section" id="data">
             <h2 class="section-title">📦 Data Packs & Downloads</h2>
             <p class="section-intro">Version 1.1 and Version 2 evidence are listed separately. Original Version 1 simulations remain historical exploratory work.</p>
+            <div class="table-scroll" role="region" aria-label="Data packs and downloads" tabindex="0">
             <table class="data-table">
                 <thead>
                     <tr>
@@ -886,12 +1058,15 @@
                     </tr>
                 </tbody>
             </table>
+            </div>
         </section>
-        
+        </main>
+
         <footer>
             <div class="footer-logo">TAUNET ALIGNMENT</div>
             <p>Conditional hyperdeflationary and finite policy-relative theorems</p>
-            <p>August 2026 • Alignment Theorem Versions 1.1 and 2.0</p>
+            <p>August 2026 • Alignment Theorem Versions 1.1 and 2.0 • Data Center Social Contract</p>
+            <p><a class="inline-link" href="#top">Back to top</a></p>
         </footer>
     </div>
     
@@ -906,6 +1081,7 @@
         const penaltyResult = document.getElementById('penaltyResult');
         const alignmentResult = document.getElementById('alignmentResult');
         const scenarioButtons = document.querySelectorAll('.scenario-button');
+        scenarioButtons.forEach(btn => btn.setAttribute('aria-pressed', btn.classList.contains('active') ? 'true' : 'false'));
         
         function updateCalculations() {
             const scarcity = parseInt(scarcitySlider.value);
@@ -913,6 +1089,8 @@
             
             scarcityValue.textContent = scarcity + 'x';
             eetfValue.textContent = eetf.toFixed(1);
+            scarcitySlider.setAttribute('aria-valuetext', scarcity + ' times');
+            eetfSlider.setAttribute('aria-valuetext', eetf.toFixed(1));
             
             const pressure = Math.round(scarcity * eetf);
             pressureResult.textContent = pressure.toLocaleString();
@@ -951,23 +1129,28 @@
         
         scenarioButtons.forEach(button => {
             button.addEventListener('click', () => {
-                scenarioButtons.forEach(btn => btn.classList.remove('active'));
+                scenarioButtons.forEach(btn => {
+                    btn.classList.remove('active');
+                    btn.setAttribute('aria-pressed', 'false');
+                });
                 button.classList.add('active');
+                button.setAttribute('aria-pressed', 'true');
                 scarcitySlider.value = button.dataset.scarcity;
                 eetfSlider.value = button.dataset.eetf;
                 updateCalculations();
             });
         });
         
-        // Animate flow diagram
+        // Animate the historical flow only when motion is welcome.
         const nodes = document.querySelectorAll('.flow-node');
         let currentNode = 0;
-        
-        setInterval(() => {
-            nodes.forEach(node => node.classList.remove('highlight'));
-            nodes[currentNode].classList.add('highlight');
-            currentNode = (currentNode + 1) % nodes.length;
-        }, 1500);
+        if (nodes.length && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            setInterval(() => {
+                nodes.forEach(node => node.classList.remove('highlight'));
+                nodes[currentNode].classList.add('highlight');
+                currentNode = (currentNode + 1) % nodes.length;
+            }, 1500);
+        }
         
         // Initialize
         updateCalculations();
