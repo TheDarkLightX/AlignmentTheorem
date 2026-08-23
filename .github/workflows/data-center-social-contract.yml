@@ -10,6 +10,7 @@ on:
       - "verification/run_data_center_social_contract_campaign.py"
       - "verification/generate_tau_data_center_social_contract_packet.py"
       - "verification/polish_public_pages.py"
+      - "verification/receipts/v1_1_assurance.json"
       - "research/data_center_social_contract/**"
       - "tau/data_center_social_contract/**"
       - "docs/index.html"
@@ -24,6 +25,7 @@ on:
       - "verification/run_data_center_social_contract_campaign.py"
       - "verification/generate_tau_data_center_social_contract_packet.py"
       - "verification/polish_public_pages.py"
+      - "verification/receipts/v1_1_assurance.json"
       - "research/data_center_social_contract/**"
       - "tau/data_center_social_contract/**"
       - "docs/index.html"
@@ -69,6 +71,7 @@ jobs:
         with:
           name: data-center-social-contract-receipts
           path: |
+            verification/receipts/v1_1_assurance.json
             research/data_center_social_contract/campaign_receipt.json
             research/data_center_social_contract/LOCAL_GOVERNMENT_POLICY_PLAYBOOK.md
             docs/index.html
