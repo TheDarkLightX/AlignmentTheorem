@@ -242,7 +242,7 @@
     ],
     "schema": "alignment-theorem-live-browser-report-v3"
   },
-  "docs_source_commit": "da7080f1d6366932a457e3e69da6aad88598809b",
+  "docs_source_commit": "8bc7e6d39b893cad2104719d876d8895cfbd74e4",
   "http_status": {
     "attempt": 4,
     "current_tau": 200,
@@ -268,23 +268,23 @@
     },
     "data_center_social_contract": {
       "exact_body_match": true,
-      "live_body_sha256": "728fb7894ea9b1579048df982de04847ba594a689f11cfe4248470dedac065b7",
+      "live_body_sha256": "fda7054f5ef0fe9a16de65c7001afd176898535c888069b63c15634c742f8b19",
       "source_path": "docs/data-center-social-contract.html",
-      "source_sha256": "728fb7894ea9b1579048df982de04847ba594a689f11cfe4248470dedac065b7",
+      "source_sha256": "fda7054f5ef0fe9a16de65c7001afd176898535c888069b63c15634c742f8b19",
       "url": "https://thedarklightx.github.io/AlignmentTheorem/data-center-social-contract.html"
     },
     "homepage": {
       "exact_body_match": true,
-      "live_body_sha256": "f3cbb2671349218900cf517314844510306dab98836879a3d2765a07852b3938",
+      "live_body_sha256": "a7abc0b42206b436df8e916ec7eecee6efae2cce5deed3fe2475d3b50a2cae80",
       "source_path": "docs/index.html",
-      "source_sha256": "f3cbb2671349218900cf517314844510306dab98836879a3d2765a07852b3938",
+      "source_sha256": "a7abc0b42206b436df8e916ec7eecee6efae2cce5deed3fe2475d3b50a2cae80",
       "url": "https://thedarklightx.github.io/AlignmentTheorem/"
     },
     "intelligence_flywheel": {
       "exact_body_match": true,
-      "live_body_sha256": "cf7a8a26bd0e446ff7ef1509b05da35953718e316c03332df61fbc92528c8c5d",
+      "live_body_sha256": "c977383f235a2ab9d6f30703c2138f5235136f2a3345e37cf3de87effd12ed34",
       "source_path": "docs/intelligence-hyperdeflation-flywheel.html",
-      "source_sha256": "cf7a8a26bd0e446ff7ef1509b05da35953718e316c03332df61fbc92528c8c5d",
+      "source_sha256": "c977383f235a2ab9d6f30703c2138f5235136f2a3345e37cf3de87effd12ed34",
       "url": "https://thedarklightx.github.io/AlignmentTheorem/intelligence-hyperdeflation-flywheel.html"
     },
     "local_government_policy_playbook": {
@@ -296,9 +296,9 @@
     },
     "v1_1_hyperdeflationary": {
       "exact_body_match": true,
-      "live_body_sha256": "cade6bbff84ec67f86333accbe113c5082ca24346f867fcc03ac50630edf1cc0",
+      "live_body_sha256": "7cd7848d8c2537b4a137872c1c00a0b75d32ac5ab557ba6c79bfe4536ec3bf78",
       "source_path": "docs/v1-1-hyperdeflationary-alignment.html",
-      "source_sha256": "cade6bbff84ec67f86333accbe113c5082ca24346f867fcc03ac50630edf1cc0",
+      "source_sha256": "7cd7848d8c2537b4a137872c1c00a0b75d32ac5ab557ba6c79bfe4536ec3bf78",
       "url": "https://thedarklightx.github.io/AlignmentTheorem/v1-1-hyperdeflationary-alignment.html"
     },
     "v1_1_pdf": {
@@ -346,7 +346,7 @@
   },
   "schema": "alignment-theorem-github-pages-live-receipt-v3",
   "status": "LIVE_AND_POLISHED",
-  "verified_at_utc": "2026-08-23T13:18:31.257595+00:00",
-  "workflow_run": "https://github.com/TheDarkLightX/AlignmentTheorem/actions/runs/32641889110",
-  "workflow_source_commit": "da7080f1d6366932a457e3e69da6aad88598809b"
+  "verified_at_utc": "2026-08-23T21:29:51.533092+00:00",
+  "workflow_run": "https://github.com/TheDarkLightX/AlignmentTheorem/actions/runs/32667625639",
+  "workflow_source_commit": "8bc7e6d39b893cad2104719d876d8895cfbd74e4"
 }
