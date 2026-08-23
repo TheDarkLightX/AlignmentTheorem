@@ -7,7 +7,7 @@ import argparse
 import hashlib
 import itertools
 import json
-import platform
+import sys
 from dataclasses import replace
 from fractions import Fraction
 from pathlib import Path
@@ -171,7 +171,7 @@ def run() -> dict[str, object]:
         "status": "SUPPORTED_BOUNDED" if passed else "FAILED",
         "authority_status": "RESEARCH_REFERENCE_ONLY_NO_FINANCIAL_OR_VALUE_AUTHORITY",
         "randomness": "NONE_EXHAUSTIVE_ENUMERATION_ONLY",
-        "python_version": platform.python_version(),
+        "python_version": f"{sys.version_info.major}.{sys.version_info.minor}",
         "checker_sha256": _sha256(Path(__file__)),
         "bound_files_sha256": {
             "verification/compute_dividend_model.py": _sha256(MODEL),

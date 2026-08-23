@@ -2,10 +2,10 @@
 
 Version 1's intended mechanism is preserved:
 
-* an ethical action receives a scarcity-amplified reward entitlement;
-* a non-ethical action may forfeit a scarcity-amplified entitlement; and
+* an eligible action receives a scarcity-amplified reward entitlement;
+* the eligible action may have exclusive access to other scarcity upside; and
 * private deviation gain, compliance cost, and optimizer error oppose that
-  mechanism advantage.
+  mechanism advantage. The excluded branch receives no punitive debit.
 
 The asymptotic theorem belongs in Lean.  This module checks one finite epoch
 using unsigned 64-bit inputs and rejects arithmetic that would overflow that
@@ -53,7 +53,7 @@ class HyperdeflationEnvelope:
 
     scarcity_multiplier: int
     ethical_reward_coefficient: int
-    nonethical_forfeiture_coefficient: int
+    exclusive_upside_coefficient: int
     max_private_deviation_gain: int
     max_extra_compliance_cost: int
     optimizer_error: int = 0
@@ -62,7 +62,7 @@ class HyperdeflationEnvelope:
         for name in (
             "scarcity_multiplier",
             "ethical_reward_coefficient",
-            "nonethical_forfeiture_coefficient",
+            "exclusive_upside_coefficient",
             "max_private_deviation_gain",
             "max_extra_compliance_cost",
             "optimizer_error",
@@ -82,7 +82,7 @@ class HyperdeflationEnvelope:
         return _checked_add(
             "mechanism_coefficient",
             self.ethical_reward_coefficient,
-            self.nonethical_forfeiture_coefficient,
+            self.exclusive_upside_coefficient,
         )
 
     @property
@@ -107,6 +107,18 @@ class HyperdeflationEnvelope:
         )
 
     @property
+    def eligible_utility_lower(self) -> int:
+        """Normalized eligible utility after its extra compliance cost."""
+
+        return self.mechanism_advantage - self.max_extra_compliance_cost
+
+    @property
+    def excluded_utility_upper(self) -> int:
+        """Excluded utility before optimizer error; no debit is applied."""
+
+        return self.max_private_deviation_gain
+
+    @property
     def has_strict_hyperdeflation_margin(self) -> bool:
         """Whether scarcity strictly dominates the complete opposing bound."""
 
@@ -117,7 +129,7 @@ class HyperdeflationEnvelope:
 
         coefficient = self.mechanism_coefficient
         if coefficient == 0:
-            raise ValueError("positive ethical scarcity exposure is required")
+            raise ValueError("positive eligible scarcity exposure is required")
         threshold = self.required_advantage // coefficient + 1
         return _require_u64("minimum_scarcity_multiplier", threshold)
 

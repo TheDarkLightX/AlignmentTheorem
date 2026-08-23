@@ -3,1251 +3,482 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Alignment Theorem Version 1 deep dive: EETF, VCC scarcity, exclusion from protected upside, exact corrections, Lean proof, and current Tau evidence.">
+    <meta name="theme-color" content="#0d1526">
+    <link rel="canonical" href="https://thedarklightx.github.io/AlignmentTheorem/alignment-theorem-deep-dive.html">
     <title>The Alignment Theorem | Making Ethics Profitable</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com/">
-    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Crimson+Pro:wght@400;600;700&display=swap" rel="stylesheet">
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-void: #050508;
-            --bg-primary: #0a0a0f;
-            --bg-secondary: #0f0f16;
-            --bg-card: #14141e;
-            --bg-elevated: #1a1a28;
-            --text-primary: #f0f0f5;
-            --text-secondary: #9898a8;
-            --text-muted: #5a5a6a;
-            --accent-violet: #8b5cf6;
-            --accent-purple: #a855f7;
-            --accent-fuchsia: #d946ef;
-            --accent-cyan: #06b6d4;
-            --accent-emerald: #10b981;
-            --accent-amber: #f59e0b;
-            --accent-rose: #f43f5e;
-            --glow-violet: rgba(139, 92, 246, 0.4);
-            --glow-purple: rgba(168, 85, 247, 0.3);
-            --gradient-hero: linear-gradient(135deg, #8b5cf6 0%, #d946ef 50%, #06b6d4 100%);
-            --gradient-text: linear-gradient(135deg, #c4b5fd 0%, #f0abfc 50%, #67e8f9 100%);
+            --bg: #fafafa;
+            --paper: #ffffff;
+            --ink: #0d1526;
+            --ink-2: #1e293b;
+            --body: #475569;
+            --muted: #94a3b8;
+            --line: #e2e8f0;
+            --accent: #0e7490;
+            --accent-ink: #0b5563;
+            --accent-soft: #ecfeff;
+            --accent-bright: #06b6d4;
+            --ok: #15803d;
+            --ok-soft: #f0fdf4;
+            --bad: #b91c1c;
+            --bad-soft: #fef2f2;
+            --warn: #b45309;
+            --warn-soft: #fffbeb;
+            --dark: #0d1526;
+            --dark-2: #1e293b;
+            --dark-line: rgba(255,255,255,.1);
+            --dark-body: #94a3b8;
+            --dark-muted: #64748b;
+            --font-display: "Fraunces", Georgia, serif;
+            --font-ui: "Space Grotesk", system-ui, sans-serif;
+            --font-body: "Inter", system-ui, sans-serif;
+            --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+            --maxw: 1280px;
+            --content-w: 820px;
+            --sidebar-w: 220px;
         }
-
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
-
         body {
-            font-family: 'Crimson Pro', Georgia, serif;
-            font-size: 19px;
-            line-height: 1.8;
-            color: var(--text-primary);
-            background: var(--bg-void);
-            overflow-x: hidden;
-        }
-
-        /* ===== ANIMATED BACKGROUND ===== */
-        .bg-grid {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: 
-                linear-gradient(rgba(139, 92, 246, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(139, 92, 246, 0.03) 1px, transparent 1px);
-            background-size: 60px 60px;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .bg-glow {
-            position: fixed;
-            width: 600px;
-            height: 600px;
-            border-radius: 50%;
-            filter: blur(120px);
-            opacity: 0.15;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .bg-glow-1 {
-            top: -200px;
-            left: -100px;
-            background: var(--accent-violet);
-            animation: float 20s ease-in-out infinite;
-        }
-
-        .bg-glow-2 {
-            bottom: -200px;
-            right: -100px;
-            background: var(--accent-fuchsia);
-            animation: float 25s ease-in-out infinite reverse;
-        }
-
-        .bg-glow-3 {
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: var(--accent-cyan);
-            animation: pulse 15s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0); }
-            50% { transform: translate(50px, 30px); }
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 0.1; transform: translate(-50%, -50%) scale(1); }
-            50% { opacity: 0.2; transform: translate(-50%, -50%) scale(1.1); }
-        }
-
-        /* ===== HERO SECTION ===== */
-        .hero {
-            position: relative;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 2rem;
-            z-index: 1;
-        }
-
-        .hero-particles {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            overflow: hidden;
-        }
-
-        .particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: var(--accent-violet);
-            border-radius: 50%;
-            animation: rise 10s linear infinite;
-            opacity: 0;
-        }
-
-        @keyframes rise {
-            0% { opacity: 0; transform: translateY(100vh) scale(0); }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { opacity: 0; transform: translateY(-10vh) scale(1); }
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 1000px;
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.6rem 1.5rem;
-            background: rgba(139, 92, 246, 0.1);
-            border: 1px solid rgba(139, 92, 246, 0.3);
-            border-radius: 50px;
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.85rem;
-            font-weight: 500;
-            color: var(--accent-violet);
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            margin-bottom: 2rem;
-            animation: fadeInUp 0.8s ease;
-        }
-
-        .hero-badge::before {
-            content: '';
-            width: 8px;
-            height: 8px;
-            background: var(--accent-emerald);
-            border-radius: 50%;
-            animation: blink 2s ease-in-out infinite;
-        }
-
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.3; }
-        }
-
-        .hero h1 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: clamp(3rem, 8vw, 6rem);
-            font-weight: 700;
-            line-height: 1.05;
-            margin-bottom: 1.5rem;
-            background: var(--gradient-text);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: fadeInUp 0.8s ease 0.1s backwards;
-        }
-
-        .hero-tagline {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: clamp(1.2rem, 3vw, 1.8rem);
-            font-weight: 500;
-            color: var(--text-secondary);
-            margin-bottom: 3rem;
-            animation: fadeInUp 0.8s ease 0.2s backwards;
-        }
-
-        .hero-tagline strong {
-            color: var(--accent-cyan);
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .hero-stats {
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            flex-wrap: wrap;
-            animation: fadeInUp 0.8s ease 0.3s backwards;
-        }
-
-        .hero-stat {
-            text-align: center;
-        }
-
-        .hero-stat-value {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--accent-violet);
-        }
-
-        .hero-stat-label {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
-
-        .scroll-cue {
-            position: absolute;
-            bottom: 3rem;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--text-muted);
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            animation: bounce 2s ease-in-out infinite;
-        }
-
-        .scroll-cue svg {
-            width: 24px;
-            height: 24px;
-            stroke: var(--accent-violet);
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateX(-50%) translateY(0); }
-            50% { transform: translateX(-50%) translateY(8px); }
-        }
-
-        /* ===== CONTENT SECTIONS ===== */
-        .content {
-            position: relative;
-            z-index: 1;
-        }
-
-        section {
-            padding: 6rem 2rem;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .wide-container {
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        /* ===== THE BIG IDEA ===== */
-        .big-idea {
-            background: linear-gradient(180deg, var(--bg-void) 0%, var(--bg-secondary) 100%);
-            text-align: center;
-            padding: 8rem 2rem;
-        }
-
-        .big-idea-label {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--accent-violet);
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            margin-bottom: 2rem;
-        }
-
-        .big-idea-text {
-            font-size: clamp(1.5rem, 4vw, 2.2rem);
-            font-style: italic;
-            color: var(--text-primary);
-            max-width: 900px;
-            margin: 0 auto 3rem;
-            line-height: 1.6;
-        }
-
-        .big-idea-text strong {
-            color: var(--accent-cyan);
-            font-weight: 600;
-        }
-
-        .big-idea-attribution {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.9rem;
-            color: var(--text-muted);
-        }
-
-        /* ===== PROBLEM/SOLUTION ===== */
-        .problem-solution {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin: 3rem 0;
-        }
-
-        @media (max-width: 768px) {
-            .problem-solution { grid-template-columns: 1fr; }
-        }
-
-        .problem-card, .solution-card {
-            padding: 2rem;
-            border-radius: 16px;
-            border: 1px solid;
-        }
-
-        .problem-card {
-            background: linear-gradient(135deg, rgba(244, 63, 94, 0.05) 0%, rgba(244, 63, 94, 0.02) 100%);
-            border-color: rgba(244, 63, 94, 0.2);
-        }
-
-        .solution-card {
-            background: linear-gradient(135deg, rgba(16, 185, 129, 0.05) 0%, rgba(16, 185, 129, 0.02) 100%);
-            border-color: rgba(16, 185, 129, 0.2);
-        }
-
-        .card-icon {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        .card-title {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 0.75rem;
-        }
-
-        .problem-card .card-title { color: var(--accent-rose); }
-        .solution-card .card-title { color: var(--accent-emerald); }
-
-        .card-text {
-            color: var(--text-secondary);
-            font-size: 1rem;
+            font-family: var(--font-body);
+            background: var(--bg);
+            color: var(--body);
+            font-size: 17px;
             line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { color: var(--accent-ink); text-decoration: underline; }
+        :focus-visible { outline: 3px solid var(--accent-bright); outline-offset: 3px; border-radius: 4px; }
+
+        .skip-link {
+            position: fixed; top: 12px; left: 12px; z-index: 200;
+            padding: 10px 16px; border-radius: 8px;
+            background: var(--ink); color: #fff;
+            font-family: var(--font-ui); font-weight: 600; font-size: .88rem;
+            transform: translateY(-180%); transition: transform .18s ease;
+        }
+        .skip-link:focus { transform: translateY(0); color: #fff; text-decoration: none; }
+
+        .claim-banner {
+            background: #78350f; border-bottom: 2px solid #f59e0b;
+            color: #fff7ed; text-align: center;
+            padding: 14px 24px;
+            font: 600 15px/1.5 var(--font-ui);
+        }
+        .claim-banner a { color: #fde68a; }
+
+        .topbar {
+            position: sticky; top: 0; z-index: 100;
+            background: var(--ink); border-bottom: 1px solid var(--dark-line);
+        }
+        .topbar-inner {
+            max-width: var(--maxw); margin: 0 auto;
+            display: flex; align-items: center; gap: 20px; padding: 12px 24px;
+        }
+        .brand {
+            font-family: var(--font-ui); font-weight: 700; font-size: .95rem;
+            color: #fff; white-space: nowrap;
+        }
+        .brand span { color: var(--accent-bright); }
+        .brand:hover { text-decoration: none; color: var(--accent-bright); }
+        .topbar-links { display: flex; gap: 16px; margin-left: auto; flex-wrap: wrap; }
+        .topbar-links a {
+            color: var(--dark-body); font-family: var(--font-ui);
+            font-size: .8rem; font-weight: 500;
+        }
+        .topbar-links a:hover { color: #fff; text-decoration: none; }
+        .mobile-nav-hint { display: none; color: var(--dark-muted); font-family: var(--font-ui); font-size: .66rem; letter-spacing: .08em; text-transform: uppercase; }
+
+        .hero {
+            background: var(--ink); color: #fff;
+            padding: 56px 24px 48px; text-align: center;
+        }
+        .hero-inner { max-width: 800px; margin: 0 auto; }
+        .hero-kicker {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 6px 14px; border-radius: 999px;
+            background: rgba(180,83,9,.15); border: 1px solid rgba(245,158,11,.3);
+            color: #f59e0b;
+            font-family: var(--font-ui); font-size: .72rem; font-weight: 600;
+            letter-spacing: .12em; text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+        .hero h1 {
+            font-family: var(--font-display); font-weight: 700;
+            font-size: clamp(2rem, 5vw, 3.4rem);
+            line-height: 1.1; letter-spacing: -.03em;
+            color: #fff; margin: 0 0 16px;
+        }
+        .hero-sub { font-size: 1.18rem; color: var(--dark-body); margin: 0 0 28px; }
+        .hero-stats { display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; }
+        .hero-stat-value {
+            font-family: var(--font-display); font-size: 2.2rem; font-weight: 700;
+            color: var(--accent-bright);
+        }
+        .hero-stat-label {
+            font-family: var(--font-ui); font-size: .76rem; color: var(--dark-muted);
+            text-transform: uppercase; letter-spacing: .1em;
         }
 
-        /* ===== SECTION HEADERS ===== */
-        .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
+        .body-wrap {
+            max-width: var(--maxw); margin: 0 auto;
+            display: grid; grid-template-columns: var(--sidebar-w) 1fr; gap: 0;
         }
-
-        .section-number {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: var(--accent-violet);
-            text-transform: uppercase;
-            letter-spacing: 0.3em;
-            margin-bottom: 1rem;
+        .toc {
+            position: sticky; top: 50px; align-self: start;
+            padding: 40px 20px 40px 24px;
+            max-height: calc(100vh - 50px); overflow-y: auto;
         }
-
-        .section-title {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: clamp(2rem, 5vw, 3rem);
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 1rem;
+        .toc-title {
+            font-family: var(--font-ui); font-size: .68rem; font-weight: 600;
+            letter-spacing: .12em; text-transform: uppercase;
+            color: var(--muted); margin-bottom: 14px;
         }
-
-        .section-subtitle {
-            font-size: 1.2rem;
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto;
+        .toc ul { list-style: none; padding: 0; margin: 0; counter-reset: toc; }
+        .toc li { counter-increment: toc; margin-bottom: 2px; }
+        .toc li a {
+            display: block; padding: 7px 10px; border-radius: 6px;
+            color: var(--body); font-family: var(--font-ui);
+            font-size: .82rem; font-weight: 500; line-height: 1.3;
         }
-
-        /* ===== TYPOGRAPHY ===== */
-        h2 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 1.5rem;
+        .toc li a::before {
+            content: counter(toc, decimal-leading-zero);
+            color: var(--muted); font-size: .72rem; margin-right: 8px;
         }
+        .toc li a:hover { background: var(--accent-soft); color: var(--accent-ink); text-decoration: none; }
 
+        .content { padding: 0 48px 80px 0; max-width: var(--content-w); }
+
+        .section { padding: 56px 0; }
+        .section-num {
+            font-family: var(--font-display); font-size: 3.5rem; font-weight: 700;
+            color: var(--line); line-height: 1; margin-bottom: -8px;
+        }
+        .section-kicker {
+            font-family: var(--font-ui); font-size: .74rem; font-weight: 600;
+            letter-spacing: .14em; text-transform: uppercase;
+            color: var(--accent); margin-bottom: 8px;
+        }
+        h2.section-h {
+            font-family: var(--font-display); font-weight: 700;
+            font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+            line-height: 1.15; letter-spacing: -.02em;
+            color: var(--ink); margin: 4px 0 20px;
+        }
         h3 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: var(--accent-violet);
-            margin-top: 3rem;
-            margin-bottom: 1rem;
+            font-family: var(--font-ui); font-size: 1.05rem; font-weight: 600;
+            color: var(--ink); margin: 24px 0 8px;
+        }
+        p { margin: 12px 0; color: var(--body); }
+        strong { color: var(--ink); font-weight: 600; }
+        em { font-style: italic; }
+        code {
+            font-family: var(--mono); background: var(--accent-soft);
+            padding: 2px 6px; border-radius: 4px; font-size: .88em;
+            color: var(--accent-ink);
         }
 
-        p {
-            margin-bottom: 1.5rem;
-            color: var(--text-secondary);
+        .dark-section {
+            background: var(--ink); color: #fff; padding: 64px 0; margin: 0;
+        }
+        .dark-section .inner { max-width: var(--content-w); margin: 0 auto; padding: 0 48px 0 24px; }
+        .dark-section .section-kicker { color: var(--accent-bright); }
+        .dark-section .section-h { color: #fff; }
+        .dark-section .section-num { color: rgba(255,255,255,.08); }
+        .dark-section p { color: var(--dark-body); }
+        .dark-section strong { color: #fff; }
+        .dark-section em { color: var(--accent-bright); font-style: normal; }
+        .dark-section a { color: var(--accent-bright); }
+
+        .big-idea {
+            text-align: center; padding: 48px 0;
+        }
+        .big-idea-text {
+            font-family: var(--font-display); font-style: italic;
+            font-size: clamp(1.3rem, 3vw, 1.8rem);
+            color: var(--ink); max-width: 700px; margin: 0 auto; line-height: 1.5;
+        }
+        .big-idea-text strong { color: var(--accent); font-style: normal; }
+        .big-idea-attr {
+            font-family: var(--font-ui); font-size: .85rem;
+            color: var(--muted); margin-top: 16px;
         }
 
-        strong {
-            color: var(--text-primary);
-            font-weight: 600;
+        .problem-solution {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 28px 0;
         }
-
-        /* ===== VISUAL EQUATION ===== */
-        .visual-equation {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-            padding: 3rem 2rem;
-            margin: 3rem 0;
-            background: var(--bg-card);
-            border-radius: 20px;
-            border: 1px solid rgba(139, 92, 246, 0.2);
+        .ps-card {
+            padding: 24px; border-radius: 14px; border: 1px solid;
         }
+        .ps-card.problem {
+            background: var(--bad-soft); border-color: #fecaca;
+        }
+        .ps-card.solution {
+            background: var(--ok-soft); border-color: #bbf7d0;
+        }
+        .ps-card h3 { margin-bottom: 8px; }
+        .ps-card.problem h3 { color: var(--bad); }
+        .ps-card.solution h3 { color: var(--ok); }
+        .ps-card p { margin: 0; font-size: .94rem; }
 
+        .punchline {
+            text-align: center; padding: 32px; margin: 32px 0;
+            border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+        }
+        .punchline-text {
+            font-family: var(--font-display); font-weight: 600;
+            font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+            color: var(--ink); max-width: 700px; margin: 0 auto; line-height: 1.5;
+        }
+        .punchline-text em { color: var(--accent); font-style: normal; }
+        .dark-section .punchline {
+            border-color: var(--dark-line);
+        }
+        .dark-section .punchline-text { color: #fff; }
+        .dark-section .punchline-text em { color: var(--accent-bright); }
+
+        .equation-visual {
+            display: flex; align-items: center; justify-content: center;
+            gap: 1rem; flex-wrap: wrap; padding: 28px; margin: 28px 0;
+            background: var(--paper); border: 1px solid var(--line);
+            border-radius: 16px; box-shadow: 0 1px 3px rgba(0,0,0,.04);
+        }
         .eq-box {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 1.5rem 2rem;
-            background: var(--bg-elevated);
-            border-radius: 12px;
+            display: flex; flex-direction: column; align-items: center; gap: 4px;
+            padding: 18px 24px; background: var(--bg); border-radius: 10px;
             min-width: 120px;
         }
-
-        .eq-icon {
-            font-size: 2rem;
-        }
-
         .eq-label {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--text-primary);
+            font-family: var(--font-ui); font-size: .88rem; font-weight: 600;
+            color: var(--ink);
         }
-
         .eq-sublabel {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.7rem;
-            color: var(--text-muted);
+            font-family: var(--font-ui); font-size: .72rem; color: var(--muted);
         }
-
         .eq-operator {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--accent-violet);
+            font-family: var(--font-display); font-size: 1.8rem; font-weight: 700;
+            color: var(--accent);
         }
-
-        .eq-result {
-            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(6, 182, 212, 0.1) 100%);
-            border: 1px solid rgba(16, 185, 129, 0.3);
+        .eq-box.result {
+            background: var(--accent-soft); border: 1px solid #cffafe;
         }
+        .eq-box.result .eq-label { color: var(--accent-ink); }
 
-        .eq-result .eq-label {
-            color: var(--accent-emerald);
-        }
-
-        /* ===== THEOREM BOX ===== */
         .theorem-box {
-            position: relative;
-            background: linear-gradient(135deg, rgba(139, 92, 246, 0.08) 0%, rgba(217, 70, 239, 0.05) 50%, rgba(6, 182, 212, 0.03) 100%);
-            border: 2px solid rgba(139, 92, 246, 0.3);
-            border-radius: 20px;
-            padding: 3rem;
-            margin: 3rem 0;
-            overflow: hidden;
+            margin: 28px 0; padding: 28px 32px; border-radius: 14px;
+            background: var(--accent-soft); border: 1px solid #cffafe;
+            border-left: 4px solid var(--accent);
         }
-
-        .theorem-box::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: var(--gradient-hero);
-        }
-
         .theorem-badge {
-            display: inline-block;
-            padding: 0.4rem 1rem;
-            background: rgba(139, 92, 246, 0.2);
-            border-radius: 50px;
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: var(--accent-violet);
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            margin-bottom: 1.5rem;
+            display: inline-block; margin-bottom: 12px; padding: 4px 12px;
+            border-radius: 999px; background: rgba(14,116,144,.15);
+            font-family: var(--font-ui); font-size: .72rem; font-weight: 600;
+            color: var(--accent); text-transform: uppercase; letter-spacing: .12em;
         }
-
         .theorem-title {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 1.5rem;
+            font-family: var(--font-display); font-size: 1.3rem; font-weight: 700;
+            color: var(--ink); margin-bottom: 14px;
         }
+        .theorem-box p { margin: 8px 0; color: var(--ink-2); }
+        .theorem-box strong { color: var(--accent-ink); }
+        .theorem-box ul { margin: 8px 0; }
 
-        .theorem-content {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            line-height: 1.8;
-        }
-
-        .theorem-content strong {
-            color: var(--accent-cyan);
-        }
-
-        /* ===== PUNCHLINE BOX ===== */
-        .punchline {
-            text-align: center;
-            padding: 4rem 2rem;
-            margin: 4rem 0;
-            background: linear-gradient(180deg, rgba(139, 92, 246, 0.05) 0%, transparent 100%);
-            border-top: 1px solid rgba(139, 92, 246, 0.2);
-            border-bottom: 1px solid rgba(139, 92, 246, 0.2);
-        }
-
-        .punchline-text {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: clamp(1.3rem, 3vw, 1.8rem);
-            font-weight: 600;
-            color: var(--text-primary);
-            max-width: 800px;
-            margin: 0 auto;
-            line-height: 1.5;
-        }
-
-        .punchline-text em {
-            color: var(--accent-cyan);
-            font-style: normal;
-        }
-
-        /* ===== PROOF STEPS ===== */
-        .proof-steps {
-            margin: 3rem 0;
-        }
-
-        .proof-step {
-            display: flex;
-            gap: 1.5rem;
-            padding: 2rem;
-            margin-bottom: 1rem;
-            background: var(--bg-card);
-            border-radius: 16px;
-            border-left: 4px solid var(--accent-violet);
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .proof-step:hover {
-            transform: translateX(8px);
-            box-shadow: -8px 0 30px rgba(139, 92, 246, 0.1);
-        }
-
-        .proof-step-number {
-            flex-shrink: 0;
-            width: 48px;
-            height: 48px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, var(--accent-violet) 0%, var(--accent-purple) 100%);
-            border-radius: 12px;
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: white;
-        }
-
-        .proof-step-content h4 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 0.5rem;
-        }
-
-        .proof-step-content p {
-            margin-bottom: 0;
-            font-size: 1rem;
-        }
-
-        /* ===== VCC DIAGRAM ===== */
-        .vcc-diagram {
-            padding: 4rem 2rem;
-            margin: 3rem 0;
-            background: var(--bg-card);
-            border-radius: 24px;
-            border: 1px solid rgba(139, 92, 246, 0.2);
-        }
-
-        .vcc-title {
-            text-align: center;
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 3rem;
-        }
-
-        .vcc-cycle {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .vcc-node {
-            position: relative;
-            width: 140px;
-            height: 140px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            background: var(--bg-elevated);
-            border-radius: 50%;
-            border: 2px solid;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .vcc-node:hover {
-            transform: scale(1.1);
-        }
-
-        .vcc-node-1 { border-color: var(--accent-violet); }
-        .vcc-node-2 { border-color: var(--accent-emerald); }
-        .vcc-node-3 { border-color: var(--accent-amber); }
-        .vcc-node-4 { border-color: var(--accent-cyan); }
-
-        .vcc-node:hover { box-shadow: 0 0 40px var(--glow-violet); }
-
-        .vcc-node-icon {
-            font-size: 1.8rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .vcc-node-label {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-
-        .vcc-arrow {
-            font-size: 2rem;
-            color: var(--accent-violet);
-            animation: pulse-arrow 2s ease-in-out infinite;
-        }
-
-        @keyframes pulse-arrow {
-            0%, 100% { opacity: 0.5; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.2); }
-        }
-
-        /* ===== MATH BLOCKS ===== */
-        .math-block {
-            background: var(--bg-card);
-            border-radius: 12px;
-            padding: 2rem;
-            margin: 2rem 0;
-            text-align: center;
-            overflow-x: auto;
-            border-left: 3px solid var(--accent-cyan);
-        }
-
-        /* ===== VERIFICATION GRID ===== */
-        .verification-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 1rem;
-            margin: 2rem 0;
-        }
-
-        .verification-card {
-            background: var(--bg-card);
-            border: 1px solid rgba(139, 92, 246, 0.2);
-            border-radius: 16px;
-            padding: 1.5rem;
-            transition: transform 0.2s, border-color 0.2s;
-        }
-
-        .verification-card:hover {
-            transform: translateY(-4px);
-            border-color: var(--accent-violet);
-        }
-
-        .verification-card.verified {
-            border-left: 4px solid var(--accent-emerald);
-        }
-
-        .verification-status {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.7rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--accent-emerald);
-            margin-bottom: 0.5rem;
-        }
-
-        .verification-title {
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 0.25rem;
-        }
-
-        .verification-desc {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            margin: 0;
-        }
-
-        /* ===== CODE ===== */
-        code {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85em;
-            background: var(--bg-elevated);
-            padding: 0.2em 0.5em;
-            border-radius: 6px;
-            color: var(--accent-cyan);
-        }
-
-        /* ===== FOOTER ===== */
-        footer {
-            background: var(--bg-secondary);
-            border-top: 1px solid rgba(139, 92, 246, 0.2);
-            padding: 4rem 2rem;
-            text-align: center;
-        }
-
-        .footer-logo {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-            background: var(--gradient-text);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 1rem;
-        }
-
-        footer p {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            margin-bottom: 0.5rem;
-        }
-
-        footer a {
-            color: var(--accent-violet);
-            text-decoration: none;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
-        }
-
-        /* ===== DIVIDERS ===== */
-        .divider {
-            height: 1px;
-            background: linear-gradient(90deg, transparent 0%, rgba(139, 92, 246, 0.3) 50%, transparent 100%);
-        }
-
-        /* ===== LISTS ===== */
-        ul {
-            margin-bottom: 1.5rem;
-            padding-left: 0;
-            list-style: none;
-        }
-
+        ul { margin: 14px 0; padding-left: 0; list-style: none; }
         li {
-            position: relative;
-            padding-left: 1.5rem;
-            margin-bottom: 0.75rem;
-            color: var(--text-secondary);
+            position: relative; padding-left: 22px; margin-bottom: 8px;
+            color: var(--body);
         }
-
         li::before {
-            content: '→';
-            position: absolute;
-            left: 0;
-            color: var(--accent-violet);
+            content: "\2192"; position: absolute; left: 0;
+            color: var(--accent); font-weight: 700;
         }
 
-        /* ===== RESPONSIVE ===== */
-        @media (max-width: 768px) {
-            body { font-size: 17px; }
-            section { padding: 4rem 1rem; }
-            .hero h1 { font-size: 2.5rem; }
-            .visual-equation { flex-direction: column; gap: 1rem; }
+        .proof-steps { margin: 28px 0; }
+        .proof-step {
+            display: flex; gap: 18px; padding: 22px; margin-bottom: 10px;
+            background: var(--paper); border: 1px solid var(--line);
+            border-radius: 14px; border-left: 4px solid var(--accent);
+            transition: transform .15s ease;
+        }
+        .proof-step:hover { transform: translateX(4px); }
+        .proof-step-num {
+            flex-shrink: 0; width: 44px; height: 44px;
+            display: flex; align-items: center; justify-content: center;
+            background: var(--accent); border-radius: 10px;
+            font-family: var(--font-ui); font-size: 1.1rem; font-weight: 700;
+            color: #fff;
+        }
+        .proof-step h4 {
+            font-family: var(--font-ui); font-size: 1rem; font-weight: 600;
+            color: var(--ink); margin: 0 0 4px;
+        }
+        .proof-step p { margin: 0; font-size: .94rem; }
+
+        .vcc-diagram {
+            padding: 32px; margin: 28px 0;
+            background: var(--paper); border: 1px solid var(--line);
+            border-radius: 18px; box-shadow: 0 1px 3px rgba(0,0,0,.04);
+        }
+        .vcc-title {
+            text-align: center; font-family: var(--font-ui);
+            font-size: 1.1rem; font-weight: 600; color: var(--ink); margin-bottom: 24px;
+        }
+        .vcc-cycle {
+            display: flex; justify-content: center; align-items: center;
+            gap: 12px; flex-wrap: wrap;
+        }
+        .vcc-node {
+            width: 130px; height: 130px;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            text-align: center; background: var(--bg); border-radius: 50%;
+            border: 2px solid; transition: transform .2s ease;
+        }
+        .vcc-node:hover { transform: scale(1.05); }
+        .vcc-node-1 { border-color: var(--accent); }
+        .vcc-node-2 { border-color: var(--ok); }
+        .vcc-node-3 { border-color: var(--warn); }
+        .vcc-node-4 { border-color: var(--accent-bright); }
+        .vcc-node-label {
+            font-family: var(--font-ui); font-size: .78rem; font-weight: 600;
+            color: var(--ink); line-height: 1.3;
+        }
+        .vcc-arrow {
+            font-size: 1.6rem; color: var(--accent);
+        }
+
+        .verification-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 14px; margin: 24px 0;
+        }
+        .verification-card {
+            background: var(--paper); border: 1px solid var(--line);
+            border-radius: 12px; padding: 20px;
+            border-left: 4px solid var(--ok);
+            transition: border-color .15s ease;
+        }
+        .verification-card:hover { border-color: var(--accent); }
+        .verification-status {
+            font-family: var(--font-ui); font-size: .68rem; font-weight: 600;
+            text-transform: uppercase; letter-spacing: .1em;
+            color: var(--ok); margin-bottom: 6px;
+        }
+        .verification-title {
+            font-family: var(--font-ui); font-weight: 600; color: var(--ink);
+            margin-bottom: 4px;
+        }
+        .verification-desc { font-size: .88rem; color: var(--muted); margin: 0; }
+        .dark-section .verification-card {
+            background: rgba(255,255,255,.04); border-color: var(--dark-line);
+            border-left-color: var(--ok);
+        }
+        .dark-section .verification-title { color: #fff; }
+        .dark-section .verification-desc { color: var(--dark-body); }
+
+        .btn {
+            display: inline-flex; align-items: center;
+            padding: 11px 20px; border-radius: 8px;
+            font-family: var(--font-ui); font-size: .86rem; font-weight: 600;
+            transition: transform .15s ease, background .15s ease;
+        }
+        .btn:hover { transform: translateY(-1px); text-decoration: none; }
+        .btn-primary { background: var(--accent-bright); color: var(--ink); }
+        .btn-primary:hover { background: #22d3ee; color: var(--ink); }
+        .btn-ghost { background: rgba(255,255,255,.06); color: #fff; border: 1px solid var(--dark-line); }
+        .btn-ghost:hover { background: rgba(255,255,255,.1); color: #fff; }
+        .actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 24px 0 0; }
+
+        footer {
+            text-align: center; padding: 40px 24px;
+            color: var(--muted); font-size: .88rem;
+            border-top: 1px solid var(--line); margin-top: 48px;
+        }
+        footer strong { color: var(--ink); }
+        footer a { color: var(--accent); }
+
+        @media (max-width: 980px) {
+            .hero-grid { grid-template-columns: 1fr; }
+            .body-wrap { grid-template-columns: 1fr; }
+            .toc { display: none; }
+            .content { padding: 0 24px 80px; max-width: 100%; }
+            .dark-section .inner { padding: 0 24px; }
+            .problem-solution { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 780px) {
+            .topbar-links {
+                display: flex; width: 100%; flex-wrap: nowrap;
+                justify-content: flex-start; overflow-x: auto;
+                overscroll-behavior-inline: contain; scrollbar-width: none;
+                padding: 2px 0 4px; margin-left: 0;
+                mask-image: linear-gradient(to right, transparent 0, black 12px, black calc(100% - 20px), transparent 100%);
+            }
+            .topbar-links::-webkit-scrollbar { display: none; }
+            .topbar-links a { flex: 0 0 auto; padding: 4px 2px; }
+            .mobile-nav-hint { display: block; }
+            .topbar-inner { flex-wrap: wrap; padding: 10px 16px; gap: 6px; }
+            .hero { padding: 48px 20px 40px; }
+            .hero-stats { gap: 1.5rem; }
+            .section { padding: 40px 0; }
+            .dark-section { padding: 48px 0; }
+            .section-num { font-size: 2.5rem; }
+            .equation-visual { flex-direction: column; gap: 10px; }
             .vcc-cycle { flex-direction: column; }
             .vcc-arrow { transform: rotate(90deg); }
         }
+        @media (max-width: 520px) {
+            body { font-size: 16px; }
+            .hero h1 { font-size: clamp(1.6rem, 7vw, 2.4rem); }
+            .actions .btn { width: 100%; justify-content: center; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            *, *::before, *::after {
+                animation-duration: .01ms !important;
+                transition-duration: .01ms !important;
+            }
+        }
     </style>
-<style type="text/css">.CtxtMenu_InfoClose {  top:.2em; right:.2em;}
-.CtxtMenu_InfoContent {  overflow:auto; text-align:left; font-size:80%;  padding:.4em .6em; border:1px inset; margin:1em 0px;  max-height:20em; max-width:30em; background-color:#EEEEEE;  white-space:normal;}
-.CtxtMenu_Info.CtxtMenu_MousePost {outline:none;}
-.CtxtMenu_Info {  position:fixed; left:50%; width:auto; text-align:center;  border:3px outset; padding:1em 2em; background-color:#DDDDDD;  color:black;  cursor:default; font-family:message-box; font-size:120%;  font-style:normal; text-indent:0; text-transform:none;  line-height:normal; letter-spacing:normal; word-spacing:normal;  word-wrap:normal; white-space:nowrap; float:none; z-index:201;  border-radius: 15px;                     /* Opera 10.5 and IE9 */  -webkit-border-radius:15px;               /* Safari and Chrome */  -moz-border-radius:15px;                  /* Firefox */  -khtml-border-radius:15px;                /* Konqueror */  box-shadow:0px 10px 20px #808080;         /* Opera 10.5 and IE9 */  -webkit-box-shadow:0px 10px 20px #808080; /* Safari 3 & Chrome */  -moz-box-shadow:0px 10px 20px #808080;    /* Forefox 3.5 */  -khtml-box-shadow:0px 10px 20px #808080;  /* Konqueror */  filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color="gray", Positive="true"); /* IE */}
-</style><style type="text/css">.CtxtMenu_MenuClose {  position:absolute;  cursor:pointer;  display:inline-block;  border:2px solid #AAA;  border-radius:18px;  -webkit-border-radius: 18px;             /* Safari and Chrome */  -moz-border-radius: 18px;                /* Firefox */  -khtml-border-radius: 18px;              /* Konqueror */  font-family: "Courier New", Courier;  font-size:24px;  color:#F0F0F0}
-.CtxtMenu_MenuClose span {  display:block; background-color:#AAA; border:1.5px solid;  border-radius:18px;  -webkit-border-radius: 18px;             /* Safari and Chrome */  -moz-border-radius: 18px;                /* Firefox */  -khtml-border-radius: 18px;              /* Konqueror */  line-height:0;  padding:8px 0 6px     /* may need to be browser-specific */}
-.CtxtMenu_MenuClose:hover {  color:white!important;  border:2px solid #CCC!important}
-.CtxtMenu_MenuClose:hover span {  background-color:#CCC!important}
-.CtxtMenu_MenuClose:hover:focus {  outline:none}
-</style><style type="text/css">.CtxtMenu_Menu {  position:absolute;  background-color:white;  color:black;  width:auto; padding:5px 0px;  border:1px solid #CCCCCC; margin:0; cursor:default;  font: menu; text-align:left; text-indent:0; text-transform:none;  line-height:normal; letter-spacing:normal; word-spacing:normal;  word-wrap:normal; white-space:nowrap; float:none; z-index:201;  border-radius: 5px;                     /* Opera 10.5 and IE9 */  -webkit-border-radius: 5px;             /* Safari and Chrome */  -moz-border-radius: 5px;                /* Firefox */  -khtml-border-radius: 5px;              /* Konqueror */  box-shadow:0px 10px 20px #808080;         /* Opera 10.5 and IE9 */  -webkit-box-shadow:0px 10px 20px #808080; /* Safari 3 & Chrome */  -moz-box-shadow:0px 10px 20px #808080;    /* Forefox 3.5 */  -khtml-box-shadow:0px 10px 20px #808080;  /* Konqueror */}
-.CtxtMenu_MenuItem {  padding: 1px 2em;  background:transparent;}
-.CtxtMenu_MenuArrow {  position:absolute; right:.5em; padding-top:.25em; color:#666666;  font-family: null; font-size: .75em}
-.CtxtMenu_MenuActive .CtxtMenu_MenuArrow {color:white}
-.CtxtMenu_MenuArrow.CtxtMenu_RTL {left:.5em; right:auto}
-.CtxtMenu_MenuCheck {  position:absolute; left:.7em;  font-family: null}
-.CtxtMenu_MenuCheck.CtxtMenu_RTL { right:.7em; left:auto }
-.CtxtMenu_MenuRadioCheck {  position:absolute; left: .7em;}
-.CtxtMenu_MenuRadioCheck.CtxtMenu_RTL {  right: .7em; left:auto}
-.CtxtMenu_MenuInputBox {  padding-left: 1em; right:.5em; color:#666666;  font-family: null;}
-.CtxtMenu_MenuInputBox.CtxtMenu_RTL {  left: .1em;}
-.CtxtMenu_MenuComboBox {  left:.1em; padding-bottom:.5em;}
-.CtxtMenu_MenuSlider {  left: .1em;}
-.CtxtMenu_SliderValue {  position:absolute; right:.1em; padding-top:.25em; color:#333333;  font-size: .75em}
-.CtxtMenu_SliderBar {  outline: none; background: #d3d3d3}
-.CtxtMenu_MenuLabel {  padding: 1px 2em 3px 1.33em;  font-style:italic}
-.CtxtMenu_MenuRule {  border-top: 1px solid #DDDDDD;  margin: 4px 3px;}
-.CtxtMenu_MenuDisabled {  color:GrayText}
-.CtxtMenu_MenuActive {  background-color: #606872;  color: white;}
-.CtxtMenu_MenuDisabled:focus {  background-color: #E8E8E8}
-.CtxtMenu_MenuLabel:focus {  background-color: #E8E8E8}
-.CtxtMenu_ContextMenu:focus {  outline:none}
-.CtxtMenu_ContextMenu .CtxtMenu_MenuItem:focus {  outline:none}
-.CtxtMenu_SelectionMenu {  position:relative; float:left;  border-bottom: none; -webkit-box-shadow:none; -webkit-border-radius:0px; }
-.CtxtMenu_SelectionItem {  padding-right: 1em;}
-.CtxtMenu_Selection {  right: 40%; width:50%; }
-.CtxtMenu_SelectionBox {  padding: 0em; max-height:20em; max-width: none;  background-color:#FFFFFF;}
-.CtxtMenu_SelectionDivider {  clear: both; border-top: 2px solid #000000;}
-.CtxtMenu_Menu .CtxtMenu_MenuClose {  top:-10px; left:-10px}
-</style><style id="MJX-CHTML-styles">
-mjx-container[jax="CHTML"] {
-  line-height: 0;
-}
-
-mjx-container [space="1"] {
-  margin-left: .111em;
-}
-
-mjx-container [space="2"] {
-  margin-left: .167em;
-}
-
-mjx-container [space="3"] {
-  margin-left: .222em;
-}
-
-mjx-container [space="4"] {
-  margin-left: .278em;
-}
-
-mjx-container [space="5"] {
-  margin-left: .333em;
-}
-
-mjx-container [rspace="1"] {
-  margin-right: .111em;
-}
-
-mjx-container [rspace="2"] {
-  margin-right: .167em;
-}
-
-mjx-container [rspace="3"] {
-  margin-right: .222em;
-}
-
-mjx-container [rspace="4"] {
-  margin-right: .278em;
-}
-
-mjx-container [rspace="5"] {
-  margin-right: .333em;
-}
-
-mjx-container [size="s"] {
-  font-size: 70.7%;
-}
-
-mjx-container [size="ss"] {
-  font-size: 50%;
-}
-
-mjx-container [size="Tn"] {
-  font-size: 60%;
-}
-
-mjx-container [size="sm"] {
-  font-size: 85%;
-}
-
-mjx-container [size="lg"] {
-  font-size: 120%;
-}
-
-mjx-container [size="Lg"] {
-  font-size: 144%;
-}
-
-mjx-container [size="LG"] {
-  font-size: 173%;
-}
-
-mjx-container [size="hg"] {
-  font-size: 207%;
-}
-
-mjx-container [size="HG"] {
-  font-size: 249%;
-}
-
-mjx-container [width="full"] {
-  width: 100%;
-}
-
-mjx-box {
-  display: inline-block;
-}
-
-mjx-block {
-  display: block;
-}
-
-mjx-itable {
-  display: inline-table;
-}
-
-mjx-row {
-  display: table-row;
-}
-
-mjx-row > * {
-  display: table-cell;
-}
-
-mjx-mtext {
-  display: inline-block;
-}
-
-mjx-mstyle {
-  display: inline-block;
-}
-
-mjx-merror {
-  display: inline-block;
-  color: red;
-  background-color: yellow;
-}
-
-mjx-mphantom {
-  visibility: hidden;
-}
-
-_::-webkit-full-page-media, _:future, :root mjx-container {
-  will-change: opacity;
-}
-
-mjx-assistive-mml {
-  position: absolute !important;
-  top: 0px;
-  left: 0px;
-  clip: rect(1px, 1px, 1px, 1px);
-  padding: 1px 0px 0px 0px !important;
-  border: 0px !important;
-  display: block !important;
-  width: auto !important;
-  overflow: hidden !important;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-
-mjx-assistive-mml[display="block"] {
-  width: 100% !important;
-}
-
-mjx-c::before {
-  display: block;
-  width: 0;
-}
-
-.MJX-TEX {
-  font-family: MJXZERO, MJXTEX;
-}
-
-.TEX-B {
-  font-family: MJXZERO, MJXTEX-B;
-}
-
-.TEX-I {
-  font-family: MJXZERO, MJXTEX-I;
-}
-
-.TEX-MI {
-  font-family: MJXZERO, MJXTEX-MI;
-}
-
-.TEX-BI {
-  font-family: MJXZERO, MJXTEX-BI;
-}
-
-.TEX-S1 {
-  font-family: MJXZERO, MJXTEX-S1;
-}
-
-.TEX-S2 {
-  font-family: MJXZERO, MJXTEX-S2;
-}
-
-.TEX-S3 {
-  font-family: MJXZERO, MJXTEX-S3;
-}
-
-.TEX-S4 {
-  font-family: MJXZERO, MJXTEX-S4;
-}
-
-.TEX-A {
-  font-family: MJXZERO, MJXTEX-A;
-}
-
-.TEX-C {
-  font-family: MJXZERO, MJXTEX-C;
-}
-
-.TEX-CB {
-  font-family: MJXZERO, MJXTEX-CB;
-}
-
-.TEX-FR {
-  font-family: MJXZERO, MJXTEX-FR;
-}
-
-.TEX-FRB {
-  font-family: MJXZERO, MJXTEX-FRB;
-}
-
-.TEX-SS {
-  font-family: MJXZERO, MJXTEX-SS;
-}
-
-.TEX-SSB {
-  font-family: MJXZERO, MJXTEX-SSB;
-}
-
-.TEX-SSI {
-  font-family: MJXZERO, MJXTEX-SSI;
-}
-
-.TEX-SC {
-  font-family: MJXZERO, MJXTEX-SC;
-}
-
-.TEX-T {
-  font-family: MJXZERO, MJXTEX-T;
-}
-
-.TEX-V {
-  font-family: MJXZERO, MJXTEX-V;
-}
-
-.TEX-VB {
-  font-family: MJXZERO, MJXTEX-VB;
-}
-
-mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
-  font-family: MJXZERO, MJXTEX-S1, MJXTEX-S4, MJXTEX, MJXTEX-A ! important;
-}
-
-@font-face /* 0 */ {
-  font-family: MJXZERO;
-  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Zero.woff") format("woff");
-}
-
-@font-face /* 1 */ {
-  font-family: MJXTEX;
-  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Regular.woff") format("woff");
-}
-
-@font-face /* 2 */ {
-  font-family: MJXTEX-B;
-  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Bold.woff") format("woff");
-}
-
-@font-face /* 3 */ {
-  font-family: MJXTEX-I;
-  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Math-Italic.woff") format("woff");
-}
-
-@font-face /* 4 */ {
-  font-family: MJXTEX-MI;
-  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Italic.woff") format("woff");
-}
-
-@font-face /* 5 */ {
-  font-family: MJXTEX-BI;
-  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Math-BoldItalic.woff") format("woff");
-}
-
-@font-face /* 6 */ {
-  font-family: MJXTEX-S1;
-  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size1-Regular.woff") format("woff");
-}
-
-@font-face /* 7 */ {
-  font-family: MJXTEX-S2;
-  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size2-Regular.woff") format("woff");
-}
-
-@font-face /* 8 */ {
-  font-family: MJXTEX-S3;
-  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size3-Regular.woff") format("woff");
-}
-
-@font-face /* 9 */ {
-  font-family: MJXTEX-S4;
-  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size4-Regular.woff") format("woff");
-}
-
-@font-face /* 10 */ {
-  font-family: MJXTEX-A;
-  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_AMS-Regular.woff") format("woff");
-}
-
-@font-face /* 11 */ {
-  font-family: MJXTEX-C;
-  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Regular.woff") format("woff");
-}
-
-@font-face /* 12 */ {
-  font-family: MJXTEX-CB;
-  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Bold.woff") format("woff");
-}
-
-@font-face /* 13 */ {
-  font-family: MJXTEX-FR;
-  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Fraktur-Regular.woff") format("woff");
-}
-
-@font-face /* 14 */ {
-  font-family: MJXTEX-FRB;
-  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Fraktur-Bold.woff") format("woff");
-}
-
-@font-face /* 15 */ {
-  font-family: MJXTEX-SS;
-  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Regular.woff") format("woff");
-}
-
-@font-face /* 16 */ {
-  font-family: MJXTEX-SSB;
-  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Bold.woff") format("woff");
-}
-
-@font-face /* 17 */ {
-  font-family: MJXTEX-SSI;
-  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Italic.woff") format("woff");
-}
-
-@font-face /* 18 */ {
-  font-family: MJXTEX-SC;
-  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Script-Regular.woff") format("woff");
-}
-
-@font-face /* 19 */ {
-  font-family: MJXTEX-T;
-  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Typewriter-Regular.woff") format("woff");
-}
-
-@font-face /* 20 */ {
-  font-family: MJXTEX-V;
-  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Regular.woff") format("woff");
-}
-
-@font-face /* 21 */ {
-  font-family: MJXTEX-VB;
-  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Bold.woff") format("woff");
-}
-</style></head>
-<body>
-    <div style="position: relative; z-index: 1000; padding: 16px 24px; background: #3b1d0b; border-bottom: 2px solid #f59e0b; color: #fff7ed; text-align: center; font: 600 16px/1.5 system-ui, sans-serif;">
-        Historical Version 1 visualization. Its universal and zero-threshold claims were withdrawn.
-        <a href="v1-1-hyperdeflationary-alignment.html" style="color: #fde68a;">Version 1.1 states the repaired conditional theorem and counterexamples.</a>
+</head>
+<body id="top">
+    <a class="skip-link" href="#main-content">Skip to the article</a>
+
+    <div class="claim-banner" role="note">
+        Version 1&rsquo;s EETF/VCC exclusion mechanism is retained. Its lost-upside term is opportunity cost, with no tax or balance debit.
+        <a href="current-tau-net-integration.html">See the distinct V1, V1.1, and V2 profiles on current Tau.</a>
     </div>
-    <!-- Animated Background -->
-    <div class="bg-grid"></div>
-    <div class="bg-glow bg-glow-1"></div>
-    <div class="bg-glow bg-glow-2"></div>
-    <div class="bg-glow bg-glow-3"></div>
 
-    <!-- Hero Section -->
-    <header class="hero">
-        <div class="hero-particles">
-            <script>
-                for(let i = 0; i < 30; i++) {
-                    document.write(`<div class="particle" style="left: ${Math.random() * 100}%; animation-delay: ${Math.random() * 10}s; animation-duration: ${8 + Math.random() * 6}s;"></div>`);
-                }
-            </script><div class="particle" style="left: 21.828244197019618%; animation-delay: 6.248345934856992s; animation-duration: 12.590596023354053s;"></div><div class="particle" style="left: 93.91562548771712%; animation-delay: 7.352752161894035s; animation-duration: 13.92668821067601s;"></div><div class="particle" style="left: 86.11645235517148%; animation-delay: 0.9928169555664312s; animation-duration: 11.174709267229385s;"></div><div class="particle" style="left: 39.39701294397805%; animation-delay: 4.208083786454301s; animation-duration: 8.088035857196076s;"></div><div class="particle" style="left: 40.51464869627719%; animation-delay: 1.8360248741845941s; animation-duration: 13.412432204042439s;"></div><div class="particle" style="left: 33.25224652925714%; animation-delay: 3.7045132234149705s; animation-duration: 9.311322856770408s;"></div><div class="particle" style="left: 72.90587218110616%; animation-delay: 5.927776221955371s; animation-duration: 13.661151787947492s;"></div><div class="particle" style="left: 52.41660924604427%; animation-delay: 9.84413331214175s; animation-duration: 11.395154417330197s;"></div><div class="particle" style="left: 45.343459806983844%; animation-delay: 4.3498296084556305s; animation-duration: 11.895090871019926s;"></div><div class="particle" style="left: 26.21092248923552%; animation-delay: 6.655711304847248s; animation-duration: 13.44337153778675s;"></div><div class="particle" style="left: 99.90935017818487%; animation-delay: 2.852111302911895s; animation-duration: 13.839933857113785s;"></div><div class="particle" style="left: 75.29261636512025%; animation-delay: 7.873492166905392s; animation-duration: 8.284797682674805s;"></div><div class="particle" style="left: 53.960398563215236%; animation-delay: 2.4006101276856917s; animation-duration: 12.38731793053772s;"></div><div class="particle" style="left: 86.2751406894978%; animation-delay: 4.016200309794259s; animation-duration: 11.513902797953703s;"></div><div class="particle" style="left: 54.95327113093757%; animation-delay: 9.69899401549383s; animation-duration: 12.412958944231045s;"></div><div class="particle" style="left: 17.11350007930621%; animation-delay: 0.8642441108785814s; animation-duration: 11.108245890508993s;"></div><div class="particle" style="left: 62.508370844541226%; animation-delay: 5.058729225344807s; animation-duration: 13.400118432614288s;"></div><div class="particle" style="left: 24.44335638798786%; animation-delay: 7.183298389729314s; animation-duration: 13.112829202757652s;"></div><div class="particle" style="left: 67.08034009066006%; animation-delay: 6.329084428035571s; animation-duration: 12.697161500815781s;"></div><div class="particle" style="left: 21.221940044047184%; animation-delay: 7.052997698546956s; animation-duration: 10.373920849269494s;"></div><div class="particle" style="left: 65.10972340641622%; animation-delay: 8.41472039255811s; animation-duration: 13.13905358268951s;"></div><div class="particle" style="left: 29.892260617279998%; animation-delay: 0.16782708256923962s; animation-duration: 9.411438791896956s;"></div><div class="particle" style="left: 61.14947371998236%; animation-delay: 1.3183397103745775s; animation-duration: 9.055160686900392s;"></div><div class="particle" style="left: 61.83740584950876%; animation-delay: 8.706260238139503s; animation-duration: 13.623300326775254s;"></div><div class="particle" style="left: 56.65808469191125%; animation-delay: 6.604018024922232s; animation-duration: 10.49892138649297s;"></div><div class="particle" style="left: 15.080760656160741%; animation-delay: 9.497410949109913s; animation-duration: 9.838834959467649s;"></div><div class="particle" style="left: 91.66856221808527%; animation-delay: 9.816933123202137s; animation-duration: 11.601722859804386s;"></div><div class="particle" style="left: 4.099469283160417%; animation-delay: 2.177418044001298s; animation-duration: 9.548468231655088s;"></div><div class="particle" style="left: 88.2913302474054%; animation-delay: 4.9111710380830935s; animation-duration: 9.158896457780658s;"></div><div class="particle" style="left: 9.776512803523573%; animation-delay: 6.623924383448438s; animation-duration: 13.508700388326595s;"></div>
+    <nav class="topbar" aria-label="Article navigation">
+        <div class="topbar-inner">
+            <a class="brand" href="index.html">Alignment<span> Theorem</span></a>
+            <span class="mobile-nav-hint" aria-hidden="true">Swipe for sections</span>
+            <div class="topbar-links">
+                <a href="index.html">Home</a>
+                <a href="#idea">The idea</a>
+                <a href="#challenge">The challenge</a>
+                <a href="#mechanism">The mechanism</a>
+                <a href="#theorem">The theorem</a>
+                <a href="#proof">The proof</a>
+                <a href="#vcc">Virtuous cycle</a>
+                <a href="#evidence">Evidence</a>
+                <a href="v1-1-hyperdeflationary-alignment.html">Version 1.1</a>
+            </div>
         </div>
-        
-        <div class="hero-content">
-            <span class="hero-badge">Historical Version 1 Hypothesis</span>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-inner">
+            <span class="hero-kicker">Version 1 &middot; concrete EETF/VCC mechanism</span>
             <h1>The Alignment Theorem</h1>
-            <p class="hero-tagline">What if being ethical was the <strong>most profitable</strong> strategy?</p>
-            
+            <p class="hero-sub">What if being ethical was the <em style="color:var(--accent-bright);font-style:normal">most profitable</em> strategy?</p>
             <div class="hero-stats">
                 <div class="hero-stat">
-                    <div class="hero-stat-value">∞</div>
-                    <div class="hero-stat-label">Scarcity Drives Ethics</div>
+                    <div class="hero-stat-value" style="font-size:clamp(1.1rem,2.4vw,2rem)">G&lt;M(R+L)</div>
+                    <div class="hero-stat-label">Strict Conditional Margin</div>
                 </div>
                 <div class="hero-stat">
                     <div class="hero-stat-value">Z3</div>
@@ -1259,301 +490,247 @@ mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
                 </div>
             </div>
         </div>
-
-        <div class="scroll-cue">
-            <span>Scroll to explore</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M12 5v14M5 12l7 7 7-7"></path>
-            </svg>
-        </div>
     </header>
 
-    <main class="content">
-        <!-- The Big Idea -->
-        <section class="big-idea">
-            <div class="container">
-                <div class="big-idea-label">The Core Insight</div>
+    <div class="body-wrap">
+        <aside class="toc" aria-label="Table of contents">
+            <div class="toc-title">Contents</div>
+            <ul>
+                <li><a href="#idea">The core insight</a></li>
+                <li><a href="#challenge">The challenge</a></li>
+                <li><a href="#mechanism">The mechanism</a></li>
+                <li><a href="#theorem">The theorem</a></li>
+                <li><a href="#proof">The proof</a></li>
+                <li><a href="#vcc">The virtuous cycle</a></li>
+                <li><a href="#evidence">Evidence &amp; limits</a></li>
+            </ul>
+        </aside>
+
+        <main id="main-content" class="content">
+
+            <section class="section big-idea" id="idea">
+                <div class="section-kicker">The core insight</div>
                 <p class="big-idea-text">
-                    Version 1 hypothesized that unbounded token scarcity could amplify ethically conditioned rewards enough to dominate competing opportunities. Version 1.1 makes the required relative-growth condition explicit.
+                    Version 1 makes eligible work more profitable by combining funded EETF-tier rewards with scarcity-linked upside that the excluded branch cannot obtain. <strong>The exact finite condition is G &lt; M(R+L).</strong>
                 </p>
-                <p class="big-idea-attribution">The Alignment Theorem</p>
-            </div>
-        </section>
+                <p class="big-idea-attr">The Alignment Theorem</p>
+            </section>
 
-        <div class="divider"></div>
-
-        <!-- The Problem & Solution -->
-        <section>
-            <div class="wide-container">
-                <div class="section-header">
-                    <div class="section-number">Section 01</div>
-                    <h2 class="section-title">The Challenge</h2>
-                    <p class="section-subtitle">How do you make selfish agents behave ethically without forcing them?</p>
-                </div>
-
+            <section class="section" id="challenge">
+                <div class="section-num">01</div>
+                <div class="section-kicker">The challenge</div>
+                <h2 class="section-h">How do you make selfish agents behave ethically without forcing them?</h2>
                 <div class="problem-solution">
-                    <div class="problem-card">
-                        <div class="card-icon">🚫</div>
-                        <div class="card-title">Traditional Approaches Have Limits</div>
-                        <p class="card-text">Hand-coded rules can be rigid, learned policies can be gamed, and centralized constitutions can concentrate control.</p>
+                    <div class="ps-card problem">
+                        <h3>Traditional approaches have limits</h3>
+                        <p>Hand-coded rules can be rigid, learned policies can be gamed, and centralized constitutions can concentrate control.</p>
                     </div>
-                    <div class="solution-card">
-                        <div class="card-icon">✨</div>
-                        <div class="card-title">Tau's Economic Approach</div>
-                        <p class="card-text">Don't force ethics. Make it <em>profitable</em>. Wire the community's ethical consensus directly into the reward function. Let economics do the rest.</p>
+                    <div class="ps-card solution">
+                        <h3>Tau&rsquo;s economic approach</h3>
+                        <p>Make policy-eligible work <em>profitable</em>. Bind a declared community policy to authenticated facts, funded rewards, and an enforceable entitlement boundary.</p>
                     </div>
                 </div>
-
                 <div class="punchline">
                     <p class="punchline-text">
-                        The protocol doesn't decide what's good. <em>Society does.</em><br>
+                        The protocol doesn&rsquo;t decide what&rsquo;s good. <em>Society does.</em><br>
                         The protocol can make violations <em>less profitable within the modeled bounds.</em>
                     </p>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <div class="divider"></div>
-
-        <!-- How It Works -->
-        <section>
-            <div class="wide-container">
-                <div class="section-header">
-                    <div class="section-number">Section 02</div>
-                    <h2 class="section-title">The Mechanism</h2>
-                    <p class="section-subtitle">Three forces combine to create an ethics engine</p>
-                </div>
-
-                <div class="visual-equation">
+            <section class="section" id="mechanism">
+                <div class="section-num">02</div>
+                <div class="section-kicker">The mechanism</div>
+                <h2 class="section-h">Three forces combine to create an ethics engine.</h2>
+                <div class="equation-visual">
                     <div class="eq-box">
-                        <div class="eq-icon">📉</div>
                         <div class="eq-label">Scarcity</div>
                         <div class="eq-sublabel">M(t) unbounded (assumption)</div>
                     </div>
-                    <div class="eq-operator">×</div>
+                    <div class="eq-operator">&times;</div>
                     <div class="eq-box">
-                        <div class="eq-icon">⚖️</div>
                         <div class="eq-label">Ethics Signal</div>
-                        <div class="eq-sublabel">EETF ∈ [0, 3]</div>
+                        <div class="eq-sublabel">EETF &isin; [0, 3]</div>
                     </div>
                     <div class="eq-operator">=</div>
-                    <div class="eq-box eq-result">
-                        <div class="eq-icon">🎯</div>
+                    <div class="eq-box result">
                         <div class="eq-label">Economic Pressure</div>
                         <div class="eq-sublabel">M(t)K(t) &gt; B(t)</div>
                     </div>
                 </div>
+                <h3>The EETF: Ethics as data</h3>
+                <p>Users publish formal ethical models in Tau Language. The network aggregates them into a single scalar: the <strong>Ethical-Eco Transaction Factor (EETF)</strong>. This number, between 0 and 3, represents what the community <em>currently</em> considers ethical.</p>
+                <p>EETF is a declared policy output. A real deployment must specify identity, aggregation, adversarial weight bounds, missing-data behavior, and revision authority; the scalar does not establish objective moral truth.</p>
+                <h3>Deflation creates scarcity</h3>
+                <p>Version 1 assumes a shrinking spendable supply and an unbounded purchasing-power multiplier. Version 1.1 treats that path as an external economic scenario. Finite supply rules alone do not prove purchasing power diverges.</p>
+                <h3>Pressure makes ethics profitable</h3>
+                <p>Write <code>R</code> for direct reward exposure, <code>L</code> for scarcity upside protected by eligibility, and <code>G</code> for the complete bounded deviation gain. The historical negative &ldquo;penalty&rdquo; term is exactly the upside missed through exclusion. Moving that opportunity cost to the eligible side preserves the ordering and creates no punitive transfer.</p>
+            </section>
 
-                <div class="container">
-                    <h3>The EETF: Ethics as Data</h3>
-                    <p>Users publish formal ethical models in Tau Language. The network aggregates them into a single scalar: the <strong>Ethical-Eco Transaction Factor (EETF)</strong>. This number, between 0 and 3, represents what the community <em>currently</em> considers ethical.</p>
-                    <p>The EETF isn't a fixed moral code. It's a <strong>living consensus</strong> that evolves as the community debates, refines, and updates their ethical models.</p>
-
-                    <h3>Deflation Creates Scarcity</h3>
-                    <p>Version 1 assumes a shrinking spendable supply and an unbounded purchasing-power multiplier. Version 1.1 treats that path as an external economic scenario. Finite supply rules alone do not prove purchasing power diverges.</p>
-
-                    <h3>Pressure Makes Ethics Profitable</h3>
-                    <p>Economic pressure can favor eligible work when scarcity amplifies a positive reward or forfeiture exposure faster than the complete deviation, compliance-cost, and optimizer-error bound. Faster-growing deviations defeat the mechanism.</p>
-                </div>
-            </div>
-        </section>
-
-        <div class="divider"></div>
-
-        <!-- The Theorem -->
-        <section style="background: linear-gradient(180deg, var(--bg-void) 0%, var(--bg-secondary) 100%);">
-            <div class="container">
-                <div class="section-header">
-                    <div class="section-number">Section 03</div>
-                    <h2 class="section-title">The Theorem</h2>
-                    <p class="section-subtitle">The historical claim and its Version 1.1 repair</p>
-                </div>
-
-                <div class="theorem-box">
-                    <span class="theorem-badge">Corrected by Version 1.1</span>
-                    <h3 class="theorem-title">Restricted Hyperdeflationary Alignment Theorem</h3>
-                    <div class="theorem-content">
-                        <p><strong>Given:</strong></p>
+            <section class="dark-section" id="theorem">
+                <div class="inner">
+                    <div class="section-num">03</div>
+                    <div class="section-kicker">The theorem</div>
+                    <h2 class="section-h">The concrete V1 theorem and its V1.1 generalization.</h2>
+                    <div class="theorem-box" style="background:rgba(255,255,255,.04);border-color:var(--dark-line);border-left-color:var(--accent-bright)">
+                        <span class="theorem-badge" style="background:rgba(6,182,212,.15);color:var(--accent-bright)">Version 1 &middot; reconstructed from the academic paper</span>
+                        <div class="theorem-title" style="color:#fff">EETF-Gated Scarcity-Upside Exclusion Theorem</div>
+                        <p><strong style="color:var(--accent-bright)">Given:</strong></p>
                         <ul>
-                            <li><strong>Finite executable epochs:</strong> Every M(t), K(t), and B(t) is finite at runtime.</li>
-                            <li><strong>Positive ethical exposure:</strong> K(t) contains authenticated reward and optional forfeiture exposure.</li>
-                            <li><strong>Strict relative margin:</strong> M(t)K(t) &gt; B(t), including optimizer error.</li>
+                            <li><strong style="color:#fff">Authenticated eligibility:</strong> The policy root, network EETF, and candidate EETF tier are fixed for the decision.</li>
+                            <li><strong style="color:#fff">Enforceable exclusion:</strong> The eligible branch has funded direct reward coefficient R and exclusive scarcity-upside coefficient L. The excluded branch cannot obtain either entitlement. No tax or balance debit is applied.</li>
+                            <li><strong style="color:#fff">Strict finite margin:</strong> M(R + L) &gt; G, and the agent exactly maximizes utility over the declared alternatives.</li>
                         </ul>
-                        <p><strong>Then:</strong> Every epsilon-optimal choice in the declared two-action utility model is classified as ethical. The asymptotic result requires the strict margin eventually to remain true.</p>
+                        <p><strong style="color:var(--accent-bright)">Then:</strong> Every exact maximizer selects the eligible branch. For integers and R+L &gt; 0, the least strict multiplier is floor(G/(R+L))+1. If G=0, every positive M suffices.</p>
+                    </div>
+                    <div class="theorem-box" style="margin-top:20px;background:rgba(255,255,255,.04);border-color:var(--dark-line);border-left-color:#f59e0b">
+                        <span class="theorem-badge" style="background:rgba(245,158,11,.13);color:#fbbf24">Version 1.1 &middot; abstract generalization</span>
+                        <div class="theorem-title" style="color:#fff">Restricted Hyperdeflationary Alignment Theorem</div>
+                        <p>V1.1 writes <code>K(t)=R(t)+L(t)</code> and places deviation gain, compliance cost, and optimizer error in <code>B(t)</code>. If <code>M(t)K(t)&gt;B(t)</code>, every epsilon-optimal modeled choice is eligible. Its relative-growth theorem covers time-varying opposing bounds.</p>
+                    </div>
+                    <div class="punchline">
+                        <p class="punchline-text">
+                            In plain English: <em>scarcity helps only when ethically conditioned exposure grows faster than the complete opposing opportunity.</em>
+                        </p>
                     </div>
                 </div>
+            </section>
 
-                <div class="punchline">
-                    <p class="punchline-text">
-                        In plain English: <em>scarcity helps only when ethically conditioned exposure grows faster than the complete opposing opportunity.</em>
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- The Proof -->
-        <section>
-            <div class="container">
-                <div class="section-header">
-                    <div class="section-number">Section 04</div>
-                    <h2 class="section-title">The Proof</h2>
-                    <p class="section-subtitle">Four obligations in the repaired argument</p>
-                </div>
-
+            <section class="section" id="proof">
+                <div class="section-num">04</div>
+                <div class="section-kicker">The proof</div>
+                <h2 class="section-h">Four obligations in the V1 exclusion argument.</h2>
                 <div class="proof-steps">
                     <div class="proof-step">
-                        <div class="proof-step-number">1</div>
-                        <div class="proof-step-content">
-                            <h4>Bound Both Utilities</h4>
-                            <p>State an ethical lower bound and a non-ethical upper bound using the same baseline, units, and epoch.</p>
+                        <div class="proof-step-num">1</div>
+                        <div>
+                            <h4>Normalize exclusion correctly</h4>
+                            <p>Write the historical pair as <code>U_eligible=MR</code> and <code>U_excluded=G-ML</code>. Adding <code>ML</code> to both alternatives yields the equivalent no-debit comparison.</p>
                         </div>
                     </div>
                     <div class="proof-step">
-                        <div class="proof-step-number">2</div>
-                        <div class="proof-step-content">
-                            <h4>Include Every Opposing Term</h4>
-                            <p>Put private deviation gain, extra compliance cost, and optimizer error into B(t). Authenticate the action classification and fund any reward.</p>
+                        <div class="proof-step-num">2</div>
+                        <div>
+                            <h4>Bind the exclusive entitlement</h4>
+                            <p>Authenticate EETF and scarcity, fund the reward, and prove that the excluded branch cannot claim L. Upside common to both branches cancels.</p>
                         </div>
                     </div>
                     <div class="proof-step">
-                        <div class="proof-step-number">3</div>
-                        <div class="proof-step-content">
-                            <h4>Require a Strict Margin</h4>
-                            <p>Check M(t)K(t) &gt; B(t). Equality is a retained counterexample and does not force an ethical choice.</p>
+                        <div class="proof-step-num">3</div>
+                        <div>
+                            <h4>Require a strict margin</h4>
+                            <p>For V1 check <code>M(t)[R(t)+L(t)] &gt; G(t)</code>. V1.1 folds costs and optimizer error into B(t). Equality does not force an eligible choice.</p>
                         </div>
                     </div>
                     <div class="proof-step">
-                        <div class="proof-step-number">4</div>
-                        <div class="proof-step-content">
-                            <h4>Conclude Within the Model</h4>
-                            <p>The strict utility gap excludes a non-ethical epsilon-optimal choice. This conclusion remains conditional on the stated bounds and two-action model. ∎</p>
+                        <div class="proof-step-num">4</div>
+                        <div>
+                            <h4>Conclude within the model</h4>
+                            <p>The strict gap forces the eligible exact choice in V1 and the eligible epsilon-optimal choice in V1.1. Both remain conditional on the declared alternatives and authenticated bounds. &#8718;</p>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <div class="divider"></div>
-
-        <!-- The VCC Loop -->
-        <section>
-            <div class="wide-container">
-                <div class="section-header">
-                    <div class="section-number">Section 05</div>
-                    <h2 class="section-title">The Virtuous Cycle</h2>
-                    <p class="section-subtitle">A self-reinforcing loop that accelerates alignment</p>
-                </div>
-
+            <section class="section" id="vcc">
+                <div class="section-num">05</div>
+                <div class="section-kicker">The virtuous cycle</div>
+                <h2 class="section-h">A self-reinforcing loop that accelerates alignment.</h2>
                 <div class="vcc-diagram">
                     <div class="vcc-title">The VCC Feedback Loop</div>
                     <div class="vcc-cycle">
                         <div class="vcc-node vcc-node-1">
-                            <div class="vcc-node-icon">🤝</div>
                             <div class="vcc-node-label">Ethical<br>Behavior</div>
                         </div>
-                        <div class="vcc-arrow">→</div>
+                        <div class="vcc-arrow">&rarr;</div>
                         <div class="vcc-node vcc-node-2">
-                            <div class="vcc-node-icon">📈</div>
                             <div class="vcc-node-label">Higher<br>EETF</div>
                         </div>
-                        <div class="vcc-arrow">→</div>
+                        <div class="vcc-arrow">&rarr;</div>
                         <div class="vcc-node vcc-node-3">
-                            <div class="vcc-node-icon">🔥</div>
                             <div class="vcc-node-label">More<br>Burns</div>
                         </div>
-                        <div class="vcc-arrow">→</div>
+                        <div class="vcc-arrow">&rarr;</div>
                         <div class="vcc-node vcc-node-4">
-                            <div class="vcc-node-icon">💎</div>
                             <div class="vcc-node-label">Higher<br>Scarcity</div>
                         </div>
                     </div>
                 </div>
-
-                <div class="container">
-                    <p>The <strong>Virtuous Cycle Compounder (VCC)</strong> turns this theorem into working code. Three modules work together:</p>
-                    <ul>
-                        <li><strong>Dynamic Base Reward (DBR)</strong>: Rewards scale with your EETF score</li>
-                        <li><strong>Hyper-Compounding Rewards (HCR)</strong>: Stay ethical longer, compound faster</li>
-                        <li><strong>Aggressive Ethical Burn (AEB)</strong>: Ethical participation triggers burns, increasing scarcity</li>
-                    </ul>
-                    <p>Each ethical action increases EETF, which increases rewards, which incentivizes more burns, which increases scarcity, which increases pressure, which makes ethics even more profitable. <strong>The loop feeds itself.</strong></p>
+                <p>The historical <strong>Virtuous Cycle Compounder (VCC)</strong> proposes three modules around this feedback loop:</p>
+                <ul>
+                    <li><strong>Dynamic Base Reward (DBR)</strong>: Rewards scale with your EETF score</li>
+                    <li><strong>Hyper-Compounding Rewards (HCR)</strong>: Stay ethical longer, compound faster</li>
+                    <li><strong>Aggressive Ethical Burn (AEB)</strong>: Ethical participation triggers burns, increasing scarcity</li>
+                </ul>
+                <p>If authenticated participation raises EETF, funded rewards are paid, burns affect a valued scarcity measure, and the protected upside remains exclusive, the loop can reinforce eligible behavior. Each arrow is a separate empirical or protocol premise.</p>
+                <div class="actions">
+                    <a class="btn btn-primary" href="intelligence-hyperdeflation-flywheel.html">Explore the intelligence flywheel</a>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <div class="divider"></div>
-
-        <!-- Verification -->
-        <section style="background: var(--bg-secondary);">
-            <div class="wide-container">
-                <div class="section-header">
-                    <div class="section-number">Section 06</div>
-                    <h2 class="section-title">Historical Evidence and Current Repair</h2>
-                    <p class="section-subtitle">Legacy runs are exploratory; Version 1.1 carries the current machine-checked claim.</p>
-                </div>
-
-                <div class="verification-grid">
-                    <div class="verification-card verified">
-                        <div class="verification-status">Historical</div>
-                        <div class="verification-title">Z3 Experiments</div>
-                        <p class="verification-desc">Bounded legacy checks; no universal theorem claim.</p>
-                    </div>
-                    <div class="verification-card verified">
-                        <div class="verification-status">Historical</div>
-                        <div class="verification-title">Tau Scenarios</div>
-                        <p class="verification-desc">Legacy scenarios; V1.1 exact-current interpreter replay remains pending.</p>
-                    </div>
-                    <div class="verification-card verified">
-                        <div class="verification-status">Historical</div>
-                        <div class="verification-title">691K+ Stress Tests</div>
-                        <p class="verification-desc">Zero failures across 691,000 randomized iterations</p>
-                    </div>
-                    <div class="verification-card verified">
-                        <div class="verification-status">Historical</div>
-                        <div class="verification-title">FSM Coverage</div>
-                        <p class="verification-desc">100% state coverage, no deadlocks detected</p>
-                    </div>
-                    <div class="verification-card verified">
-                        <div class="verification-status">V1.1 Checked</div>
-                        <div class="verification-title">Lean 4.33.0</div>
-                        <p class="verification-desc">Utility bridge, least threshold, finite choice, and conditional asymptotic results.</p>
-                    </div>
-                    <div class="verification-card verified">
-                        <div class="verification-status">Explicit Limits</div>
-                        <div class="verification-title">Counterexamples</div>
-                        <p class="verification-desc">Equality, zero exposure, forged evidence, unfunded rewards, and faster deviations remain failures.</p>
+            <section class="dark-section" id="evidence">
+                <div class="inner">
+                    <div class="section-num">06</div>
+                    <div class="section-kicker">Historical evidence and current checked artifacts</div>
+                    <h2 class="section-h">The original experiments remain exploratory; V1, V1.1, and V2 now have separate checked profiles.</h2>
+                    <div class="verification-grid">
+                        <div class="verification-card">
+                            <div class="verification-status">Historical</div>
+                            <div class="verification-title">Z3 Experiments</div>
+                            <p class="verification-desc">Bounded legacy checks; no universal theorem claim.</p>
+                        </div>
+                        <div class="verification-card">
+                            <div class="verification-status">Historical</div>
+                            <div class="verification-title">Tau Scenarios</div>
+                            <p class="verification-desc">Legacy scenarios remain exploratory. The current source candidate separately matched the V1, V1.1, and V2 packets; public-node deployment remains pending.</p>
+                        </div>
+                        <div class="verification-card">
+                            <div class="verification-status">Historical</div>
+                            <div class="verification-title">691K+ Stress Tests</div>
+                            <p class="verification-desc">Zero failures across 691,000 randomized iterations</p>
+                        </div>
+                        <div class="verification-card">
+                            <div class="verification-status">Historical</div>
+                            <div class="verification-title">FSM Coverage</div>
+                            <p class="verification-desc">100% state coverage, no deadlocks detected</p>
+                        </div>
+                        <div class="verification-card">
+                            <div class="verification-status">V1 Checked</div>
+                            <div class="verification-title">Lean 4.33.0</div>
+                            <p class="verification-desc">EETF tiers, opportunity-cost normalization, exact threshold, exact choice, unbounded-scarcity implication, and common-upside cancellation.</p>
+                        </div>
+                        <div class="verification-card">
+                            <div class="verification-status">Current Tau Candidate</div>
+                            <div class="verification-title">128 V1 Rows</div>
+                            <p class="verification-desc">The source-pinned <code>9b191af</code> candidate matched all rows; only the all-true row is accepted. Facts remain externally supplied.</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- Final Punchline -->
-        <section>
-            <div class="container">
-                <div class="punchline" style="margin: 0; border: none; background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(6, 182, 212, 0.05) 100%); border-radius: 24px;">
-                    <p class="punchline-text" style="font-size: clamp(1.4rem, 3.5vw, 2rem);">
+            <section class="section">
+                <div class="punchline" style="border:1px solid var(--line);border-radius:18px;background:var(--accent-soft);margin:0">
+                    <p class="punchline-text" style="font-size:clamp(1.3rem,3vw,1.8rem)">
                         When scarcity-amplified ethical exposure strictly dominates every modeled opposing term,<br>
                         <em>epsilon-optimal choice favors the policy-eligible action within the declared model.</em>
                     </p>
                 </div>
-            </div>
-        </section>
-    </main>
+                <div class="actions" style="justify-content:center">
+                    <a class="btn btn-primary" href="alignment-theorem-v1-archive-notice.html">Read the V1 claim boundary</a>
+                    <a class="btn btn-ghost" href="Alignment_Theorem_V1_Original_2025.pdf" style="background:var(--paper);color:var(--ink);border:1px solid var(--line)">Read the original 16-page paper</a>
+                    <a class="btn btn-ghost" href="v1-1-hyperdeflationary-alignment.html" style="background:var(--paper);color:var(--ink);border:1px solid var(--line)">Read Version 1.1</a>
+                </div>
+            </section>
 
-    <!-- Footer -->
+        </main>
+    </div>
+
     <footer>
-        <div class="footer-logo">The Alignment Theorem</div>
-        <p><strong>Dana Edwards (DarkLightX)</strong></p>
-        <p>Community Researcher · December 2025</p>
-        <p style="margin-top: 1rem; font-size: 0.8rem;">
-            <a href="https://github.com/IDNI/tau-lang">Tau Language</a> · 
-            <a href="https://github.com/TheDarkLightX/AlignmentTheorem">View on GitHub</a> ·
-            <a href="https://thedarklightx.github.io/VCC-concept-visualizer/">Interactive VCC Visualizer</a>
-        </p>
-        <p style="margin-top: 1.5rem; font-size: 0.75rem;">
-            Independent research contribution. Not an official statement from the Tau core team.
-        </p>
+        <strong>Dana Edwards (DarkLightX)</strong> &middot; Community Researcher &middot; December 2025<br>
+        <a href="https://github.com/IDNI/tau-lang">Tau Language</a> &middot;
+        <a href="https://github.com/TheDarkLightX/AlignmentTheorem">View on GitHub</a> &middot;
+        <a href="https://thedarklightx.github.io/VCC-concept-visualizer/">Interactive VCC Visualizer</a><br>
+        Independent research contribution. Not an official statement from the Tau core team.
     </footer>
-
-
-</body></html>
+</body>
+</html>

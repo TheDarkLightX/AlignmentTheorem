@@ -1,0 +1,11 @@
+import AlignmentTheoremV1
+
+#print axioms AlignmentTheoremV1.tier_multiplier_of_excluded
+#print axioms AlignmentTheoremV1.exclusion_opportunity_cost_normalization
+#print axioms AlignmentTheoremV1.strict_exclusion_margin_orders_utilities
+#print axioms AlignmentTheoremV1.v1_exclusion_alignment
+#print axioms AlignmentTheoremV1.minimum_scarcity_multiplier_is_strict
+#print axioms AlignmentTheoremV1.scarcity_below_minimum_is_not_strict
+#print axioms AlignmentTheoremV1.zero_deviation_needs_only_positive_scarcity_and_exposure
+#print axioms AlignmentTheoremV1.unbounded_scarcity_eventually_establishes_v1_margin
+#print axioms AlignmentTheoremV1.common_scarcity_upside_cancels

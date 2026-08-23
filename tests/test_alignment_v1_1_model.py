@@ -18,7 +18,7 @@ class HyperdeflationMarginTests(unittest.TestCase):
         envelope = HyperdeflationEnvelope(
             scarcity_multiplier=1,
             ethical_reward_coefficient=2,
-            nonethical_forfeiture_coefficient=1,
+            exclusive_upside_coefficient=1,
             max_private_deviation_gain=7,
             max_extra_compliance_cost=2,
             optimizer_error=1,
@@ -39,14 +39,14 @@ class HyperdeflationMarginTests(unittest.TestCase):
         envelope = HyperdeflationEnvelope(
             scarcity_multiplier=MAX_U64,
             ethical_reward_coefficient=0,
-            nonethical_forfeiture_coefficient=0,
+            exclusive_upside_coefficient=0,
             max_private_deviation_gain=0,
             max_extra_compliance_cost=0,
         )
 
         # Act / Assert
         self.assertFalse(envelope.has_strict_hyperdeflation_margin)
-        with self.assertRaisesRegex(ValueError, "positive ethical scarcity exposure"):
+        with self.assertRaisesRegex(ValueError, "positive eligible scarcity exposure"):
             envelope.minimum_scarcity_multiplier()
 
     def test_common_scaling_does_not_create_alignment(self) -> None:
@@ -57,7 +57,7 @@ class HyperdeflationMarginTests(unittest.TestCase):
                 envelope = HyperdeflationEnvelope(
                     scarcity_multiplier=scarcity,
                     ethical_reward_coefficient=2,
-                    nonethical_forfeiture_coefficient=0,
+                    exclusive_upside_coefficient=0,
                     max_private_deviation_gain=2 * scarcity,
                     max_extra_compliance_cost=0,
                 )
@@ -71,7 +71,7 @@ class HyperdeflationMarginTests(unittest.TestCase):
                 envelope = HyperdeflationEnvelope(
                     scarcity_multiplier=scarcity,
                     ethical_reward_coefficient=1,
-                    nonethical_forfeiture_coefficient=0,
+                    exclusive_upside_coefficient=0,
                     max_private_deviation_gain=scarcity * scarcity,
                     max_extra_compliance_cost=0,
                 )
@@ -82,7 +82,7 @@ class HyperdeflationMarginTests(unittest.TestCase):
         base = HyperdeflationEnvelope(
             scarcity_multiplier=1,
             ethical_reward_coefficient=3,
-            nonethical_forfeiture_coefficient=2,
+            exclusive_upside_coefficient=2,
             max_private_deviation_gain=20,
             max_extra_compliance_cost=4,
             optimizer_error=1,
@@ -100,38 +100,52 @@ class HyperdeflationMarginTests(unittest.TestCase):
 
     def test_exhaustive_small_domain_matches_raw_utility_oracle(self) -> None:
         # Arrange / Act: exhaustive finite pressure over 3,125 configurations.
-        for scarcity, reward, forfeiture, gain, cost in itertools.product(
+        for scarcity, reward, exclusive_upside, gain, cost in itertools.product(
             range(5), repeat=5
         ):
             with self.subTest(
                 scarcity=scarcity,
                 reward=reward,
-                forfeiture=forfeiture,
+                exclusive_upside=exclusive_upside,
                 gain=gain,
                 cost=cost,
             ):
                 envelope = HyperdeflationEnvelope(
                     scarcity_multiplier=scarcity,
                     ethical_reward_coefficient=reward,
-                    nonethical_forfeiture_coefficient=forfeiture,
+                    exclusive_upside_coefficient=exclusive_upside,
                     max_private_deviation_gain=gain,
                     max_extra_compliance_cost=cost,
                     optimizer_error=1,
                 )
-                ethical_utility = scarcity * reward - cost
-                nonethical_utility = gain - scarcity * forfeiture
+                ethical_utility = scarcity * (reward + exclusive_upside) - cost
+                nonethical_utility = gain
 
                 # Assert: direct utility comparison is an independent oracle.
                 self.assertEqual(
                     envelope.has_strict_hyperdeflation_margin,
                     ethical_utility > nonethical_utility + 1,
                 )
+                self.assertEqual(envelope.eligible_utility_lower, ethical_utility)
+                self.assertEqual(envelope.excluded_utility_upper, nonethical_utility)
+
+    def test_exclusion_never_debits_the_excluded_branch(self) -> None:
+        for scarcity in (1, 2, 10, 1_000):
+            with self.subTest(scarcity=scarcity):
+                envelope = HyperdeflationEnvelope(
+                    scarcity_multiplier=scarcity,
+                    ethical_reward_coefficient=2,
+                    exclusive_upside_coefficient=3,
+                    max_private_deviation_gain=7,
+                    max_extra_compliance_cost=1,
+                )
+                self.assertEqual(envelope.excluded_utility_upper, 7)
 
     def test_rejects_bool_out_of_range_and_derived_overflow(self) -> None:
         valid = {
             "scarcity_multiplier": 1,
             "ethical_reward_coefficient": 1,
-            "nonethical_forfeiture_coefficient": 0,
+            "exclusive_upside_coefficient": 0,
             "max_private_deviation_gain": 0,
             "max_extra_compliance_cost": 0,
         }
@@ -158,7 +172,7 @@ class HyperdeflationEligibilityTests(unittest.TestCase):
         self.envelope = HyperdeflationEnvelope(
             scarcity_multiplier=10,
             ethical_reward_coefficient=1,
-            nonethical_forfeiture_coefficient=1,
+            exclusive_upside_coefficient=1,
             max_private_deviation_gain=5,
             max_extra_compliance_cost=1,
         )

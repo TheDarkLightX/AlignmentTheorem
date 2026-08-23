@@ -1,0 +1,21 @@
+{
+  "authority_status": "RESEARCH_REPLAY_ONLY_NO_TAU_NET_OR_VALUE_AUTHORITY",
+  "checker_sha256": "e3aa0f924b18969e37b46b5b759700dbccdab1c2761b42eae647115322f0f902",
+  "copied_tau_packet_sha256": "0fcf5aa5244d2d1b7bd6d9e0aa4d7ee624a06eabac67d448e9225a4405273400",
+  "error": "preflight rejected execution",
+  "execution_attempted": false,
+  "execution_environment_status": "HOST_ENVIRONMENT_NOT_HERMETICALLY_ATTESTED",
+  "expected_tau_binary_sha256": "c49267404e07a1f540c941b618e786710f70001eecbd05bb7c6d8eec0c5645fa",
+  "expected_tau_parser_commit": "5dd036358e194e55a08fd2ec255441bedfe83765",
+  "expected_tau_source_commit": "fd137e860b60083b36f9159ec8090cb1a3c3cb5a",
+  "expected_tau_version": "Tau Language Framework version 0.7.0-alpha (fd137e8)",
+  "failure_codes": [
+    "TAU_BINARY_SHA256_MISMATCH"
+  ],
+  "passed": false,
+  "schema": "alignment-theorem-intelligence-flywheel-reviewed-tau-v1",
+  "source_to_binary_status": "DECLARED_SOURCE_PIN_NOT_ATTESTED_BY_REPLAY",
+  "tau_binary_sha256": "b2699306d75c977ae4466e4f69237838efe6caafcc86bec62bbfb6517161ec19",
+  "tau_packet_sha256": "0fcf5aa5244d2d1b7bd6d9e0aa4d7ee624a06eabac67d448e9225a4405273400",
+  "tau_spec_sha256": "f8c44dbc571003d37dcf8759c3002093d858663f19a9f97307695f1b89207beb"
+}

@@ -9,7 +9,6 @@ import json
 import re
 from pathlib import Path
 
-
 REPO_ROOT = Path(__file__).resolve().parents[1]
 BASE_REVISION = "b44540b69231a8dbadaaf86cb507220465c06ca0"
 SHA1 = re.compile(r"[0-9a-f]{40}\Z")
@@ -187,7 +186,7 @@ def generate(artifact_revision: str) -> dict[str, object]:
                 "lane_id": "CD01-REFERENCE-BOUNDED",
                 "kind": "model",
                 "status": "passed",
-                "tool_revision": "CPython 3.12.13",
+                "tool_revision": "CPython 3.12",
                 "artifacts": artifacts,
                 "replay": {**REFERENCE_REPLAY, "exit_code": 0},
                 "limitations": [

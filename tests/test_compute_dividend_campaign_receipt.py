@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import sys
 import unittest
 
 from verification.run_compute_dividend_campaign import (
@@ -27,6 +28,10 @@ class ComputeDividendCampaignReceiptTests(unittest.TestCase):
 
         self.assertTrue(stored["passed"])
         self.assertEqual(stored, rerun)
+        self.assertEqual(
+            stored["python_version"],
+            f"{sys.version_info.major}.{sys.version_info.minor}",
+        )
         self.assertEqual(stored["checker_sha256"], _sha256(CHECKER))
         self.assertEqual(
             stored["bound_files_sha256"],

@@ -1,0 +1,32 @@
+# Intelligence-flywheel research packet: nine externally supplied obligations.
+#
+# Tau decides only the conjunction.  It does not authenticate capability,
+# productivity, prices, benefits, concentration, grid costs, debt, or receipts.
+
+policy_root_ok:sbf := in file("inputs/policy_root_ok.in").
+capability_receipt_authenticated:sbf := in file("inputs/capability_receipt_authenticated.in").
+productivity_bridge_verified:sbf := in file("inputs/productivity_bridge_verified.in").
+essential_basket_gain_verified:sbf := in file("inputs/essential_basket_gain_verified.in").
+benefit_floor_funded:sbf := in file("inputs/benefit_floor_funded.in").
+concentration_cap_ok:sbf := in file("inputs/concentration_cap_ok.in").
+grid_externality_budget_ok:sbf := in file("inputs/grid_externality_budget_ok.in").
+debt_guardrail_ok:sbf := in file("inputs/debt_guardrail_ok.in").
+strict_alignment_margin:sbf := in file("inputs/strict_alignment_margin.in").
+
+allow:sbf := out file("outputs/allow.out").
+
+defs
+r (
+    allow[t] = (
+        policy_root_ok[t]
+        & capability_receipt_authenticated[t]
+        & productivity_bridge_verified[t]
+        & essential_basket_gain_verified[t]
+        & benefit_floor_funded[t]
+        & concentration_cap_ok[t]
+        & grid_externality_budget_ok[t]
+        & debt_guardrail_ok[t]
+        & strict_alignment_margin[t]
+    )
+)
+q

@@ -1,0 +1,39 @@
+# Current Tau Net Alpha profile router for Alignment Theorem V1, V1.1, and V2.
+#
+# i12 is the consensus/host-injected sender identity. i17 selects the theorem
+# profile (1=V1, 2=V1.1, 3=V2). i18..i24 are seven profile-specific facts in
+# the ordered map documented in tau/current_tau/README.md.
+#
+# Current Alpha transaction submitters can supply i17..i24. This rule proves
+# only sender-scoped predicate behavior. It does not authenticate the profile,
+# evidence, scarcity, margin, reserves, or settlement effects.
+
+always (
+  ((i12[t] != { #xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa }:bv[384] ->
+    o5[t] = { 1 }:bv[16]) &&
+   ((i12[t] = { #xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa }:bv[384] &&
+     (i17[t] = { 1 }:bv[16] ||
+      i17[t] = { 2 }:bv[16] ||
+      i17[t] = { 3 }:bv[16]) &&
+     i18[t] = { 1 }:bv[16] &&
+     i19[t] = { 1 }:bv[16] &&
+     i20[t] = { 1 }:bv[16] &&
+     i21[t] = { 1 }:bv[16] &&
+     i22[t] = { 1 }:bv[16] &&
+     i23[t] = { 1 }:bv[16] &&
+     i24[t] = { 1 }:bv[16]) ->
+    o5[t] = { 1 }:bv[16]) &&
+   ((i12[t] = { #xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa }:bv[384] &&
+     ((i17[t] != { 1 }:bv[16] &&
+       i17[t] != { 2 }:bv[16] &&
+       i17[t] != { 3 }:bv[16]) ||
+      i18[t] != { 1 }:bv[16] ||
+      i19[t] != { 1 }:bv[16] ||
+      i20[t] != { 1 }:bv[16] ||
+      i21[t] != { 1 }:bv[16] ||
+      i22[t] != { 1 }:bv[16] ||
+      i23[t] != { 1 }:bv[16] ||
+      i24[t] != { 1 }:bv[16])) ->
+    o5[t] = { 0 }:bv[16])
+  )
+).

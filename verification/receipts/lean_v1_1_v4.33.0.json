@@ -77,9 +77,9 @@
   "passed": true,
   "placeholders": [],
   "schema": "alignment-theorem-v1-1-lean-build-v1",
-  "source_bundle_sha256": "bf1868a8018c23f6d4cb766bce2551ea73fce38b0e7b78f32aebf9244416350a",
+  "source_bundle_sha256": "7708a05fd21105a0d403f8ea9f1352aebed07c112bf46aaa409d177afb444f20",
   "source_files_sha256": {
-    "AlignmentTheoremV1_1.lean": "50d844d35cbdd0c80cde1949059962c3669b49daadad6bad9800a0f328f169f5",
+    "AlignmentTheoremV1_1.lean": "4e15a1081ca4497156355cc8b9f47d4e332762c6dc73e41bef18f2c17555bfe6",
     "AxiomAudit.lean": "851ee34a5470d6d1bf6c62d434d6614c96332c27cbf412f85841e125d6fd9801",
     "lake-manifest.json": "88da9a0eb83d1af15224b73ddca94d0857dfc1be609418cb8694179d128115c3",
     "lakefile.lean": "437c8d6665dbfe9c5266b22efe0024f43fa7c3bede25648906ad25de4e6967e2",

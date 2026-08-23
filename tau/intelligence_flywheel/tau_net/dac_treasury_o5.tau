@@ -1,0 +1,34 @@
+# Tau Testnet application rule demo, sender-scoped to the research treasury.
+#
+# i12 is consensus/host-injected sender identity.  i17..i25 are custom inputs
+# in the current alpha ABI.  A transaction submitter can supply those custom
+# values: this rule enforces their conjunction but DOES NOT authenticate them.
+# i13 is deliberately avoided because current eligibility modes may reserve it.
+
+always (
+  ((i12[t] != { #xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa }:bv[384] ->
+    o5[t] = { 1 }:bv[16]) &&
+   ((i12[t] = { #xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa }:bv[384] &&
+     i17[t] = { 1 }:bv[16] &&
+     i18[t] = { 1 }:bv[16] &&
+     i19[t] = { 1 }:bv[16] &&
+     i20[t] = { 1 }:bv[16] &&
+     i21[t] = { 1 }:bv[16] &&
+     i22[t] = { 1 }:bv[16] &&
+     i23[t] = { 1 }:bv[16] &&
+     i24[t] = { 1 }:bv[16] &&
+     i25[t] = { 1 }:bv[16]) ->
+    o5[t] = { 1 }:bv[16]) &&
+   ((i12[t] = { #xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa }:bv[384] &&
+     (i17[t] != { 1 }:bv[16] ||
+      i18[t] != { 1 }:bv[16] ||
+      i19[t] != { 1 }:bv[16] ||
+      i20[t] != { 1 }:bv[16] ||
+      i21[t] != { 1 }:bv[16] ||
+      i22[t] != { 1 }:bv[16] ||
+      i23[t] != { 1 }:bv[16] ||
+      i24[t] != { 1 }:bv[16] ||
+      i25[t] != { 1 }:bv[16])) ->
+    o5[t] = { 0 }:bv[16])
+  )
+).

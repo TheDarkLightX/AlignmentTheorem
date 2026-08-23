@@ -1,0 +1,336 @@
+{
+  "artifact_revision": "751abb4e9c3a9d14b0faf72c862ec5bdd0e15216",
+  "assumptions": [
+    "Canonical receipt encoding and domain separation are specified.",
+    "Signer/oracle authorization and threshold policy are consensus state.",
+    "Freshness, replay prevention, policy root, epoch, action, and treasury identity are cryptographically bound.",
+    "Each economic measurement has a declared estimator, uncertainty rule, and fail-closed threshold.",
+    "The host feeds only verifier-derived facts; transaction-supplied assertions cannot override them."
+  ],
+  "base_revision": "44c14df0a9b3f74d7cceb7f122176c84374faf1e",
+  "boundary": "The obligation proves verifier-to-Tau refinement and protocol enforcement only. It does not prove that the selected estimators capture objective ethics, social welfare, lawful authority, or all real-world harms.",
+  "claim": "For every DAC treasury action admitted by the target Tau o5 rule, each of the nine true input facts is the deterministic output of a consensus-recognized verifier over canonical, fresh, policy-root-bound, independently authorized evidence for the same epoch and action.",
+  "claim_class": "refinement",
+  "completed_evidence": [
+    {
+      "artifacts": [
+        {
+          "path": "proofs/intelligence_flywheel/IntelligenceFlywheel.lean",
+          "role": "Formal nine-fact conjunction and conditional margin theorems.",
+          "sha256": "99e13c02d478d512499c27d01b1bbd88caea96c38ab7c3808415fc7731d60297"
+        }
+      ],
+      "id": "E-IF02-LEAN-01",
+      "kind": "proof",
+      "lane_id": "IF02-LEAN-SEMANTIC-GATE",
+      "limitations": [
+        "Boolean premises are not authenticated by the theorem.",
+        "Host and Lean executable provenance are not attested."
+      ],
+      "replay": {
+        "argv": [
+          "python3",
+          "verification/run_lean_intelligence_flywheel.py",
+          "--json"
+        ],
+        "cwd": ".",
+        "exit_code": 0
+      },
+      "status": "passed",
+      "tool_revision": "Lean 4.33.0 reported; binary provenance not attested"
+    },
+    {
+      "artifacts": [
+        {
+          "path": "research/intelligence_flywheel/tau_net_native_probe.json",
+          "role": "Direct native ABI behavior and custom-input authentication boundary.",
+          "sha256": "8819e3fd876e7db4467c35265c832f0d56ed64151946e14a02cdae6c8f21d418"
+        },
+        {
+          "path": "tau/intelligence_flywheel/tau_net/dac_treasury_o5.tau",
+          "role": "Target sender-scoped Tau application rule.",
+          "sha256": "32f683826a9a3c3177843b9da1580c13bf92a164151deb660ee1f463def50df1"
+        }
+      ],
+      "id": "E-IF02-TAU-NATIVE-02",
+      "kind": "model",
+      "lane_id": "IF02-TAU-NATIVE-ABI",
+      "limitations": [
+        "Direct native ABI only; no node deployment or finality.",
+        "Custom inputs remain transaction-supplied claims.",
+        "Source-to-module and environment are not attested."
+      ],
+      "replay": {
+        "argv": [
+          "python3",
+          "-m",
+          "unittest",
+          "tests.test_tau_net_intelligence_flywheel_probe",
+          "-v"
+        ],
+        "cwd": ".",
+        "exit_code": 0
+      },
+      "status": "passed_bounded",
+      "tool_revision": "Tau Testnet 9f9240d; Tau source 9b191af/parser 5dd0363; local module ec34baae..."
+    }
+  ],
+  "conclusion": "Tau admission refines authenticated receipt validity rather than merely conjoining submitter-supplied claims.",
+  "counterexample": {
+    "artifact": "research/intelligence_flywheel/tau_net_native_probe.json",
+    "statement": "At the pinned current alpha ABI, transaction-supplied custom i17..i25 values lack a consensus-recognized economic receipt verifier; therefore native predicate execution alone does not satisfy the target refinement claim.",
+    "status": "current_protocol_gap"
+  },
+  "execution_policy": "replay_argv_is_untrusted_data_never_execute_from_validation",
+  "falsifiers": [
+    "One admitted treasury action whose true Tau fact lacks a valid canonical receipt for the same epoch/action/policy root.",
+    "One replayed, stale, unauthorized, malformed, or cross-policy receipt accepted by the verifier.",
+    "One admission/block-apply or proposer/verifier disagreement on the derived facts.",
+    "One transaction-supplied custom input that can override a verifier-derived fact.",
+    "A mismatch between Lean/Python fact order and the Tau stream map i17..i25."
+  ],
+  "id": "PO-IF-02-AUTHENTICATED-RECEIPT-REFINEMENT",
+  "lanes": [
+    {
+      "acceptance_tests": [
+        "Lean build and axiom audit pass.",
+        "Fact order matches the target stream map."
+      ],
+      "deliverables": [
+        "Placeholder-free gate and sender-scope theorems.",
+        "Axiom-audited source-bound receipt."
+      ],
+      "evidence_ids": [
+        "E-IF02-LEAN-01"
+      ],
+      "goal": "Prove admission implies every ordered fact and preserve sender scope.",
+      "id": "IF02-LEAN-SEMANTIC-GATE",
+      "replay": {
+        "argv": [
+          "python3",
+          "verification/run_lean_intelligence_flywheel.py",
+          "--json"
+        ],
+        "cwd": "."
+      },
+      "status": "passed",
+      "tool": "lean"
+    },
+    {
+      "acceptance_tests": [
+        "All recorded cases match.",
+        "Receipt states that custom inputs are submitter-supplied."
+      ],
+      "deliverables": [
+        "Pinned direct ABI receipt with all-true, single-fault, missing, and other-sender cases."
+      ],
+      "evidence_ids": [
+        "E-IF02-TAU-NATIVE-02"
+      ],
+      "goal": "Demonstrate current native predicate and sender-scope behavior.",
+      "id": "IF02-TAU-NATIVE-ABI",
+      "replay": {
+        "argv": [
+          "python3",
+          "-m",
+          "unittest",
+          "tests.test_tau_net_intelligence_flywheel_probe",
+          "-v"
+        ],
+        "cwd": "."
+      },
+      "status": "passed_bounded",
+      "tool": "reference-model"
+    },
+    {
+      "acceptance_tests": [
+        "Stale, replayed, cross-policy, unauthorized, malformed, and mismatched-action receipts fail closed.",
+        "No submitter override path exists."
+      ],
+      "deliverables": [
+        "Verifier transition model.",
+        "Mutation-complete refinement result.",
+        "Counterexample traces for any failure."
+      ],
+      "evidence_ids": [],
+      "goal": "Model the canonical receipt verifier and prove its facts refine the Tau stream semantics.",
+      "id": "IF02-ESSO-VERIFIER-REFINEMENT",
+      "replay": {
+        "argv": [
+          "UNAVAILABLE_ESSO_ADAPTER"
+        ],
+        "cwd": "."
+      },
+      "status": "planned",
+      "tool": "esso"
+    },
+    {
+      "acceptance_tests": [
+        "All invalid receipt mutations reject at admission and block apply.",
+        "All nodes derive identical verdict and state hash.",
+        "Reorg/replay tests preserve freshness."
+      ],
+      "deliverables": [
+        "Deployment transaction and state-root receipt.",
+        "Admission/block-apply/multi-node mutation campaign."
+      ],
+      "evidence_ids": [],
+      "goal": "Prove admission and block-apply agreement using verifier-derived facts on multiple pinned nodes.",
+      "id": "IF02-TAU-NET-END-TO-END",
+      "replay": {
+        "argv": [
+          "UNIMPLEMENTED_PINNED_NODE_HARNESS"
+        ],
+        "cwd": "."
+      },
+      "status": "planned",
+      "tool": "tau-testnet-node"
+    },
+    {
+      "acceptance_tests": [
+        "No injected fault creates an unauthorized allow.",
+        "Availability failures are distinguished from false economic claims."
+      ],
+      "deliverables": [
+        "Fault matrix and minimized traces.",
+        "Fail-closed recovery requirements."
+      ],
+      "evidence_ids": [],
+      "goal": "Attack oracle availability, disagreement, equivocation, stale caches, process crash, and malformed proof paths.",
+      "id": "IF02-FAULT-INJECTION",
+      "replay": {
+        "argv": [
+          "UNIMPLEMENTED_FAULT_HARNESS"
+        ],
+        "cwd": "."
+      },
+      "status": "planned",
+      "tool": "fault-injection"
+    }
+  ],
+  "nonclaims": [
+    "The target authenticated-receipt refinement is complete.",
+    "ESSO, a node harness, or fault injection ran in this session.",
+    "The economic estimators are empirically valid or democratically legitimate.",
+    "Tau alone authenticates external facts.",
+    "A passing future refinement proves production readiness or objective ethics."
+  ],
+  "oracle": {
+    "artifacts": [
+      {
+        "path": "proofs/intelligence_flywheel/IntelligenceFlywheel.lean",
+        "role": "Formal nine-fact conjunction and conditional margin theorems.",
+        "sha256": "99e13c02d478d512499c27d01b1bbd88caea96c38ab7c3808415fc7731d60297"
+      },
+      {
+        "path": "verification/intelligence_flywheel_model.py",
+        "role": "Exact reference semantics and countermodels.",
+        "sha256": "5a21e34b928e66c28fab530e7e398c611b2f91b885d84abda6a6e7c65bc3010c"
+      },
+      {
+        "path": "verification/receipts/intelligence_flywheel_campaign.json",
+        "role": "Bounded campaign and cross-lane receipt.",
+        "sha256": "0557ac7d42a199b0d21aab1506b4cd0cc3b28d3679e4c8cc2fadc0407c050d94"
+      },
+      {
+        "path": "research/intelligence_flywheel/tau_net_native_probe.json",
+        "role": "Direct native ABI behavior and custom-input authentication boundary.",
+        "sha256": "8819e3fd876e7db4467c35265c832f0d56ed64151946e14a02cdae6c8f21d418"
+      },
+      {
+        "path": "tau/intelligence_flywheel/tau_net/dac_treasury_o5.tau",
+        "role": "Target sender-scoped Tau application rule.",
+        "sha256": "32f683826a9a3c3177843b9da1580c13bf92a164151deb660ee1f463def50df1"
+      }
+    ],
+    "claim_mapping": [
+      {
+        "artifact_path": "proofs/intelligence_flywheel/IntelligenceFlywheel.lean",
+        "claim_clause": "Formal nine-fact conjunction and conditional margin theorems."
+      },
+      {
+        "artifact_path": "verification/intelligence_flywheel_model.py",
+        "claim_clause": "Exact reference semantics and countermodels."
+      },
+      {
+        "artifact_path": "verification/receipts/intelligence_flywheel_campaign.json",
+        "claim_clause": "Bounded campaign and cross-lane receipt."
+      },
+      {
+        "artifact_path": "research/intelligence_flywheel/tau_net_native_probe.json",
+        "claim_clause": "Direct native ABI behavior and custom-input authentication boundary."
+      },
+      {
+        "artifact_path": "tau/intelligence_flywheel/tau_net/dac_treasury_o5.tau",
+        "claim_clause": "Target sender-scoped Tau application rule."
+      }
+    ],
+    "kind": "refinement-composition",
+    "replay": {
+      "argv": [
+        "python3",
+        "-m",
+        "unittest",
+        "tests.test_tau_net_intelligence_flywheel_probe",
+        "-v"
+      ],
+      "cwd": "."
+    }
+  },
+  "profile_ids": [
+    "alignment-theorem-intelligence-flywheel-v1",
+    "zrm-proof-obligation-v3"
+  ],
+  "quantifiers": [
+    "Every admitted transaction from the designated DAC treasury.",
+    "Every one of the nine ordered policy facts.",
+    "Every accepted receipt, epoch, action identifier, policy root, signer/oracle set, and verifier state.",
+    "Every admission and block-apply evaluation at the pinned protocol revision."
+  ],
+  "refinement": {
+    "relation": "For the same transaction context, target fact i(17+j) is true iff the reviewed verifier accepts the corresponding source evidence j; otherwise it is false or evaluation rejects.",
+    "source_semantics": "Canonical authenticated evidence for nine policy facts, bound to one epoch, action, treasury, and policy root.",
+    "target_semantics": "The ordered i17..i25 Boolean facts consumed by the sender-scoped Tau o5 rule."
+  },
+  "required_tools": [
+    "lean",
+    "esso",
+    "reference-model",
+    "tau-testnet-node",
+    "fault-injection"
+  ],
+  "schema": "zrm/proof-obligation/v3",
+  "status": "under_test",
+  "upstream_revisions": [
+    {
+      "name": "alignment-theorem-base",
+      "revision": "44c14df0a9b3f74d7cceb7f122176c84374faf1e",
+      "uri": "repo://AlignmentTheorem"
+    },
+    {
+      "name": "tau-lang-current-candidate",
+      "revision": "9b191af689abdb75f3e43f200e09d35c0e99a664",
+      "uri": "https://github.com/IDNI/tau-lang"
+    },
+    {
+      "name": "tau-parser",
+      "revision": "5dd036358e194e55a08fd2ec255441bedfe83765",
+      "uri": "https://github.com/IDNI/tau-lang/tree/9b191af689abdb75f3e43f200e09d35c0e99a664/external/parser"
+    },
+    {
+      "name": "tau-testnet",
+      "revision": "9f9240ded9fd7ff246f4bbd45343c64eef9a1751",
+      "uri": "https://github.com/IDNI/tau-testnet"
+    },
+    {
+      "name": "tau-lang-reviewed-runner-baseline",
+      "revision": "fd137e860b60083b36f9159ec8090cb1a3c3cb5a",
+      "uri": "https://github.com/IDNI/tau-lang"
+    },
+    {
+      "name": "lean4",
+      "revision": "v4.33.0-d8b18978322de05a8f3dba51ef03cf5461676c17",
+      "uri": "https://github.com/leanprover/lean4"
+    }
+  ]
+}

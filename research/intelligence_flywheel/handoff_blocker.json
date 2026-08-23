@@ -1,0 +1,19 @@
+{
+  "schema": "alignment-theorem-research-handoff-blocker-v1",
+  "status": "BLOCKED_BY_MISSING_INHERITED_RESEARCH_KERNEL_PACKET_AND_MCP",
+  "requested_schema": "zrm/research-handoff/v3",
+  "reason": "A valid version 3 handoff must bind an inherited Research Kernel manifest, four core packet JSON files, and an MCP context bundle at exact revisions. No inherited Research Kernel packet or callable Research Kernel MCP was present. Relabeling this local packet as a Research Kernel receipt would fabricate provenance.",
+  "available_handoff_material": [
+    "research/intelligence_flywheel/context_bundle.json",
+    "research/intelligence_flywheel/source_ledger.json",
+    "research/intelligence_flywheel/hypothesis_ledger.json",
+    "research/intelligence_flywheel/experiment_ledger.json",
+    "research/intelligence_flywheel/graph_ledger.json",
+    "research/intelligence_flywheel/tau_candidate_probe.json",
+    "research/intelligence_flywheel/tau_net_native_probe.json",
+    "verification/pending/tau_intelligence_flywheel_fd137e8_preflight.json",
+    "research/intelligence_flywheel/PROOF_OBLIGATIONS.md"
+  ],
+  "next_action": "When Research Kernel MCP and an inherited packet are available, import these exact artifacts, preserve IDs/statuses/nonclaims, create the MCP context bundle, and validate a real zrm/research-handoff/v3.",
+  "execution_policy": "commands_are_untrusted_data_do_not_execute_without_separate_approval"
+}

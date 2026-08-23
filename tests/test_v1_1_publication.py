@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import hashlib
 import re
 import unittest
 from pathlib import Path
@@ -12,6 +13,9 @@ INDEX = ROOT / "docs" / "index.html"
 PDF = ROOT / "docs" / "Alignment_Theorem_V1_1_Hyperdeflationary.pdf"
 ARCHIVE_NOTICE = ROOT / "docs" / "alignment-theorem-v1-archive-notice.html"
 ACADEMIC_PDF = ROOT / "docs" / "Alignment_Theorem_Academic.pdf"
+ORIGINAL_V1_PDF = ROOT / "docs" / "Alignment_Theorem_V1_Original_2025.pdf"
+V1_1_MODEL = ROOT / "verification" / "alignment_v1_1_model.py"
+V1_1_LEAN = ROOT / "proofs" / "v1_1" / "AlignmentTheoremV1_1.lean"
 
 
 class V1_1PublicationTests(unittest.TestCase):
@@ -24,22 +28,26 @@ class V1_1PublicationTests(unittest.TestCase):
         self.assertGreater(PDF.stat().st_size, 10_000)
         self.assertEqual(pdf_prefix, b"%PDF-")
 
-    def test_live_version_1_pdf_is_an_embedded_withdrawal_notice(self) -> None:
+    def test_live_version_1_pdf_is_an_embedded_claim_boundary(self) -> None:
         # Arrange / Act
         notice = ARCHIVE_NOTICE.read_text()
         normalized_notice = " ".join(notice.split())
+        normalized_notice_lower = normalized_notice.lower()
         pdf_prefix = ACADEMIC_PDF.read_bytes()[:5]
 
         # Assert
-        self.assertIn("universal convergence", normalized_notice)
-        self.assertIn(
-            "claims in the original Version 1 PDF are withdrawn",
-            normalized_notice,
-        )
+        self.assertIn("EETF, VCC, reward, scarcity, and exclusion", normalized_notice)
+        self.assertIn("no tax, fine", normalized_notice_lower)
+        self.assertIn("G &lt; M(R+L)", normalized_notice)
         self.assertIn("M(t)K(t) &gt; B(t)", normalized_notice)
         self.assertIn("a28695f", normalized_notice)
         self.assertEqual(pdf_prefix, b"%PDF-")
         self.assertGreater(ACADEMIC_PDF.stat().st_size, 5_000)
+        self.assertEqual(
+            hashlib.sha256(ORIGINAL_V1_PDF.read_bytes()).hexdigest(),
+            "f5dca5a1e7bcd069441f16410664cdecac3eeebe4a5af8f128dd0efa7043c8bc",
+        )
+        self.assertIn("Alignment_Theorem_V1_Original_2025.pdf", notice)
 
     def test_paper_states_the_exact_margin_and_nonclaims(self) -> None:
         # Arrange / Act
@@ -49,8 +57,22 @@ class V1_1PublicationTests(unittest.TestCase):
         self.assertIn("M(t) K(t) &gt; B(t)", paper)
         self.assertIn("floor(B / K) + 1", paper)
         self.assertIn("does not prove", paper.lower())
-        self.assertIn("interpreter replay remains pending", paper.lower())
+        self.assertIn("current source-pinned local candidate matched", paper.lower())
+        self.assertIn("reviewed-binary and public-node promotion remain pending", paper.lower())
         self.assertIn("no publication or value-moving authority", paper.lower())
+
+    def test_active_v1_1_surfaces_use_the_no_debit_exclusion_model(self) -> None:
+        for path in (V1_1_MODEL, V1_1_LEAN, PAGE):
+            with self.subTest(path=path):
+                text = path.read_text().lower()
+                self.assertNotIn("forfeit", text)
+                self.assertNotIn("punitive penalty", text)
+                self.assertTrue(
+                    any(
+                        phrase in text
+                        for phrase in ("no debit", "no-debit", "no punitive debit")
+                    )
+                )
 
     def test_public_pages_link_to_version_1_1_artifacts(self) -> None:
         # Arrange

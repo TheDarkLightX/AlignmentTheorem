@@ -1,0 +1,299 @@
+{
+  "actual_tau_parser_commit": "5dd036358e194e55a08fd2ec255441bedfe83765",
+  "actual_tau_source_commit": "9b191af689abdb75f3e43f200e09d35c0e99a664",
+  "actual_tau_testnet_commit": "9f9240ded9fd7ff246f4bbd45343c64eef9a1751",
+  "all_cases_match": true,
+  "cases": [
+    {
+      "expected": "allow",
+      "matched": true,
+      "name": "treasury_all_true",
+      "observed": "allow",
+      "provided_streams": [
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ],
+      "raw_tokens": [
+        "1"
+      ],
+      "sender": "treasury"
+    },
+    {
+      "expected": "block",
+      "matched": true,
+      "name": "treasury_i17_false",
+      "observed": "block",
+      "provided_streams": [
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ],
+      "raw_tokens": [
+        "0"
+      ],
+      "sender": "treasury"
+    },
+    {
+      "expected": "block",
+      "matched": true,
+      "name": "treasury_i18_false",
+      "observed": "block",
+      "provided_streams": [
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ],
+      "raw_tokens": [
+        "0"
+      ],
+      "sender": "treasury"
+    },
+    {
+      "expected": "block",
+      "matched": true,
+      "name": "treasury_i19_false",
+      "observed": "block",
+      "provided_streams": [
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ],
+      "raw_tokens": [
+        "0"
+      ],
+      "sender": "treasury"
+    },
+    {
+      "expected": "block",
+      "matched": true,
+      "name": "treasury_i20_false",
+      "observed": "block",
+      "provided_streams": [
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ],
+      "raw_tokens": [
+        "0"
+      ],
+      "sender": "treasury"
+    },
+    {
+      "expected": "block",
+      "matched": true,
+      "name": "treasury_i21_false",
+      "observed": "block",
+      "provided_streams": [
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ],
+      "raw_tokens": [
+        "0"
+      ],
+      "sender": "treasury"
+    },
+    {
+      "expected": "block",
+      "matched": true,
+      "name": "treasury_i22_false",
+      "observed": "block",
+      "provided_streams": [
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ],
+      "raw_tokens": [
+        "0"
+      ],
+      "sender": "treasury"
+    },
+    {
+      "expected": "block",
+      "matched": true,
+      "name": "treasury_i23_false",
+      "observed": "block",
+      "provided_streams": [
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ],
+      "raw_tokens": [
+        "0"
+      ],
+      "sender": "treasury"
+    },
+    {
+      "expected": "block",
+      "matched": true,
+      "name": "treasury_i24_false",
+      "observed": "block",
+      "provided_streams": [
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ],
+      "raw_tokens": [
+        "0"
+      ],
+      "sender": "treasury"
+    },
+    {
+      "expected": "block",
+      "matched": true,
+      "name": "treasury_i25_false",
+      "observed": "block",
+      "provided_streams": [
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ],
+      "raw_tokens": [
+        "0"
+      ],
+      "sender": "treasury"
+    },
+    {
+      "expected": "allow",
+      "matched": true,
+      "name": "other_sender_all_false",
+      "observed": "allow",
+      "provided_streams": [
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ],
+      "raw_tokens": [
+        "1"
+      ],
+      "sender": "other"
+    },
+    {
+      "expected": "block",
+      "matched": true,
+      "name": "treasury_custom_inputs_absent",
+      "observed": "block",
+      "provided_streams": [],
+      "raw_tokens": [
+        "0"
+      ],
+      "sender": "treasury"
+    }
+  ],
+  "checker_sha256": "62b3a42283caae80daea56b75bfc594ce2e541af2f23557fac8118fd202a2269",
+  "child_checker_sha256": "1eb7bdcaa053c40424fbd7eeed3bb9c1c4fe40c7c106ce07ee0ddaeee7cb64f8",
+  "child_error": "",
+  "child_returncode": 0,
+  "child_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "child_stdout_sha256": "82eb73ea36e04727143c7679f8c675616b06d070fe149410342ccbb148c145b8",
+  "execution_environment_status": "HOST_KERNEL_DYNAMIC_LIBRARIES_AND_HARDWARE_NOT_HERMETICALLY_ATTESTED",
+  "expected_tau_parser_commit": "5dd036358e194e55a08fd2ec255441bedfe83765",
+  "expected_tau_source_commit": "9b191af689abdb75f3e43f200e09d35c0e99a664",
+  "expected_tau_testnet_commit": "9f9240ded9fd7ff246f4bbd45343c64eef9a1751",
+  "input_authentication_status": "CUSTOM_I17_TO_I25_VALUES_ARE_SUBMITTER_SUPPLIED_CLAIMS",
+  "nonclaims": [
+    "Direct TauInterface execution is not an end-to-end node, admission, block-apply, governance, or finality test.",
+    "The local source pin does not prove a public Tau Testnet deployment runs these bytes.",
+    "The local source pin does not attest how the native module was built.",
+    "Consensus enforcement of a Boolean predicate does not authenticate the predicate's economic facts.",
+    "Current Tau Testnet is alpha and this receipt is not production-readiness or real-funds evidence."
+  ],
+  "passed": true,
+  "pins_match": true,
+  "schema": "alignment-theorem-tau-net-intelligence-flywheel-native-abi-v1",
+  "semantic_cli_packet_sha256": "0fcf5aa5244d2d1b7bd6d9e0aa4d7ee624a06eabac67d448e9225a4405273400",
+  "semantic_stream_map": {
+    "17": "policy_root_ok",
+    "18": "capability_receipt_authenticated",
+    "19": "productivity_bridge_verified",
+    "20": "essential_basket_gain_verified",
+    "21": "benefit_floor_funded",
+    "22": "concentration_cap_ok",
+    "23": "grid_externality_budget_ok",
+    "24": "debt_guardrail_ok",
+    "25": "strict_alignment_margin"
+  },
+  "semantic_stream_map_sha256": "6709a2f160d2b61ce695b145192d90c8a9adf43b1adaa3750795494f1f2260f6",
+  "source_to_binding_status": "DECLARED_LOCAL_BUILD_RELATION_NOT_INDEPENDENTLY_ATTESTED",
+  "status": "SUPPORTED_BOUNDED_NATIVE_ABI",
+  "tau_native_module_basename": "tau.cpython-312-x86_64-linux-gnu.so",
+  "tau_native_module_sha256": "ec34baae7d6d603b689e10d8fc65a2759efdaa00dce4e7a0955d8c18659ea633",
+  "tau_net_authority_status": "DIRECT_NATIVE_ABI_PROBE_NOT_NODE_DEPLOYMENT_OR_CONSENSUS_FINALITY",
+  "tau_source_status_porcelain": [],
+  "tau_spec_sha256": "32f683826a9a3c3177843b9da1580c13bf92a164151deb660ee1f463def50df1",
+  "tau_testnet_status_porcelain": [],
+  "upstream_files_sha256": {
+    "README.md": "3f86f2b460ece79565099e493c896c45d7a256b498ceb5eb55131f9eaf40d6bd",
+    "consensus/admission.py": "576220fd9403348cf01deabe7677ee2e1fed96fe9512b6453a3177001510da46",
+    "consensus/engine.py": "e7999aa99a7ccbe460555848d4694e5e4284424dcd58744c642ab723cba5167b",
+    "tau_defs.py": "853d55e054116a13af7854b81789da1dbcbfc27a6a60cd78308dd54cc7b7e5ad",
+    "tau_native.py": "e1005f0d9fe265a748d187c3e0a8f6ad247b670fb39a7a1f5ed7a8b16d3fae5e"
+  }
+}

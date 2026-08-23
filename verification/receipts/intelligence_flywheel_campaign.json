@@ -1,0 +1,123 @@
+{
+  "authority_status": "RESEARCH_REFERENCE_ONLY_NO_MACROECONOMIC_TAU_NET_OR_VALUE_AUTHORITY",
+  "bound_files_sha256": {
+    "research/intelligence_flywheel/tau_candidate_probe.json": "8d67fe879805a239c90a014ca0ee7bc004c2f68fbefd3ab40c64585a4c45b634",
+    "research/intelligence_flywheel/tau_net_native_probe.json": "8819e3fd876e7db4467c35265c832f0d56ed64151946e14a02cdae6c8f21d418",
+    "tests/test_intelligence_flywheel_model.py": "4afc462eef042fb469d3aea8bd02db7c997de669d866a69dbb0a0d0af5744a1b",
+    "verification/intelligence_flywheel_model.py": "5a21e34b928e66c28fab530e7e398c611b2f91b885d84abda6a6e7c65bc3010c",
+    "verification/receipts/lean_intelligence_flywheel_v4.33.0.json": "d7dd29adde1ca68806b259a0a24dffee088b6def2ce917c59f950a9a696a0467"
+  },
+  "bridge_enumeration": {
+    "cases": 544,
+    "failures": []
+  },
+  "checker_sha256": "d321d389b5fec9a021d8c935dbaa1a83e25c8bec6c4a7698c8b0b3d20dc88a3b",
+  "maps": {
+    "compute_power_half_elasticity": {
+      "assumption": "I/I0=(C/C0)^(1/2)",
+      "exact_even_epoch_samples": {
+        "0": {
+          "denominator": 1,
+          "numerator": 1
+        },
+        "2": {
+          "denominator": 1,
+          "numerator": 2
+        },
+        "4": {
+          "denominator": 1,
+          "numerator": 4
+        },
+        "6": {
+          "denominator": 1,
+          "numerator": 8
+        },
+        "8": {
+          "denominator": 1,
+          "numerator": 16
+        }
+      }
+    },
+    "dac_reinvestment": {
+      "deviation": 4,
+      "first_strict_alignment_epoch": 7,
+      "nonclaim": "The supplied net return is not forecast or guaranteed.",
+      "recurrence_factor": {
+        "denominator": 4,
+        "numerator": 5
+      }
+    },
+    "direct_doubling_full_bridge": {
+      "basket_price": "2^-t",
+      "capability": "2^t",
+      "deviation": 8,
+      "first_strict_alignment_epoch": 4
+    },
+    "direct_doubling_partial_bridge": {
+      "automatable_share": {
+        "denominator": 4,
+        "numerator": 3
+      },
+      "deviation": 3,
+      "first_strict_alignment_epoch_0_to_32": null,
+      "multiplier_upper_bound": {
+        "denominator": 2,
+        "numerator": 5
+      },
+      "pass_through": {
+        "denominator": 5,
+        "numerator": 4
+      },
+      "price_floor": {
+        "denominator": 5,
+        "numerator": 2
+      }
+    },
+    "logistic_saturation": {
+      "carrying_capacity": 8,
+      "deviation": 9,
+      "first_strict_alignment_epoch_0_to_32": null
+    },
+    "rebound_surcharge": {
+      "adjusted_price_all_epochs": {
+        "denominator": 1,
+        "numerator": 1
+      },
+      "first_strict_alignment_epoch_0_to_16": null
+    }
+  },
+  "negative_results": [
+    "Capability doubling alone does not determine basket prices, protected benefit, or deviation benefit.",
+    "Incomplete automation or pass-through creates a positive price floor and bounded multiplier.",
+    "A logistic capability ceiling blocks indefinite hyperdeflation in the full-bridge map.",
+    "An equal rebound/externality surcharge can cancel the modeled core price decline.",
+    "A DAC reinvestment flywheel depends on a positive supplied net-return premise.",
+    "Tau custom inputs are claims, not authenticated economic facts, in the tested alpha ABI."
+  ],
+  "passed": true,
+  "python_version": "3.12.3",
+  "randomness": "NONE_EXACT_FINITE_ENUMERATION_ONLY",
+  "schema": "alignment-theorem-intelligence-flywheel-campaign-v1",
+  "status": "SUPPORTED_BOUNDED",
+  "tau_semantic_packet": {
+    "accepted_rows": [
+      0
+    ],
+    "candidate_execution_match": true,
+    "obligations": [
+      "policy_root_ok",
+      "capability_receipt_authenticated",
+      "productivity_bridge_verified",
+      "essential_basket_gain_verified",
+      "benefit_floor_funded",
+      "concentration_cap_ok",
+      "grid_externality_budget_ok",
+      "debt_guardrail_ok",
+      "strict_alignment_margin"
+    ],
+    "packet_sha256": "0fcf5aa5244d2d1b7bd6d9e0aa4d7ee624a06eabac67d448e9225a4405273400",
+    "reviewed_binary_replay": "PENDING_c49267404e07",
+    "rows": 512,
+    "tau_net_direct_native_abi_match": true
+  }
+}

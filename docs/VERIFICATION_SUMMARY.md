@@ -5,10 +5,11 @@
 > original finite test campaigns and legacy artifacts. They do not establish a
 > universal alignment theorem, real-world convergence, current Tau
 > compatibility, or production readiness. Current claim-scoped evidence lives
-> in `proofs/v1_1/`, `proofs/v2/`, `tau/v1_1/`, `tau/v2/`, and their
-> source-bound receipts. Version 1.1 machine-checks the repaired
-> hyperdeflationary threshold; its exact-current-Tau interpreter replay remains
-> pending.
+> in `proofs/v1/`, `proofs/v1_1/`, `proofs/v2/`, the corresponding Tau packets,
+> and their source-bound receipts. The reconstructed V1 proof treats exclusion
+> as opportunity cost, and the current source-pinned Tau candidate exactly
+> replays all three version packets. Reviewed-binary and public-node promotion
+> remain pending.
 
 ---
 
@@ -16,7 +17,7 @@
 
 | Verification Method | Status | Details |
 |---------------------|--------|---------|
-| **Lean4 Legacy File** | Historical compile | `AlignmentTheorem.lean` compiled, but its theorem surface does not establish the repaired V1.1 claim |
+| **Lean4 Legacy File** | Historical compile | `AlignmentTheorem.lean` compiled, but its theorem surface does not establish the complete reconstructed V1 claim |
 | **Z3 SMT Verification** | 🔧 Framework Ready | Requires `z3-solver` package installation |
 | **PySAT State Space** | 🔧 Framework Ready | Requires `python-sat` package installation |
 | **Tau Python Simulator** | Historical bounded run | Python VM execution covered `agent4_testnet_v35.tau`; this is not current native-Tau evidence |
@@ -132,7 +133,7 @@ theorem unethical_ev_limit_neg_infinity
 
 -- Historical main claim:
 theorem alignment_theorem
--- Intended claim; superseded by the restricted V1.1 theorem
+-- Intended claim; retained only under the reconstructed V1 premises
 
 -- Historical corollary names:
 theorem ethical_equilibrium
@@ -144,8 +145,9 @@ theorem unethical_negative_ev_at_equilibrium
 
 **Status**: `AlignmentTheorem.lean` contains no `sorry` and historically
 compiled under `lake build`. Compilation alone did not close the mismatch
-between its assumptions and the universal prose claim. Version 1.1 provides
-the current conditional utility-bound and relative-growth theorems.
+between its assumptions and the universal prose claim. The reconstructed V1
+proof supplies the fixed-coefficient exclusion theorem. Version 1.1 separately
+provides generalized utility-bound and relative-growth theorems.
 
 ---
 
@@ -168,9 +170,11 @@ actions.
 ∃ S ∈ ℝ: ∀ scarcity > S:
     EV(ethical) > EV(unethical)
 
-Current interpretation: Version 1.1 proves this comparison only when the
-strict complete margin `M(t)K(t) > B(t)` holds. The threshold depends on every
-modeled opposing term.
+Current interpretation: reconstructed V1 proves the concrete comparison when
+`G(t) < M(t)[R(t)+L(t)]` and the scarcity-linked upside `L(t)` is exclusive to
+the eligible branch. Version 1.1 generalizes the comparison to the strict
+complete margin `M(t)K(t) > B(t)`. Each threshold depends on every opposing
+term declared by that profile.
 ```
 
 ### No Counterexamples Found Within the Recorded Python Samples
@@ -225,7 +229,7 @@ modeled opposing term.
 | Boundary conditions | ✅ 230,000 tests (EETF + scarcity) |
 | Random fuzzing | ✅ 200,000 tests (uniform + log) |
 | Long-running simulation | ✅ 1,000 simulations |
-| Lean4 legacy file | Compiled historically; semantic claim superseded by V1.1 |
+| Lean4 legacy file | Compiled historically; reconstructed V1 proof carries the retained fixed-coefficient claim |
 | SMT solver verification | 🔧 Framework ready, packages not installed |
 
 ---
@@ -238,9 +242,10 @@ and bounded FSM exploration. Those results describe only their selected finite
 fixtures. They do not establish universal convergence, defeat every adversarial
 strategy, or prove that an ethical action is the unique profitable strategy.
 
-The current Version 1.1 claim is the conditional strict-margin theorem in
-`proofs/v1_1/AlignmentTheoremV1_1.lean`. Version 2 separately defines the finite
-publication and reserve boundary.
+The current Version 1 claim is the conditional EETF/VCC exclusion theorem in
+`proofs/v1/AlignmentTheoremV1.lean`. Version 1.1 separately generalizes the
+strict-margin theorem in `proofs/v1_1/AlignmentTheoremV1_1.lean`. Version 2
+defines the finite publication and reserve boundary.
 ```
 
 ---

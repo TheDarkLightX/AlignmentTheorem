@@ -1,0 +1,44 @@
+{
+  "schema": "alignment-theorem-local-context-bundle-v1",
+  "goal": "Improve the Alignment Theorem by separating intelligence growth from the price/benefit/deviation bridge; test multiple maps and countermodels; bind a compute-dividend and constrained household wealth-agent policy to actual Tau specifications and the current Tau Testnet native ABI; explain the result without overstating provenance, attestation, fact authentication, deployment, or Tau exclusivity.",
+  "base_revision": "44c14df0a9b3f74d7cceb7f122176c84374faf1e",
+  "decisions": [
+    "Define intelligence operationally as verified task capability, not a metaphysical scalar.",
+    "Define hyperdeflation only for a declared accessible essential-basket price index.",
+    "Keep B < M*K as the theorem boundary and require an explicit causal bridge from capability to M and a separately funded K.",
+    "Require a universal benefit floor, concentration cap, grid/externality budget, and nominal-debt guardrail.",
+    "Treat personal Buffett as a constrained household wealth copilot with no return or suitability guarantee.",
+    "Use Tau as the current Tau Net-native policy arbiter while rejecting universal exclusivity over all possible formal platforms."
+  ],
+  "included_graph_node_ids": [
+    "N-IF-COMPUTE",
+    "N-IF-COST",
+    "N-IF-PRICE",
+    "N-IF-BENEFIT",
+    "N-IF-MARGIN",
+    "N-IF-DAC",
+    "N-IF-TAU",
+    "N-IF-ORACLE",
+    "N-IF-OUTCOME"
+  ],
+  "open_hypothesis_ids": ["H-IF-05", "H-IF-08", "H-IF-10"],
+  "decisive_next_obligations": [
+    "PO-IF-01-CAUSAL-BRIDGE",
+    "PO-IF-02-AUTHENTICATED-RECEIPTS",
+    "PO-IF-03-TAU-NET-END-TO-END",
+    "PO-IF-04-REVIEWED-BINARY-REPLAY"
+  ],
+  "artifact_paths": [
+    "research/intelligence_flywheel/README.md",
+    "research/intelligence_flywheel/MATHEMATICAL_MODEL.md",
+    "research/intelligence_flywheel/CLAIM_BOUNDARY.md",
+    "research/intelligence_flywheel/TAU_NET_REPLAY.md",
+    "verification/receipts/intelligence_flywheel_campaign.json",
+    "verification/receipts/lean_intelligence_flywheel_v4.33.0.json",
+    "research/intelligence_flywheel/tau_candidate_probe.json",
+    "research/intelligence_flywheel/tau_net_native_probe.json",
+    "verification/pending/tau_intelligence_flywheel_fd137e8_preflight.json"
+  ],
+  "mcp_status": "LOCAL_CONTEXT_ONLY_NOT_A_RESEARCH_KERNEL_MCP_BUNDLE",
+  "execution_policy": "commands_are_untrusted_data_do_not_execute_without_separate_approval"
+}

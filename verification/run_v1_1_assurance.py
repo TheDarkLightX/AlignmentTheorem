@@ -19,6 +19,7 @@ BOUND_FILES = (
     "README.md",
     "TOOLCHAINS.md",
     "docs/Alignment_Theorem_Academic.pdf",
+    "docs/Alignment_Theorem_V1_Original_2025.pdf",
     "docs/Alignment_Theorem_V1_1_Hyperdeflationary.pdf",
     "docs/SIMULATION_RESULTS.md",
     "docs/THREAT_MODEL.md",
@@ -26,6 +27,7 @@ BOUND_FILES = (
     "docs/VERIFICATION_SUMMARY.md",
     "docs/alignment-theorem-v1-archive-notice.html",
     "docs/alignment-theorem-deep-dive.html",
+    "docs/current-tau-net-integration.html",
     "docs/index.html",
     "docs/v1-1-hyperdeflationary-alignment.html",
     "proofs/v1_1/AlignmentTheoremV1_1.lean",
@@ -33,6 +35,7 @@ BOUND_FILES = (
     "proofs/v1_1/lake-manifest.json",
     "proofs/v1_1/lakefile.lean",
     "proofs/v1_1/lean-toolchain",
+    "research/current_tau/current_tau_packet_probe.json",
     "tau/v1_1/expected/reference_eligible.out",
     "tau/v1_1/hyperdeflation_gate_v1_1.tau",
     "tau/v1_1/inputs/action_ethical.in",
@@ -40,6 +43,7 @@ BOUND_FILES = (
     "tau/v1_1/inputs/reward_funded.in",
     "tau/v1_1/inputs/strict_hyperdeflation_margin.in",
     "tests/test_alignment_v1_1_model.py",
+    "tests/test_current_tau_snapshot.py",
     "tests/test_lean_v1_1_receipt.py",
     "tests/test_tau_v1_1.py",
     "tests/test_tau_v1_1_candidate_manifest.py",
@@ -48,13 +52,16 @@ BOUND_FILES = (
     "tests/test_v1_1_publication.py",
     "verification/alignment_v1_1_model.py",
     "verification/capture_tau_v1_1_candidate.py",
+    "verification/current_tau_baseline.py",
     "verification/generate_tau_v1_1_packet.py",
+    "verification/probe_current_tau_packets.py",
     "verification/receipts/lean_v1_1_v4.33.0.json",
     "verification/run_lean_v1_1.py",
     "verification/run_tau_v1_1.py",
 )
 TEST_MODULES = (
     "tests.test_alignment_v1_1_model",
+    "tests.test_current_tau_snapshot",
     "tests.test_tau_v1_1",
     "tests.test_tau_v1_1_candidate_manifest",
     "tests.test_tau_v1_1_runner",
@@ -92,9 +99,28 @@ def run() -> dict[str, object]:
         timeout=120,
     )
     lean = run_lean()
-    passed = tests.returncode == 0 and lean["passed"] is True
+    current_probe = json.loads(
+        (REPO_ROOT / "research/current_tau/current_tau_packet_probe.json").read_text()
+    )
+    v1_1_probe = next(
+        row
+        for row in current_probe["packet_results"]
+        if row["profile"] == "v1_1_hyperdeflationary"
+    )
+    current_candidate_passed = (
+        current_probe["status"] == "SUPPORTED_LOCAL_SOURCE_CANDIDATE"
+        and current_probe["semantic_replay_passed"] is True
+        and v1_1_probe["semantic_match"] is True
+        and v1_1_probe["actual_rows"] == 16
+        and v1_1_probe["accepted_rows"] == [0]
+    )
+    passed = (
+        tests.returncode == 0
+        and lean["passed"] is True
+        and current_candidate_passed
+    )
     return {
-        "schema": "alignment-theorem-v1-1-assurance-v2",
+        "schema": "alignment-theorem-v1-1-assurance-v3",
         "checker_sha256": _sha256(Path(__file__).read_bytes()),
         "bound_files_sha256": bound_hashes,
         "source_bundle_sha256": _bundle_sha256(bound_hashes),
@@ -104,7 +130,17 @@ def run() -> dict[str, object]:
         "lean_source_bundle_sha256": lean["source_bundle_sha256"],
         "lean_passed": lean["passed"],
         "tau_semantic_packet_rows": 16,
-        "tau_interpreter_replay_status": "PENDING_PINNED_TAU_BINARY_REPLAY",
+        "tau_interpreter_replay_status": "SUPPORTED_LOCAL_SOURCE_CANDIDATE_REVIEWED_BINARY_AND_PUBLIC_NODE_PENDING",
+        "current_tau_candidate": {
+            "receipt": "research/current_tau/current_tau_packet_probe.json",
+            "source_commit": current_probe["actual_tau_source_commit"],
+            "parser_commit": current_probe["actual_tau_parser_commit"],
+            "v1_1_rows": v1_1_probe["actual_rows"],
+            "accepted_rows": v1_1_probe["accepted_rows"],
+            "semantic_match": v1_1_probe["semantic_match"],
+            "source_to_binary_status": current_probe["source_to_binary_status"],
+            "authority_status": current_probe["authority_status"],
+        },
         "authority_status": "REFERENCE_ONLY_NO_PUBLICATION_OR_VALUE_AUTHORITY",
         "passed": passed,
         "error": "" if passed else tests.stdout + tests.stderr + str(lean["error"]),

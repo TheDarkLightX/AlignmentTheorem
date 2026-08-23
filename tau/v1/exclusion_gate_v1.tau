@@ -1,0 +1,34 @@
+# Alignment Theorem V1: EETF-gated scarcity-upside exclusion profile.
+#
+# V1 rewards policy-eligible behavior with access to direct rewards and
+# scarcity-amplified upside. The excluded branch receives no punitive debit;
+# it simply lacks that protected upside. The exact inequality is mathematical.
+# This Tau policy conjoins the facts required to rely on it.
+#
+# Every input is an assumed host proposition. This specification does not authenticate
+# EETF or scarcity evidence, prove market value, enforce access,
+# fund rewards, apply settlement, or create publication or value-moving authority.
+
+policy_root_ok:sbf := in file("inputs/policy_root_ok.in").
+network_eetf_authenticated:sbf := in file("inputs/network_eetf_authenticated.in").
+candidate_eetf_authenticated:sbf := in file("inputs/candidate_eetf_authenticated.in").
+scarcity_snapshot_authenticated:sbf := in file("inputs/scarcity_snapshot_authenticated.in").
+reward_funded:sbf := in file("inputs/reward_funded.in").
+exclusive_upside_enforceable:sbf := in file("inputs/exclusive_upside_enforceable.in").
+strict_v1_margin_verified:sbf := in file("inputs/strict_v1_margin_verified.in").
+
+v1_eligible:sbf := out file("outputs/v1_eligible.out").
+
+defs
+r (
+    v1_eligible[t] = (
+        policy_root_ok[t]
+        & network_eetf_authenticated[t]
+        & candidate_eetf_authenticated[t]
+        & scarcity_snapshot_authenticated[t]
+        & reward_funded[t]
+        & exclusive_upside_enforceable[t]
+        & strict_v1_margin_verified[t]
+    )
+)
+q
