@@ -1,5 +1,5 @@
 {
-  "artifact_revision": "6dd1a6d3efc22013459a29ccf4c378f16abd00f5",
+  "artifact_revision": "e2ad8c96da88e4aa3f6602575fa04ac6d002b90c",
   "authority_status": "RESEARCH_REFERENCE_ONLY_NO_FINANCIAL_OR_VALUE_AUTHORITY",
   "base_revision": "b44540b69231a8dbadaaf86cb507220465c06ca0",
   "claim_status": "SUPPORTED_BOUNDED_WITH_OPEN_EMPIRICAL_AND_TAU_REPLAY_GATES",
@@ -41,7 +41,7 @@
     "verification/compat/lean_proc_self_compat.c": "e2c2f8c8261af494d4989336dce44efa42337109812ac95460bedb15b472151f",
     "verification/compute_dividend_model.py": "fb4b8804b943ef71794a16bf30c7fbcac5a7b4a520d7d9e3debacf360075f738",
     "verification/generate_compute_dividend_manifest.py": "0d9ac2ecc83aa8d12a3356139f8944d8057dcc9b33a3c9814180d03ae98374c0",
-    "verification/generate_compute_dividend_obligation.py": "ecd15a1f0a874aada503c6fff9ed8225228e29fc3a6b44fc473ee2e62aec173f",
+    "verification/generate_compute_dividend_obligation.py": "a96f1f0512ed1b43d384419d2e97e7f569206d04253e8cbcdd4a07a385e8811b",
     "verification/generate_tau_compute_dividend_packets.py": "cc50df7c7a7993cbabfe34f0f89ddafbe07df0c4bf925c7c9a9837432ef45d60",
     "verification/pending/tau_v1_1_fd137e8_replay_plan.json": "8f8df87370da37c6d576dbf6325294c2a3dcf0eaf8207ceeb1fee5d793ea9bc9",
     "verification/probe_tau_compute_dividend_candidate.py": "5fabc61479fc571cd9ef1126537eb2a23d6d5e617675c66f262be235a89eb0e3",
