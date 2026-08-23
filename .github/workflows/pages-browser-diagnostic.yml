@@ -1,0 +1,169 @@
+name: Diagnose live Pages browser polish
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/pages-browser-diagnostic.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  diagnose-browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      SITE_ROOT: https://thedarklightx.github.io/AlignmentTheorem
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12.13"
+      - name: Install Selenium
+        run: python3 -m pip install --disable-pip-version-check selenium==4.35.0
+      - name: Capture browser diagnostics without suppressing evidence
+        env:
+          VERIFY_NONCE: ${{ github.sha }}
+        run: |
+          python3 - <<'PY'
+          from __future__ import annotations
+          import datetime as dt
+          import json
+          import os
+          import shutil
+          import traceback
+          from pathlib import Path
+
+          from selenium import webdriver
+          from selenium.webdriver.chrome.options import Options
+          from selenium.webdriver.chrome.service import Service
+          from selenium.webdriver.common.by import By
+          from selenium.webdriver.support.ui import WebDriverWait
+
+          site = os.environ["SITE_ROOT"].rstrip("/")
+          nonce = os.environ["VERIFY_NONCE"]
+          out = {
+              "schema": "alignment-theorem-live-browser-diagnostic-v1",
+              "captured_at_utc": dt.datetime.now(dt.timezone.utc).isoformat(),
+              "source_commit": os.environ["GITHUB_SHA"],
+              "site_root": site,
+              "status": "RUNNING",
+              "checks": [],
+              "interactions": {},
+              "errors": [],
+          }
+          qa = Path("qa-browser")
+          qa.mkdir(exist_ok=True)
+
+          chrome = shutil.which("google-chrome") or shutil.which("chromium") or shutil.which("chromium-browser")
+          if not chrome:
+              out["status"] = "FAILED"
+              out["errors"].append("Chrome/Chromium unavailable")
+          else:
+              options = Options()
+              options.binary_location = chrome
+              for arg in ("--headless=new", "--no-sandbox", "--disable-dev-shm-usage", "--disable-gpu", "--force-device-scale-factor=1"):
+                  options.add_argument(arg)
+              driver_path = shutil.which("chromedriver")
+              driver = None
+              try:
+                  driver = webdriver.Chrome(service=Service(driver_path) if driver_path else Service(), options=options)
+                  out["browser_version"] = driver.capabilities.get("browserVersion")
+                  wait = WebDriverWait(driver, 30)
+                  pages = [
+                      ("home", f"{site}/?browser-diagnostic={nonce}", "Alignment Theorem - Ethical and Profitable LLM Agents", f"{site}/", "The Data Center Bargain"),
+                      ("data-center", f"{site}/data-center-social-contract.html?browser-diagnostic={nonce}", "The Data Center Bargain | Alignment Theorem", f"{site}/data-center-social-contract.html", "The Data Center Bargain"),
+                  ]
+                  viewports = [("desktop",1440,1000),("tablet",768,1024),("mobile",390,844)]
+                  audit = """
+                  const controls=[...document.querySelectorAll('input,select,textarea,button')];
+                  const unlabeled=controls.filter(el=>{
+                    if(el.tagName==='BUTTON') return !(el.textContent.trim()||el.getAttribute('aria-label')||el.getAttribute('aria-labelledby'));
+                    if(el.type==='hidden') return false;
+                    return !(el.getAttribute('aria-label')||el.getAttribute('aria-labelledby')||el.closest('label')||(el.id&&document.querySelector(`label[for="${CSS.escape(el.id)}"]`)));
+                  }).map(el=>el.id||el.tagName);
+                  const ids=[...document.querySelectorAll('[id]')].map(el=>el.id);
+                  const duplicateIds=[...new Set(ids.filter((id,i)=>ids.indexOf(id)!==i))];
+                  const emptyLinks=[...document.querySelectorAll('a')].filter(a=>!a.getAttribute('href')||a.getAttribute('href')==='#').map(a=>a.textContent.trim());
+                  const featureBranchLinks=[...document.querySelectorAll('a[href]')].filter(a=>a.href.includes('research/compute-dividend-wealth-agent')).map(a=>a.href);
+                  return {title:document.title,canonical:document.querySelector('link[rel="canonical"]')?.href||null,innerWidth,documentWidth:document.documentElement.scrollWidth,bodyWidth:document.body.scrollWidth,mainCount:document.querySelectorAll('main').length,navCount:document.querySelectorAll('nav').length,unlabeled,duplicateIds,emptyLinks,featureBranchLinks};
+                  """
+                  for viewport,width,height in viewports:
+                      driver.set_window_size(width,height)
+                      for name,url,title,canonical,marker in pages:
+                          check={"page":name,"viewport":viewport,"requested_width":width,"requested_height":height}
+                          try:
+                              driver.get(url)
+                              wait.until(lambda d:d.execute_script("return document.readyState")=="complete")
+                              wait.until(lambda d:marker in d.find_element(By.TAG_NAME,"body").text)
+                              metrics=driver.execute_script(audit)
+                              check["metrics"]=metrics
+                              check["assertions"]={
+                                  "title":metrics["title"]==title,
+                                  "canonical":metrics["canonical"]==canonical,
+                                  "no_document_overflow":metrics["documentWidth"]<=metrics["innerWidth"]+2,
+                                  "no_body_overflow":metrics["bodyWidth"]<=metrics["innerWidth"]+2,
+                                  "one_main":metrics["mainCount"]==1,
+                                  "controls_labeled":not metrics["unlabeled"],
+                                  "ids_unique":not metrics["duplicateIds"],
+                                  "links_nonempty":not metrics["emptyLinks"],
+                                  "no_stale_branch_links":not metrics["featureBranchLinks"],
+                              }
+                              check["passed"]=all(check["assertions"].values())
+                              shot=qa/f"{name}-{viewport}.png"
+                              driver.save_screenshot(str(shot))
+                              check["screenshot"]=str(shot)
+                          except Exception:
+                              check["passed"]=False
+                              check["error"]=traceback.format_exc()
+                          out["checks"].append(check)
+
+                  try:
+                      driver.set_window_size(1440,1000)
+                      driver.get(pages[0][1])
+                      btn=wait.until(lambda d:d.find_element(By.CSS_SELECTOR,'.scenario-button[data-scarcity="60"]'))
+                      btn.click()
+                      wait.until(lambda d:d.find_element(By.ID,"scarcityValue").text=="60x")
+                      out["interactions"]["homepage_scenario"]={"passed":btn.get_attribute("aria-pressed")=="true","scarcity":driver.find_element(By.ID,"scarcityValue").text,"aria_pressed":btn.get_attribute("aria-pressed")}
+                  except Exception:
+                      out["interactions"]["homepage_scenario"]={"passed":False,"error":traceback.format_exc()}
+
+                  try:
+                      driver.get(pages[1][1])
+                      wait.until(lambda d:d.execute_script("return document.readyState")=="complete")
+                      driver.execute_script("""
+                        const values={gross:'10',costs:'9',floor:'2',deficits:'0, 5',compute:'1',computeFloor:'2'};
+                        for(const [id,value] of Object.entries(values)){const el=document.getElementById(id);el.value=value;el.dispatchEvent(new Event('input',{bubbles:true}));}
+                      """)
+                      wait.until(lambda d:"Underfunded" in d.find_element(By.ID,"rCashStatus").text)
+                      wait.until(lambda d:"Underfunded" in d.find_element(By.ID,"rComputeStatus").text)
+                      out["interactions"]["community_calculator"]={"passed":True,"cash":driver.find_element(By.ID,"rCashStatus").text,"compute":driver.find_element(By.ID,"rComputeStatus").text,"required":driver.find_element(By.ID,"rRequired").text}
+                  except Exception:
+                      out["interactions"]["community_calculator"]={"passed":False,"error":traceback.format_exc()}
+
+                  out["status"]="PASSED" if all(c.get("passed") for c in out["checks"]) and all(i.get("passed") for i in out["interactions"].values()) else "FAILED"
+              except Exception:
+                  out["status"]="FAILED"
+                  out["errors"].append(traceback.format_exc())
+              finally:
+                  if driver is not None:
+                      driver.quit()
+
+          receipt=Path("verification/receipts/github_pages_browser_diagnostic.json")
+          receipt.parent.mkdir(parents=True,exist_ok=True)
+          receipt.write_text(json.dumps(out,indent=2,sort_keys=True)+"\n")
+          print(receipt.read_text())
+          PY
+      - name: Commit browser diagnostic
+        run: |
+          git config user.name "TheDarkLightX"
+          git config user.email "TheDarkLightX@users.noreply.github.com"
+          git add verification/receipts/github_pages_browser_diagnostic.json
+          git commit -m "verification: capture live browser polish diagnostics"
+          git push origin HEAD:main
