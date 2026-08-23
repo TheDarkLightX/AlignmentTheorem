@@ -42,24 +42,108 @@
     .architecture{display:grid;grid-template-columns:1fr 1fr;gap:1rem}.lane{border:1px solid var(--line);border-radius:16px;padding:1.4rem;background:var(--panel)}.lane h3{margin-top:0}.lane-intro{color:var(--muted);font-size:.92rem;margin:0 0 .8rem;line-height:1.5}.lane ul{padding-left:1.2rem;color:var(--muted)}code{font-family:DM Mono,monospace;color:var(--lime);font-size:.88em}
     .receipt{display:grid;grid-template-columns:repeat(4,1fr);gap:.7rem}.receipt div{background:#081411;border:1px solid var(--line);border-radius:12px;padding:1rem}.receipt strong{display:block;font-size:1.3rem}.receipt span{color:var(--dim);font:400 .68rem DM Mono,monospace;text-transform:uppercase}.pending strong{color:var(--amber)}
     .sources{columns:2;column-gap:2rem}.sources li{break-inside:avoid;margin-bottom:.8rem;color:var(--muted)}
+    .flywheel-wrap{display:flex;justify-content:center;margin:1rem 0 2.5rem}.flywheel-svg{max-width:480px;width:100%;height:auto}
+    .concept-steps{display:grid;grid-template-columns:repeat(5,1fr);gap:.8rem;margin:2rem 0}.cstep{padding:1.1rem .9rem;border:1px solid var(--line);border-radius:14px;background:var(--panel)}.cstep-num{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:var(--mint);color:#04251a;font-weight:700;font-size:.8rem;margin-bottom:.5rem}.cstep h3{font-size:.92rem;margin:0 0 .35rem}.cstep p{color:var(--muted);font-size:.82rem;margin:0;line-height:1.5}
+    .stall-wrap{margin-top:2.5rem;padding:1.6rem;border:1px solid rgba(255,125,141,.25);border-radius:18px;background:rgba(255,125,141,.04)}.stall-title{color:var(--rose);font-size:1.15rem;margin:0 0 .7rem;font-weight:700}.stall-svg{display:block;max-width:460px;width:100%;height:auto;margin:1.2rem auto}.stall-wrap p{color:var(--muted);font-size:.92rem;margin:.5rem 0}
     footer{max-width:var(--max);margin:auto;padding:3rem 1.25rem 5rem;border-top:1px solid var(--line);color:var(--dim);font-size:.86rem}
-    @media(max-width:900px){.grid,.receipt{grid-template-columns:1fr 1fr}.lab,.architecture{grid-template-columns:1fr}.bridge{grid-template-columns:1fr}.section-head{grid-template-columns:1fr}.sources{columns:1}}
+    @media(max-width:900px){.grid,.receipt{grid-template-columns:1fr 1fr}.lab,.architecture{grid-template-columns:1fr}.bridge{grid-template-columns:1fr}.section-head{grid-template-columns:1fr}.sources{columns:1}.concept-steps{grid-template-columns:1fr 1fr}}
     @media(max-width:560px){.grid,.receipt,.readout{grid-template-columns:1fr}.hero{padding-top:5rem}h1{font-size:3.4rem}}
   </style>
 </head>
 <body>
-  <nav><div class="navin"><a class="brand" href="index.html">Alignment Theorem</a><a href="#math">Math</a><a href="#lab">Model lab</a><a href="#dividend">Dividend</a><a href="#tau">Why Tau</a><a href="#evidence">Evidence</a></div></nav>
+  <nav><div class="navin"><a class="brand" href="index.html">Alignment Theorem</a><a href="#concept">Concept</a><a href="#math">Math</a><a href="#lab">Model lab</a><a href="#dividend">Dividend</a><a href="#tau">Why Tau</a><a href="#evidence">Evidence</a></div></nav>
   <header class="hero">
     <div class="eyebrow">Research packet · August 2026 · proof-bounded</div>
     <h1>The <span class="gradient">intelligence dividend</span></h1>
     <p class="lede">Data centers can be more than private infrastructure. Under demanding, testable assumptions, verified AI productivity could lower essential costs, fund a universal compute dividend, and power constrained personal wealth copilots. Tau can make the spending rule executable. It cannot make the economic facts true.</p>
     <div class="truth"><strong>The decisive correction:</strong> “intelligence doubles” is not the Alignment Theorem. The theorem still requires protected real benefit to strictly exceed the benefit of deviation.</div>
-    <div class="actions"><a class="button primary" href="#math">See the bridge</a><a class="button" href="https://github.com/TheDarkLightX/AlignmentTheorem/tree/main/research/intelligence_flywheel">Research packet</a><a class="button" href="alignment-theorem-deep-dive.html">Original deep dive</a></div>
+    <div class="actions"><a class="button primary" href="#concept">See the concept</a><a class="button" href="#math">See the math</a><a class="button" href="https://github.com/TheDarkLightX/AlignmentTheorem/tree/main/research/intelligence_flywheel">Research packet</a><a class="button" href="alignment-theorem-deep-dive.html">Original deep dive</a></div>
   </header>
 
   <main>
+    <section id="concept">
+      <div class="section-head"><div class="kicker">01 · concept</div><div><h2>The flywheel:<br>a self-reinforcing cycle.</h2><p>A flywheel stores energy from each turn to make the next easier. The intelligence flywheel proposes that verified AI capability can drive such a cycle for ordinary households, but only if the savings actually reach them.</p></div></div>
+      <div class="flywheel-wrap">
+        <svg viewBox="0 0 460 460" class="flywheel-svg" role="img" aria-label="The intelligence flywheel: a five-stage self-reinforcing cycle">
+          <defs>
+            <marker id="fw-arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto" markerUnits="userSpaceOnUse">
+              <path d="M0,0 L6,3 L0,6 Z" fill="#65f2b7"/>
+            </marker>
+          </defs>
+          <path d="M 269,75 A 160,160 0 0,1 366,145" fill="none" stroke="#65f2b7" stroke-width="2" marker-end="url(#fw-arrow)"/>
+          <path d="M 390,219 A 160,160 0 0,1 353,333" fill="none" stroke="#65f2b7" stroke-width="2" marker-end="url(#fw-arrow)"/>
+          <path d="M 290,378 A 160,160 0 0,1 170,378" fill="none" stroke="#65f2b7" stroke-width="2" marker-end="url(#fw-arrow)"/>
+          <path d="M 107,333 A 160,160 0 0,1 70,219" fill="none" stroke="#65f2b7" stroke-width="2" marker-end="url(#fw-arrow)"/>
+          <path d="M 94,145 A 160,160 0 0,1 191,75" fill="none" stroke="#65f2b7" stroke-width="2" marker-end="url(#fw-arrow)"/>
+          <circle cx="230" cy="230" r="52" fill="none" stroke="#1d3630" stroke-width="1.5" stroke-dasharray="4,4"/>
+          <text x="230" y="224" text-anchor="middle" fill="#c7ff6b" font-family="DM Mono,monospace" font-size="15" font-weight="500">M &#215; K</text>
+          <text x="230" y="244" text-anchor="middle" fill="#9bb1ab" font-family="DM Mono,monospace" font-size="13">&gt; B</text>
+          <g transform="translate(230,70)">
+            <circle r="40" fill="#0c1916" stroke="#65f2b7" stroke-width="2"/>
+            <text text-anchor="middle" y="-8" fill="#65f2b7" font-family="DM Mono,monospace" font-size="9">01</text>
+            <text text-anchor="middle" y="5" fill="#edf6f3" font-family="Manrope,sans-serif" font-size="10" font-weight="700">Intelligence</text>
+            <text text-anchor="middle" y="18" fill="#9bb1ab" font-family="Manrope,sans-serif" font-size="9">grows</text>
+          </g>
+          <g transform="translate(382,181)">
+            <circle r="40" fill="#0c1916" stroke="#c7ff6b" stroke-width="2"/>
+            <text text-anchor="middle" y="-8" fill="#c7ff6b" font-family="DM Mono,monospace" font-size="9">02</text>
+            <text text-anchor="middle" y="5" fill="#edf6f3" font-family="Manrope,sans-serif" font-size="10" font-weight="700">Costs</text>
+            <text text-anchor="middle" y="18" fill="#9bb1ab" font-family="Manrope,sans-serif" font-size="9">drop</text>
+          </g>
+          <g transform="translate(324,359)">
+            <circle r="40" fill="#0c1916" stroke="#75bcff" stroke-width="2"/>
+            <text text-anchor="middle" y="-8" fill="#75bcff" font-family="DM Mono,monospace" font-size="9">03</text>
+            <text text-anchor="middle" y="3" fill="#edf6f3" font-family="Manrope,sans-serif" font-size="9" font-weight="700">Purchasing</text>
+            <text text-anchor="middle" y="15" fill="#edf6f3" font-family="Manrope,sans-serif" font-size="9" font-weight="700">power &#8593;</text>
+          </g>
+          <g transform="translate(136,359)">
+            <circle r="40" fill="#0c1916" stroke="#65f2b7" stroke-width="2"/>
+            <text text-anchor="middle" y="-8" fill="#65f2b7" font-family="DM Mono,monospace" font-size="9">04</text>
+            <text text-anchor="middle" y="3" fill="#edf6f3" font-family="Manrope,sans-serif" font-size="9" font-weight="700">Protected</text>
+            <text text-anchor="middle" y="15" fill="#edf6f3" font-family="Manrope,sans-serif" font-size="9" font-weight="700">benefit &#8593;</text>
+          </g>
+          <g transform="translate(78,181)">
+            <circle r="40" fill="#0c1916" stroke="#c7ff6b" stroke-width="2"/>
+            <text text-anchor="middle" y="-8" fill="#c7ff6b" font-family="DM Mono,monospace" font-size="9">05</text>
+            <text text-anchor="middle" y="5" fill="#edf6f3" font-family="Manrope,sans-serif" font-size="10" font-weight="700">Alignment</text>
+            <text text-anchor="middle" y="18" fill="#9bb1ab" font-family="Manrope,sans-serif" font-size="9">holds</text>
+          </g>
+        </svg>
+      </div>
+      <div class="concept-steps">
+        <div class="cstep"><span class="cstep-num">1</span><h3>Intelligence grows</h3><p>Verified AI capability increases. More tasks can be done automatically and checked for correctness.</p></div>
+        <div class="cstep"><span class="cstep-num">2</span><h3>Costs drop</h3><p>The automated share of essential goods and services gets cheaper. The basket price falls.</p></div>
+        <div class="cstep"><span class="cstep-num">3</span><h3>Purchasing power rises</h3><p>Each dollar buys more. The multiplier M = 1/P grows as the basket price P falls.</p></div>
+        <div class="cstep"><span class="cstep-num">4</span><h3>Protected benefit grows</h3><p>The multiplier amplifies rewards tied to ethical participation. Protected benefit M &#215; K scales with purchasing power.</p></div>
+        <div class="cstep"><span class="cstep-num">5</span><h3>Alignment holds</h3><p>When protected benefit exceeds the benefit of deviation, the most profitable strategy is also the ethical one. The cycle repeats.</p></div>
+      </div>
+      <div class="stall-wrap">
+        <h3 class="stall-title">The stall</h3>
+        <p>The flywheel is not automatic. It only works if cost savings actually reach households. Two parameters control this: <code>a</code>, the share of the essential basket that can be automated, and <code>&rho;</code>, the share of savings passed through to consumers. If either is less than 1, purchasing power hits a ceiling no matter how fast intelligence grows.</p>
+        <svg viewBox="0 0 440 180" class="stall-svg" role="img" aria-label="The flywheel stalls when pass-through is incomplete: intelligence keeps growing but purchasing power hits a floor">
+          <defs>
+            <marker id="gap-arrow" markerWidth="7" markerHeight="7" refX="3" refY="6" orient="auto" markerUnits="userSpaceOnUse">
+              <path d="M0,0 L3,6 L6,0" fill="none" stroke="#ff7d8d" stroke-width="1.5"/>
+            </marker>
+          </defs>
+          <rect width="440" height="180" fill="#0c1916" rx="14"/>
+          <line x1="30" y1="155" x2="410" y2="155" stroke="#1d3630" stroke-width="1"/>
+          <line x1="30" y1="65" x2="410" y2="65" stroke="#ffcd70" stroke-width="1.5" stroke-dasharray="5,4" opacity="0.7"/>
+          <text x="405" y="58" text-anchor="end" fill="#ffcd70" font-family="DM Mono,monospace" font-size="9">floor: M &#8804; 1/(1&#8722;a&#961;)</text>
+          <path d="M 30,152 C 80,148 130,135 170,105 S 250,35 320,28 L 410,25" fill="none" stroke="#65f2b7" stroke-width="2.5"/>
+          <text x="370" y="20" fill="#65f2b7" font-family="DM Mono,monospace" font-size="10">Intelligence</text>
+          <path d="M 30,152 C 80,138 130,100 170,75 S 230,66 280,65 L 410,65" fill="none" stroke="#75bcff" stroke-width="2.5"/>
+          <text x="345" y="82" fill="#75bcff" font-family="DM Mono,monospace" font-size="10">Purchasing power</text>
+          <line x1="255" y1="38" x2="255" y2="58" stroke="#ff7d8d" stroke-width="1.5" marker-end="url(#gap-arrow)"/>
+          <text x="263" y="50" fill="#ff7d8d" font-family="DM Mono,monospace" font-size="9">gap grows</text>
+          <text x="220" y="172" text-anchor="middle" fill="#647a75" font-family="DM Mono,monospace" font-size="9">time &#8594;</text>
+        </svg>
+        <p>The alignment condition is the margin: <code>M &#215; K</code> must strictly exceed <code>B</code>. If the floor caps <code>M</code>, and deviation benefit <code>B</code> keeps growing, the margin fails and the flywheel stalls.</p>
+      </div>
+    </section>
+
     <section id="math">
-      <div class="section-head"><div class="kicker">01 · theorem</div><div><h2>More capability does not guarantee more benefit.<br>The margin does.</h2><p>Let <em>I</em> be verified task capability, <em>P</em> an accessible essential-basket price, <em>M=1/P</em> its purchasing-power multiplier, <em>K</em> protected benefit, and <em>B</em> deviation benefit.</p></div></div>
+      <div class="section-head"><div class="kicker">02 · theorem</div><div><h2>More capability does not guarantee more benefit.<br>The margin does.</h2><p>Let <em>I</em> be verified task capability, <em>P</em> an accessible essential-basket price, <em>M=1/P</em> its purchasing-power multiplier, <em>K</em> protected benefit, and <em>B</em> deviation benefit.</p></div></div>
       <div class="formula">\[P_t=1-a\rho+a\rho I_t^{-\eta},\quad M_t=P_t^{-1},\quad \operatorname{Aligned}(t)\iff B_t&lt;M_tK_t\]</div>
       <div class="bridge" style="margin-top:1rem"><div class="node"><strong>1 · Capability</strong>verified task completion</div><div class="node"><strong>2 · Productivity</strong>measured causal effect</div><div class="node"><strong>3 · Unit cost</strong>quality adjusted</div><div class="node"><strong>4 · Price & access</strong>competition + pass-through</div><div class="node"><strong>5 · Protected reward</strong>floor + dividend + compute</div></div>
       <p>The bridge parameters are not decorative. If either automatable share <code>a</code> or pass-through <code>ρ</code> is incomplete, the model has a floor <code>δ=1−aρ&gt;0</code>, hence <code>M&lt;=1/δ</code>. Capability may double forever while household purchasing power remains bounded.</p>
@@ -71,7 +155,7 @@
     </section>
 
     <section id="lab">
-      <div class="section-head"><div class="kicker">02 · model lab</div><div><h2>Change the assumptions.<br>Watch the floor appear.</h2><p>This browser calculator illustrates the declared equation with floating-point display. It is not a receipt and does not replace the exact Python or Lean evidence.</p></div></div>
+      <div class="section-head"><div class="kicker">03 · model lab</div><div><h2>Change the assumptions.<br>Watch the floor appear.</h2><p>This browser calculator illustrates the declared equation with floating-point display. It is not a receipt and does not replace the exact Python or Lean evidence.</p></div></div>
       <div class="lab">
         <div class="controls">
           <div class="control"><label for="t">Epoch <output id="tOut">8</output></label><input id="t" type="range" min="0" max="20" value="8"></div>
@@ -88,7 +172,7 @@
     </section>
 
     <section id="dividend">
-      <div class="section-head"><div class="kicker">03 · populist mechanism</div><div><h2>A public compute dividend,<br>not a blank-check subsidy.</h2><p>The utilitarian-populist objective is prioritarian: maximize concave household welfare only after a universal floor and within concentration, grid, environmental, and debt guardrails.</p></div></div>
+      <div class="section-head"><div class="kicker">04 · populist mechanism</div><div><h2>A public compute dividend,<br>not a blank-check subsidy.</h2><p>The utilitarian-populist objective is prioritarian: maximize concave household welfare only after a universal floor and within concentration, grid, environmental, and debt guardrails.</p></div></div>
       <div class="architecture">
         <div class="lane"><h3>Data-center social contract</h3><ul><li>Recover incremental grid and public costs first.</li><li>Fund a universal cash and compute floor.</li><li>Allocate surplus with diminishing marginal utility.</li><li>Cap household/operator concentration and permit unspent reserve.</li><li>Stop when reliability, environment, debt, or distributional guardrails fail.</li></ul></div>
         <div class="lane"><h3>The “personal Buffett” boundary</h3><p class="lane-intro">If verified AI productivity lowers costs enough, households could get a personal AI agent that manages a small investment portfolio on their behalf. The idea is like having your own Warren Buffett, but with hard guardrails the agent cannot override.</p><ul><li>The AI can suggest plans, but a fixed rule sheet decides what is allowed. The AI never has the final say.</li><li>Each action requires fresh owner consent. Funds stay in an account the owner controls. No borrowing, no short-selling, no concentrated bets. Diversification, loss limits, fee caps, and turnover limits are enforced by the rules, not by the AI's judgment.</li><li>When the rules cannot clearly approve an action, the default is to do nothing or fall back to a simple index fund. The agent never gambles by default.</li><li>This does not promise investment returns, early retirement, financial advice, fiduciary duty, or generational wealth. It is a constrained automation tool, not a financial advisor.</li></ul></div>
@@ -97,7 +181,7 @@
     </section>
 
     <section id="tau">
-      <div class="section-head"><div class="kicker">04 · Tau Net</div><div><h2>Why Tau here, and what<br>“only Tau” can honestly mean.</h2><p>On the current Tau Net protocol path, the rule is necessarily a Tau specification because Tau is the native policy arbiter. The stronger universal exclusivity claim, which says that no other formal platform could implement a comparable design, is established by Ohad Asor's patent on Tau. The core mechanism, a self-amending formal language that can reason about and revise its own specifications, is what makes Tau the only platform that can serve as a live economic constitution.</p></div></div>
+      <div class="section-head"><div class="kicker">05 · Tau Net</div><div><h2>Why Tau here, and what<br>“only Tau” can honestly mean.</h2><p>On the current Tau Net protocol path, the rule is necessarily a Tau specification because Tau is the native policy arbiter. The stronger universal exclusivity claim, which says that no other formal platform could implement a comparable design, is established by Ohad Asor's patent on Tau. The core mechanism, a self-amending formal language that can reason about and revise its own specifications, is what makes Tau the only platform that can serve as a live economic constitution.</p></div></div>
       <div class="grid">
         <div class="card"><div class="tag">Native policy</div><h3>Executable specification</h3><p>The same decidable rule is the artifact reviewed by humans and evaluated by the protocol. The protocol commits rule text into state.</p></div>
         <div class="card"><div class="tag">Revision</div><h3>Governed policy change</h3><p>Tau is designed for specifications that can reason about and revise specifications. That is unusually aligned with a living economic constitution.</p></div>
@@ -108,7 +192,7 @@
     </section>
 
     <section id="evidence">
-      <div class="section-head"><div class="kicker">05 · receipts</div><div><h2>What ran. What passed.<br>What is still pending.</h2></div></div>
+      <div class="section-head"><div class="kicker">06 · receipts</div><div><h2>What ran. What passed.<br>What is still pending.</h2></div></div>
       <div class="receipt"><div><strong>544</strong><span>exact bridge cases</span></div><div><strong>512</strong><span>complete Tau rows</span></div><div><strong>12 / 12</strong><span>native ABI cases</span></div><div class="pending"><strong>Pending</strong><span>reviewed c4926740 replay</span></div></div>
       <p>The Lean build reported Lean 4.33.0 and passed its axiom audit. The current Tau candidate uses source <code>9b191af</code> and parser <code>5dd036</code>; its executable hash is <code>f6e2bf67…</code>, not the reviewed <code>c4926740…</code>. The native module hash is <code>ec34baae…</code>. The source-to-binary relation and host environment are not independently or hermetically attested. Those boundaries keep reviewed promotion closed.</p>
       <h3>Primary and official context</h3>
