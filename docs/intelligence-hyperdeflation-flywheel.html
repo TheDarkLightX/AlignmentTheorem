@@ -81,7 +81,7 @@
           <div class="control"><label for="e">Cost elasticity η <output id="eOut">1.00</output></label><input id="e" type="range" min="25" max="200" value="100"></div>
           <div class="control"><label for="k">Protected K <output id="kOut">1.00</output></label><input id="k" type="range" min="0" max="1000" value="100"></div>
           <div class="control"><label for="b">Deviation B <output id="bOut">3.00</output></label><input id="b" type="range" min="0" max="2000" value="300"></div>
-          <div class="readout"><div class="metric"><span>Basket price P</span><strong id="price">—</strong></div><div class="metric"><span>Multiplier M</span><strong id="mult">—</strong></div><div class="metric"><span>M × K</span><strong id="reward">—</strong></div><div class="metric"><span>Strict margin</span><strong id="status">—</strong></div></div>
+          <div class="readout"><div class="metric"><span>Basket price P</span><strong id="price">Pending</strong></div><div class="metric"><span>Multiplier M</span><strong id="mult">Pending</strong></div><div class="metric"><span>M × K</span><strong id="reward">Pending</strong></div><div class="metric"><span>Strict margin</span><strong id="status">Pending</strong></div></div>
         </div>
         <div class="plot"><canvas id="chart" width="760" height="310" role="img" aria-label="Basket price and purchasing power by epoch"></canvas><p class="labnote">Green: normalized basket price P. Blue: purchasing-power multiplier M, scaled to the chart. Dashed line: asymptotic price floor 1−aρ.</p></div>
       </div>
@@ -97,7 +97,7 @@
     </section>
 
     <section id="tau">
-      <div class="section-head"><div class="kicker">04 · Tau Net</div><div><h2>Why Tau here—and what<br>“only Tau” can honestly mean.</h2><p>On the current Tau Net protocol path, the rule is necessarily a Tau specification because Tau is the native policy arbiter. The stronger universal exclusivity claim—that no other formal platform could implement a comparable design—is neither proved nor needed.</p></div></div>
+      <div class="section-head"><div class="kicker">04 · Tau Net</div><div><h2>Why Tau here, and what<br>“only Tau” can honestly mean.</h2><p>On the current Tau Net protocol path, the rule is necessarily a Tau specification because Tau is the native policy arbiter. The stronger universal exclusivity claim, which says that no other formal platform could implement a comparable design, is neither proved nor needed.</p></div></div>
       <div class="grid">
         <div class="card"><div class="tag">Native policy</div><h3>Executable specification</h3><p>The same decidable rule is the artifact reviewed by humans and evaluated for <code>o5</code>. The protocol commits rule text into state.</p></div>
         <div class="card"><div class="tag">Revision</div><h3>Governed policy change</h3><p>Tau is designed for specifications that can reason about and revise specifications. That is unusually aligned with a living economic constitution.</p></div>
@@ -113,12 +113,12 @@
       <p>The Lean build reported Lean 4.33.0 and passed its axiom audit. The current Tau candidate uses source <code>9b191af</code> and parser <code>5dd036</code>; its executable hash is <code>f6e2bf67…</code>, not the reviewed <code>c4926740…</code>. The native module hash is <code>ec34baae…</code>. The source-to-binary relation and host environment are not independently or hermetically attested. Those boundaries keep reviewed promotion closed.</p>
       <h3>Primary and official context</h3>
       <ul class="sources">
-        <li><a href="https://evervault.com/papers/cramming-more-components-onto-integrated-circuits-gordon-moore.pdf">Moore (1965)</a> — semiconductor analogy, not an intelligence law.</li>
-        <li><a href="https://arxiv.org/abs/2203.15556">Hoffmann et al. (2022)</a> — measured model scaling, not macro pass-through.</li>
-        <li><a href="https://www.bls.gov/opub/hom/cpi/">BLS CPI methods</a> — price-index basket and weighting boundary.</li>
-        <li><a href="https://www.aeaweb.org/articles?id=10.1257/jep.33.2.3">Acemoglu & Restrepo (2019)</a> — automation, tasks, productivity, and distribution.</li>
-        <li><a href="https://fraser.stlouisfed.org/title/debt-deflation-theory-great-depressions-3596">Fisher (1933)</a> — nominal-debt deflation risk.</li>
-        <li><a href="https://github.com/IDNI/tau-lang">Tau Language</a> and <a href="https://github.com/IDNI/tau-testnet">Tau Testnet</a> — official language and alpha protocol sources.</li>
+        <li><a href="https://evervault.com/papers/cramming-more-components-onto-integrated-circuits-gordon-moore.pdf">Moore (1965)</a>: semiconductor analogy, not an intelligence law.</li>
+        <li><a href="https://arxiv.org/abs/2203.15556">Hoffmann et al. (2022)</a>: measured model scaling, not macro pass-through.</li>
+        <li><a href="https://www.bls.gov/opub/hom/cpi/">BLS CPI methods</a>: price-index basket and weighting boundary.</li>
+        <li><a href="https://www.aeaweb.org/articles?id=10.1257/jep.33.2.3">Acemoglu & Restrepo (2019)</a>: automation, tasks, productivity, and distribution.</li>
+        <li><a href="https://fraser.stlouisfed.org/title/debt-deflation-theory-great-depressions-3596">Fisher (1933)</a>: nominal-debt deflation risk.</li>
+        <li><a href="https://github.com/IDNI/tau-lang">Tau Language</a> and <a href="https://github.com/IDNI/tau-testnet">Tau Testnet</a>: official language and alpha protocol sources.</li>
       </ul>
       <div class="truth"><strong>Bottom line:</strong> Tau can constitutionalize a distributional rule. Data and cryptography must establish its premises. Democratic governance must choose its values. Empirical evaluation must decide whether the flywheel benefits ordinary households.</div>
     </section>
