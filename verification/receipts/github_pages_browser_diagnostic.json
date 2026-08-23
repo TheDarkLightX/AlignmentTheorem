@@ -1,0 +1,213 @@
+{
+  "browser_version": "151.0.7922.137",
+  "captured_at_utc": "2026-08-23T09:42:49.938669+00:00",
+  "checks": [
+    {
+      "assertions": {
+        "canonical": true,
+        "controls_labeled": true,
+        "ids_unique": true,
+        "links_nonempty": true,
+        "no_body_overflow": true,
+        "no_document_overflow": true,
+        "no_stale_branch_links": true,
+        "one_main": true,
+        "title": true
+      },
+      "metrics": {
+        "bodyWidth": 1425,
+        "canonical": "https://thedarklightx.github.io/AlignmentTheorem/",
+        "documentWidth": 1425,
+        "duplicateIds": [],
+        "emptyLinks": [],
+        "featureBranchLinks": [],
+        "innerWidth": 1440,
+        "mainCount": 1,
+        "navCount": 1,
+        "title": "Alignment Theorem - Ethical and Profitable LLM Agents",
+        "unlabeled": []
+      },
+      "page": "home",
+      "passed": true,
+      "requested_height": 1000,
+      "requested_width": 1440,
+      "screenshot": "qa-browser/home-desktop.png",
+      "viewport": "desktop"
+    },
+    {
+      "assertions": {
+        "canonical": true,
+        "controls_labeled": true,
+        "ids_unique": true,
+        "links_nonempty": true,
+        "no_body_overflow": true,
+        "no_document_overflow": true,
+        "no_stale_branch_links": true,
+        "one_main": true,
+        "title": true
+      },
+      "metrics": {
+        "bodyWidth": 1425,
+        "canonical": "https://thedarklightx.github.io/AlignmentTheorem/data-center-social-contract.html",
+        "documentWidth": 1425,
+        "duplicateIds": [],
+        "emptyLinks": [],
+        "featureBranchLinks": [],
+        "innerWidth": 1440,
+        "mainCount": 1,
+        "navCount": 1,
+        "title": "The Data Center Bargain | Alignment Theorem",
+        "unlabeled": []
+      },
+      "page": "data-center",
+      "passed": true,
+      "requested_height": 1000,
+      "requested_width": 1440,
+      "screenshot": "qa-browser/data-center-desktop.png",
+      "viewport": "desktop"
+    },
+    {
+      "assertions": {
+        "canonical": true,
+        "controls_labeled": true,
+        "ids_unique": true,
+        "links_nonempty": true,
+        "no_body_overflow": true,
+        "no_document_overflow": true,
+        "no_stale_branch_links": true,
+        "one_main": true,
+        "title": true
+      },
+      "metrics": {
+        "bodyWidth": 753,
+        "canonical": "https://thedarklightx.github.io/AlignmentTheorem/",
+        "documentWidth": 753,
+        "duplicateIds": [],
+        "emptyLinks": [],
+        "featureBranchLinks": [],
+        "innerWidth": 768,
+        "mainCount": 1,
+        "navCount": 1,
+        "title": "Alignment Theorem - Ethical and Profitable LLM Agents",
+        "unlabeled": []
+      },
+      "page": "home",
+      "passed": true,
+      "requested_height": 1024,
+      "requested_width": 768,
+      "screenshot": "qa-browser/home-tablet.png",
+      "viewport": "tablet"
+    },
+    {
+      "assertions": {
+        "canonical": true,
+        "controls_labeled": true,
+        "ids_unique": true,
+        "links_nonempty": true,
+        "no_body_overflow": true,
+        "no_document_overflow": true,
+        "no_stale_branch_links": true,
+        "one_main": true,
+        "title": true
+      },
+      "metrics": {
+        "bodyWidth": 753,
+        "canonical": "https://thedarklightx.github.io/AlignmentTheorem/data-center-social-contract.html",
+        "documentWidth": 753,
+        "duplicateIds": [],
+        "emptyLinks": [],
+        "featureBranchLinks": [],
+        "innerWidth": 768,
+        "mainCount": 1,
+        "navCount": 1,
+        "title": "The Data Center Bargain | Alignment Theorem",
+        "unlabeled": []
+      },
+      "page": "data-center",
+      "passed": true,
+      "requested_height": 1024,
+      "requested_width": 768,
+      "screenshot": "qa-browser/data-center-tablet.png",
+      "viewport": "tablet"
+    },
+    {
+      "assertions": {
+        "canonical": true,
+        "controls_labeled": true,
+        "ids_unique": true,
+        "links_nonempty": true,
+        "no_body_overflow": false,
+        "no_document_overflow": false,
+        "no_stale_branch_links": true,
+        "one_main": true,
+        "title": true
+      },
+      "metrics": {
+        "bodyWidth": 434,
+        "canonical": "https://thedarklightx.github.io/AlignmentTheorem/",
+        "documentWidth": 434,
+        "duplicateIds": [],
+        "emptyLinks": [],
+        "featureBranchLinks": [],
+        "innerWidth": 390,
+        "mainCount": 1,
+        "navCount": 1,
+        "title": "Alignment Theorem - Ethical and Profitable LLM Agents",
+        "unlabeled": []
+      },
+      "page": "home",
+      "passed": false,
+      "requested_height": 844,
+      "requested_width": 390,
+      "screenshot": "qa-browser/home-mobile.png",
+      "viewport": "mobile"
+    },
+    {
+      "assertions": {
+        "canonical": true,
+        "controls_labeled": true,
+        "ids_unique": true,
+        "links_nonempty": true,
+        "no_body_overflow": true,
+        "no_document_overflow": true,
+        "no_stale_branch_links": true,
+        "one_main": true,
+        "title": true
+      },
+      "metrics": {
+        "bodyWidth": 375,
+        "canonical": "https://thedarklightx.github.io/AlignmentTheorem/data-center-social-contract.html",
+        "documentWidth": 375,
+        "duplicateIds": [],
+        "emptyLinks": [],
+        "featureBranchLinks": [],
+        "innerWidth": 390,
+        "mainCount": 1,
+        "navCount": 1,
+        "title": "The Data Center Bargain | Alignment Theorem",
+        "unlabeled": []
+      },
+      "page": "data-center",
+      "passed": true,
+      "requested_height": 844,
+      "requested_width": 390,
+      "screenshot": "qa-browser/data-center-mobile.png",
+      "viewport": "mobile"
+    }
+  ],
+  "errors": [],
+  "interactions": {
+    "community_calculator": {
+      "error": "Traceback (most recent call last):\n  File \"<stdin>\", line 110, in <module>\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/selenium/webdriver/support/wait.py\", line 138, in until\n    raise TimeoutException(message, screen, stacktrace)\nselenium.common.exceptions.TimeoutException: Message: \n\n",
+      "passed": false
+    },
+    "homepage_scenario": {
+      "error": "Traceback (most recent call last):\n  File \"<stdin>\", line 97, in <module>\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/selenium/webdriver/remote/webelement.py\", line 120, in click\n    self._execute(Command.CLICK_ELEMENT)\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/selenium/webdriver/remote/webelement.py\", line 573, in _execute\n    return self._parent.execute(command, params)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py\", line 458, in execute\n    self.error_handler.check_response(response)\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/selenium/webdriver/remote/errorhandler.py\", line 232, in check_response\n    raise exception_class(message, screen, stacktrace)\nselenium.common.exceptions.ElementClickInterceptedException: Message: element click intercepted: Element is not clickable at point (712, 2959)\n  (Session info: chrome=151.0.7922.137); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#elementclickinterceptedexception\nStacktrace:\n#0 0x5618914aa36a <unknown>\n#1 0x561890e1df49 <unknown>\n#2 0x561890e7a415 <unknown>\n#3 0x561890e784f2 <unknown>\n#4 0x561890e75edc <unknown>\n#5 0x561890e74fd7 <unknown>\n#6 0x561890e68c42 <unknown>\n#7 0x561890e68587 <unknown>\n#8 0x561890ebc0c3 <unknown>\n#9 0x561890e66c92 <unknown>\n#10 0x561890e67b11 <unknown>\n#11 0x56189146f8d0 <unknown>\n#12 0x56189146df3a <unknown>\n#13 0x5618914589b5 <unknown>\n#14 0x56189146ec0a <unknown>\n#15 0x561891440740 <unknown>\n#16 0x5618914959a8 <unknown>\n#17 0x561891495b45 <unknown>\n#18 0x5618914a8f1e <unknown>\n#19 0x7fe436e9cb84 <unknown>\n#20 0x7fe436f29d6c <unknown>\n\n",
+      "passed": false
+    }
+  },
+  "schema": "alignment-theorem-live-browser-diagnostic-v1",
+  "site_root": "https://thedarklightx.github.io/AlignmentTheorem",
+  "source_commit": "e238de06f348f5c6967b8c34ced2eeafbf2d474e",
+  "status": "FAILED"
+}
