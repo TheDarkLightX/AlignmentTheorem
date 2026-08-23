@@ -5,10 +5,11 @@
 > original finite test campaigns and legacy artifacts. They do not establish a
 > universal alignment theorem, real-world convergence, current Tau
 > compatibility, or production readiness. Current claim-scoped evidence lives
-> in `proofs/v1_1/`, `proofs/v2/`, `tau/v1_1/`, `tau/v2/`, and their
-> source-bound receipts. Version 1.1 machine-checks the repaired
-> hyperdeflationary threshold; its exact-current-Tau interpreter replay remains
-> pending.
+> in `proofs/v1/`, `proofs/v1_1/`, `proofs/v2/`, the corresponding Tau packets,
+> and their source-bound receipts. The reconstructed V1 proof treats exclusion
+> as opportunity cost, and the current source-pinned Tau candidate exactly
+> replays all three version packets. Reviewed-binary and public-node promotion
+> remain pending.
 
 ---
 

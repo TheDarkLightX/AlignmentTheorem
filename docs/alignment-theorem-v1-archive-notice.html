@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Alignment Theorem Version 1 Historical Notice</title>
+  <title>Alignment Theorem Version 1 Claim Boundary</title>
   <style>
     @page { size: Letter; margin: 0.75in; }
     * { box-sizing: border-box; }
@@ -35,40 +35,68 @@
 </head>
 <body>
 <main>
-  <div class="label">Historical Version 1 artifact · withdrawal notice</div>
-  <h1>The original Academic PDF has been superseded</h1>
+  <div class="label">Version 1 · retained mechanism and claim boundary</div>
+  <h1>The V1 mechanism remains; its paper needs precise corrections</h1>
 
   <section class="notice">
-    <strong>The universal convergence and “only profitable strategy” claims in
-    the original Version 1 PDF are withdrawn.</strong> Its payoff model made the
-    result true at every positive scarcity level and did not prove the intended
-    hyperdeflationary threshold.
+    <strong>Version 1's EETF, VCC, reward, scarcity, and exclusion mechanism is
+    retained.</strong> Its universal-agent wording, potentially ambiguous use of “penalty,”
+    and printed indifference formula are superseded by the scoped theorem below.
   </section>
 
-  <h2>Current result</h2>
+  <h2>Retained Version 1 result</h2>
   <p>
-    Version 1.1 preserves the scarcity-driven idea under the conditional strict
-    margin <code>M(t)K(t) &gt; B(t)</code>. It proves the paper utility-bound
+    Let <code>M</code> be the scarcity multiplier, <code>R</code> the funded
+    direct-reward coefficient, <code>L</code> the scarcity-upside coefficient
+    available only to an EETF-eligible branch, and <code>G</code> the bounded
+    deviation gain available to the excluded branch. If exclusion is
+    enforceable and <code>G &lt; M(R+L)</code>, every exact maximizer over the
+    declared alternatives selects eligibility. For integers with
+    <code>R+L &gt; 0</code>, the least multiplier is
+    <code>floor(G/(R+L))+1</code>. The standalone proof is in
+    <code>proofs/v1/AlignmentTheoremV1.lean</code>.
+  </p>
+
+  <h2>Exclusion is opportunity cost</h2>
+  <p>
+    The historical presentation placed <code>M L</code> as a negative term on
+    the excluded branch. Adding <code>M L</code> to both alternatives gives the
+    equivalent normalized comparison <code>M(R+L) &gt; G</code>. No tax, fine,
+    burn, confiscation, or balance debit is applied to the excluded actor. The
+    load-bearing premise is that the actor genuinely cannot obtain the protected
+    scarcity upside. Upside shared by both branches cancels.
+  </p>
+
+  <h2>Separate Version 1.1 result</h2>
+  <p>
+    Version 1.1 generalizes the concrete V1 mechanism under the conditional
+    strict margin <code>M(t)K(t) &gt; B(t)</code>. It proves the utility-bound
     implication, the exact least integer threshold, a bounded-deviation
     asymptotic result, and a relative-growth result. The conclusion applies only
     to the declared two-action model and authenticated external assumptions.
   </p>
   <p>
-    Read the current
+    Read the
     <a href="v1-1-hyperdeflationary-alignment.html">Version 1.1 paper</a> or the
-    <a href="Alignment_Theorem_V1_1_Hyperdeflationary.pdf">Version 1.1 PDF</a>.
+    <a href="Alignment_Theorem_V1_1_Hyperdeflationary.pdf">Version 1.1 PDF</a>,
+    and see the
+    <a href="current-tau-net-integration.html">current Tau integration matrix</a>
+    for all three profiles.
   </p>
 
   <h2>Provenance</h2>
   <p>
-    The withdrawn PDF remains recoverable from Git commit <code>a28695f</code>.
-    Its SHA-256 was
+    The uncorrected 16-page
+    <a href="Alignment_Theorem_V1_Original_2025.pdf">original academic paper</a>
+    is preserved as a historical artifact from Git commit <code>a28695f</code>.
+    Its SHA-256 is
     <code>f5dca5a1e7bcd069441f16410664cdecac3eeebe4a5af8f128dd0efa7043c8bc</code>.
-    This notice replaces the live public copy so historical claims cannot be
-    mistaken for current evidence.
+    Read it together with this claim boundary: the original wording is
+    provenance, while the reconstructed theorem states the current checked
+    claim.
   </p>
 
-  <footer>Alignment Theorem · Version 1 historical notice · August 2026</footer>
+  <footer>Alignment Theorem · Version 1 claim boundary · August 2026</footer>
 </main>
 </body>
 </html>

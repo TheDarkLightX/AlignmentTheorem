@@ -40,8 +40,9 @@
   households with nominal debts.
 - The assumptions `a`, `rho`, `eta`, DAC return, benefit capture, or deviation
   growth have been empirically estimated.
-- Source commit `fd137e8` produced either the reviewed binary or local native
-  module; neither source-to-binary relationship is independently attested.
+- Current source commit `9b191af...` produced the local candidate or native
+  module, and historical source commit `fd137e8...` produced the reviewed
+  binary; none of those source-to-binary relationships is independently attested.
 - The kernel, dynamic libraries, hardware, build image, or execution environment
   is hermetically attested.
 - The direct ABI probe proves node deployment or public-network deployment, consensus finality,

@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="How Alignment Theorem V1, V1.1, and V2 map onto the current Tau Language and Tau Net Alpha snapshots, with exact evidence and authority boundaries.">
+  <meta name="theme-color" content="#111814">
+  <title>Three Alignment Profiles on Current Tau | Alignment Theorem</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --ink:#ecf4e8; --muted:#a9b6a7; --night:#111814; --panel:#18221c;
+      --line:#3b493f; --signal:#c8ff5b; --cyan:#63e6df; --amber:#ffc857;
+      --danger:#ff806f; --max:1180px;
+    }
+    *{box-sizing:border-box} html{scroll-behavior:smooth}
+    body{margin:0;background:
+      linear-gradient(rgba(200,255,91,.035) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(200,255,91,.035) 1px,transparent 1px),
+      var(--night);background-size:32px 32px;color:var(--ink);
+      font:17px/1.66 Georgia,"Times New Roman",serif;-webkit-font-smoothing:antialiased}
+    a{color:var(--cyan)} a:hover{color:var(--signal)}
+    :focus-visible{outline:3px solid var(--amber);outline-offset:4px;border-radius:4px}
+    .skip{position:fixed;top:10px;left:10px;z-index:50;transform:translateY(-160%);padding:10px 14px;background:#fff;color:#111;font:800 14px/1.2 ui-monospace,monospace}.skip:focus{transform:none}
+    .shell{width:min(var(--max),calc(100% - 36px));margin:auto}
+    nav{border-bottom:1px solid var(--line);background:rgba(17,24,20,.92);backdrop-filter:blur(14px);position:sticky;top:0;z-index:20}
+    .nav{min-height:64px;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{font:900 14px/1 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;color:var(--ink)}
+    .links{display:flex;gap:18px;flex-wrap:wrap}.links a{font:750 12px/1 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;color:var(--muted)}
+    header{padding:94px 0 64px;position:relative}.stamp{display:inline-flex;border:1px solid var(--signal);color:var(--signal);padding:7px 11px;font:800 12px/1 ui-monospace,monospace;letter-spacing:.08em;text-transform:uppercase;transform:rotate(-1deg)}
+    h1,h2,h3{font-family:"Arial Narrow","Liberation Sans Narrow",Impact,sans-serif;line-height:1.02;letter-spacing:-.025em;text-transform:uppercase}
+    h1{max-width:950px;margin:22px 0 24px;font-size:clamp(3.2rem,9vw,7.6rem);font-weight:900}.lead{max-width:800px;margin:0;color:var(--muted);font-size:clamp(1.12rem,2.2vw,1.45rem)}
+    .pin{margin-top:34px;padding:18px 20px;border-left:4px solid var(--cyan);background:rgba(99,230,223,.06);font:700 14px/1.65 ui-monospace,SFMono-Regular,Menlo,monospace;overflow-wrap:anywhere}
+    section{padding:64px 0;border-top:1px solid var(--line)}.section-head{display:grid;grid-template-columns:180px 1fr;gap:28px;align-items:start;margin-bottom:34px}.kicker{color:var(--signal);font:800 12px/1.3 ui-monospace,monospace;letter-spacing:.1em;text-transform:uppercase}.section-head h2{font-size:clamp(2.2rem,5vw,4.2rem);margin:0}.section-head p{max-width:760px;color:var(--muted);margin:14px 0 0}
+    .profiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.profile{position:relative;min-height:390px;padding:26px;border:1px solid var(--line);background:linear-gradient(145deg,rgba(255,255,255,.035),transparent 58%),var(--panel);overflow:hidden}.profile::after{content:attr(data-version);position:absolute;right:-5px;bottom:-35px;color:rgba(255,255,255,.035);font:900 10rem/1 Impact,sans-serif}.profile.v1{border-top:5px solid var(--cyan)}.profile.v11{border-top:5px solid var(--signal)}.profile.v2{border-top:5px solid var(--amber)}
+    .profile .label{font:800 12px/1 ui-monospace,monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}.profile h3{font-size:2rem;margin:18px 0 14px}.profile p{color:var(--muted)}.formula{position:relative;z-index:1;margin:24px 0 18px;padding:14px;border:1px dashed currentColor;font:800 15px/1.55 ui-monospace,monospace;color:var(--ink)}.use{position:relative;z-index:1;font-size:.95rem}.use strong{color:var(--signal)}
+    .composition{margin-top:22px;padding:22px;border:1px solid var(--signal);background:rgba(200,255,91,.055);font-size:1.08rem}
+    .evidence{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border:1px solid var(--line)}.metric{padding:24px;border-right:1px solid var(--line)}.metric:last-child{border:0}.metric strong{display:block;color:var(--signal);font:900 2rem/1 ui-monospace,monospace}.metric span{display:block;margin-top:10px;color:var(--muted);font-size:.92rem}
+    .flow{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;counter-reset:step}.flow div{counter-increment:step;position:relative;padding:20px 15px;min-height:150px;border:1px solid var(--line);background:var(--panel);font:700 13px/1.45 ui-monospace,monospace}.flow div::before{content:"0" counter(step);display:block;margin-bottom:24px;color:var(--signal);font-size:.78rem}.flow div:not(:last-child)::after{content:"→";position:absolute;right:-10px;top:62px;z-index:2;color:var(--amber);background:var(--night);padding:2px}
+    .boundary{display:grid;grid-template-columns:1fr 1fr;gap:18px}.boundary article{padding:26px;border:1px solid var(--line);background:var(--panel)}.boundary h3{font-size:1.7rem;margin:0 0 14px}.boundary ul{margin:0;padding-left:20px;color:var(--muted)}.boundary .closed{border-color:rgba(255,128,111,.65)}.closed h3{color:var(--danger)}
+    .route{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}.button{display:inline-flex;min-height:46px;align-items:center;padding:10px 17px;border:1px solid var(--line);text-decoration:none;font:800 13px/1 ui-monospace,monospace;text-transform:uppercase;letter-spacing:.05em;color:var(--ink)}.button.primary{background:var(--signal);border-color:var(--signal);color:#10170f}
+    footer{padding:44px 0 60px;border-top:1px solid var(--line);color:var(--muted);font:13px/1.6 ui-monospace,monospace}
+    @media(max-width:900px){.profiles{grid-template-columns:1fr}.profile{min-height:0}.evidence{grid-template-columns:1fr 1fr}.metric:nth-child(2){border-right:0}.metric:nth-child(-n+2){border-bottom:1px solid var(--line)}.flow{grid-template-columns:1fr 1fr 1fr}.flow div:nth-child(3)::after{display:none}.section-head{grid-template-columns:1fr;gap:10px}}
+    @media(max-width:620px){.nav{align-items:flex-start;flex-direction:column;padding:15px 0}.links{gap:12px}.links a{font-size:11px}header{padding-top:64px}.evidence,.boundary,.flow{grid-template-columns:1fr}.metric{border-right:0;border-bottom:1px solid var(--line)!important}.flow div{min-height:0}.flow div::after{display:none!important}.section-head h2{font-size:2.25rem}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <nav aria-label="Primary navigation"><div class="shell nav"><a class="brand" href="index.html">Alignment Theorem / Field Notes</a><div class="links"><a href="#profiles">Profiles</a><a href="#evidence">Evidence</a><a href="#authority">Authority</a><a href="local-government-policy-playbook.html">Policy playbook</a><a href="https://github.com/TheDarkLightX/AlignmentTheorem" rel="noopener">Source</a></div></div></nav>
+  <header class="shell">
+    <span class="stamp">Current-source review · 2026-08-23</span>
+    <h1>Three profiles.<br>One Tau boundary.</h1>
+    <p class="lead">Version 1, Version 1.1, and Version 2 solve different incentive problems. This dossier shows where each theorem fits in the current Tau Language and Tau Net Alpha, along with the exact point where external authority is still missing.</p>
+    <div class="pin">Tau <strong>9b191af689ab…</strong> · parser <strong>5dd036358e19…</strong> · Tau Testnet <strong>9f9240ded9fd…</strong></div>
+  </header>
+
+  <main id="main">
+    <section id="profiles"><div class="shell">
+      <div class="section-head"><div class="kicker">01 / Select by premise</div><div><h2>A version is a profile,<br>not a rank.</h2><p>Use the smallest theorem whose premises match the mechanism. V2 can provide the outer publication and settlement envelope around either earlier incentive profile.</p></div></div>
+      <div class="profiles">
+        <article class="profile v1" data-version="1"><span class="label">Version 1 · concrete EETF/VCC mechanism</span><h3>Scarcity-upside exclusion</h3><p>EETF eligibility controls direct rewards and protected scarcity upside. Exclusion applies no tax, fine, or balance debit.</p><div class="formula">G(t) &lt; M(t) × [R(t) + L(t)]</div><p class="use"><strong>Use when:</strong> EETF and scarcity facts are authenticated, reward access is funded, the excluded branch genuinely cannot obtain L, and the declared choice exactly maximizes payoff.</p></article>
+        <article class="profile v11" data-version="1.1"><span class="label">Version 1.1 · abstract generalization</span><h3>Hyperdeflationary margin</h3><p>Scarcity amplifies eligible reward plus exclusive-upside exposure against a complete opposing bound.</p><div class="formula">B(t) &lt; M(t) × K(t)</div><p class="use"><strong>Use when:</strong> compliance cost, optimizer error, or time-varying relative growth must be modeled. Every runtime value remains finite and K(t) stays positive.</p></article>
+        <article class="profile v2" data-version="2"><span class="label">Version 2 · finite protocol</span><h3>Policy and settlement</h3><p>A finite advantage makes every epsilon-optimal modeled choice policy compliant, with publication and reserve checks.</p><div class="formula">R<sub>c</sub> − R<sub>n</sub> + enforcement &gt; G + C + ε</div><p class="use"><strong>Use when:</strong> a protocol needs observable actions, authenticated evidence, nonce/nullifier state, funded rewards, and reject-without-effect settlement.</p></article>
+      </div>
+      <div class="composition"><strong>Useful composition:</strong> V2 admission + reserve-safe settlement outside; V1 or V1.1 selected inside as the declared incentive profile.</div>
+    </div></section>
+
+    <section id="evidence"><div class="shell">
+      <div class="section-head"><div class="kicker">02 / Executed today</div><div><h2>All four packets matched.</h2><p>A clean local build from the pinned Tau source replayed every complete truth table byte-for-byte. Row zero is the deliberate all-true row; every other row rejects.</p></div></div>
+      <div class="evidence" aria-label="Current Tau packet replay summary">
+        <div class="metric"><strong>128 / [0]</strong><span>V1 rows / accepted rows</span></div>
+        <div class="metric"><strong>16 / [0]</strong><span>V1.1 rows / accepted rows</span></div>
+        <div class="metric"><strong>128 / [0]</strong><span>V2 rows / accepted rows</span></div>
+        <div class="metric"><strong>512 / [0]</strong><span>Flywheel rows / accepted rows</span></div>
+      </div>
+      <div class="composition"><strong>Native profile router:</strong> 27 / 27 cases matched: all-true and every single-false fact for V1, V1.1, and V2, plus unknown-profile, absent-input, and other-sender controls. The profile and fact streams are transaction-supplied claims.</div>
+      <div class="route"><a class="button primary" href="https://github.com/TheDarkLightX/AlignmentTheorem/blob/main/research/current_tau/current_tau_packet_probe.json" rel="noopener">Inspect packet receipt</a><a class="button" href="https://github.com/TheDarkLightX/AlignmentTheorem/blob/main/research/current_tau/profile_router_native_probe.json" rel="noopener">Inspect router receipt</a><a class="button" href="V1_TO_V2_CORRECTIONS.html">Defects and scope changes</a></div>
+    </div></section>
+
+    <section id="authority"><div class="shell">
+      <div class="section-head"><div class="kicker">03 / Authority path</div><div><h2>Tau owns the verdict.<br>Evidence comes first.</h2><p>The Alpha can run a sender-scoped <code>o5</code> policy. The tested custom streams remain transaction-supplied claims, so a safe value-moving design needs a consensus-recognized verifier and an atomic settlement shell. For V1, the shell must also prevent an excluded branch from claiming the protected reward or scarcity-sensitive entitlement; upside shared by both branches cancels.</p></div></div>
+      <div class="flow" aria-label="Required authoritative dataflow"><div>Canonical evidence</div><div>Consensus-recognized verifier</div><div>Typed, context-bound facts</div><div>Tau policy verdict</div><div>Reserve + replay checker</div><div>Atomic effects + receipt</div></div>
+      <div class="boundary">
+        <article><h3>Established locally</h3><ul><li>Current Tau syntax and interpreter execution</li><li>Complete Boolean packets and single-fault rows</li><li>Three-profile native router across 27 / 27 cases</li><li>Flywheel native rule across 12 / 12 cases</li><li>Lean proofs for each restricted theorem profile</li></ul></article>
+        <article class="closed"><h3>Still open</h3><ul><li>Authenticated economic and policy facts</li><li>Reserved verifier-derived consensus inputs</li><li>Mounted reserve, nonce, nullifier, and recovery paths</li><li>Multi-node admission/apply parity and finality</li><li>Public deployment and production readiness</li></ul></article>
+      </div>
+      <div class="route"><a class="button primary" href="https://github.com/TheDarkLightX/AlignmentTheorem/blob/main/docs/CURRENT_TAU_NET_INTEGRATION.md" rel="noopener">Read the exact integration note</a><a class="button" href="intelligence-hyperdeflation-flywheel.html">Intelligence flywheel</a></div>
+    </div></section>
+  </main>
+  <footer><div class="shell">Local source-candidate evidence · no Tau Net publication, settlement, value, legal, or production authority · Alignment Theorem research</div></footer>
+</body>
+</html>

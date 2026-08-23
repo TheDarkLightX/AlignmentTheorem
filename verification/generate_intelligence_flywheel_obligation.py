@@ -9,6 +9,27 @@ import json
 import re
 from pathlib import Path
 
+try:
+    from verification.current_tau_baseline import (
+        CURRENT_TAU_NATIVE_MODULE_SHA256,
+        CURRENT_TAU_PARSER_COMMIT,
+        CURRENT_TAU_SOURCE_COMMIT,
+        CURRENT_TAU_TESTNET_COMMIT,
+    )
+    from verification.run_tau_compute_dividend import (
+        EXPECTED_TAU_SOURCE_COMMIT as REVIEWED_TAU_SOURCE_COMMIT,
+    )
+except ModuleNotFoundError:
+    from current_tau_baseline import (
+        CURRENT_TAU_NATIVE_MODULE_SHA256,
+        CURRENT_TAU_PARSER_COMMIT,
+        CURRENT_TAU_SOURCE_COMMIT,
+        CURRENT_TAU_TESTNET_COMMIT,
+    )
+    from run_tau_compute_dividend import (
+        EXPECTED_TAU_SOURCE_COMMIT as REVIEWED_TAU_SOURCE_COMMIT,
+    )
+
 ROOT = Path(__file__).resolve().parents[1]
 BASE_REVISION = "0f68357535c299de799976a67410f97367ed87c1"
 SHA1 = re.compile(r"[0-9a-f]{40}\Z")
@@ -150,7 +171,12 @@ def generate(artifact_revision: str) -> dict[str, object]:
                 "lane_id": "IF02-TAU-NATIVE-ABI",
                 "kind": "model",
                 "status": "passed_bounded",
-                "tool_revision": "Tau Testnet 9f9240; Tau source fd137e8/parser 5dd036; local module 882dbd...",
+                "tool_revision": (
+                    f"Tau Testnet {CURRENT_TAU_TESTNET_COMMIT[:7]}; Tau source "
+                    f"{CURRENT_TAU_SOURCE_COMMIT[:7]}/parser "
+                    f"{CURRENT_TAU_PARSER_COMMIT[:7]}; local module "
+                    f"{CURRENT_TAU_NATIVE_MODULE_SHA256[:8]}..."
+                ),
                 "artifacts": [artifacts[3], artifacts[4]],
                 "replay": {"argv": ["python3", "-m", "unittest", "tests.test_tau_net_intelligence_flywheel_probe", "-v"], "cwd": ".", "exit_code": 0},
                 "limitations": ["Direct native ABI only; no node deployment or finality.", "Custom inputs remain transaction-supplied claims.", "Source-to-module and environment are not attested."]
@@ -170,9 +196,10 @@ def generate(artifact_revision: str) -> dict[str, object]:
         ],
         "upstream_revisions": [
             {"name": "alignment-theorem-base", "revision": BASE_REVISION, "uri": "repo://AlignmentTheorem"},
-            {"name": "tau-lang", "revision": "fd137e860b60083b36f9159ec8090cb1a3c3cb5a", "uri": "https://github.com/IDNI/tau-lang"},
-            {"name": "tau-parser", "revision": "5dd036358e194e55a08fd2ec255441bedfe83765", "uri": "https://github.com/IDNI/tau-lang/tree/fd137e860b60083b36f9159ec8090cb1a3c3cb5a/external/parser"},
-            {"name": "tau-testnet", "revision": "9f9240ded9fd7ff246f4bbd45343c64eef9a1751", "uri": "https://github.com/IDNI/tau-testnet"},
+            {"name": "tau-lang-current-candidate", "revision": CURRENT_TAU_SOURCE_COMMIT, "uri": "https://github.com/IDNI/tau-lang"},
+            {"name": "tau-parser", "revision": CURRENT_TAU_PARSER_COMMIT, "uri": f"https://github.com/IDNI/tau-lang/tree/{CURRENT_TAU_SOURCE_COMMIT}/external/parser"},
+            {"name": "tau-testnet", "revision": CURRENT_TAU_TESTNET_COMMIT, "uri": "https://github.com/IDNI/tau-testnet"},
+            {"name": "tau-lang-reviewed-runner-baseline", "revision": REVIEWED_TAU_SOURCE_COMMIT, "uri": "https://github.com/IDNI/tau-lang"},
             {"name": "lean4", "revision": "v4.33.0-d8b18978322de05a8f3dba51ef03cf5461676c17", "uri": "https://github.com/leanprover/lean4"}
         ],
         "execution_policy": "replay_argv_is_untrusted_data_never_execute_from_validation"

@@ -34,7 +34,7 @@
       "kind": "actual_tau_candidate_execution",
       "status": "passed_bounded_candidate",
       "artifact": "research/intelligence_flywheel/tau_candidate_probe.json",
-      "result": "Clean fd137e8/5dd036 source pins and candidate b2699306 produced 512 canonical rows with accepted row [0]; candidate identity differs from the reviewed binary."
+      "result": "Clean current 9b191af/5dd036 source pins and candidate f6e2bf67 produced 512 canonical rows with accepted row [0]; candidate identity differs from the older reviewed binary."
     },
     {
       "id": "E-IF-TAU-NET-NATIVE-05",

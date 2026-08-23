@@ -1,0 +1,88 @@
+{
+  "axiom_audit_returncode": 0,
+  "axiom_reports": {
+    "AlignmentTheoremV1.common_scarcity_upside_cancels": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "AlignmentTheoremV1.exclusion_opportunity_cost_normalization": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "AlignmentTheoremV1.minimum_scarcity_multiplier_is_strict": [
+      "propext"
+    ],
+    "AlignmentTheoremV1.scarcity_below_minimum_is_not_strict": [
+      "propext",
+      "Quot.sound"
+    ],
+    "AlignmentTheoremV1.strict_exclusion_margin_orders_utilities": [
+      "propext",
+      "Quot.sound"
+    ],
+    "AlignmentTheoremV1.tier_multiplier_of_excluded": [
+      "propext",
+      "Quot.sound"
+    ],
+    "AlignmentTheoremV1.unbounded_scarcity_eventually_establishes_v1_margin": [
+      "propext"
+    ],
+    "AlignmentTheoremV1.v1_exclusion_alignment": [
+      "propext",
+      "Quot.sound"
+    ],
+    "AlignmentTheoremV1.zero_deviation_needs_only_positive_scarcity_and_exposure": []
+  },
+  "build_returncode": 0,
+  "checker_sha256": "c958bf3bbdb1363984906af9c268ef03adefd36d4744604eee2e9bfdf7a623dc",
+  "error": "",
+  "expected_axiom_reports": {
+    "AlignmentTheoremV1.common_scarcity_upside_cancels": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "AlignmentTheoremV1.exclusion_opportunity_cost_normalization": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "AlignmentTheoremV1.minimum_scarcity_multiplier_is_strict": [
+      "propext"
+    ],
+    "AlignmentTheoremV1.scarcity_below_minimum_is_not_strict": [
+      "propext",
+      "Quot.sound"
+    ],
+    "AlignmentTheoremV1.strict_exclusion_margin_orders_utilities": [
+      "propext",
+      "Quot.sound"
+    ],
+    "AlignmentTheoremV1.tier_multiplier_of_excluded": [
+      "propext",
+      "Quot.sound"
+    ],
+    "AlignmentTheoremV1.unbounded_scarcity_eventually_establishes_v1_margin": [
+      "propext"
+    ],
+    "AlignmentTheoremV1.v1_exclusion_alignment": [
+      "propext",
+      "Quot.sound"
+    ],
+    "AlignmentTheoremV1.zero_deviation_needs_only_positive_scarcity_and_exposure": []
+  },
+  "lean_version": "Lean (version 4.33.0, x86_64-unknown-linux-gnu, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)",
+  "passed": true,
+  "placeholders": [],
+  "schema": "alignment-theorem-v1-lean-build-v1",
+  "source_bundle_sha256": "947dd2786e111a00f44982f3b7cb98aa742652b6044758f490fad32048538696",
+  "source_files_sha256": {
+    "AlignmentTheoremV1.lean": "b41253fe593e9cd4fb9793bfd1c5475006245f0c93d5752973d371568a7b7f6b",
+    "AxiomAudit.lean": "59656d8fafd8cab4cf05a13a2aa27236651f644f3999db192b98fd9343cea27e",
+    "lake-manifest.json": "a379752b898d75cb8626254bb3b1e463ee653e8fba565237973fce82051a4a79",
+    "lakefile.lean": "716bc8578d993b8e83a40d7134fc39e7806898f48d26c01dae9e5f1706992aa9",
+    "lean-toolchain": "302cd63c54178885b89e669f33b38f12f4dd7ae7e5cac537b3203e3768d8fb2b"
+  }
+}

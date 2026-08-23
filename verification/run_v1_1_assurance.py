@@ -19,6 +19,7 @@ BOUND_FILES = (
     "README.md",
     "TOOLCHAINS.md",
     "docs/Alignment_Theorem_Academic.pdf",
+    "docs/Alignment_Theorem_V1_Original_2025.pdf",
     "docs/Alignment_Theorem_V1_1_Hyperdeflationary.pdf",
     "docs/SIMULATION_RESULTS.md",
     "docs/THREAT_MODEL.md",

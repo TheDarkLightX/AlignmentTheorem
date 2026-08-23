@@ -1,0 +1,51 @@
+name: Verify alignment profiles
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12.13"
+      - name: Install Lean toolchain manager
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Regenerate every Tau truth packet
+        run: |
+          python3 verification/generate_tau_v1_packet.py
+          python3 verification/generate_tau_v1_1_packet.py
+          python3 verification/generate_tau_v2_packet.py
+          python3 verification/generate_tau_intelligence_flywheel_packet.py
+          python3 verification/generate_tau_compute_dividend_packets.py
+          git diff --exit-code -- \
+            tau/v1 \
+            tau/v1_1 \
+            tau/v2 \
+            tau/intelligence_flywheel/gate \
+            tau/compute_dividend
+      - name: Build and axiom-audit all theorem profiles
+        run: |
+          python3 verification/run_lean_v1.py --json
+          python3 verification/run_lean_v1_1.py --json
+          python3 verification/run_lean_v2.py --json
+          python3 verification/run_lean_intelligence_flywheel.py --json
+          python3 verification/run_lean_compute_dividend.py --json
+      - name: Run exact models, receipts, publication, and boundary tests
+        run: python3 -m unittest discover -s tests -v
+      - name: Reject whitespace errors
+        run: git diff --check

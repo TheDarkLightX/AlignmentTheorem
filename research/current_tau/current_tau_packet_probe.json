@@ -1,0 +1,108 @@
+{
+  "actual_tau_parser_commit": "5dd036358e194e55a08fd2ec255441bedfe83765",
+  "actual_tau_source_commit": "9b191af689abdb75f3e43f200e09d35c0e99a664",
+  "actual_tau_version": "Tau Language Framework version 0.7.0-alpha (9b191af)",
+  "authority_status": "LOCAL_REPLAY_ONLY_NO_TAU_NET_PUBLICATION_SETTLEMENT_OR_VALUE_AUTHORITY",
+  "checker_sha256": "69fcb494292589d692a70d6760329d460d3461b26329a5e1f09fea3efff04080",
+  "declared_build_command": "cmake --build build-Release --parallel 2",
+  "execution_environment_status": "HOST_KERNEL_LIBRARIES_AND_SANDBOX_NOT_HERMETICALLY_ATTESTED",
+  "expected_tau_parser_commit": "5dd036358e194e55a08fd2ec255441bedfe83765",
+  "expected_tau_source_commit": "9b191af689abdb75f3e43f200e09d35c0e99a664",
+  "expected_tau_version": "Tau Language Framework version 0.7.0-alpha (9b191af)",
+  "nonclaims": [
+    "The local replay does not prove that public Tau Net nodes run this executable.",
+    "The source pin does not independently attest how the executable was built.",
+    "Boolean packet inputs are assumed propositions and are not authenticated by Tau.",
+    "The packets do not apply settlement effects or establish production readiness."
+  ],
+  "packet_results": [
+    {
+      "accepted_rows": [
+        0
+      ],
+      "actual_output_sha256": "460db7f424570fdce48bfb991b69becf4e4d6a62251e4b970272998f457ae0fe",
+      "actual_rows": 128,
+      "diagnostic": "",
+      "execution_returncode": 0,
+      "expected_output_sha256": "460db7f424570fdce48bfb991b69becf4e4d6a62251e4b970272998f457ae0fe",
+      "expected_rows": 128,
+      "packet_root": "tau/v1",
+      "packet_sha256": "dc1bf8cb7d40818cf2a9d4c4c6dfda5b8d5727e9926ccae28f1d8efbd315ad5a",
+      "profile": "v1_exclusion",
+      "semantic_match": true,
+      "specification": "exclusion_gate_v1.tau",
+      "specification_sha256": "ddd3426f12e49fbb43177d3040bd8f5d5f01d69b8d386679100d8ca8a84dad74",
+      "stderr_sha256": "9a15f70455d2207e8b6f3e89d7981f5113b6d77a2bb4d6c62d1df553201e43d1",
+      "stdout_sha256": "18cdd337f7b9ee1131fc0f5ed64b42855d54bff3f7e227642275df12126fe7a0"
+    },
+    {
+      "accepted_rows": [
+        0
+      ],
+      "actual_output_sha256": "cc4592c6b0ae6e199ab1c9f383dab2157d5361beea5d36d51a01658edb1997a4",
+      "actual_rows": 16,
+      "diagnostic": "",
+      "execution_returncode": 0,
+      "expected_output_sha256": "cc4592c6b0ae6e199ab1c9f383dab2157d5361beea5d36d51a01658edb1997a4",
+      "expected_rows": 16,
+      "packet_root": "tau/v1_1",
+      "packet_sha256": "0bc31f07e245059b29b1707dfcbbc86509d4f70edefac7e29cd7074cad4c75fb",
+      "profile": "v1_1_hyperdeflationary",
+      "semantic_match": true,
+      "specification": "hyperdeflation_gate_v1_1.tau",
+      "specification_sha256": "59297cc3516e7f5983c9457492d888e0914c02eb0b6b4f3c46eaa4500071d23a",
+      "stderr_sha256": "3aa69b6a64df1a250e881cdab4476382f46e027880bd83f50fba5a8b5b853233",
+      "stdout_sha256": "13762e5d95a8d05b446dfe192f1b5f307c6cd41c7425818983b387ebd5b20d5f"
+    },
+    {
+      "accepted_rows": [
+        0
+      ],
+      "actual_output_sha256": "460db7f424570fdce48bfb991b69becf4e4d6a62251e4b970272998f457ae0fe",
+      "actual_rows": 128,
+      "diagnostic": "",
+      "execution_returncode": 0,
+      "expected_output_sha256": "460db7f424570fdce48bfb991b69becf4e4d6a62251e4b970272998f457ae0fe",
+      "expected_rows": 128,
+      "packet_root": "tau/v2",
+      "packet_sha256": "3e005e011d71953cb404059cd309ddef7b06b1a3cbdc85a15c6f2ca6aed05d86",
+      "profile": "v2_finite_policy",
+      "semantic_match": true,
+      "specification": "alignment_policy_gate_v2.tau",
+      "specification_sha256": "8cd0d17b2be449a4d8dd3fadfbfb5be1341c19de7debef99a170106fa15d80d7",
+      "stderr_sha256": "bae45755a206e0dee07176276626321a325194bd1103a576b43f658983af2f4f",
+      "stdout_sha256": "c4c5c6e65cfbb2195344efe911cb72779bf229f20b3780aa044e3355a57449d7"
+    },
+    {
+      "accepted_rows": [
+        0
+      ],
+      "actual_output_sha256": "8539d67d5e992e6829c076663902d8750ac4c505be21313a231f096d7b250d76",
+      "actual_rows": 512,
+      "diagnostic": "",
+      "execution_returncode": 0,
+      "expected_output_sha256": "8539d67d5e992e6829c076663902d8750ac4c505be21313a231f096d7b250d76",
+      "expected_rows": 512,
+      "packet_root": "tau/intelligence_flywheel/gate",
+      "packet_sha256": "0fcf5aa5244d2d1b7bd6d9e0aa4d7ee624a06eabac67d448e9225a4405273400",
+      "profile": "intelligence_flywheel",
+      "semantic_match": true,
+      "specification": "intelligence_flywheel_gate.tau",
+      "specification_sha256": "f8c44dbc571003d37dcf8759c3002093d858663f19a9f97307695f1b89207beb",
+      "stderr_sha256": "fcf31be9eaf8cd2226a24dc8dc3571a53f1ed1abeb6d39780419f7a0da062951",
+      "stdout_sha256": "e398d4a855819d096ebabf83ae6a5ab0c74804602d32d00d72662e61f97904d3"
+    }
+  ],
+  "pins_match": true,
+  "platform_observation": "Linux-7.0.0-28-generic-x86_64-with-glibc2.39",
+  "schema": "alignment-theorem-current-tau-multi-profile-probe-v2",
+  "semantic_replay_passed": true,
+  "snapshot_date": "2026-08-23",
+  "source_status_porcelain": [],
+  "source_to_binary_status": "DECLARED_LOCAL_BUILD_RELATION_NOT_INDEPENDENTLY_ATTESTED",
+  "status": "SUPPORTED_LOCAL_SOURCE_CANDIDATE",
+  "submodules": [
+    "5dd036358e194e55a08fd2ec255441bedfe83765 external/parser (nightly-2026-08-08)"
+  ],
+  "tau_binary_sha256": "f6e2bf674d1850f1f83461b1fa2a3a7428ac0e7ab1dc28f599c6f8480890cb73"
+}

@@ -13,20 +13,30 @@ import tempfile
 from pathlib import Path
 
 try:
+    from verification.current_tau_baseline import (
+        CURRENT_TAU_PARSER_COMMIT,
+        CURRENT_TAU_SOURCE_COMMIT,
+        CURRENT_TAU_TESTNET_COMMIT,
+    )
     from verification.generate_tau_intelligence_flywheel_packet import OBLIGATIONS, TAU_PACKET
     from verification.run_tau_compute_dividend import (
-        EXPECTED_TAU_PARSER_COMMIT,
-        EXPECTED_TAU_SOURCE_COMMIT,
         _tree_sha256,
     )
 except ModuleNotFoundError:
+    from current_tau_baseline import (
+        CURRENT_TAU_PARSER_COMMIT,
+        CURRENT_TAU_SOURCE_COMMIT,
+        CURRENT_TAU_TESTNET_COMMIT,
+    )
     from generate_tau_intelligence_flywheel_packet import OBLIGATIONS, TAU_PACKET
-    from run_tau_compute_dividend import EXPECTED_TAU_PARSER_COMMIT, EXPECTED_TAU_SOURCE_COMMIT, _tree_sha256
+    from run_tau_compute_dividend import _tree_sha256
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 SPEC = REPO_ROOT / "tau" / "intelligence_flywheel" / "tau_net" / "dac_treasury_o5.tau"
 CHILD = Path(__file__).with_name("tau_net_intelligence_flywheel_child.py")
-EXPECTED_TAU_TESTNET_COMMIT = "9f9240ded9fd7ff246f4bbd45343c64eef9a1751"
+EXPECTED_TAU_TESTNET_COMMIT = CURRENT_TAU_TESTNET_COMMIT
+EXPECTED_TAU_SOURCE_COMMIT = CURRENT_TAU_SOURCE_COMMIT
+EXPECTED_TAU_PARSER_COMMIT = CURRENT_TAU_PARSER_COMMIT
 STREAM_MAP = {str(index): name for index, name in zip(range(17, 26), OBLIGATIONS, strict=True)}
 
 

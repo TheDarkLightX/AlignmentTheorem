@@ -13,23 +13,31 @@ import tempfile
 from pathlib import Path
 
 try:
+    from verification.current_tau_baseline import (
+        CURRENT_TAU_PARSER_COMMIT,
+        CURRENT_TAU_SOURCE_COMMIT,
+        CURRENT_TAU_VERSION,
+    )
     from verification.generate_tau_intelligence_flywheel_packet import OUTPUT_NAME, SPEC_NAME, TAU_PACKET
     from verification.run_tau_compute_dividend import (
         EXPECTED_TAU_BINARY_SHA256,
-        EXPECTED_TAU_PARSER_COMMIT,
-        EXPECTED_TAU_SOURCE_COMMIT,
-        EXPECTED_TAU_VERSION,
         _tree_sha256,
     )
 except ModuleNotFoundError:
+    from current_tau_baseline import (
+        CURRENT_TAU_PARSER_COMMIT,
+        CURRENT_TAU_SOURCE_COMMIT,
+        CURRENT_TAU_VERSION,
+    )
     from generate_tau_intelligence_flywheel_packet import OUTPUT_NAME, SPEC_NAME, TAU_PACKET
     from run_tau_compute_dividend import (
         EXPECTED_TAU_BINARY_SHA256,
-        EXPECTED_TAU_PARSER_COMMIT,
-        EXPECTED_TAU_SOURCE_COMMIT,
-        EXPECTED_TAU_VERSION,
         _tree_sha256,
     )
+
+EXPECTED_TAU_SOURCE_COMMIT = CURRENT_TAU_SOURCE_COMMIT
+EXPECTED_TAU_PARSER_COMMIT = CURRENT_TAU_PARSER_COMMIT
+EXPECTED_TAU_VERSION = CURRENT_TAU_VERSION
 
 
 def _sha256(path: Path) -> str:

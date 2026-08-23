@@ -21,13 +21,13 @@ this same order and conjunction.
 
 ## Tau candidate result
 
-- Tau source: `fd137e860b60083b36f9159ec8090cb1a3c3cb5a`
+- Tau source: `9b191af689abdb75f3e43f200e09d35c0e99a664`
 - parser: `5dd036358e194e55a08fd2ec255441bedfe83765`
-- local candidate SHA-256: `b2699306d75c977ae4466e4f69237838efe6caafcc86bec62bbfb6517161ec19`
+- local candidate SHA-256: `f6e2bf674d1850f1f83461b1fa2a3a7428ac0e7ab1dc28f599c6f8480890cb73`
 - candidate output: 512 canonical rows, accepted row `[0]`
 
-The candidate has the exact source/parser pins but not the reviewed binary
-identity or exact reviewed version string.  Matching Git revisions do not
+The candidate has the exact current source/parser pins and version string. It
+does not have the older reviewed binary identity. Matching Git revisions do not
 attest which source produced the executable, and its build/runtime environment
 is not hermetically attested.
 
@@ -60,6 +60,10 @@ At Tau Testnet source revision
 - treasury/each one of `i17..i25` false: block;
 - treasury/custom evidence absent: block; and
 - another sender/all false: allow.
+
+The native module SHA-256 is
+`ec34baae7d6d603b689e10d8fc65a2759efdaa00dce4e7a0955d8c18659ea633`,
+paired with current Tau source `9b191af...` and parser `5dd036...`.
 
 The rule is scoped by host-fed sender `i12`.  Streams `i17..i25` are used to
 avoid current reserved/conditional streams.  In the tested alpha, transaction

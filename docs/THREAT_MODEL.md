@@ -4,9 +4,9 @@
 
 - **Relative-growth failure**: increasing purchasing power helps only while the
   complete deviation, compliance-cost, and optimizer-error bound remains below
-  the scarcity-amplified ethical reward and forfeiture exposure. Common scaling
+  the scarcity-amplified eligible reward and exclusive-upside exposure. Common scaling
   or faster deviation growth defeats the theorem.
-- **Zero exposure**: if ethical reward plus non-ethical forfeiture exposure is
+- **Zero exposure**: if eligible reward plus exclusive-upside exposure is
   zero, no scarcity threshold exists. The exact model rejects threshold
   construction in this case.
 - **Forged classification**: EETF is authenticated action evidence. An actor or
@@ -14,6 +14,9 @@
 - **Unfunded reward**: the finite gate requires a funded reward fact. Production
   settlement still needs reserve custody, replay protection, and an atomic
   value-moving implementation.
+- **Exclusion bypass**: an excluded actor who can still claim the same reward or
+  scarcity-sensitive entitlement makes the exclusive-upside coefficient zero.
+  Shared token appreciation cancels from the choice comparison.
 - **Forecast uncertainty**: Bitcoin-style issuance scarcity and AGI abundance
   do not establish the required purchasing-power path. The multiplier and its
   opposing bound remain explicit scenario inputs.

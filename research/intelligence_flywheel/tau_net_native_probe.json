@@ -1,6 +1,6 @@
 {
   "actual_tau_parser_commit": "5dd036358e194e55a08fd2ec255441bedfe83765",
-  "actual_tau_source_commit": "fd137e860b60083b36f9159ec8090cb1a3c3cb5a",
+  "actual_tau_source_commit": "9b191af689abdb75f3e43f200e09d35c0e99a664",
   "actual_tau_testnet_commit": "9f9240ded9fd7ff246f4bbd45343c64eef9a1751",
   "all_cases_match": true,
   "cases": [
@@ -247,15 +247,15 @@
       "sender": "treasury"
     }
   ],
-  "checker_sha256": "424ef79ca3022c386aff091ba322e183fcd72db471dadfc4f4454984be06b3da",
+  "checker_sha256": "62b3a42283caae80daea56b75bfc594ce2e541af2f23557fac8118fd202a2269",
   "child_checker_sha256": "1eb7bdcaa053c40424fbd7eeed3bb9c1c4fe40c7c106ce07ee0ddaeee7cb64f8",
   "child_error": "",
   "child_returncode": 0,
   "child_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-  "child_stdout_sha256": "208b54793acb7199959a732bc21925c6c7de8423093a8c1d3e54a85db9a13493",
+  "child_stdout_sha256": "82eb73ea36e04727143c7679f8c675616b06d070fe149410342ccbb148c145b8",
   "execution_environment_status": "HOST_KERNEL_DYNAMIC_LIBRARIES_AND_HARDWARE_NOT_HERMETICALLY_ATTESTED",
   "expected_tau_parser_commit": "5dd036358e194e55a08fd2ec255441bedfe83765",
-  "expected_tau_source_commit": "fd137e860b60083b36f9159ec8090cb1a3c3cb5a",
+  "expected_tau_source_commit": "9b191af689abdb75f3e43f200e09d35c0e99a664",
   "expected_tau_testnet_commit": "9f9240ded9fd7ff246f4bbd45343c64eef9a1751",
   "input_authentication_status": "CUSTOM_I17_TO_I25_VALUES_ARE_SUBMITTER_SUPPLIED_CLAIMS",
   "nonclaims": [
@@ -284,7 +284,7 @@
   "source_to_binding_status": "DECLARED_LOCAL_BUILD_RELATION_NOT_INDEPENDENTLY_ATTESTED",
   "status": "SUPPORTED_BOUNDED_NATIVE_ABI",
   "tau_native_module_basename": "tau.cpython-312-x86_64-linux-gnu.so",
-  "tau_native_module_sha256": "882dbddb07e0277bf7172129c443c3c5def4423d2566773cd408b30b0a88d561",
+  "tau_native_module_sha256": "ec34baae7d6d603b689e10d8fc65a2759efdaa00dce4e7a0955d8c18659ea633",
   "tau_net_authority_status": "DIRECT_NATIVE_ABI_PROBE_NOT_NODE_DEPLOYMENT_OR_CONSENSUS_FINALITY",
   "tau_source_status_porcelain": [],
   "tau_spec_sha256": "32f683826a9a3c3177843b9da1580c13bf92a164151deb660ee1f463def50df1",

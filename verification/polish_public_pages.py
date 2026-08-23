@@ -250,9 +250,9 @@ def polish_index(text: str) -> str:
     )
     text = replace_once(
         text,
-        '''                <a href="alignment-theorem-deep-dive.html">Historical Version 1</a>
+        '''                <a href="alignment-theorem-deep-dive.html">Version 1 Deep Dive</a>
             </div>''',
-        '''                <a href="alignment-theorem-deep-dive.html">Historical Version 1</a>
+        '''                <a href="alignment-theorem-deep-dive.html">Version 1 Deep Dive</a>
             </nav>''',
         "index navigation closing",
     )

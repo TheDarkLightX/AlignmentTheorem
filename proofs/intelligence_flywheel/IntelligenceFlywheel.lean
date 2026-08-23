@@ -37,9 +37,9 @@ theorem fixed_deviation_doubling_witness (B K : Nat) (hK : 1 ≤ K) :
   exact Nat.lt_of_lt_of_le hPow hMul
 
 /-- Capability growth alone is logically insufficient: M=K=1, B=2 fails. -/
-theorem intelligence_growth_alone_insufficient (I : Nat → Nat) :
-    ∀ t : Nat, ¬ Aligned 1 1 2 := by
-  intro t
+theorem intelligence_growth_alone_insufficient (_I : Nat → Nat) :
+    ∀ _t : Nat, ¬ Aligned 1 1 2 := by
+  intro _t
   simp [Aligned]
 
 /-- Any reward cap below a deviation floor rules alignment out pointwise. -/

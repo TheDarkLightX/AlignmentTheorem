@@ -7,6 +7,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 BLOG = ROOT / "docs" / "data-center-social-contract.html"
+PUBLIC_PLAYBOOK = ROOT / "docs" / "local-government-policy-playbook.html"
+INDEX = ROOT / "docs" / "index.html"
 PLAYBOOK = (
     ROOT
     / "research"
@@ -82,6 +84,17 @@ class DataCenterPolicyPublicationTests(unittest.TestCase):
                 self.assertIn(phrase, text)
         numbered_policies = re.findall(r"^## (\d+)\.", text, flags=re.MULTILINE)
         self.assertEqual(numbered_policies, [str(index) for index in range(1, 15)])
+
+    def test_static_playbook_is_publishable_and_linked_from_index(self) -> None:
+        page = PUBLIC_PLAYBOOK.read_text()
+        index = INDEX.read_text()
+        self.assertIn("Local Data-Center Policy Playbook", page)
+        self.assertIn("The fourteen-part local package", page)
+        self.assertIn("Make growth pay for growth", page)
+        self.assertIn("not jurisdiction-specific legal advice", page)
+        self.assertIn('href="local-government-policy-playbook.html"', index)
+        for forbidden in ("file://", "/tmp/", "/home/", "localhost"):
+            self.assertNotIn(forbidden, page)
 
     def test_public_explanation_matches_the_actual_tau_gate(self) -> None:
         blog = BLOG.read_text()

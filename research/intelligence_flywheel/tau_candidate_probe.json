@@ -5,12 +5,12 @@
   "actual_output_sha256": "8539d67d5e992e6829c076663902d8750ac4c505be21313a231f096d7b250d76",
   "actual_rows": 512,
   "actual_tau_parser_commit": "5dd036358e194e55a08fd2ec255441bedfe83765",
-  "actual_tau_source_commit": "fd137e860b60083b36f9159ec8090cb1a3c3cb5a",
+  "actual_tau_source_commit": "9b191af689abdb75f3e43f200e09d35c0e99a664",
   "authority_status": "CANDIDATE_ONLY_NO_TAU_NET_PUBLICATION_INVESTMENT_OR_VALUE_AUTHORITY",
   "candidate_probe_complete": true,
-  "candidate_tau_binary_sha256": "b2699306d75c977ae4466e4f69237838efe6caafcc86bec62bbfb6517161ec19",
-  "candidate_tau_version": "Tau Language Framework version 0.7.0-alpha (fd137e86)",
-  "checker_sha256": "c1502db80e5945b5b2c933c6a71814ebbd405e821186ff6c3ec50f995184ad21",
+  "candidate_tau_binary_sha256": "f6e2bf674d1850f1f83461b1fa2a3a7428ac0e7ab1dc28f599c6f8480890cb73",
+  "candidate_tau_version": "Tau Language Framework version 0.7.0-alpha (9b191af)",
+  "checker_sha256": "afb049147fc471ffd959a135de158e5e8aa5eac5b6b1ff22aa29e05bff3e9e03",
   "diagnostic": "",
   "execution_environment_status": "HOST_KERNEL_LIBRARIES_AND_SANDBOX_NOT_HERMETICALLY_ATTESTED",
   "execution_returncode": 0,
@@ -18,15 +18,15 @@
   "expected_rows": 512,
   "expected_tau_binary_sha256": "c49267404e07a1f540c941b618e786710f70001eecbd05bb7c6d8eec0c5645fa",
   "expected_tau_parser_commit": "5dd036358e194e55a08fd2ec255441bedfe83765",
-  "expected_tau_source_commit": "fd137e860b60083b36f9159ec8090cb1a3c3cb5a",
-  "expected_tau_version": "Tau Language Framework version 0.7.0-alpha (fd137e8)",
+  "expected_tau_source_commit": "9b191af689abdb75f3e43f200e09d35c0e99a664",
+  "expected_tau_version": "Tau Language Framework version 0.7.0-alpha (9b191af)",
   "nonclaims": [
     "No passing or promotion field is issued for this candidate identity.",
     "Matching source pins do not attest which source produced the executable.",
     "Candidate output cannot replace the reviewed-binary replay.",
     "The packet does not authenticate its economic or governance inputs."
   ],
-  "platform_observation": "Linux-6.18.35-x86_64-with-glibc2.39",
+  "platform_observation": "Linux-7.0.0-28-generic-x86_64-with-glibc2.39",
   "promotion_eligible": false,
   "replay_on_reviewed_binary": false,
   "reviewed_binary_match": false,
@@ -36,9 +36,9 @@
   "source_status_porcelain": [],
   "source_to_binary_status": "DECLARED_LOCAL_BUILD_RELATION_NOT_INDEPENDENTLY_ATTESTED",
   "submodules": [
-    "5dd036358e194e55a08fd2ec255441bedfe83765 external/parser (5dd0363)"
+    "5dd036358e194e55a08fd2ec255441bedfe83765 external/parser (nightly-2026-08-08)"
   ],
   "tau_packet_sha256": "0fcf5aa5244d2d1b7bd6d9e0aa4d7ee624a06eabac67d448e9225a4405273400",
   "tau_spec_sha256": "f8c44dbc571003d37dcf8759c3002093d858663f19a9f97307695f1b89207beb",
-  "version_match": false
+  "version_match": true
 }

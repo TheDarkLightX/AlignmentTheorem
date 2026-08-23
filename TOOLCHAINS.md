@@ -1,9 +1,40 @@
 # Reproducible Toolchain Pins
 
-Version 1.1 and Version 2 evidence is tied to exact source identities and to
+Version 1, Version 1.1, and Version 2 evidence is tied to exact source identities and to
 binary identities wherever interpreter execution is claimed. A later tool
 version must generate a new receipt rather than
 inherit these results.
+
+## Version 1
+
+### Lean and exact model
+
+- Lean release: `v4.33.0`
+- Toolchain file: `proofs/v1/lean-toolchain`
+- Standard library only
+
+Replay:
+
+```bash
+python3 verification/run_lean_v1.py \
+  --output verification/receipts/lean_v1_v4.33.0.json \
+  --json
+```
+
+The project checks the original EETF tier boundaries, the equivalence between
+the historical negative-opportunity-cost placement and the no-debit exclusion
+normalization, the finite strict choice theorem, exact least integer threshold,
+zero-deviation case, unbounded-scarcity implication, and the fact that scarcity
+upside common to both alternatives cancels. `verification/alignment_v1_model.py`
+provides the exact bounded-integer replay with the paper's thousandths EETF
+scale.
+
+### Tau packet
+
+`tau/v1/` contains all 128 Boolean rows for seven host-derived obligations:
+policy root, network EETF, candidate EETF, scarcity snapshot, reward funding,
+enforceable exclusive upside, and the strict V1 margin. The packet applies no
+punitive debit and accepts only the all-true row.
 
 ## Version 1.1
 
@@ -35,8 +66,8 @@ python3 -m verification.run_v1_1_assurance \
 
 This receipt binds the V1.1 proof, model, semantic Tau packet, replay runner,
 tests, public pages, HTML paper, and rendered PDF. It records the Python/Tau
-surfaces as reference-only and records exact-current Tau interpreter replay as
-pending.
+surfaces as reference-only. The stored receipt predates the current source
+candidate replay and must be regenerated before it describes the current tree.
 After generation, validate the stored receipt against the bound files:
 
 ```bash
@@ -99,17 +130,51 @@ uname -a
 Also retain the Runpod image name and immutable image digest, build command,
 CPU architecture, and build log. A rebuilt executable with different bytes is a
 new candidate. Preserve its manifest and review the new pin intentionally; do
-not edit the accepted hash solely to make the runner pass. No Version 1.1
-interpreter receipt is currently promoted because the accepted executable was
+not edit the accepted hash solely to make the runner pass. No reviewed-binary
+Version 1.1 interpreter receipt is currently promoted because the accepted executable was
 unavailable during this update. An older available `401d756b` executable
 segfaulted on the current declaration shape and supplies no evidence.
+
+## Current Tau source-candidate snapshot
+
+- Snapshot date: `2026-08-23`
+- Repository: <https://github.com/IDNI/tau-lang>
+- Source commit: `9b191af689abdb75f3e43f200e09d35c0e99a664`
+- Parser submodule: `5dd036358e194e55a08fd2ec255441bedfe83765`
+- Reported version: `Tau Language Framework version 0.7.0-alpha (9b191af)`
+- Local candidate binary SHA-256:
+  `f6e2bf674d1850f1f83461b1fa2a3a7428ac0e7ab1dc28f599c6f8480890cb73`
+- Local native module SHA-256:
+  `ec34baae7d6d603b689e10d8fc65a2759efdaa00dce4e7a0955d8c18659ea633`
+
+Replay:
+
+```bash
+python3 verification/probe_current_tau_packets.py \
+  --tau-bin /path/to/tau-lang/build-Release/tau \
+  --tau-source /path/to/tau-lang \
+  --build-command 'cmake --build build-Release --parallel 2' \
+  --output research/current_tau/current_tau_packet_probe.json \
+  --json
+```
+
+The local candidate matched the V1 128-row, V1.1 16-row, V2 128-row, and
+flywheel 512-row packets byte-for-byte. Each accepted only row zero, the
+deliberate all-true row. The source status and parser pin were clean. This is
+source-pinned candidate evidence. The build relation was declared rather than
+independently attested, host dependencies were not hermetic, and no public Tau
+Net publication, authenticated fact, settlement, or value authority follows.
 
 ## Version 2 source baseline
 
 - AlignmentTheorem Version 1 baseline: `cf8d2c05219c5287af77872998983c303947832e`
 - Version 2 development branch: `codex/alignment-theorem-v2-20260819`
 
-## Tau Language
+## Reviewed Tau execution baseline
+
+The following older identity remains the exact binary accepted by the strict
+reviewed runners. It is retained as a historical execution baseline and is not
+described as the current upstream source revision.
 
 - Repository: <https://github.com/IDNI/tau-lang>
 - Source commit: `fd137e860b60083b36f9159ec8090cb1a3c3cb5a`
@@ -151,9 +216,10 @@ The runner executes `lake build`, rejects proof placeholders and user-added
 axioms, checks the exact declared standard `propext`/`Quot.sound` dependencies,
 and binds the Lean source, project, manifest, and toolchain hashes.
 
-The Version 1 Lean file is retained as historical research. Its old `lake
-build` claim was not repository-replayable because the project and dependency
-pins were absent.
+The original Version 1 Lean file is retained in Git history as provenance. Its
+old `lake build` claim was not repository-replayable because the project and
+dependency pins were absent. The reconstructed, standard-library-only V1
+project and replay commands are recorded at the start of this document.
 
 ## Compute-dividend research kernel
 
@@ -232,8 +298,8 @@ used and does not attest the Lean executable's provenance or the host.
 ### Tau CLI packet
 
 `tau/intelligence_flywheel/gate/` contains all 512 rows for nine obligations.
-The source-pinned local candidate `b2699306...` produced byte-identical output,
-but is not the reviewed identity.  Reviewed replay is fail-closed:
+The current source-pinned local candidate `f6e2bf67...` produced byte-identical
+output, but is not the reviewed identity. Reviewed replay is fail-closed:
 
 ```bash
 python3 verification/run_tau_intelligence_flywheel_reviewed.py \
@@ -249,9 +315,9 @@ candidate preflight remains a negative result, not an execution receipt.
 
 - Tau Testnet source commit:
   `9f9240ded9fd7ff246f4bbd45343c64eef9a1751`
-- Tau source/parser commits: the `fd137e8` / `5dd036...` pins above
+- Tau source/parser commits: the current `9b191af...` / `5dd036...` pins above
 - local native module SHA-256:
-  `882dbddb07e0277bf7172129c443c3c5def4423d2566773cd408b30b0a88d561`
+  `ec34baae7d6d603b689e10d8fc65a2759efdaa00dce4e7a0955d8c18659ea633`
 
 The direct `TauInterface` probe binds upstream source files, module bytes,
 application-rule bytes, semantic stream mapping, and case results.  The module
@@ -259,3 +325,22 @@ was produced through a local non-hermetic build whose source-to-module relation
 is declared but not independently attested.  Direct binding execution is not a
 node/admission/block-apply/finality test, and custom input values do not
 authenticate economic facts.
+
+The three-profile router can be replayed against the same exact source and
+module identity:
+
+```bash
+python3 verification/probe_tau_net_alignment_profiles.py \
+  --tau-testnet-root /path/to/tau-testnet \
+  --tau-source /path/to/tau-lang \
+  --tau-module /path/to/tau-lang/build-Release/bindings/python/nanobind/tau.cpython-312-x86_64-linux-gnu.so \
+  --library-dir /path/to/cvc5/lib \
+  --output research/current_tau/profile_router_native_probe.json \
+  --json
+```
+
+Its 27 cases cover V1, V1.1, and V2 all-true and single-false paths, an unknown
+profile, absent custom inputs, and sender isolation. `i17..i24` are still
+transaction-supplied. For V1, a true `exclusive_upside_enforceable` bit is only
+a claim unless a consensus-recognized verifier binds it to an actual exclusive
+entitlement. The predicate never debits the excluded branch.

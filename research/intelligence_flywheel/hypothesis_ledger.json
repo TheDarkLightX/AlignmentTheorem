@@ -53,7 +53,7 @@
       "statement": "The source-pinned local Tau candidate executes the 512-row conjunction packet canonically.",
       "assumptions": ["The observed candidate bytes and source worktrees are the files hashed in the receipt."],
       "falsifiers": ["Hash drift.", "Wrong row count.", "Any accepted row other than row 0.", "Output mismatch or execution failure."],
-      "source_ids": ["SRC-IF-TAU-LANG-FD137E8"],
+      "source_ids": ["SRC-IF-TAU-LANG-9B191AF"],
       "evidence_ids": ["E-IF-TAU-CANDIDATE-04"]
     },
     {
@@ -62,7 +62,7 @@
       "statement": "At the pinned local Tau Testnet and Tau revisions, the direct native o5 ABI enforces the sender-scoped nine-fact rule for the tested positive, mutation, scope, and missing-input cases.",
       "assumptions": ["Direct TauInterface behavior represents only the tested native ABI.", "Custom values are supplied claims."],
       "falsifiers": ["Any recorded case mismatch.", "Revision or file-hash drift.", "The direct binding fails to instantiate or communicate."],
-      "source_ids": ["SRC-IF-TAU-TESTNET-9F9240", "SRC-IF-TAU-LANG-FD137E8"],
+      "source_ids": ["SRC-IF-TAU-TESTNET-9F9240", "SRC-IF-TAU-LANG-9B191AF"],
       "evidence_ids": ["E-IF-TAU-NET-NATIVE-05"]
     },
     {
@@ -71,7 +71,7 @@
       "statement": "The reviewed c4926740 Tau Linux binary executes the V1.1, compute-dividend, wealth, and intelligence-flywheel packets canonically.",
       "assumptions": ["The supplied executable has the exact reviewed SHA-256 and version string."],
       "falsifiers": ["Preflight identity mismatch.", "Crash or timeout.", "Noncanonical output.", "Semantic mismatch."],
-      "source_ids": ["SRC-IF-TAU-LANG-FD137E8"],
+      "source_ids": ["SRC-IF-TAU-LANG-REVIEWED-FD137E8"],
       "evidence_ids": ["E-IF-TAU-REVIEWED-PENDING-06"]
     },
     {

@@ -43,12 +43,20 @@
       "nonclaim": "The historical theory is not asserted to identify the net effect of this hypothetical mechanism."
     },
     {
-      "id": "SRC-IF-TAU-LANG-FD137E8",
+      "id": "SRC-IF-TAU-LANG-9B191AF",
       "kind": "source_repository_revision",
-      "title": "Tau Language source revision fd137e8",
+      "title": "Tau Language current source revision 9b191af",
+      "uri": "https://github.com/IDNI/tau-lang/commit/9b191af689abdb75f3e43f200e09d35c0e99a664",
+      "use": "Pinned current Tau language/parser semantics for the CLI candidate and native-binding probes.",
+      "nonclaim": "The source revision is not independently proven to have produced the local executable or native module."
+    },
+    {
+      "id": "SRC-IF-TAU-LANG-REVIEWED-FD137E8",
+      "kind": "historical_reviewed_execution_baseline",
+      "title": "Tau Language reviewed-runner source expectation fd137e8",
       "uri": "https://github.com/IDNI/tau-lang/commit/fd137e860b60083b36f9159ec8090cb1a3c3cb5a",
-      "use": "Pinned Tau language/parser semantics for the CLI and native-binding probes.",
-      "nonclaim": "The source revision is not proven to have produced the reviewed binary or local native module."
+      "use": "Expected source identity recorded by the strict runner for the older c4926740 reviewed executable.",
+      "nonclaim": "The source revision is not proven to have produced that reviewed executable and is not the current upstream source revision."
     },
     {
       "id": "SRC-IF-TAU-LANG-README",

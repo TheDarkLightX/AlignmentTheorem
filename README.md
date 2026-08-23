@@ -1,21 +1,55 @@
 # Alignment Theorem
 
 Can LLM agents be ethically aligned and profit-seeking at the same time? This
-project develops two compatible answers for a policy-governed network:
+project develops three compatible theorem profiles for a policy-governed
+network:
 
 > LLM agents can be trained to follow ethical constraints while pursuing
 > profitable useful work. If the ethical path is the most profitable path, the
 > network can run more smoothly.
 
-Version 1.1 repairs the original scarcity-driven idea. Version 2 defines the
-finite publication and settlement boundary.
+Version 1 is the concrete EETF/VCC scarcity-upside exclusion mechanism.
+Version 1.1 abstracts that mechanism into a conditional relative-growth
+theorem. Version 2 defines the finite publication and settlement boundary. A
+later version does not replace an earlier profile when their premises and use
+cases differ.
+
+## Version 1: EETF-gated scarcity-upside exclusion
+
+Version 1 aggregates ethical models into a network EETF, assigns account or
+action EETF tiers, and uses VCC scarcity to amplify value available only to the
+eligible branch. Exclusion is opportunity cost. It does not impose a tax, fine,
+burn, or balance debit on the excluded actor.
+
+Let `R(t)` be funded direct-reward exposure, `L(t)` be scarcity upside whose
+access is enforceably limited to the eligible branch, and `G(t)` be the complete
+bounded deviation gain in V1's exact-optimizer model. The finite condition is:
+
+```text
+M(t) * [R(t) + L(t)] > G(t)
+```
+
+The original paper placed foregone upside as a negative "penalty" on the
+excluded branch. In utility language that is an opportunity-cost encoding, not
+a tax. Adding the same foregone amount to both alternatives gives the
+equivalent no-debit expression above and preserves the choice ordering.
+For positive `R + L`, the least strict integer multiplier is
+`floor(G / (R + L)) + 1`. When `G = 0`, every positive multiplier is enough.
+
+The paper's EETF tiers, direct reward, VCC scarcity path, exclusion term, and
+bounded-deviation simulation are retained. Its printed indifference formula,
+ambiguous implementation wording, universal-agent scope, objective-ethics
+language, and runtime claims require the clarifications and corrections recorded
+in the claim-boundary note.
+The repository now contains a standalone Lean project, an exact integer model,
+and a current-Tau 128-row admission packet for V1.
 
 ## Version 1.1: hyperdeflationary alignment
 
 At epoch `t`, let `M(t)` be a finite purchasing-power multiplier, let
-`K(t)` be the ethical reward exposure plus non-ethical forfeiture exposure, and
+`K(t)` be the eligible reward exposure plus enforceably exclusive upside, and
 let `B(t)` be the complete deviation-gain, compliance-cost, and optimizer-error
-bound. The repaired Version 1 condition is:
+bound. The Version 1.1 condition is:
 
 ```text
 M(t) * K(t) > B(t)
@@ -26,7 +60,7 @@ For fixed positive `K` and finite `B`, the exact integer threshold is
 then it eventually crosses this threshold. The relative-growth theorem also
 allows `B(t)` to grow when `B(t) / K(t) < M(t)` eventually.
 
-Version 1.1 preserves V1's economic mechanism. It treats hyperdeflation as a
+Version 1.1 generalizes V1's economic mechanism. It treats hyperdeflation as a
 declared scenario, EETF authentication as an external adapter obligation, and
 every runtime epoch as finite. It does not prove that Bitcoin purchasing power
 diverges or that AGI necessarily causes hyperdeflation.
@@ -58,11 +92,26 @@ Expected enforcement may be zero. In the reward-only corollary, the funded
 reward advantage for compliant work alone exceeds the bounded deviation gain,
 compliance cost, and optimizer error.
 
-Original Version 1 remains in the repository as historical research. Its old
-Lean file does not establish the repaired scarcity threshold. Version 1.1
-supplies that separate theorem. See
-[V1_TO_V2_CORRECTIONS.md](docs/V1_TO_V2_CORRECTIONS.md) for the reasons Version
-2 changed the publication model.
+The original Version 1 paper remains recoverable as historical research. Its
+old Lean file is not repository-replayable and its printed threshold derivation
+does not follow from its own piecewise tier function. The reconstructed
+opportunity-cost theorem is checked under `proofs/v1/`. Version 1.1 supplies an
+abstract theorem with costs, optimizer error, and relative-growth cases. See
+[V1_TO_V2_CORRECTIONS.md](docs/V1_TO_V2_CORRECTIONS.md) for the defect/scope
+classification.
+
+## Version 1 artifacts
+
+| Path | Purpose |
+| --- | --- |
+| `proofs/v1/AlignmentTheoremV1.lean` | EETF tiers, opportunity-cost normalization, exact threshold and choice, unbounded-scarcity result, and common-upside boundary |
+| `verification/run_lean_v1.py` | Placeholder-rejecting, axiom-audited, source-bound Lean replay |
+| `verification/alignment_v1_model.py` | Exact bounded-integer EETF/exclusion reference model |
+| `tau/v1/` | Exhaustive 128-row current-Tau eligibility packet |
+| `tests/test_alignment_v1_model.py` | EETF BVA, normalization, exact threshold, overflow rejection, and common-upside boundary |
+| `docs/alignment-theorem-v1-archive-notice.html` | Original-paper claim and provenance boundary |
+| `docs/Alignment_Theorem_V1_Original_2025.pdf` | Frozen uncorrected 16-page academic paper from `a28695f` |
+| `research/v1/ACADEMIC_PAPER_AUDIT.md` | Source-frozen reconstruction of the complete V1 mechanism and demonstrated corrections |
 
 ## Version 1.1 artifacts
 
@@ -134,8 +183,9 @@ The exact campaign tests direct doubling, compute-power scaling, logistic
 saturation, conditional DAC reinvestment, partial pass-through, and rebound.
 It checks 544 exact bridge cases, proves the key conditional and negative
 results in Lean, and binds the same nine-fact predicate to a complete 512-row
-Tau packet.  The source-pinned Tau candidate matched that packet.  A direct
-native `o5` ABI probe at Tau Testnet revision `9f9240...` also matched all 12
+Tau packet. The source-pinned current-Tau candidate at `9b191af...` matched
+that packet. A direct native `o5` ABI probe at Tau Testnet revision
+`9f9240...` also matched all 12
 all-true, single-fault, missing-input, and sender-isolation cases.
 
 That native result is not a node deployment, authenticated oracle path,
@@ -148,6 +198,19 @@ Read the [GitHub Pages explainer](docs/intelligence-hyperdeflation-flywheel.html
 [mathematical model](research/intelligence_flywheel/MATHEMATICAL_MODEL.md),
 [Tau Net replay boundary](research/intelligence_flywheel/TAU_NET_REPLAY.md), and
 [claim boundary](research/intelligence_flywheel/CLAIM_BOUNDARY.md).
+
+## Current Tau Language and Tau Net mapping
+
+The [current integration matrix](docs/CURRENT_TAU_NET_INTEGRATION.md) maps V1,
+V1.1, and V2 to the Tau Language `9b191af...` and Tau Testnet `9f9240...`
+snapshots. A source-pinned local candidate replayed the 128-row V1, 16-row V1.1,
+128-row V2, and 512-row flywheel packets byte-for-byte. This is executable
+language evidence. A sender-scoped three-profile `o5` router also matched all 27
+native-ABI cases: each profile's all-true row, every single-false mutation,
+unknown-profile, absent-input, and other-sender controls. Its profile and fact
+streams remain transaction-supplied claims. Consensus-authenticated economic
+facts, enforceable exclusive entitlements, mounted settlement, and public-node
+deployment remain open authority layers.
 
 ## Replay
 
@@ -177,6 +240,14 @@ Lean 4.33.0 proof:
 ```bash
 cd proofs/v2
 lake build
+```
+
+Version 1 Lean proof:
+
+```bash
+cd proofs/v1
+lake build
+lake env lean AxiomAudit.lean
 ```
 
 Version 1.1 Lean proof and receipt:
@@ -211,9 +282,9 @@ python3 verification/run_tau_v2.py \
   --json
 ```
 
-The Version 1.1 Tau packet has exhaustive semantic parity tests over four
-assumed propositions. It does not authenticate them or create authority.
-Its runner checks the exact binary hash and version before execution, requires
+The Version 1 packet exhausts seven assumed propositions; the Version 1.1
+packet exhausts four. Neither packet authenticates those propositions or
+creates authority. The reviewed-binary runner checks the exact binary hash and version before execution, requires
 byte-exact canonical output, and writes a receipt only after a passing replay.
 The runner records that source-to-binary provenance and the host execution
 environment are not independently attested by this replay. The pinned-binary

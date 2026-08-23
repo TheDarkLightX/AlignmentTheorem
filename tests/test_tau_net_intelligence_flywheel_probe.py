@@ -6,7 +6,10 @@ import unittest
 from pathlib import Path
 
 from verification.generate_tau_intelligence_flywheel_packet import OBLIGATIONS
-from verification.run_tau_compute_dividend import EXPECTED_TAU_PARSER_COMMIT, EXPECTED_TAU_SOURCE_COMMIT
+from verification.current_tau_baseline import (
+    CURRENT_TAU_PARSER_COMMIT,
+    CURRENT_TAU_SOURCE_COMMIT,
+)
 
 ROOT = Path(__file__).resolve().parents[1]
 RECEIPT = ROOT / "research" / "intelligence_flywheel" / "tau_net_native_probe.json"
@@ -29,8 +32,8 @@ class TauNetIntelligenceFlywheelProbeTests(unittest.TestCase):
         self.assertTrue(receipt["all_cases_match"])
         self.assertEqual(receipt["checker_sha256"], sha256(CHECKER))
         self.assertEqual(receipt["child_checker_sha256"], sha256(CHILD))
-        self.assertEqual(receipt["actual_tau_source_commit"], EXPECTED_TAU_SOURCE_COMMIT)
-        self.assertEqual(receipt["actual_tau_parser_commit"], EXPECTED_TAU_PARSER_COMMIT)
+        self.assertEqual(receipt["actual_tau_source_commit"], CURRENT_TAU_SOURCE_COMMIT)
+        self.assertEqual(receipt["actual_tau_parser_commit"], CURRENT_TAU_PARSER_COMMIT)
         self.assertEqual(
             tuple(receipt["semantic_stream_map"][str(index)] for index in range(17, 26)),
             OBLIGATIONS,
@@ -56,8 +59,8 @@ class TauNetIntelligenceFlywheelProbeTests(unittest.TestCase):
         self.assertEqual(candidate["expected_rows"], campaign["tau_semantic_packet"]["rows"])
         self.assertEqual(candidate["actual_accepted_rows"], campaign["tau_semantic_packet"]["accepted_rows"])
         for receipt in (native, candidate):
-            self.assertEqual(receipt["actual_tau_source_commit"], EXPECTED_TAU_SOURCE_COMMIT)
-            self.assertEqual(receipt["actual_tau_parser_commit"], EXPECTED_TAU_PARSER_COMMIT)
+            self.assertEqual(receipt["actual_tau_source_commit"], CURRENT_TAU_SOURCE_COMMIT)
+            self.assertEqual(receipt["actual_tau_parser_commit"], CURRENT_TAU_PARSER_COMMIT)
         self.assertEqual(
             tuple(native["semantic_stream_map"][str(index)] for index in range(17, 26)),
             tuple(campaign["tau_semantic_packet"]["obligations"]),
