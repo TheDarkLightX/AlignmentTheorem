@@ -583,10 +583,7 @@
                 <h1>The Alignment <em>Theorem</em></h1>
                 <p class="hero-sub">Three conditional incentive profiles for ethical, profit-seeking agents, including humans and AI. Version 1 is the concrete EETF/VCC exclusion mechanism; Versions 1.1 and 2 cover broader economic and protocol cases.</p>
                 <div class="hero-actions">
-                    <a class="btn btn-primary" href="data-center-social-contract.html">Read the Data Center Bargain</a>
-                    <a class="btn btn-ghost" href="alignment-theorem-deep-dive.html">Read V1</a>
-                    <a class="btn btn-ghost" href="Alignment_Theorem_V2.pdf" target="_blank" rel="noopener">Download V2</a>
-                    <a class="btn btn-ghost" href="v1-1-hyperdeflationary-alignment.html">Read V1.1</a>
+                    <a class="btn btn-primary" href="Alignment_Theorem_V1_Original_2025.pdf" target="_blank" rel="noopener">Read the V1 Paper</a>
                     <a class="btn btn-ghost" href="https://github.com/TheDarkLightX/AlignmentTheorem" target="_blank" rel="noopener">GitHub</a>
                 </div>
             </div>
@@ -643,6 +640,7 @@
         <aside class="toc" aria-label="Table of contents">
             <div class="toc-title">Contents</div>
             <ul>
+                <li><a href="#v1-paper">V1 Paper</a></li>
                 <li><a href="#data-center">Data Center Bargain</a></li>
                 <li><a href="#core">Core Insight</a></li>
                 <li><a href="#hyperdeflation">V1 / V1.1 Profiles</a></li>
@@ -664,24 +662,37 @@
                 </p>
             </div>
 
-            <!-- Featured: Data Center Bargain -->
-            <section class="featured-essay" id="data-center">
+            <!-- Featured: V1 Paper -->
+            <section class="featured-essay" id="v1-paper">
                 <div class="featured-grid">
                     <div>
-                        <span class="hero-kicker" style="margin-bottom:16px">New research · local government</span>
-                        <h2>The Data Center Bargain</h2>
-                        <p>Local communities do not have to choose between rejecting AI infrastructure and subsidizing it. The social-contract theorem puts grid, water, safety, public-service, household-loss, audit, and decommissioning claims first. Only the authenticated residual is shared.</p>
-                        <div class="featured-equation">H(m) = &Sigma; max(m, (loss &minus; direct benefit)&#8314;)</div>
+                        <span class="hero-kicker" style="margin-bottom:16px">Original research · 16-page academic paper</span>
+                        <h2>The Alignment Theorem, Version 1</h2>
+                        <p>The original paper proposes that increasing monetary scarcity can make ethical work uniquely profitable through EETF-gated rewards and exclusion from scarcity-linked upside. The negative &ldquo;penalty&rdquo; term is the opportunity cost of that missed upside, never a tax, fine, burn, or balance debit. The reconstructed proof formalizes the EETF/VCC exclusion comparison; V1.1 generalizes it.</p>
+                        <div class="featured-equation">G(t) &lt; M(t) &times; [R(t) + L(t)]</div>
                         <div class="hero-actions" style="margin-top:20px">
-                            <a class="btn btn-primary" href="data-center-social-contract.html">Open the interactive essay</a>
-                            <a class="btn btn-ghost" href="local-government-policy-playbook.html">Policy playbook</a>
+                            <a class="btn btn-primary" href="Alignment_Theorem_V1_Original_2025.pdf" target="_blank" rel="noopener">Read the original paper (PDF)</a>
+                            <a class="btn btn-ghost" href="alignment-theorem-deep-dive.html">Read the V1 deep dive</a>
+                            <a class="btn btn-ghost" href="alignment-theorem-v1-archive-notice.html">V1 claim boundary</a>
                         </div>
                     </div>
-                    <div class="featured-stats" aria-label="Research validation highlights">
-                        <div class="featured-stat"><strong>65,100</strong><span>household and floor profiles tested</span></div>
-                        <div class="featured-stat"><strong>1,024</strong><span>Tau semantic rows; only all-true admits</span></div>
-                        <div class="featured-stat"><strong>0</strong><span>modeled welfare regressions</span></div>
+                    <div class="featured-stats" aria-label="V1 verification highlights">
+                        <div class="featured-stat"><strong>Lean 4.33</strong><span>machine-checked exclusion theorem</span></div>
+                        <div class="featured-stat"><strong>128 rows</strong><span>Tau semantic packet; only all-true admits</span></div>
+                        <div class="featured-stat"><strong>691K+</strong><span>stress tests with zero failures</span></div>
                     </div>
+                </div>
+            </section>
+
+            <!-- Secondary: Data Center Bargain -->
+            <section class="section" id="data-center">
+                <div class="section-kicker">Applied research · local government</div>
+                <h2 class="section-h" style="font-size:clamp(1.4rem,2.5vw,2rem)">The Data Center Bargain</h2>
+                <p>Local communities do not have to choose between rejecting AI infrastructure and subsidizing it. The social-contract theorem puts grid, water, safety, public-service, household-loss, audit, and decommissioning claims first. Only the authenticated residual is shared.</p>
+                <div class="featured-equation" style="max-width:500px">H(m) = &Sigma; max(m, (loss &minus; direct benefit)&#8314;)</div>
+                <div class="hero-actions" style="margin-top:16px">
+                    <a class="btn btn-primary" href="data-center-social-contract.html">Open the interactive essay</a>
+                    <a class="btn btn-ghost" href="local-government-policy-playbook.html">Policy playbook</a>
                 </div>
             </section>
 
@@ -714,7 +725,7 @@
                     <div class="card-grid" style="margin-top:24px">
                         <div class="card"><h3>V1 exact threshold</h3><p>For R + L &gt; 0, the least strict integer multiplier is floor(G / (R + L)) + 1. If G = 0, every positive M suffices.</p></div>
                         <div class="card"><h3>Exclusion is load-bearing</h3><p>L must be exclusive scarcity upside. If the excluded branch can obtain it, or the upside is common to both choices, L cancels and cannot establish V1.</p></div>
-                        <div class="card"><h3>V1.1 generalization</h3><p>Write K = R + L and include deviation gain, compliance cost, and optimizer error in B. The finite condition is M(t)K(t) &gt; B(t).</p></div>
+                        <div class="card"><h3>V1.1 generalization</h3><p>Define K = R + L and include deviation gain, compliance cost, and optimizer error in B. The finite condition is M(t)K(t) &gt; B(t).</p></div>
                         <div class="card"><h3>Relative growth</h3><p>Growing opposing opportunities are covered only when B(t) / K(t) eventually remains below M(t).</p></div>
                     </div>
                     <div class="hero-actions" style="margin-top:24px">
