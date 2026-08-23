@@ -1,5 +1,5 @@
 {
-  "artifact_revision": "d091691df5ed38f22ae8a8ad4b61c331a9f62370",
+  "artifact_revision": "751abb4e9c3a9d14b0faf72c862ec5bdd0e15216",
   "assumptions": [
     "Canonical receipt encoding and domain separation are specified.",
     "Signer/oracle authorization and threshold policy are consensus state.",
@@ -7,7 +7,7 @@
     "Each economic measurement has a declared estimator, uncertainty rule, and fail-closed threshold.",
     "The host feeds only verifier-derived facts; transaction-supplied assertions cannot override them."
   ],
-  "base_revision": "0f68357535c299de799976a67410f97367ed87c1",
+  "base_revision": "44c14df0a9b3f74d7cceb7f122176c84374faf1e",
   "boundary": "The obligation proves verifier-to-Tau refinement and protocol enforcement only. It does not prove that the selected estimators capture objective ethics, social welfare, lawful authority, or all real-world harms.",
   "claim": "For every DAC treasury action admitted by the target Tau o5 rule, each of the nine true input facts is the deterministic output of a consensus-recognized verifier over canonical, fresh, policy-root-bound, independently authorized evidence for the same epoch and action.",
   "claim_class": "refinement",
@@ -17,7 +17,7 @@
         {
           "path": "proofs/intelligence_flywheel/IntelligenceFlywheel.lean",
           "role": "Formal nine-fact conjunction and conditional margin theorems.",
-          "sha256": "07241a926b4c7104cdbeb578794dea6e8ee397441c29632c748abebbe42c4d19"
+          "sha256": "99e13c02d478d512499c27d01b1bbd88caea96c38ab7c3808415fc7731d60297"
         }
       ],
       "id": "E-IF02-LEAN-01",
@@ -44,7 +44,7 @@
         {
           "path": "research/intelligence_flywheel/tau_net_native_probe.json",
           "role": "Direct native ABI behavior and custom-input authentication boundary.",
-          "sha256": "192abe74e9631aad987d236df2babfab53ffa1c219128cd5e98651fec45c4079"
+          "sha256": "8819e3fd876e7db4467c35265c832f0d56ed64151946e14a02cdae6c8f21d418"
         },
         {
           "path": "tau/intelligence_flywheel/tau_net/dac_treasury_o5.tau",
@@ -72,7 +72,7 @@
         "exit_code": 0
       },
       "status": "passed_bounded",
-      "tool_revision": "Tau Testnet 9f9240; Tau source fd137e8/parser 5dd036; local module 882dbd..."
+      "tool_revision": "Tau Testnet 9f9240d; Tau source 9b191af/parser 5dd0363; local module ec34baae..."
     }
   ],
   "conclusion": "Tau admission refines authenticated receipt validity rather than merely conjoining submitter-supplied claims.",
@@ -220,7 +220,7 @@
       {
         "path": "proofs/intelligence_flywheel/IntelligenceFlywheel.lean",
         "role": "Formal nine-fact conjunction and conditional margin theorems.",
-        "sha256": "07241a926b4c7104cdbeb578794dea6e8ee397441c29632c748abebbe42c4d19"
+        "sha256": "99e13c02d478d512499c27d01b1bbd88caea96c38ab7c3808415fc7731d60297"
       },
       {
         "path": "verification/intelligence_flywheel_model.py",
@@ -230,12 +230,12 @@
       {
         "path": "verification/receipts/intelligence_flywheel_campaign.json",
         "role": "Bounded campaign and cross-lane receipt.",
-        "sha256": "c713b096ef9b7e84382ed325f9267af60daf3f5da79497b66fad4f27651445c0"
+        "sha256": "0557ac7d42a199b0d21aab1506b4cd0cc3b28d3679e4c8cc2fadc0407c050d94"
       },
       {
         "path": "research/intelligence_flywheel/tau_net_native_probe.json",
         "role": "Direct native ABI behavior and custom-input authentication boundary.",
-        "sha256": "192abe74e9631aad987d236df2babfab53ffa1c219128cd5e98651fec45c4079"
+        "sha256": "8819e3fd876e7db4467c35265c832f0d56ed64151946e14a02cdae6c8f21d418"
       },
       {
         "path": "tau/intelligence_flywheel/tau_net/dac_treasury_o5.tau",
@@ -304,23 +304,28 @@
   "upstream_revisions": [
     {
       "name": "alignment-theorem-base",
-      "revision": "0f68357535c299de799976a67410f97367ed87c1",
+      "revision": "44c14df0a9b3f74d7cceb7f122176c84374faf1e",
       "uri": "repo://AlignmentTheorem"
     },
     {
-      "name": "tau-lang",
-      "revision": "fd137e860b60083b36f9159ec8090cb1a3c3cb5a",
+      "name": "tau-lang-current-candidate",
+      "revision": "9b191af689abdb75f3e43f200e09d35c0e99a664",
       "uri": "https://github.com/IDNI/tau-lang"
     },
     {
       "name": "tau-parser",
       "revision": "5dd036358e194e55a08fd2ec255441bedfe83765",
-      "uri": "https://github.com/IDNI/tau-lang/tree/fd137e860b60083b36f9159ec8090cb1a3c3cb5a/external/parser"
+      "uri": "https://github.com/IDNI/tau-lang/tree/9b191af689abdb75f3e43f200e09d35c0e99a664/external/parser"
     },
     {
       "name": "tau-testnet",
       "revision": "9f9240ded9fd7ff246f4bbd45343c64eef9a1751",
       "uri": "https://github.com/IDNI/tau-testnet"
+    },
+    {
+      "name": "tau-lang-reviewed-runner-baseline",
+      "revision": "fd137e860b60083b36f9159ec8090cb1a3c3cb5a",
+      "uri": "https://github.com/IDNI/tau-lang"
     },
     {
       "name": "lean4",

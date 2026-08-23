@@ -1,5 +1,5 @@
 {
-  "artifact_revision": "d091691df5ed38f22ae8a8ad4b61c331a9f62370",
+  "artifact_revision": "751abb4e9c3a9d14b0faf72c862ec5bdd0e15216",
   "assumptions": [
     "Welfare is separable weighted harmonic utility with marginal weight divided by baseline plus allocation plus one.",
     "All allocation atoms are indivisible and all comparisons are exact.",
@@ -26,7 +26,7 @@
         {
           "path": "verification/receipts/compute_dividend_campaign.json",
           "role": "Source-bound finite campaign counts, parameter domain, and zero-mismatch result.",
-          "sha256": "09038013885dba814abd265e90591faa9c74893ae052fa5432a8f1db07621e14"
+          "sha256": "8ebc2d734d6277825455912e4447078805ddb3e20a5092d7c30939e3e4176694"
         }
       ],
       "id": "E-CD01-REFERENCE-01",
@@ -134,7 +134,7 @@
       {
         "path": "verification/receipts/compute_dividend_campaign.json",
         "role": "Source-bound finite campaign counts, parameter domain, and zero-mismatch result.",
-        "sha256": "09038013885dba814abd265e90591faa9c74893ae052fa5432a8f1db07621e14"
+        "sha256": "8ebc2d734d6277825455912e4447078805ddb3e20a5092d7c30939e3e4176694"
       }
     ],
     "claim_mapping": [
