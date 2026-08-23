@@ -1,0 +1,44 @@
+{
+  "captured_at_utc": "2026-08-23T09:35:51.410555+00:00",
+  "pages": {
+    "data_center": {
+      "body_prefix": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <meta name=\"description\" content=\"A local-government social co",
+      "exact_match": true,
+      "http_code": "200",
+      "live_bytes": 38600,
+      "live_sha256": "0d5b4a750fbcf31104c9fd1711dd97f5dca13bd4df7d99f27c5df3ae3a9adaff",
+      "marker_present": true,
+      "source_sha256": "0d5b4a750fbcf31104c9fd1711dd97f5dca13bd4df7d99f27c5df3ae3a9adaff"
+    },
+    "deep_dive": {
+      "body_prefix": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>The Alignment Theorem | Making Ethics Profitabl",
+      "exact_match": true,
+      "http_code": "200",
+      "live_bytes": 58865,
+      "live_sha256": "623da8d6b38f2cc3694ad3173b523ddf28fd4af5002fb3d58edc449cec7d590e",
+      "marker_present": true,
+      "source_sha256": "623da8d6b38f2cc3694ad3173b523ddf28fd4af5002fb3d58edc449cec7d590e"
+    },
+    "homepage": {
+      "body_prefix": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta name=\"description\" content=\"The Alignment Theore",
+      "exact_match": true,
+      "http_code": "200",
+      "live_bytes": 48309,
+      "live_sha256": "e1e7273bdadc3aac5b1eb01e5d8a8ed415f43c614be75bf2a0e15c7235276375",
+      "marker_present": true,
+      "source_sha256": "e1e7273bdadc3aac5b1eb01e5d8a8ed415f43c614be75bf2a0e15c7235276375"
+    },
+    "v1_1": {
+      "body_prefix": "<!doctype html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Ethical Work Under Hyperdeflation \u2014 Alignment Theorem V",
+      "exact_match": true,
+      "http_code": "200",
+      "live_bytes": 17707,
+      "live_sha256": "3fc175b70434eb135f47280293eb32b3c57db4f8e63ec952412f87d7cfb68515",
+      "marker_present": true,
+      "source_sha256": "3fc175b70434eb135f47280293eb32b3c57db4f8e63ec952412f87d7cfb68515"
+    }
+  },
+  "schema": "alignment-theorem-pages-diagnostic-v1",
+  "site_root": "https://thedarklightx.github.io/AlignmentTheorem",
+  "source_commit": "2a9fefca7e43b8d8f7996cca37316049618a4ca0"
+}
