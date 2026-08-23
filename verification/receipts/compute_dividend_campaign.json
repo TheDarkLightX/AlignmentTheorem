@@ -54,7 +54,7 @@
     "verification/generate_tau_compute_dividend_packets.py": "cc50df7c7a7993cbabfe34f0f89ddafbe07df0c4bf925c7c9a9837432ef45d60",
     "verification/receipts/lean_compute_dividend_v4.33.0.json": "832713cd1582a1509232620f65d67385608b77977e00402df889504b13020a88"
   },
-  "checker_sha256": "aa4c4c0e4e3715251204defe4e17fea5bcfb8032c5f285bb14362c740175042f",
+  "checker_sha256": "0f73f318ef22bea770c5766081d47abb41ea432d743160188edaccaa74ca8f56",
   "lean_receipt_passed": true,
   "nonclaims": [
     "No household identity or Sybil resistance is authenticated.",
@@ -79,7 +79,7 @@
       32
     ]
   },
-  "python_version": "3.12.3",
+  "python_version": "3.12",
   "randomness": "NONE_EXHAUSTIVE_ENUMERATION_ONLY",
   "schema": "alignment-theorem-compute-dividend-campaign-v1",
   "status": "SUPPORTED_BOUNDED",
