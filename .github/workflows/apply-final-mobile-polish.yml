@@ -27,19 +27,10 @@ jobs:
         run: |
           python3 - <<'PY'
           from __future__ import annotations
+          import re
           from pathlib import Path
 
-          old = '''        @media (max-width: 520px) {
-              h1 { font-size: clamp(2.5rem, 15vw, 4.2rem); letter-spacing: 2px; }
-              .subtitle { font-size: 1.24rem; }
-              .cta-buttons .cta-button { width: min(100%, 300px); text-align: center; }
-              .featured-stats { grid-template-columns: 1fr; }
-              .featured-essay { padding: 28px 22px; }
-              .theorem-box { padding: 28px 20px; }
-              .theorem-text { font-size: 1.25rem; }
-              .section-title { font-size: 1.65rem; }
-          }'''
-          new = '''        @media (max-width: 520px) {
+          new_block = '''        @media (max-width: 520px) {
               .container { padding-inline: 14px; }
               h1 {
                   max-width: 100%;
@@ -77,14 +68,18 @@ jobs:
               .section-title { font-size: 1.65rem; }
               footer { padding-inline: 20px; }
           }'''
+          pattern = re.compile(
+              r"        @media \(max-width: 520px\) \{\n.*?\n        \}\n(?=        @media \(prefers-reduced-motion: reduce\))",
+              re.DOTALL,
+          )
 
           for relative in ("docs/index.html", "verification/polish_public_pages.py"):
               path = Path(relative)
               text = path.read_text()
-              if new not in text:
-                  if old not in text:
-                      raise RuntimeError(f"mobile CSS anchor missing in {relative}")
-                  text = text.replace(old, new, 1)
+              if new_block not in text:
+                  text, count = pattern.subn(new_block + "\n", text, count=1)
+                  if count != 1:
+                      raise RuntimeError(f"mobile CSS block not uniquely found in {relative}: {count}")
                   path.write_text(text)
 
           for relative in (
@@ -99,8 +94,6 @@ jobs:
               )
               text = text.replace('"Underfunded"', '"Unfunded"')
               path.write_text(text)
-
-          # The generator must now be a no-op on the polished sources.
           PY
           python3 verification/polish_public_pages.py
           git diff --check
