@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="A local-government social contract for data centers and post-AGI economics, derived from the Alignment Theorem and designed for Tau Language.">
-  <meta name="theme-color" content="#05060a">
+  <meta name="theme-color" content="#0d1526">
   <meta property="og:type" content="article">
   <meta property="og:title" content="The Data Center Bargain | Alignment Theorem">
   <meta property="og:description" content="A constitutional bargain for data centers: full cost recovery, household protection, public benefit, and Tau-governed rule evolution.">
@@ -14,325 +14,487 @@
   <title>The Data Center Bargain | Alignment Theorem</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Crimson+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&display=swap" rel="stylesheet">
   <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   <style>
     :root {
-      --bg: #05060a;
-      --panel: #0d1018;
-      --panel-2: #131827;
-      --text: #f5f7fb;
-      --muted: #a5adbd;
-      --faint: #667085;
-      --cyan: #5ee7f7;
-      --violet: #a78bfa;
-      --gold: #f6d365;
-      --green: #5ee6a8;
-      --red: #ff7d8b;
-      --line: rgba(255,255,255,.11);
-      --shadow: 0 24px 80px rgba(0,0,0,.42);
+      --bg: #fafafa;
+      --paper: #ffffff;
+      --ink: #0d1526;
+      --ink-2: #1e293b;
+      --body: #475569;
+      --muted: #94a3b8;
+      --line: #e2e8f0;
+      --accent: #0e7490;
+      --accent-ink: #0b5563;
+      --accent-soft: #ecfeff;
+      --accent-bright: #06b6d4;
+      --ok: #15803d;
+      --ok-soft: #f0fdf4;
+      --bad: #b91c1c;
+      --bad-soft: #fef2f2;
+      --warn: #b45309;
+      --warn-soft: #fffbeb;
+      --dark: #0d1526;
+      --dark-2: #1e293b;
+      --dark-line: rgba(255,255,255,.1);
+      --dark-body: #94a3b8;
+      --dark-muted: #64748b;
+      --gold: #f59e0b;
+      --font-display: "Fraunces", Georgia, serif;
+      --font-ui: "Space Grotesk", system-ui, sans-serif;
+      --font-body: "Inter", system-ui, sans-serif;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      --maxw: 1280px;
+      --content-w: 760px;
+      --sidebar-w: 220px;
     }
 
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
       margin: 0;
-      color: var(--text);
-      background:
-        radial-gradient(circle at 12% 8%, rgba(94,231,247,.14), transparent 34rem),
-        radial-gradient(circle at 88% 12%, rgba(167,139,250,.14), transparent 32rem),
-        radial-gradient(circle at 50% 95%, rgba(246,211,101,.08), transparent 34rem),
-        var(--bg);
-      font-family: "Crimson Pro", Georgia, serif;
-      font-size: 20px;
-      line-height: 1.68;
+      color: var(--body);
+      background: var(--bg);
+      font-family: var(--font-body);
+      font-size: 17px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
     }
 
-    a { color: var(--cyan); }
-    a:hover { color: var(--gold); }
-    :focus-visible { outline: 3px solid var(--gold); outline-offset: 4px; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { color: var(--accent-ink); text-decoration: underline; }
+    :focus-visible { outline: 3px solid var(--accent-bright); outline-offset: 3px; border-radius: 4px; }
+
     .skip-link {
-      position: fixed;
-      top: 10px;
-      left: 10px;
-      z-index: 100;
-      padding: 10px 14px;
-      border-radius: 10px;
-      background: var(--gold);
-      color: #071014;
-      font-family: "Space Grotesk", sans-serif;
-      font-weight: 700;
-      transform: translateY(-160%);
-      transition: transform .18s ease;
+      position: fixed; top: 12px; left: 12px; z-index: 200;
+      padding: 10px 16px; border-radius: 8px;
+      background: var(--ink); color: #fff;
+      font-family: var(--font-ui); font-weight: 600; font-size: .88rem;
+      transform: translateY(-180%); transition: transform .18s ease;
     }
-    .skip-link:focus { transform: translateY(0); }
-    code, .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    .skip-link:focus { transform: translateY(0); color: #fff; text-decoration: none; }
 
-    .shell { width: min(1160px, calc(100% - 34px)); margin: 0 auto; }
-    .nav {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      backdrop-filter: blur(18px);
-      background: rgba(5,6,10,.78);
-      border-bottom: 1px solid var(--line);
+    /* ── Top nav ── */
+    .topbar {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--ink);
+      border-bottom: 1px solid var(--dark-line);
     }
-    .nav-inner {
-      min-height: 68px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
+    .topbar-inner {
+      max-width: var(--maxw); margin: 0 auto;
+      display: flex; align-items: center; gap: 20px;
+      padding: 12px 24px;
     }
     .brand {
-      font-family: "Space Grotesk", sans-serif;
-      font-weight: 700;
-      color: var(--text);
-      text-decoration: none;
-      letter-spacing: .02em;
+      font-family: var(--font-ui); font-weight: 700; font-size: .95rem;
+      color: #fff; letter-spacing: -.01em; white-space: nowrap;
     }
-    .nav-links { display: flex; gap: 18px; flex-wrap: wrap; justify-content: flex-end; }
-    .nav-links a {
-      font-family: "Space Grotesk", sans-serif;
-      font-size: .76rem;
-      text-transform: uppercase;
-      letter-spacing: .1em;
-      color: var(--muted);
-      text-decoration: none;
+    .brand span { color: var(--accent-bright); }
+    .brand:hover { text-decoration: none; color: var(--accent-bright); }
+    .topbar-links { display: flex; gap: 18px; margin-left: auto; flex-wrap: wrap; }
+    .topbar-links a {
+      color: var(--dark-body); font-family: var(--font-ui);
+      font-size: .8rem; font-weight: 500; white-space: nowrap;
     }
+    .topbar-links a:hover { color: #fff; text-decoration: none; }
+    .mobile-nav-hint { display: none; color: var(--dark-muted); font-family: var(--font-ui); font-size: .66rem; letter-spacing: .08em; text-transform: uppercase; }
 
-    .hero { padding: 96px 0 62px; text-align: center; }
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
-      padding: 9px 16px;
-      border: 1px solid rgba(94,231,247,.26);
-      background: rgba(94,231,247,.07);
-      border-radius: 999px;
-      font-family: "Space Grotesk", sans-serif;
-      font-size: .72rem;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: var(--cyan);
+    /* ── Hero (asymmetric split) ── */
+    .hero {
+      background: var(--ink);
+      color: #fff;
+      padding: 0;
+      overflow: hidden;
     }
-    .badge::before {
-      content: "";
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--green);
-      box-shadow: 0 0 14px var(--green);
+    .hero-grid {
+      max-width: var(--maxw); margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      min-height: 580px;
     }
-    h1, h2, h3, h4 { font-family: "Space Grotesk", sans-serif; line-height: 1.15; }
-    h1 {
-      margin: 28px auto 20px;
-      max-width: 980px;
-      font-size: clamp(3rem, 8vw, 6.7rem);
-      letter-spacing: -.06em;
-      background: linear-gradient(120deg, #fff 10%, var(--cyan) 42%, var(--violet) 70%, var(--gold));
-      -webkit-background-clip: text;
-      color: transparent;
+    .hero-text {
+      padding: 64px 48px 56px;
+      display: flex; flex-direction: column; justify-content: center;
     }
-    .hero-copy {
-      max-width: 830px;
-      margin: 0 auto;
-      font-size: clamp(1.2rem, 2.4vw, 1.65rem);
-      color: var(--muted);
+    .hero-kicker {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 6px 14px; border-radius: 999px;
+      background: rgba(6,182,212,.15); border: 1px solid rgba(6,182,212,.3);
+      color: var(--accent-bright);
+      font-family: var(--font-ui); font-size: .72rem; font-weight: 600;
+      letter-spacing: .12em; text-transform: uppercase;
+      width: fit-content; margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-family: var(--font-display); font-weight: 700;
+      font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+      line-height: 1.05; letter-spacing: -.03em;
+      color: #fff; margin: 0 0 24px;
+    }
+    .hero h1 em { font-style: italic; color: var(--accent-bright); font-weight: 600; }
+    .hero-lede {
+      font-size: 1.15rem; color: var(--dark-body);
+      max-width: 50ch; margin: 0 0 28px; line-height: 1.6;
     }
     .hero-rule {
-      margin: 38px auto 0;
-      max-width: 920px;
-      padding: 25px 30px;
-      border: 1px solid rgba(246,211,101,.28);
-      border-radius: 20px;
-      background: linear-gradient(135deg, rgba(246,211,101,.08), rgba(167,139,250,.07));
-      box-shadow: var(--shadow);
-      font-family: "Space Grotesk", sans-serif;
-      font-size: clamp(1.1rem, 2.2vw, 1.5rem);
-      font-weight: 600;
+      padding: 16px 20px; border-left: 3px solid var(--accent-bright);
+      background: rgba(255,255,255,.04); border-radius: 0 8px 8px 0;
+      color: #fff; font-weight: 500; font-size: .98rem; margin-bottom: 28px;
     }
-    .hero-actions { margin-top: 30px; display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
-    .button {
-      display: inline-block;
-      padding: 12px 20px;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.045);
-      color: var(--text);
-      text-decoration: none;
-      font-family: "Space Grotesk", sans-serif;
-      font-size: .78rem;
-      font-weight: 600;
-      letter-spacing: .06em;
-      text-transform: uppercase;
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+    .btn {
+      display: inline-flex; align-items: center;
+      padding: 11px 20px; border-radius: 8px;
+      font-family: var(--font-ui); font-size: .86rem; font-weight: 600;
+      transition: transform .15s ease, background .15s ease;
     }
-    .button { transition: transform .18s ease, border-color .18s ease, background .18s ease; }
-    .button:hover { transform: translateY(-2px); border-color: rgba(94,231,247,.45); }
-    .button.primary { color: #071014; background: linear-gradient(120deg, var(--cyan), var(--gold)); border: 0; }
+    .btn:hover { transform: translateY(-1px); text-decoration: none; }
+    .btn-primary { background: var(--accent-bright); color: var(--ink); }
+    .btn-primary:hover { background: #22d3ee; color: var(--ink); }
+    .btn-ghost { background: rgba(255,255,255,.06); color: #fff; border: 1px solid var(--dark-line); }
+    .btn-ghost:hover { background: rgba(255,255,255,.1); color: #fff; }
 
-    main { padding-bottom: 80px; }
-    section { padding: 58px 0; }
-    section[id] { scroll-margin-top: 90px; }
+    /* Calculator in hero */
+    .hero-calc {
+      background: linear-gradient(160deg, var(--dark-2), var(--ink));
+      padding: 48px 44px;
+      display: flex; flex-direction: column; justify-content: center;
+      border-left: 1px solid var(--dark-line);
+    }
+    .hero-calc h2 {
+      font-family: var(--font-ui); font-size: .82rem; font-weight: 600;
+      letter-spacing: .12em; text-transform: uppercase;
+      color: var(--accent-bright); margin: 0 0 6px;
+    }
+    .hero-calc .calc-sub {
+      font-size: .85rem; color: var(--dark-muted); margin: 0 0 24px;
+    }
+    .calc-group-title {
+      font-family: var(--font-ui); font-size: .66rem; font-weight: 600;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: var(--dark-muted); margin: 18px 0 10px;
+      padding-bottom: 6px; border-bottom: 1px solid var(--dark-line);
+    }
+    .calc-form { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .calc-form label {
+      display: block; color: #cbd5e1;
+      font-family: var(--font-ui); font-size: .76rem; font-weight: 500;
+    }
+    .calc-form input {
+      width: 100%; margin-top: 5px; padding: 9px 11px;
+      border: 1px solid var(--dark-line); border-radius: 8px;
+      background: rgba(0,0,0,.3); color: #fff;
+      font: inherit; font-family: var(--font-body); font-size: .9rem;
+    }
+    .calc-form input:focus {
+      border-color: var(--accent-bright);
+      box-shadow: 0 0 0 2px rgba(6,182,212,.2); outline: none;
+    }
+    .field-help { display: block; margin-top: 5px; color: var(--dark-muted); font-size: .72rem; line-height: 1.3; }
+    .calc-results {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 20px;
+    }
+    .calc-result {
+      padding: 14px; border-radius: 10px;
+      background: rgba(0,0,0,.25); border: 1px solid var(--dark-line);
+    }
+    .calc-result span {
+      display: block; color: var(--dark-muted);
+      font-family: var(--font-ui); font-size: .64rem; font-weight: 600;
+      letter-spacing: .08em; text-transform: uppercase;
+    }
+    .calc-result strong {
+      display: block; margin-top: 6px;
+      font-family: var(--font-ui); font-size: 1.4rem; color: #fff;
+    }
+    .badge {
+      display: inline-block; margin-top: 6px; padding: 3px 10px;
+      border-radius: 999px; font-family: var(--font-ui);
+      font-size: .72rem; font-weight: 600;
+    }
+    .badge.pass { background: rgba(21,128,61,.2); color: #4ade80; border: 1px solid rgba(74,222,128,.3); }
+    .badge.fail { background: rgba(185,28,28,.2); color: #fca5a5; border: 1px solid rgba(252,165,165,.3); }
+    #rDetail {
+      margin-top: 16px; padding: 12px 14px; border-radius: 8px;
+      background: rgba(0,0,0,.2); font-family: var(--mono);
+      font-size: .76rem; color: var(--dark-body); line-height: 1.5;
+      margin-bottom: 0;
+    }
+
+    /* ── Body layout: sidebar + content ── */
+    .body-wrap {
+      max-width: var(--maxw); margin: 0 auto;
+      display: grid;
+      grid-template-columns: var(--sidebar-w) 1fr;
+      gap: 0;
+    }
+    .toc {
+      position: sticky; top: 50px; align-self: start;
+      padding: 40px 20px 40px 24px;
+      max-height: calc(100vh - 50px); overflow-y: auto;
+    }
+    .toc-title {
+      font-family: var(--font-ui); font-size: .68rem; font-weight: 600;
+      letter-spacing: .12em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 14px;
+    }
+    .toc ol { list-style: none; padding: 0; margin: 0; counter-reset: toc; }
+    .toc li { counter-increment: toc; margin-bottom: 2px; }
+    .toc li a {
+      display: block; padding: 7px 10px; border-radius: 6px;
+      color: var(--body); font-family: var(--font-ui);
+      font-size: .82rem; font-weight: 500; line-height: 1.3;
+    }
+    .toc li a::before {
+      content: counter(toc, decimal-leading-zero);
+      color: var(--muted); font-size: .72rem; margin-right: 8px;
+    }
+    .toc li a:hover { background: var(--accent-soft); color: var(--accent-ink); text-decoration: none; }
+
+    .content { padding: 0 48px 80px 0; max-width: var(--content-w); }
+
+    /* ── Section patterns ── */
+    .section { padding: 56px 0; }
+    .section-num {
+      font-family: var(--font-display); font-size: 3.5rem; font-weight: 700;
+      color: var(--line); line-height: 1; margin-bottom: -8px;
+    }
     .section-kicker {
-      font-family: "Space Grotesk", sans-serif;
-      color: var(--cyan);
-      text-transform: uppercase;
-      letter-spacing: .14em;
-      font-size: .72rem;
-      font-weight: 700;
+      font-family: var(--font-ui); font-size: .74rem; font-weight: 600;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 8px;
     }
-    h2 { font-size: clamp(2.1rem, 4vw, 3.7rem); letter-spacing: -.04em; margin: 10px 0 22px; }
-    h3 { font-size: 1.25rem; }
-    .lede { color: var(--muted); font-size: 1.22rem; max-width: 900px; }
+    h2.section-h {
+      font-family: var(--font-display); font-weight: 700;
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      line-height: 1.15; letter-spacing: -.02em;
+      color: var(--ink); margin: 4px 0 20px;
+    }
+    h3 {
+      font-family: var(--font-ui); font-size: 1.05rem; font-weight: 600;
+      color: var(--ink); margin: 0 0 8px;
+    }
+    .lede { font-size: 1.12rem; color: var(--ink-2); max-width: 65ch; line-height: 1.6; }
 
-    .grid { display: grid; gap: 20px; }
-    .grid.two { grid-template-columns: repeat(2, minmax(0,1fr)); }
-    .grid.three { grid-template-columns: repeat(3, minmax(0,1fr)); }
-    .card {
-      padding: 28px;
-      border: 1px solid var(--line);
-      border-radius: 20px;
-      background: linear-gradient(145deg, rgba(19,24,39,.92), rgba(10,13,21,.93));
-      box-shadow: 0 16px 50px rgba(0,0,0,.22);
+    /* Full-bleed dark contrast section */
+    .dark-section {
+      background: var(--ink); color: #fff;
+      padding: 64px 0; margin: 0;
     }
-    .card p, .card li { color: var(--muted); }
-    .card h3 { margin: 0 0 12px; color: var(--text); }
-    .number {
-      display: inline-grid;
-      place-items: center;
-      width: 34px;
-      height: 34px;
-      margin-bottom: 16px;
-      border-radius: 10px;
-      background: rgba(94,231,247,.1);
-      color: var(--cyan);
-      font-family: "Space Grotesk", sans-serif;
-      font-weight: 700;
-    }
+    .dark-section .inner { max-width: var(--content-w); margin: 0 auto; padding: 0 48px 0 24px; }
+    .dark-section .section-kicker { color: var(--accent-bright); }
+    .dark-section .section-h { color: #fff; }
+    .dark-section .section-num { color: rgba(255,255,255,.08); }
+    .dark-section .lede { color: var(--dark-body); }
+    .dark-section p { color: var(--dark-body); }
+    .dark-section a { color: var(--accent-bright); }
 
     .equation {
-      padding: 28px;
-      margin: 26px 0;
-      border-left: 4px solid var(--violet);
-      border-radius: 0 18px 18px 0;
-      background: rgba(167,139,250,.075);
-      overflow-x: auto;
-      text-align: center;
-      font-size: 1.12rem;
+      margin: 28px 0; padding: 28px 32px;
+      background: var(--paper); border: 1px solid var(--line);
+      border-radius: 14px; font-size: 1.15rem; color: var(--ink);
+      text-align: center; overflow-x: auto;
+      box-shadow: 0 1px 3px rgba(0,0,0,.04);
     }
+    .dark-section .equation {
+      background: rgba(255,255,255,.04); border-color: var(--dark-line); color: #fff;
+    }
+
     .callout {
-      padding: 26px 28px;
-      border: 1px solid rgba(94,230,168,.25);
-      border-radius: 18px;
-      background: rgba(94,230,168,.065);
+      margin: 28px 0; padding: 22px 26px; border-radius: 12px;
+      background: var(--accent-soft); border: 1px solid #cffafe;
+      color: var(--ink);
     }
-    .warning { border-color: rgba(255,125,139,.26); background: rgba(255,125,139,.065); }
+    .callout strong { color: var(--accent-ink); }
+    .callout.warning { background: var(--warn-soft); border-color: #fde68a; }
+    .callout.warning strong { color: #92400e; }
+    .dark-section .callout { background: rgba(6,182,212,.08); border-color: rgba(6,182,212,.2); color: #fff; }
+    .dark-section .callout strong { color: var(--accent-bright); }
+    .dark-section .callout.warning { background: rgba(245,158,11,.08); border-color: rgba(245,158,11,.2); }
+    .dark-section .callout.warning strong { color: var(--gold); }
 
+    /* Stat trio (problem section) */
+    .stat-trio { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; margin: 32px 0; background: var(--dark-line); }
+    .stat-trio .stat { background: var(--ink); padding: 28px 24px; }
+    .stat-trio .stat h3 { color: #fff; font-size: 1rem; margin-bottom: 10px; }
+    .stat-trio .stat p { color: var(--dark-body); font-size: .92rem; margin: 0; }
+
+    /* Waterfall as horizontal flow */
     .waterfall {
-      display: grid;
-      grid-template-columns: repeat(6, minmax(120px,1fr));
-      gap: 10px;
-      margin: 30px 0;
+      display: flex; gap: 0; margin: 32px 0; overflow-x: auto;
+      scrollbar-width: thin;
     }
-    .waterfall div {
-      min-height: 112px;
-      display: grid;
-      place-items: center;
-      padding: 15px;
-      text-align: center;
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      background: var(--panel);
-      font-family: "Space Grotesk", sans-serif;
-      font-size: .78rem;
+    .waterfall .wf-step {
+      flex: 1; min-width: 120px; padding: 18px 14px;
+      text-align: center; position: relative;
+      font-family: var(--font-ui); font-size: .76rem; color: var(--body);
+      background: var(--paper); border: 1px solid var(--line);
+      border-right: 0;
     }
-    .waterfall div:last-child { border-color: rgba(94,230,168,.4); color: var(--green); }
+    .waterfall .wf-step:last-child {
+      border-right: 1px solid var(--line);
+      background: var(--ok-soft); border-color: #bbf7d0; color: var(--ok); font-weight: 600;
+    }
+    .waterfall .wf-step:not(:last-child)::after {
+      content: ""; position: absolute; right: -8px; top: 50%; z-index: 1;
+      width: 0; height: 0; transform: translateY(-50%);
+      border-left: 8px solid var(--line); border-top: 8px solid transparent; border-bottom: 8px solid transparent;
+    }
 
-    .calculator {
-      padding: 30px;
-      border: 1px solid rgba(94,231,247,.25);
-      border-radius: 22px;
-      background: linear-gradient(140deg, rgba(94,231,247,.07), rgba(167,139,250,.065));
-      box-shadow: var(--shadow);
+    /* Counterexample highlight */
+    .counterexample {
+      margin: 28px 0; padding: 32px; border-radius: 14px;
+      background: var(--warn-soft); border: 1px solid #fde68a;
     }
-    .form-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 16px; }
-    label {
-      display: block;
-      color: var(--muted);
-      font-family: "Space Grotesk", sans-serif;
-      font-size: .74rem;
-      text-transform: uppercase;
-      letter-spacing: .08em;
+    .counterexample .big-num {
+      font-family: var(--font-display); font-size: 3rem; font-weight: 700;
+      color: var(--warn); line-height: 1; margin-bottom: 12px;
     }
-    input {
-      width: 100%;
-      margin-top: 8px;
-      padding: 12px 13px;
-      border: 1px solid var(--line);
-      border-radius: 10px;
-      background: #090c12;
-      color: var(--text);
-      font: inherit;
-    }
-    input:focus { border-color: var(--cyan); box-shadow: 0 0 0 3px rgba(94,231,247,.12); outline: none; }
-    .field-help { display: block; margin-top: 7px; color: var(--faint); font-size: .7rem; letter-spacing: 0; text-transform: none; line-height: 1.35; }
-    .mobile-nav-hint { display: none; color: var(--faint); font-family: "Space Grotesk", sans-serif; font-size: .68rem; letter-spacing: .08em; text-transform: uppercase; }
-    .results { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 12px; margin-top: 20px; }
-    .result {
-      padding: 18px;
-      border-radius: 14px;
-      background: rgba(0,0,0,.28);
-      border: 1px solid var(--line);
-    }
-    .result span { display: block; color: var(--faint); font-family: "Space Grotesk",sans-serif; font-size: .66rem; letter-spacing: .08em; text-transform: uppercase; }
-    .result strong { display: block; margin-top: 6px; font-family: "Space Grotesk",sans-serif; font-size: 1.25rem; }
-    .pass { color: var(--green); }
-    .fail { color: var(--red); }
 
-    table { width: 100%; border-collapse: collapse; margin: 26px 0; font-size: .92rem; }
+    /* Timeline for 14 moves */
+    .timeline { position: relative; margin: 32px 0; padding-left: 0; }
+    .timeline::before {
+      content: ""; position: absolute; left: 19px; top: 12px; bottom: 12px;
+      width: 2px; background: var(--line);
+    }
+    .tl-item {
+      position: relative; padding: 16px 0 16px 56px;
+      border-bottom: 0;
+    }
+    .tl-item::before {
+      content: attr(data-num);
+      position: absolute; left: 0; top: 14px;
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--paper); border: 2px solid var(--accent);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-ui); font-weight: 700; font-size: .85rem;
+      color: var(--accent-ink); z-index: 1;
+    }
+    .tl-item h3 { margin-bottom: 4px; }
+    .tl-item p { margin: 0; font-size: .94rem; color: var(--body); }
+
+    /* 10-fact gate checklist */
+    .gate-checklist {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 24px 0;
+    }
+    .gate-item {
+      display: flex; align-items: center; gap: 10px;
+      padding: 12px 16px; border-radius: 10px;
+      background: var(--paper); border: 1px solid var(--line);
+      font-family: var(--font-ui); font-size: .86rem; color: var(--ink);
+    }
+    .gate-item .check {
+      flex-shrink: 0; width: 22px; height: 22px; border-radius: 6px;
+      background: var(--ok-soft); border: 1px solid #bbf7d0;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--ok); font-size: .8rem; font-weight: 700;
+    }
+    .dark-section .gate-item { background: rgba(255,255,255,.04); border-color: var(--dark-line); color: #fff; }
+    .dark-section .gate-item .check { background: rgba(21,128,61,.2); border-color: rgba(74,222,128,.3); color: #4ade80; }
+
+    /* Flow steps */
+    .flow { display: flex; gap: 0; flex-wrap: wrap; margin: 28px 0; }
+    .flow .step {
+      flex: 1; min-width: 130px; padding: 16px 12px; text-align: center;
+      border: 1px solid var(--line); border-right: 0;
+      font-family: var(--font-ui); font-size: .78rem; color: var(--body);
+      background: var(--paper);
+    }
+    .flow .step:last-child { border-right: 1px solid var(--line); }
+    .flow .step.tau { background: var(--accent-soft); border-color: #cffafe; color: var(--accent-ink); font-weight: 600; }
+
+    table { width: 100%; border-collapse: collapse; margin: 28px 0; font-size: .9rem; }
     th, td { padding: 14px 13px; border-bottom: 1px solid var(--line); vertical-align: top; text-align: left; }
-    th { color: var(--cyan); font-family: "Space Grotesk",sans-serif; font-size: .7rem; text-transform: uppercase; letter-spacing: .08em; }
-    td { color: var(--muted); }
+    th { color: var(--accent-ink); font-family: var(--font-ui); font-size: .72rem; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; }
+    td { color: var(--body); }
+    .dark-section table th { color: var(--accent-bright); }
+    .dark-section table td { color: var(--dark-body); border-color: var(--dark-line); }
 
-    .flow { display: flex; gap: 10px; flex-wrap: wrap; align-items: stretch; margin-top: 28px; }
-    .flow .step { flex: 1; min-width: 150px; padding: 18px; border-radius: 14px; border: 1px solid var(--line); background: var(--panel); text-align: center; font-family: "Space Grotesk",sans-serif; font-size: .76rem; }
-    .flow .step.tau { border-color: rgba(167,139,250,.5); color: var(--violet); }
+    pre {
+      white-space: pre-wrap; padding: 24px; border-radius: 12px;
+      background: var(--ink); color: #e2e8f0;
+      font-size: .84rem; overflow: auto; margin: 24px 0;
+    }
+    code { font-family: var(--mono); }
+    .dark-section pre { background: rgba(0,0,0,.3); border: 1px solid var(--dark-line); }
 
-    .source-list li { margin-bottom: 10px; color: var(--muted); }
-    footer { padding: 35px 0 55px; border-top: 1px solid var(--line); color: var(--faint); font-size: .86rem; }
+    .source-list { list-style: none; padding: 0; margin: 24px 0 0; }
+    .source-list li {
+      margin-bottom: 14px; padding-left: 24px; position: relative;
+      color: var(--body); font-size: .94rem;
+    }
+    .source-list li::before {
+      content: "\2192"; position: absolute; left: 0;
+      color: var(--accent); font-weight: 700;
+    }
 
-    @media (max-width: 900px) {
-      .grid.two, .grid.three, .form-grid { grid-template-columns: 1fr; }
-      .results { grid-template-columns: repeat(2,minmax(0,1fr)); }
-      .waterfall { grid-template-columns: repeat(2,minmax(0,1fr)); }
-      .nav-inner { align-items: stretch; flex-direction: column; padding: 12px 0 10px; gap: 9px; }
-      .brand { align-self: flex-start; }
-      .nav-links {
-        display: flex;
-        width: 100%;
-        flex-wrap: nowrap;
-        justify-content: flex-start;
-        overflow-x: auto;
-        overscroll-behavior-inline: contain;
-        scrollbar-width: none;
-        padding: 2px 2px 5px;
+    /* Practical path timeline */
+    .path-timeline { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin: 28px 0; }
+    .path-timeline .pt-step {
+      padding: 24px; border: 1px solid var(--line); border-right: 0;
+      background: var(--paper);
+    }
+    .path-timeline .pt-step:last-child { border-right: 1px solid var(--line); }
+    .path-timeline .pt-step .pt-phase {
+      font-family: var(--font-ui); font-size: .72rem; font-weight: 600;
+      letter-spacing: .1em; text-transform: uppercase; color: var(--accent);
+      margin-bottom: 8px;
+    }
+    .path-timeline .pt-step h3 { margin-bottom: 6px; }
+    .path-timeline .pt-step p { margin: 0; font-size: .9rem; }
+
+    footer {
+      padding: 48px 24px; border-top: 1px solid var(--line);
+      color: var(--muted); font-size: .9rem; text-align: center;
+    }
+    footer a { color: var(--accent); }
+
+    /* ── Responsive ── */
+    @media (max-width: 980px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero-calc { border-left: 0; border-top: 1px solid var(--dark-line); }
+      .body-wrap { grid-template-columns: 1fr; }
+      .toc { display: none; }
+      .content { padding: 0 24px 80px; max-width: 100%; }
+      .dark-section .inner { padding: 0 24px; }
+      .stat-trio { grid-template-columns: 1fr; }
+      .gate-checklist { grid-template-columns: 1fr; }
+      .path-timeline { grid-template-columns: 1fr; }
+      .path-timeline .pt-step { border-right: 1px solid var(--line); border-bottom: 0; }
+      .path-timeline .pt-step:not(:last-child) { border-bottom: 0; }
+    }
+    @media (max-width: 780px) {
+      .topbar-links {
+        display: flex; width: 100%; flex-wrap: nowrap;
+        justify-content: flex-start; overflow-x: auto;
+        overscroll-behavior-inline: contain; scrollbar-width: none;
+        padding: 2px 0 4px; margin-left: 0;
         mask-image: linear-gradient(to right, transparent 0, black 12px, black calc(100% - 20px), transparent 100%);
       }
-      .nav-links::-webkit-scrollbar { display: none; }
-      .nav-links a { flex: 0 0 auto; padding: 6px 3px; }
+      .topbar-links::-webkit-scrollbar { display: none; }
+      .topbar-links a { flex: 0 0 auto; padding: 4px 2px; }
       .mobile-nav-hint { display: block; }
-      section[id] { scroll-margin-top: 150px; }
+      .topbar-inner { flex-wrap: wrap; padding: 10px 16px; gap: 6px; }
+      .hero-text { padding: 48px 24px 36px; }
+      .hero-calc { padding: 36px 24px; }
+      .calc-form { grid-template-columns: 1fr; }
+      .calc-results { grid-template-columns: 1fr; }
+      .section { padding: 40px 0; }
+      .dark-section { padding: 48px 0; }
+      .section-num { font-size: 2.5rem; }
     }
     @media (max-width: 520px) {
-      body { font-size: 18px; }
-      .shell { width: min(100% - 28px, 1160px); }
-      .hero { padding-top: 58px; }
-      .hero-actions .button { width: 100%; }
-      .results, .waterfall { grid-template-columns: 1fr; }
-      .card, .calculator { padding: 21px; }
-      table { font-size: .84rem; }
-      th, td { padding: 11px 9px; }
+      body { font-size: 16px; }
+      .hero h1 { font-size: clamp(1.8rem, 8vw, 2.6rem); }
+      .hero-actions .btn { width: 100%; justify-content: center; }
+      .waterfall { flex-direction: column; }
+      .waterfall .wf-step { border-right: 1px solid var(--line); border-bottom: 0; }
+      .waterfall .wf-step:not(:last-child) { border-bottom: 0; }
+      .waterfall .wf-step::after { display: none; }
+      .flow { flex-direction: column; }
+      .flow .step { border-right: 1px solid var(--line); border-bottom: 0; }
+      .flow .step:not(:last-child) { border-bottom: 0; }
     }
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
@@ -342,175 +504,224 @@
 </head>
 <body id="top">
   <a class="skip-link" href="#main-content">Skip to the article</a>
-  <nav class="nav" aria-label="Article navigation">
-    <div class="shell nav-inner">
-      <a class="brand" href="index.html">Alignment Theorem</a>
+
+  <nav class="topbar" aria-label="Article navigation">
+    <div class="topbar-inner">
+      <a class="brand" href="index.html">Alignment<span> Theorem</span></a>
       <span class="mobile-nav-hint" aria-hidden="true">Swipe for sections</span>
-      <div class="nav-links">
-        <a href="#theorem">Theorem</a>
-        <a href="#policy">Local policy</a>
+      <div class="topbar-links">
         <a href="#calculator">Calculator</a>
+        <a href="#problem">The problem</a>
+        <a href="#theorem">The math</a>
+        <a href="#policy">14 moves</a>
         <a href="#tau">Why Tau</a>
         <a href="#evidence">Evidence</a>
       </div>
     </div>
   </nav>
 
-  <header class="hero shell">
-    <span class="badge">Local government · post-AGI economics · Tau Language</span>
-    <h1>The Data Center Bargain</h1>
-    <p class="hero-copy">A community should not have to choose between rejecting artificial intelligence infrastructure and subsidizing it. The Alignment Theorem suggests a third option: admit only the projects that pay their full costs, protect every modeled household, and share the authenticated surplus.</p>
-    <div class="hero-rule">No cost shifting. No unfunded benefit. No constitutional amendment that silently removes the guarantees.</div>
-    <div class="hero-actions">
-      <a class="button primary" href="#policy">Read the local policy package</a>
-      <a class="button" href="https://github.com/TheDarkLightX/AlignmentTheorem/blob/main/research/data_center_social_contract/LOCAL_GOVERNMENT_POLICY_PLAYBOOK.md">Policy source</a>
-      <a class="button" href="https://github.com/TheDarkLightX/AlignmentTheorem/tree/main/research/data_center_social_contract">Research packet</a>
+  <header class="hero" id="calculator">
+    <div class="hero-grid">
+      <div class="hero-text">
+        <span class="hero-kicker">Local government · post-AGI economics · Tau Language</span>
+        <h1>The Data Center <em>Bargain</em></h1>
+        <p class="hero-lede">A community should not have to choose between blocking AI infrastructure and subsidizing it. The Alignment Theorem offers a third path: admit only projects that pay their full costs, protect every modeled household, and share the authenticated surplus.</p>
+        <div class="hero-rule">No cost shifting. No unfunded benefit. No constitutional amendment that quietly removes the guarantees.</div>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#policy">Read the policy package</a>
+          <a class="btn btn-ghost" href="https://github.com/TheDarkLightX/AlignmentTheorem/blob/main/research/data_center_social_contract/LOCAL_GOVERNMENT_POLICY_PLAYBOOK.md">Policy source</a>
+          <a class="btn btn-ghost" href="https://github.com/TheDarkLightX/AlignmentTheorem/tree/main/research/data_center_social_contract">Research packet</a>
+        </div>
+      </div>
+
+      <div class="hero-calc">
+        <h2>Community bargain solvency calculator</h2>
+        <p class="calc-sub">Enter one settlement epoch. Deficits are the authenticated household values \(d_i=(L_i-B_i)_+\), separated by commas.</p>
+
+        <div class="calc-group-title">Cash bargain</div>
+        <div class="calc-form">
+          <div>
+            <label for="gross">Gross committed value G</label>
+            <input id="gross" type="number" min="0" step="1" value="30" inputmode="decimal">
+          </div>
+          <div>
+            <label for="costs">Senior project claims C</label>
+            <input id="costs" type="number" min="0" step="1" value="12" inputmode="decimal">
+          </div>
+          <div>
+            <label for="floor">Universal household floor m</label>
+            <input id="floor" type="number" min="0" step="1" value="2" inputmode="decimal">
+          </div>
+          <div>
+            <label for="deficits">Household deficits</label>
+            <input id="deficits" type="text" value="0, 1, 5, 2" inputmode="decimal" aria-describedby="deficits-help">
+            <span class="field-help" id="deficits-help">Comma-separated nonnegative values, one per household.</span>
+          </div>
+        </div>
+
+        <div class="calc-group-title">Compute bargain (separate)</div>
+        <div class="calc-form">
+          <div>
+            <label for="compute">Available compute reserve Q</label>
+            <input id="compute" type="number" min="0" step="1" value="12" inputmode="decimal">
+          </div>
+          <div>
+            <label for="computeFloor">Compute floor per household c</label>
+            <input id="computeFloor" type="number" min="0" step="1" value="2" inputmode="decimal">
+          </div>
+        </div>
+
+        <div class="calc-results" role="status" aria-live="polite" aria-atomic="true">
+          <div class="calc-result"><span>Distributable cash R</span><strong id="rCash">18</strong></div>
+          <div class="calc-result"><span>Required reserve H(m)</span><strong id="rRequired">11</strong></div>
+          <div class="calc-result"><span>Cash result</span><strong id="rCashStatus" class="badge pass">Funded</strong></div>
+          <div class="calc-result"><span>Compute result</span><strong id="rComputeStatus" class="badge pass">Funded</strong></div>
+        </div>
+        <p id="rDetail" class="mono" aria-live="polite"></p>
+      </div>
     </div>
   </header>
 
-  <main id="main-content">
-    <section class="shell">
-      <div class="section-kicker">The debate has changed</div>
-      <h2>Data centers are becoming public-scale infrastructure.</h2>
-      <p class="lede">Lawrence Berkeley National Laboratory’s 2026 update estimates a 2030 reference case of 649 TWh for U.S. data centers—about 11.8% of national electricity use—with a compounded uncertainty range of 521–843 TWh. FERC is requiring regional grid operators to address cost shifting, transparency, generation adequacy, and flexible large loads. Pennsylvania has moved toward full energy-cost recovery, local approval, public disclosure, environmental protection, and community benefit agreements.</p>
-      <div class="grid three">
-        <article class="card"><h3>The benefits can be national.</h3><p>AI capability, corporate value, and national productivity can rise far from the host community.</p></article>
-        <article class="card"><h3>The burdens are often local.</h3><p>Substations, transmission, water withdrawals, generator emissions, tonal noise, roads, emergency services, and land-use changes remain physically concentrated.</p></article>
-        <article class="card"><h3>The accounting can hide the bargain.</h3><p>A profitable facility can still shift costs to ratepayers or leave the most affected household worse off. Aggregate growth is not a proof of local benefit.</p></article>
-      </div>
-    </section>
+  <div class="body-wrap">
+    <aside class="toc" aria-label="Table of contents">
+      <div class="toc-title">Contents</div>
+      <ol>
+        <li><a href="#problem">The problem</a></li>
+        <li><a href="#theorem">The math</a></li>
+        <li><a href="#floor">Why the floor matters</a></li>
+        <li><a href="#policy">14 policy moves</a></li>
+        <li><a href="#economics">Post-AGI economics</a></li>
+        <li><a href="#tau">Why Tau</a></li>
+        <li><a href="#evidence">Evidence</a></li>
+        <li><a href="#path">A practical path</a></li>
+        <li><a href="#sources">Sources</a></li>
+      </ol>
+    </aside>
 
-    <section class="shell" id="theorem">
-      <div class="section-kicker">The mathematical constitution</div>
-      <h2>Distribute only the residual that remains after the real obligations.</h2>
-      <p class="lede">Let authenticated gross public rent or committed project payment be \(G\). Let \(C\) contain all senior grid, reliability, water, environmental, public-service, security, audit, and decommissioning claims. The distributable reserve is:</p>
-      <div class="equation">\[R=(G-C)_+.\]</div>
-      <div class="waterfall" aria-label="Residual rent waterfall">
-        <div>Gross committed value<br>\(G\)</div>
-        <div>Grid and reliability</div>
-        <div>Water, land, emissions</div>
-        <div>Public services and audit</div>
-        <div>Decommissioning and safety</div>
-        <div>Distributable residual<br>\(R\)</div>
-      </div>
-      <p>For household \(i\), let \(L_i\) be the authenticated project-caused loss, \(B_i\) the direct project benefit that actually reaches that household, and \(m\) the universal resident floor. Define:</p>
-      <div class="equation">\[d_i=(L_i-B_i)_+,\qquad h_i=\max\{m,d_i\}.\]</div>
-      <p>The transfer \(h_i\) is the <strong>pointwise least</strong> payment that both gives the household the universal floor and prevents the modeled project burden from making it worse off. Across \(n\) households, the exact least reserve is:</p>
-      <div class="equation">\[H(m)=\sum_{i=1}^n\max\{m,d_i\}=nm+\sum_{i=1}^n(d_i-m)_+.\]</div>
-      <div class="callout"><strong>Local admission condition:</strong> the cash bargain is funded only when \(G\ge C+H(m)\). A promised compute floor \(c\) is separate and requires \(Q\ge nc\). Compute cannot silently replace cash compensation.</div>
-    </section>
+    <main id="main-content" class="content">
 
-    <section class="shell">
-      <div class="section-kicker">Why the floor matters</div>
-      <h2>An equal dividend can still fail the community.</h2>
-      <div class="grid two">
-        <article class="card">
+      <!-- 01: The problem (dark contrast) -->
+      <section class="dark-section" id="problem">
+        <div class="inner">
+          <div class="section-num">01</div>
+          <div class="section-kicker">The debate has changed</div>
+          <h2 class="section-h">Data centers are now public-scale infrastructure.</h2>
+          <p class="lede">Lawrence Berkeley National Laboratory&rsquo;s 2026 update projects a 2030 reference case of 649 TWh for U.S. data centers&mdash;about 11.8% of national electricity use&mdash;with a compounded uncertainty range of 521&ndash;843 TWh. FERC now requires regional grid operators to address cost shifting, transparency, generation adequacy, and flexible large loads. Pennsylvania has moved toward full energy-cost recovery, local approval, public disclosure, environmental protection, and community benefit agreements.</p>
+          <div class="stat-trio">
+            <div class="stat"><h3>Benefits can be national.</h3><p>AI capability, corporate value, and national productivity can rise far from the host community.</p></div>
+            <div class="stat"><h3>Burdens stay local.</h3><p>Substations, transmission, water withdrawals, generator emissions, tonal noise, roads, emergency services, and land-use change remain physically concentrated.</p></div>
+            <div class="stat"><h3>The accounting can hide the bargain.</h3><p>A profitable facility can still shift costs to ratepayers or leave the most affected household worse off. Aggregate growth is not proof of local benefit.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 02: The math -->
+      <section class="section" id="theorem">
+        <div class="section-num">02</div>
+        <div class="section-kicker">The mathematical constitution</div>
+        <h2 class="section-h">Distribute only the residual left after the real obligations.</h2>
+        <p class="lede">Let authenticated gross public rent or committed project payment be \(G\). Let \(C\) hold every senior claim: grid, reliability, water, environmental, public-service, security, audit, and decommissioning. The distributable reserve is:</p>
+        <div class="equation">\[R=(G-C)_+.\]</div>
+        <div class="waterfall" aria-label="Residual rent waterfall">
+          <div class="wf-step">Gross committed value \(G\)</div>
+          <div class="wf-step">Grid and reliability</div>
+          <div class="wf-step">Water, land, emissions</div>
+          <div class="wf-step">Public services and audit</div>
+          <div class="wf-step">Decommissioning and safety</div>
+          <div class="wf-step">Distributable residual \(R\)</div>
+        </div>
+        <p>For household \(i\), let \(L_i\) be the authenticated project-caused loss, \(B_i\) the direct project benefit that actually reaches that household, and \(m\) the universal resident floor. Define:</p>
+        <div class="equation">\[d_i=(L_i-B_i)_+,\qquad h_i=\max\{m,d_i\}.\]</div>
+        <p>The transfer \(h_i\) is the <strong>pointwise least</strong> payment that both gives the household the universal floor and stops the modeled project burden from making it worse off. Across \(n\) households, the exact least reserve is:</p>
+        <div class="equation">\[H(m)=\sum_{i=1}^n\max\{m,d_i\}=nm+\sum_{i=1}^n(d_i-m)_+.\]</div>
+        <div class="callout"><strong>Local admission condition:</strong> the cash bargain is funded only when \(G\ge C+H(m)\). A promised compute floor \(c\) is separate and requires \(Q\ge nc\). Compute cannot silently replace cash compensation.</div>
+      </section>
+
+      <!-- 03: Why the floor matters -->
+      <section class="section" id="floor">
+        <div class="section-num">03</div>
+        <div class="section-kicker">Why the floor matters</div>
+        <h2 class="section-h">An equal dividend can still fail the community.</h2>
+        <div class="counterexample">
+          <div class="big-num">&minus;1</div>
           <h3>The smallest counterexample</h3>
-          <p>One household has a project loss of 2, receives no direct benefit, and is promised a universal dividend of 1. The dividend is fully funded—but the household is still worse off by 1. The protective payment is 2, not 1.</p>
-        </article>
-        <article class="card">
-          <h3>The efficient populist structure</h3>
-          <p>Pay everyone the base \(m\). Then add only the top-up \((d_i-m)_+\) to households whose authenticated deficit exceeds the base. After the floor and no-harm reserve are funded, allocate the remaining surplus with a transparent prioritarian rule.</p>
-        </article>
-      </div>
-      <div class="warning callout"><strong>Important:</strong> physical limits are vetoes, not prices. A community benefit payment should not buy permission to violate a critical water, reliability, safety, or pollution boundary.</div>
-    </section>
-
-    <section class="shell" id="policy">
-      <div class="section-kicker">A policy local governments can use</div>
-      <h2>Fourteen moves that convert bargaining power into durable public benefit.</h2>
-      <div class="grid three">
-        <article class="card"><span class="number">1</span><h3>Conditional use only</h3><p>Require special-exception or conditional-use approval above local load, area, water, generator, or expansion thresholds. Do not treat a rapidly changing high-energy facility as an ordinary by-right warehouse.</p></article>
-        <article class="card"><span class="number">2</span><h3>No secret project</h3><p>Require beneficial ownership, end users, peak MW, water, PUE, WUE, backup power, noise, jobs, incentives, phasing, and infrastructure disclosures before the first discretionary hearing.</p></article>
-        <article class="card"><span class="number">3</span><h3>Growth pays for growth</h3><p>Make the project fund attributable generation, transmission, distribution, substations, water, roads, emergency services, studies, stranded-cost security, and decommissioning.</p></article>
-        <article class="card"><span class="number">4</span><h3>Hard physical envelopes</h3><p>Put enforceable peak-load, ramp, water, drought, noise, generator, emissions, lighting, setback, habitat, and safety limits into the permit.</p></article>
-        <article class="card"><span class="number">5</span><h3>Security before operation</h3><p>Require bankruptcy-resistant escrow, bonds, letters of credit, or parent guarantees sufficient for remediation, unfinished infrastructure, public-benefit nonperformance, and site restoration.</p></article>
-        <article class="card"><span class="number">6</span><h3>Residual-rent agreement</h3><p>Combine a nonavoidable capacity or concession payment, full senior-cost recovery, and a variable share of audited residual value. Never rely only on accounting profit.</p></article>
-        <article class="card"><span class="number">7</span><h3>Universal benefit + top-ups</h3><p>Use lawful bill credits, rebates, resident trust distributions, energy assistance, or equivalent broad benefits—then target additional compensation to households with verified deficits above the floor.</p></article>
-        <article class="card"><span class="number">8</span><h3>Distinct host-zone share</h3><p>Give neighborhoods closest to substations, corridors, cooling, generators, and construction an additional upside share beyond make-whole compensation.</p></article>
-        <article class="card"><span class="number">9</span><h3>Verified load flexibility</h3><p>Require a tested curtailment amount, response time, duration, rebound limit, emissions boundary, periodic drills, and penalties for nonperformance.</p></article>
-        <article class="card"><span class="number">10</span><h3>Conditional incentives</h3><p>Make each year of a tax benefit depend on current compliance. Suspend or claw back benefits for broken reporting, job, infrastructure, environmental, or community-benefit commitments.</p></article>
-        <article class="card"><span class="number">11</span><h3>Public evidence and challenge</h3><p>Use independent meters, machine-readable reports, signed epoch receipts, resident complaints, audit rotation, conflict disclosure, and escrow for contested amounts.</p></article>
-        <article class="card"><span class="number">12</span><h3>Anti-speculation milestones</h3><p>Expire or charge for unused capacity reservations. Reopen dormant permits, inflated forecasts, serial transfers, and projects that miss financing, construction, or energization milestones.</p></article>
-        <article class="card"><span class="number">13</span><h3>Constitutional review</h3><p>Require annual review, a major periodic review, and reopening after material expansion or ownership change—without allowing amendments to silently weaken senior claims or hard limits.</p></article>
-        <article class="card"><span class="number">14</span><h3>Regional compact</h3><p>Coordinate minimum disclosure, bond, water, noise, audit, tariff, and benefit standards so communities do not compete by shifting costs across the same grid and watershed.</p></article>
-      </div>
-    </section>
-
-    <section class="shell" id="calculator">
-      <div class="section-kicker">Try the theorem</div>
-      <h2>Community bargain solvency calculator</h2>
-      <p class="lede">Enter one settlement epoch. “Deficits” are the authenticated household values \(d_i=(L_i-B_i)_+\), separated by commas. The calculator compares the distributable reserve with the exact hybrid floor and checks compute separately.</p>
-      <div class="calculator">
-        <div class="form-grid">
-          <label for="gross">Gross committed public value G</label>
-          <input id="gross" type="number" min="0" step="1" value="30" inputmode="decimal">
-          <label for="costs">Senior project claims C</label>
-          <input id="costs" type="number" min="0" step="1" value="12" inputmode="decimal">
-          <label for="floor">Universal household floor m</label>
-          <input id="floor" type="number" min="0" step="1" value="2" inputmode="decimal">
-          <label for="deficits">Household uncompensated deficits</label>
-          <input id="deficits" type="text" value="0, 1, 5, 2" inputmode="decimal" aria-describedby="deficits-help">
-          <span class="field-help" id="deficits-help">Comma-separated nonnegative values, one per household.</span>
-          <label for="compute">Available compute reserve Q</label>
-          <input id="compute" type="number" min="0" step="1" value="12" inputmode="decimal">
-          <label for="computeFloor">Compute floor per household c</label>
-          <input id="computeFloor" type="number" min="0" step="1" value="2" inputmode="decimal">
+          <p>One household has a project loss of 2, receives no direct benefit, and is promised a universal dividend of 1. The dividend is fully funded&mdash;yet the household is still worse off by 1. The protective payment is 2, not 1.</p>
         </div>
-        <div class="results" role="status" aria-live="polite" aria-atomic="true">
-          <div class="result"><span>Distributable cash R</span><strong id="rCash">18</strong></div>
-          <div class="result"><span>Required household reserve H(m)</span><strong id="rRequired">11</strong></div>
-          <div class="result"><span>Cash result</span><strong id="rCashStatus" class="pass">Funded</strong></div>
-          <div class="result"><span>Compute result</span><strong id="rComputeStatus" class="pass">Funded</strong></div>
+        <div class="callout">
+          <strong>The efficient populist structure.</strong> Pay everyone the base \(m\). Then add only the top-up \((d_i-m)_+\) to households whose authenticated deficit exceeds the base. After the floor and no-harm reserve are funded, allocate the remaining surplus with a transparent prioritarian rule.
         </div>
-        <p id="rDetail" class="mono" aria-live="polite" style="color:var(--muted);margin-bottom:0"></p>
-      </div>
-    </section>
+        <div class="callout warning"><strong>Important:</strong> physical limits are vetoes, not prices. A community benefit payment must not buy permission to breach a critical water, reliability, safety, or pollution boundary.</div>
+      </section>
 
-    <section class="shell">
-      <div class="section-kicker">Post-AGI economics</div>
-      <h2>Intelligence growth is not yet a deflation theorem.</h2>
-      <p class="lede">Let \(a_t\) be effective productivity that actually reaches the household bundle after automation coverage, diffusion, access, and pass-through. Let \(r_t\) be the scarce-resource and infrastructure factor, and \(\mu_t\) the markup and rent-extraction factor.</p>
-      <div class="equation">\[\frac{P_{t+1}}{P_t}=\frac{r_t\mu_t}{a_t}.\]</div>
-      <p>Prices fall in that period exactly when \(a_t&gt;r_t\mu_t\). Raw model capability can double while diffusion is blocked, energy becomes scarcer, physical bottlenecks remain, or monopoly rents absorb the savings. And even falling prices do not guarantee household abundance if wages and asset ownership fall faster.</p>
-      <div class="callout"><strong>The missing link is distribution.</strong> The Alignment Theorem does not assume that AGI automatically benefits everyone. It supplies a constitution that can route authenticated surplus into cash, compute, resilience, and constrained household agents while refusing unfunded promises.</div>
-    </section>
+      <!-- 04: 14 policy moves (timeline) -->
+      <section class="section" id="policy">
+        <div class="section-num">04</div>
+        <div class="section-kicker">A policy local governments can use</div>
+        <h2 class="section-h">Fourteen moves that turn bargaining power into durable public benefit.</h2>
+        <div class="timeline">
+          <div class="tl-item" data-num="1"><h3>Conditional use only</h3><p>Require special-exception or conditional-use approval above local load, area, water, generator, or expansion thresholds. Do not treat a fast-changing high-energy facility as an ordinary by-right warehouse.</p></div>
+          <div class="tl-item" data-num="2"><h3>No secret project</h3><p>Require beneficial ownership, end users, peak MW, water, PUE, WUE, backup power, noise, jobs, incentives, phasing, and infrastructure disclosures before the first discretionary hearing.</p></div>
+          <div class="tl-item" data-num="3"><h3>Growth pays for growth</h3><p>Make the project fund attributable generation, transmission, distribution, substations, water, roads, emergency services, studies, stranded-cost security, and decommissioning.</p></div>
+          <div class="tl-item" data-num="4"><h3>Hard physical envelopes</h3><p>Put enforceable peak-load, ramp, water, drought, noise, generator, emissions, lighting, setback, habitat, and safety limits into the permit.</p></div>
+          <div class="tl-item" data-num="5"><h3>Security before operation</h3><p>Require bankruptcy-resistant escrow, bonds, letters of credit, or parent guarantees sufficient for remediation, unfinished infrastructure, public-benefit nonperformance, and site restoration.</p></div>
+          <div class="tl-item" data-num="6"><h3>Residual-rent agreement</h3><p>Combine a nonavoidable capacity or concession payment, full senior-cost recovery, and a variable share of audited residual value. Never rely on accounting profit alone.</p></div>
+          <div class="tl-item" data-num="7"><h3>Universal benefit + top-ups</h3><p>Use lawful bill credits, rebates, resident trust distributions, energy assistance, or equivalent broad benefits&mdash;then target extra compensation at households with verified deficits above the floor.</p></div>
+          <div class="tl-item" data-num="8"><h3>Distinct host-zone share</h3><p>Give neighborhoods closest to substations, corridors, cooling, generators, and construction an additional upside share beyond make-whole compensation.</p></div>
+          <div class="tl-item" data-num="9"><h3>Verified load flexibility</h3><p>Require a tested curtailment amount, response time, duration, rebound limit, emissions boundary, periodic drills, and penalties for nonperformance.</p></div>
+          <div class="tl-item" data-num="10"><h3>Conditional incentives</h3><p>Make each year of a tax benefit depend on current compliance. Suspend or claw back benefits for broken reporting, job, infrastructure, environmental, or community-benefit commitments.</p></div>
+          <div class="tl-item" data-num="11"><h3>Public evidence and challenge</h3><p>Use independent meters, machine-readable reports, signed epoch receipts, resident complaints, audit rotation, conflict disclosure, and escrow for contested amounts.</p></div>
+          <div class="tl-item" data-num="12"><h3>Anti-speculation milestones</h3><p>Expire or charge for unused capacity reservations. Reopen dormant permits, inflated forecasts, serial transfers, and projects that miss financing, construction, or energization milestones.</p></div>
+          <div class="tl-item" data-num="13"><h3>Constitutional review</h3><p>Require annual review, a major periodic review, and reopening after material expansion or ownership change&mdash;without allowing amendments to quietly weaken senior claims or hard limits.</p></div>
+          <div class="tl-item" data-num="14"><h3>Regional compact</h3><p>Coordinate minimum disclosure, bond, water, noise, audit, tariff, and benefit standards so communities do not compete by shifting costs across the same grid and watershed.</p></div>
+        </div>
+      </section>
 
-    <section class="shell" id="tau">
-      <div class="section-kicker">Why the full version requires Tau Language</div>
-      <h2>The constitution must be able to reason about changes to itself.</h2>
-      <p class="lede">A conventional chain can hold money. A legal document can state duties. Lean can prove theorems. Ordinary software can execute a rule. The full Alignment Theorem needs all of those functions connected to one live semantic constitution: the rules must be formal, decidable, executable, inspectable, and safely revisable under higher-order requirements.</p>
-      <table>
-        <thead><tr><th>Layer</th><th>What it does well</th><th>What remains external</th></tr></thead>
-        <tbody>
-          <tr><td>Statute / permit / contract</td><td>Democratic and legal authority</td><td>Machine execution, exact semantic replay, automatic invariant checking</td></tr>
-          <tr><td>Conventional software</td><td>Fast operational execution</td><td>The policy meaning is buried in code; amendments may change unintended behavior</td></tr>
-          <tr><td>Conventional smart contract</td><td>Custody and deterministic settlement</td><td>Reasoning about an arbitrary proposed replacement constitution is normally off-chain</td></tr>
-          <tr><td>Lean / theorem prover</td><td>Deep proofs about a fixed formal model</td><td>Live policy execution, collaborative rule evolution, custody, and settlement adapters</td></tr>
-          <tr><td><strong>Tau Language</strong></td><td>Decidable, executable specifications that can represent and reason over Tau specifications, including controlled pointwise revision</td><td>Physical truth, legal authority, identity, meters, custody, and production hardening still require external systems</td></tr>
-        </tbody>
-      </table>
-      <div class="callout"><strong>The exclusivity claim is architectural, not mystical.</strong> Pieces of this system can be approximated elsewhere. The full self-amending version requires a live language in which the constitution is itself a native logical object, proposed updates can be checked against “requirements for the requirements,” and accepted rules remain executable. Tau is the current language at the center of this project that is designed around that combination.</div>
+      <!-- 05: Post-AGI economics (dark contrast) -->
+      <section class="dark-section" id="economics">
+        <div class="inner">
+          <div class="section-num">05</div>
+          <div class="section-kicker">Post-AGI economics</div>
+          <h2 class="section-h">Intelligence growth is not yet a deflation theorem.</h2>
+          <p class="lede">Let \(a_t\) be effective productivity that actually reaches the household bundle after automation coverage, diffusion, access, and pass-through. Let \(r_t\) be the scarce-resource and infrastructure factor, and \(\mu_t\) the markup and rent-extraction factor.</p>
+          <div class="equation">\[\frac{P_{t+1}}{P_t}=\frac{r_t\mu_t}{a_t}.\]</div>
+          <p>Prices fall in that period exactly when \(a_t&gt;r_t\mu_t\). Raw model capability can double while diffusion is blocked, energy grows scarcer, physical bottlenecks remain, or monopoly rents absorb the savings. And even falling prices do not guarantee household abundance if wages and asset ownership fall faster.</p>
+          <div class="callout"><strong>The missing link is distribution.</strong> The Alignment Theorem does not assume that AGI automatically benefits everyone. It supplies a constitution that can route authenticated surplus into cash, compute, resilience, and constrained household agents while refusing unfunded promises.</div>
+        </div>
+      </section>
 
-      <h3 style="margin-top:36px">The ten-fact local constitutional gate</h3>
-      <p>The current research packet admits one bounded project action only when all ten authenticated facts are true:</p>
-      <div class="grid two">
-        <article class="card"><ol>
-          <li>Current policy root</li>
-          <li>Authenticated project identity</li>
-          <li>Authenticated local consent</li>
-          <li>Incremental energy costs reserved</li>
-          <li>Reliability and curtailment plan valid</li>
-        </ol></article>
-        <article class="card"><ol start="6">
-          <li>Water, emissions, and land limits valid</li>
-          <li>Decommissioning bond funded</li>
-          <li>No-harm compensation funded</li>
-          <li>Universal cash and compute floor funded</li>
-          <li>Public audit receipt current</li>
-        </ol></article>
-      </div>
-      <pre style="white-space:pre-wrap;padding:22px;border:1px solid var(--line);border-radius:16px;background:#090c12;color:var(--muted);overflow:auto"><code>allow[t] =
+      <!-- 06: Why Tau -->
+      <section class="section" id="tau">
+        <div class="section-num">06</div>
+        <div class="section-kicker">Why the full version requires Tau Language</div>
+        <h2 class="section-h">The constitution must be able to reason about changes to itself.</h2>
+        <p class="lede">A conventional chain can hold money. A legal document can state duties. Lean can prove theorems. Ordinary software can execute a rule. The full Alignment Theorem needs all of those functions tied to one live semantic constitution: the rules must be formal, decidable, executable, inspectable, and safely revisable under higher-order requirements.</p>
+        <table>
+          <thead><tr><th>Layer</th><th>What it does well</th><th>What stays external</th></tr></thead>
+          <tbody>
+            <tr><td>Statute / permit / contract</td><td>Democratic and legal authority</td><td>Machine execution, exact semantic replay, automatic invariant checking</td></tr>
+            <tr><td>Conventional software</td><td>Fast operational execution</td><td>Policy meaning is buried in code; amendments may change unintended behavior</td></tr>
+            <tr><td>Conventional smart contract</td><td>Custody and deterministic settlement</td><td>Reasoning about an arbitrary proposed replacement constitution is normally off-chain</td></tr>
+            <tr><td>Lean / theorem prover</td><td>Deep proofs about a fixed formal model</td><td>Live policy execution, collaborative rule evolution, custody, and settlement adapters</td></tr>
+            <tr><td><strong>Tau Language</strong></td><td>Decidable, executable specifications that can represent and reason over Tau specifications, including controlled pointwise revision</td><td>Physical truth, legal authority, identity, meters, custody, and production hardening still require external systems</td></tr>
+          </tbody>
+        </table>
+        <div class="callout"><strong>The exclusivity claim is architectural, not mystical.</strong> Pieces of this system can be approximated elsewhere. The full self-amending version requires a live language in which the constitution is itself a native logical object, proposed updates can be checked against &ldquo;requirements for the requirements,&rdquo; and accepted rules remain executable. Tau is the current language at the center of this project that is designed around that combination.</div>
+
+        <h3 style="margin-top:36px;font-family:var(--font-display);font-size:1.3rem">The ten-fact local constitutional gate</h3>
+        <p>The current research packet admits one bounded project action only when all ten authenticated facts are true:</p>
+        <div class="gate-checklist">
+          <div class="gate-item"><span class="check">&#10003;</span>Current policy root</div>
+          <div class="gate-item"><span class="check">&#10003;</span>Authenticated project identity</div>
+          <div class="gate-item"><span class="check">&#10003;</span>Authenticated local consent</div>
+          <div class="gate-item"><span class="check">&#10003;</span>Incremental energy costs reserved</div>
+          <div class="gate-item"><span class="check">&#10003;</span>Reliability and curtailment plan valid</div>
+          <div class="gate-item"><span class="check">&#10003;</span>Water, emissions, and land limits valid</div>
+          <div class="gate-item"><span class="check">&#10003;</span>Decommissioning bond funded</div>
+          <div class="gate-item"><span class="check">&#10003;</span>No-harm compensation funded</div>
+          <div class="gate-item"><span class="check">&#10003;</span>Universal cash and compute floor funded</div>
+          <div class="gate-item"><span class="check">&#10003;</span>Public audit receipt current</div>
+        </div>
+        <pre><code>allow[t] =
   policy_root_ok[t]
   &amp; project_identity_authenticated[t]
   &amp; local_consent_authenticated[t]
@@ -521,70 +732,89 @@
   &amp; no_harm_compensation_funded[t]
   &amp; universal_dividend_compute_floor_funded[t]
   &amp; public_audit_receipt_current[t]</code></pre>
-      <p>Missing evidence maps to false. Tau does not authenticate the facts; it prevents the settlement layer from pretending that an absent, stale, disputed, or failed obligation has passed.</p>
+        <p>Tau does not authenticate the facts; it prevents the settlement layer from pretending that an absent, stale, disputed, or failed obligation has passed.</p>
 
-      <div class="flow">
-        <div class="step">Local law and agreement</div>
-        <div class="step">Signed meter, bond, audit and approval facts</div>
-        <div class="step tau">Tau constitutional gate</div>
-        <div class="step">Escrow / permit / settlement adapter</div>
-        <div class="step">Cash, compute and public receipts</div>
-        <div class="step tau">Proof-constrained revision</div>
-      </div>
-    </section>
+        <div class="flow">
+          <div class="step">Local law and agreement</div>
+          <div class="step">Signed meter, bond, audit and approval facts</div>
+          <div class="step tau">Tau constitutional gate</div>
+          <div class="step">Escrow / permit / settlement adapter</div>
+          <div class="step">Cash, compute and public receipts</div>
+          <div class="step tau">Proof-constrained revision</div>
+        </div>
+      </section>
 
-    <section class="shell" id="evidence">
-      <div class="section-kicker">What has actually been established</div>
-      <h2>Strong conditional mathematics, bounded execution, explicit deployment boundaries.</h2>
-      <table>
-        <thead><tr><th>Evidence lane</th><th>Result</th><th>Safe interpretation</th></tr></thead>
-        <tbody>
-          <tr><td>Lean 4.33</td><td>Social-contract proofs and axiom audit pass in GitHub Actions</td><td>The arithmetic pointwise-minimality, aggregate feasibility, no-harm, separate cash/compute, and ten-fact gate implications hold in the formal model</td></tr>
-          <tr><td>Exact finite campaign</td><td>65,100 profiles; 1,348,200 pointwise checks; 319,417 reserve boundaries; zero modeled welfare regressions</td><td>Strong bounded falsification evidence, not a substitute for empirical project data</td></tr>
-          <tr><td>Tau semantic packet</td><td>1,024 complete Boolean rows; only the all-true row admits</td><td>The checked-in gate is a complete conjunction and every single-fault row rejects</td></tr>
-          <tr><td>Actual Tau candidate</td><td>Earlier V1.1, dividend, and wealth packets executed canonically on the source-pinned candidate</td><td>Candidate-native evidence for those exact packets only</td></tr>
-          <tr><td>New local data-center gate</td><td>Native replay remains pending</td><td>No claim yet that the exact new 1,024-row packet has executed on the reviewed Tau binary or on Tau Net</td></tr>
-          <tr><td>Tau Testnet</td><td>Alpha system with explicit limitations</td><td>Useful for testing architecture; not production authority or a safe home for real public funds</td></tr>
-        </tbody>
-      </table>
-      <div class="warning callout">A theorem over authenticated facts does not authenticate the world. A production pilot still needs lawful authority, independent measurement, causation methods, identity and appeals, secure custody, exact interpreter provenance, security review, and empirical welfare evaluation.</div>
-    </section>
+      <!-- 07: Evidence (dark contrast) -->
+      <section class="dark-section" id="evidence">
+        <div class="inner">
+          <div class="section-num">07</div>
+          <div class="section-kicker">What has actually been established</div>
+          <h2 class="section-h">Strong conditional mathematics, bounded execution, explicit deployment boundaries.</h2>
+          <table>
+            <thead><tr><th>Evidence lane</th><th>Result</th><th>Safe interpretation</th></tr></thead>
+            <tbody>
+              <tr><td>Lean 4.33</td><td>Social-contract proofs and axiom audit pass in GitHub Actions</td><td>The arithmetic pointwise-minimality, aggregate feasibility, no-harm, separate cash/compute, and ten-fact gate implications hold in the formal model</td></tr>
+              <tr><td>Exact finite campaign</td><td>65,100 profiles; 1,348,200 pointwise checks; 319,417 reserve boundaries; zero modeled welfare regressions</td><td>Strong bounded falsification evidence, not a substitute for empirical project data</td></tr>
+              <tr><td>Tau semantic packet</td><td>1,024 complete Boolean rows; only the all-true row admits</td><td>The checked-in gate is a complete conjunction and every single-fault row rejects</td></tr>
+              <tr><td>Actual Tau candidate</td><td>Earlier V1.1, dividend, and wealth packets executed canonically on the source-pinned candidate</td><td>Candidate-native evidence for those exact packets only</td></tr>
+              <tr><td>New local data-center gate</td><td>Native replay remains pending</td><td>No claim yet that the exact new 1,024-row packet has executed on the reviewed Tau binary or on Tau Net</td></tr>
+              <tr><td>Tau Testnet</td><td>Alpha system with explicit limitations</td><td>Useful for testing architecture; not production authority or a safe home for real public funds</td></tr>
+            </tbody>
+          </table>
+          <div class="callout warning">A theorem over authenticated facts does not authenticate the world. A production pilot still needs lawful authority, independent measurement, causation methods, identity and appeals, secure custody, exact interpreter provenance, security review, and empirical welfare evaluation.</div>
+        </div>
+      </section>
 
-    <section class="shell">
-      <div class="section-kicker">A practical path</div>
-      <h2>Local governments can start before Tau Net is production-ready.</h2>
-      <div class="grid three">
-        <article class="card"><h3>0–30 days</h3><p>Initiate conditional-use zoning, standard disclosures, applicant-funded independent review, and an inventory of pending applications and grandfathering exposure.</p></article>
-        <article class="card"><h3>31–180 days</h3><p>Adopt hard envelopes, bonds, a community-benefit term sheet, clawback rules, public meters and dashboards, a complaint process, and regional minimum standards.</p></article>
-        <article class="card"><h3>Shadow Tau pilot</h3><p>Translate every legal obligation into an authenticated Boolean fact. Run the Tau gate beside human administration without moving value. Compare every decision, dispute, appeal, and amendment before production use.</p></article>
-      </div>
-    </section>
+      <!-- 08: Practical path -->
+      <section class="section" id="path">
+        <div class="section-num">08</div>
+        <div class="section-kicker">A practical path</div>
+        <h2 class="section-h">Local governments can start before Tau Net is production-ready.</h2>
+        <div class="path-timeline">
+          <div class="pt-step">
+            <div class="pt-phase">0&ndash;30 days</div>
+            <h3>Immediate</h3>
+            <p>Initiate conditional-use zoning, standard disclosures, applicant-funded independent review, and an inventory of pending applications and grandfathering exposure.</p>
+          </div>
+          <div class="pt-step">
+            <div class="pt-phase">31&ndash;180 days</div>
+            <h3>Near-term</h3>
+            <p>Adopt hard envelopes, bonds, a community-benefit term sheet, clawback rules, public meters and dashboards, a complaint process, and regional minimum standards.</p>
+          </div>
+          <div class="pt-step">
+            <div class="pt-phase">Ongoing</div>
+            <h3>Shadow Tau pilot</h3>
+            <p>Translate every legal obligation into an authenticated Boolean fact. Run the Tau gate beside human administration without moving value. Compare every decision, dispute, appeal, and amendment before production use.</p>
+          </div>
+        </div>
+        <div class="callout" style="margin-top:32px">
+          <strong>The significance.</strong> The data-center debate is usually framed as acceleration versus obstruction. The Alignment Theorem reframes it as constitutional mechanism design. Build when the project can prove that growth pays for growth, hard limits are respected, the most affected household is protected, broad residents receive a floor, compute promises are real, and the rules cannot be weakened in the dark.
+        </div>
+        <div class="callout warning" style="margin-top:20px">The goal is not to tax intelligence into scarcity. The goal is to make expanding intelligence lower real household scarcity&mdash;and to refuse any project that cannot fund the promises used to obtain consent.</div>
+      </section>
 
-    <section class="shell">
-      <div class="section-kicker">The significance</div>
-      <h2>AGI infrastructure can become a bargain communities actively choose.</h2>
-      <p class="lede">The data-center debate is usually framed as acceleration versus obstruction. The Alignment Theorem reframes it as constitutional mechanism design. Build when the project can prove that growth pays for growth, hard limits are respected, the most affected household is protected, broad residents receive a floor, compute promises are real, and the rules cannot be weakened in the dark.</p>
-      <div class="hero-rule" style="margin-top:28px">The goal is not to tax intelligence into scarcity. The goal is to make expanding intelligence lower real household scarcity—and to refuse any project that cannot fund the promises used to obtain consent.</div>
-    </section>
+      <!-- 09: Sources -->
+      <section class="section" id="sources">
+        <div class="section-num">09</div>
+        <div class="section-kicker">Primary sources</div>
+        <h2 class="section-h">Public evidence behind the policy context.</h2>
+        <ul class="source-list">
+          <li><a href="https://datacenters.lbl.gov/publications/united-states-data-center-energy-2025">Lawrence Berkeley National Laboratory, United States Data Center Energy Usage Report: 2025 Update</a></li>
+          <li><a href="https://www.ferc.gov/news-events/news/ferc-launches-aggressive-targeted-action-speed-large-load-integration">FERC, June 18, 2026 large-load interconnection and ratepayer-protection action</a></li>
+          <li><a href="https://www.pa.gov/governor/newsroom/2026-press-releases/gov-shapiro-releases-full-grid-standards-to-protect-pennsylvania">Pennsylvania GRID Standards and local-government toolkit</a></li>
+          <li><a href="https://www.gao.gov/products/gao-25-107172">U.S. GAO, Generative AI&rsquo;s Environmental and Human Effects</a></li>
+          <li><a href="https://www.loudoun.gov/datacenterstandards">Loudoun County data-center standards and special-exception process</a></li>
+          <li><a href="https://www.pwcva.gov/department/public-works/steady-tonal-noise">Prince William County steady tonal noise enforcement</a></li>
+          <li><a href="https://github.com/IDNI/tau-lang">Official Tau Language repository</a></li>
+          <li><a href="https://github.com/IDNI/tau-testnet">Official Tau Testnet alpha repository</a></li>
+        </ul>
+      </section>
 
-    <section class="shell">
-      <div class="section-kicker">Primary sources</div>
-      <h2>Public evidence behind the policy context</h2>
-      <ul class="source-list">
-        <li><a href="https://datacenters.lbl.gov/publications/united-states-data-center-energy-2025">Lawrence Berkeley National Laboratory, United States Data Center Energy Usage Report: 2025 Update</a></li>
-        <li><a href="https://www.ferc.gov/news-events/news/ferc-launches-aggressive-targeted-action-speed-large-load-integration">FERC, June 18, 2026 large-load interconnection and ratepayer-protection action</a></li>
-        <li><a href="https://www.pa.gov/governor/newsroom/2026-press-releases/gov-shapiro-releases-full-grid-standards-to-protect-pennsylvania">Pennsylvania GRID Standards and local-government toolkit</a></li>
-        <li><a href="https://www.gao.gov/products/gao-25-107172">U.S. GAO, Generative AI’s Environmental and Human Effects</a></li>
-        <li><a href="https://www.loudoun.gov/datacenterstandards">Loudoun County data-center standards and special-exception process</a></li>
-        <li><a href="https://www.pwcva.gov/department/public-works/steady-tonal-noise">Prince William County steady tonal noise enforcement</a></li>
-        <li><a href="https://github.com/IDNI/tau-lang">Official Tau Language repository</a></li>
-        <li><a href="https://github.com/IDNI/tau-testnet">Official Tau Testnet alpha repository</a></li>
-      </ul>
-    </section>
-  </main>
+    </main>
+  </div>
 
   <footer>
-    <div class="shell">Alignment Theorem research. Policy-relative, conditional, and falsifiable. This page is a research and policy proposal, not legal, utility, investment, or engineering advice. <a href="#top">Back to top</a></div>
+    Alignment Theorem research. Policy-relative, conditional, and falsifiable. This page is a research and policy proposal, not legal, utility, investment, or engineering advice. <a href="#top">Back to top</a>
   </footer>
 
   <script>
@@ -613,14 +843,17 @@
       document.getElementById('rRequired').textContent = required.toLocaleString();
       const cashStatus = document.getElementById('rCashStatus');
       cashStatus.textContent = cashOk ? 'Funded' : 'Unfunded';
-      cashStatus.className = cashOk ? 'pass' : 'fail';
+      cashStatus.className = cashOk ? 'badge pass' : 'badge fail';
       const computeStatus = document.getElementById('rComputeStatus');
       computeStatus.textContent = computeOk ? 'Funded' : 'Unfunded';
-      computeStatus.className = computeOk ? 'pass' : 'fail';
+      computeStatus.className = computeOk ? 'badge pass' : 'badge fail';
       const surplus = reserve - required;
+      const cashShortfall = Math.max(required - reserve, 0);
+      const computeShortfall = Math.max(computeRequired - compute, 0);
       document.getElementById('rDetail').textContent =
         `households=${households}; transfers=[${transfers.join(', ')}]; ` +
-        `cash surplus after floor=${surplus}; compute required=${computeRequired}.`;
+        `cash surplus after floor=${surplus}; cash shortfall=${cashShortfall}; ` +
+        `compute required=${computeRequired}; compute shortfall=${computeShortfall}.`;
     }
     ['gross','costs','floor','deficits','compute','computeFloor'].forEach(id => {
       document.getElementById(id).addEventListener('input', recalc);
