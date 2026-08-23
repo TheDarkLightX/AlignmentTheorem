@@ -293,12 +293,14 @@
     .equation {
       margin: 28px 0; padding: 28px 32px;
       background: var(--paper); border: 1px solid var(--line);
+      border-left: 3px solid var(--accent);
       border-radius: 14px; font-size: 1.15rem; color: var(--ink);
       text-align: center; overflow-x: auto;
       box-shadow: 0 1px 3px rgba(0,0,0,.04);
     }
     .dark-section .equation {
-      background: rgba(255,255,255,.04); border-color: var(--dark-line); color: #fff;
+      background: rgba(255,255,255,.04); border-color: var(--dark-line);
+      border-left-color: var(--accent-bright); color: #fff;
     }
 
     .callout {
@@ -315,10 +317,10 @@
     .dark-section .callout.warning strong { color: var(--gold); }
 
     /* Stat trio (problem section) */
-    .stat-trio { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; margin: 32px 0; background: var(--dark-line); }
-    .stat-trio .stat { background: var(--ink); padding: 28px 24px; }
-    .stat-trio .stat h3 { color: #fff; font-size: 1rem; margin-bottom: 10px; }
-    .stat-trio .stat p { color: var(--dark-body); font-size: .92rem; margin: 0; }
+    .stat-trio { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 32px 0; }
+    .stat-trio .stat { background: rgba(255,255,255,.04); padding: 24px 22px; border-radius: 12px; border: 1px solid var(--dark-line); }
+    .stat-trio .stat h3 { color: #fff; font-size: .98rem; margin-bottom: 8px; }
+    .stat-trio .stat p { color: var(--dark-body); font-size: .9rem; margin: 0; line-height: 1.55; }
 
     /* Waterfall as horizontal flow */
     .waterfall {
@@ -330,16 +332,18 @@
       text-align: center; position: relative;
       font-family: var(--font-ui); font-size: .76rem; color: var(--body);
       background: var(--paper); border: 1px solid var(--line);
-      border-right: 0;
+      border-right: 0; border-radius: 0;
     }
+    .waterfall .wf-step:first-child { border-radius: 12px 0 0 12px; }
     .waterfall .wf-step:last-child {
-      border-right: 1px solid var(--line);
+      border-right: 1px solid #bbf7d0;
       background: var(--ok-soft); border-color: #bbf7d0; color: var(--ok); font-weight: 600;
+      border-radius: 0 12px 12px 0;
     }
     .waterfall .wf-step:not(:last-child)::after {
-      content: ""; position: absolute; right: -8px; top: 50%; z-index: 1;
+      content: ""; position: absolute; right: -7px; top: 50%; z-index: 1;
       width: 0; height: 0; transform: translateY(-50%);
-      border-left: 8px solid var(--line); border-top: 8px solid transparent; border-bottom: 8px solid transparent;
+      border-left: 7px solid var(--line); border-top: 7px solid transparent; border-bottom: 7px solid transparent;
     }
 
     /* Counterexample highlight */
@@ -353,26 +357,24 @@
     }
 
     /* Timeline for 14 moves */
-    .timeline { position: relative; margin: 32px 0; padding-left: 0; }
-    .timeline::before {
-      content: ""; position: absolute; left: 19px; top: 12px; bottom: 12px;
-      width: 2px; background: var(--line);
-    }
+    .timeline { position: relative; margin: 32px 0; padding-left: 0;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 0 32px; }
+    .timeline::before { display: none; }
     .tl-item {
-      position: relative; padding: 16px 0 16px 56px;
+      position: relative; padding: 12px 0 12px 48px;
       border-bottom: 0;
     }
     .tl-item::before {
       content: attr(data-num);
-      position: absolute; left: 0; top: 14px;
-      width: 40px; height: 40px; border-radius: 50%;
+      position: absolute; left: 0; top: 10px;
+      width: 32px; height: 32px; border-radius: 50%;
       background: var(--paper); border: 2px solid var(--accent);
       display: flex; align-items: center; justify-content: center;
-      font-family: var(--font-ui); font-weight: 700; font-size: .85rem;
+      font-family: var(--font-ui); font-weight: 700; font-size: .78rem;
       color: var(--accent-ink); z-index: 1;
     }
-    .tl-item h3 { margin-bottom: 4px; }
-    .tl-item p { margin: 0; font-size: .94rem; color: var(--body); }
+    .tl-item h3 { margin-bottom: 3px; font-size: .96rem; }
+    .tl-item p { margin: 0; font-size: .88rem; color: var(--body); line-height: 1.5; }
 
     /* 10-fact gate checklist */
     .gate-checklist {
@@ -399,11 +401,14 @@
       flex: 1; min-width: 130px; padding: 16px 12px; text-align: center;
       border: 1px solid var(--line); border-right: 0;
       font-family: var(--font-ui); font-size: .78rem; color: var(--body);
-      background: var(--paper);
+      background: var(--paper); border-radius: 0;
     }
-    .flow .step:last-child { border-right: 1px solid var(--line); }
+    .flow .step:first-child { border-radius: 12px 0 0 12px; }
+    .flow .step:last-child { border-right: 1px solid var(--line); border-radius: 0 12px 12px 0; }
     .flow .step.tau { background: var(--accent-soft); border-color: #cffafe; color: var(--accent-ink); font-weight: 600; }
 
+    .table-scroll { overflow-x: auto; margin: 28px 0; }
+    .table-scroll table { margin: 0; }
     table { width: 100%; border-collapse: collapse; margin: 28px 0; font-size: .9rem; }
     th, td { padding: 14px 13px; border-bottom: 1px solid var(--line); vertical-align: top; text-align: left; }
     th { color: var(--accent-ink); font-family: var(--font-ui); font-size: .72rem; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; }
@@ -430,12 +435,11 @@
     }
 
     /* Practical path timeline */
-    .path-timeline { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin: 28px 0; }
+    .path-timeline { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 28px 0; }
     .path-timeline .pt-step {
-      padding: 24px; border: 1px solid var(--line); border-right: 0;
-      background: var(--paper);
+      padding: 24px; border: 1px solid var(--line);
+      background: var(--paper); border-radius: 12px;
     }
-    .path-timeline .pt-step:last-child { border-right: 1px solid var(--line); }
     .path-timeline .pt-step .pt-phase {
       font-family: var(--font-ui); font-size: .72rem; font-weight: 600;
       letter-spacing: .1em; text-transform: uppercase; color: var(--accent);
@@ -461,8 +465,7 @@
       .stat-trio { grid-template-columns: 1fr; }
       .gate-checklist { grid-template-columns: 1fr; }
       .path-timeline { grid-template-columns: 1fr; }
-      .path-timeline .pt-step { border-right: 1px solid var(--line); border-bottom: 0; }
-      .path-timeline .pt-step:not(:last-child) { border-bottom: 0; }
+      .timeline { grid-template-columns: 1fr; }
     }
     @media (max-width: 780px) {
       .topbar-links {
@@ -489,12 +492,10 @@
       .hero h1 { font-size: clamp(1.8rem, 8vw, 2.6rem); }
       .hero-actions .btn { width: 100%; justify-content: center; }
       .waterfall { flex-direction: column; }
-      .waterfall .wf-step { border-right: 1px solid var(--line); border-bottom: 0; }
-      .waterfall .wf-step:not(:last-child) { border-bottom: 0; }
+      .waterfall .wf-step { border-right: 1px solid var(--line); border-radius: 12px; }
       .waterfall .wf-step::after { display: none; }
       .flow { flex-direction: column; }
-      .flow .step { border-right: 1px solid var(--line); border-bottom: 0; }
-      .flow .step:not(:last-child) { border-bottom: 0; }
+      .flow .step { border-right: 1px solid var(--line); border-radius: 12px; }
     }
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
@@ -528,10 +529,8 @@
         <p class="hero-lede">A community should not have to choose between blocking AI infrastructure and subsidizing it. The Alignment Theorem offers a third path: admit only projects that pay their full costs, protect every modeled household, and share the authenticated surplus.</p>
         <div class="hero-rule">No cost shifting. No unfunded benefit. No constitutional amendment that quietly removes the guarantees.</div>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="#policy">Read the policy package</a>
-          <a class="btn btn-ghost" href="local-government-policy-playbook.html">Open the standalone playbook</a>
-          <a class="btn btn-ghost" href="https://github.com/TheDarkLightX/AlignmentTheorem/blob/main/research/data_center_social_contract/LOCAL_GOVERNMENT_POLICY_PLAYBOOK.md">Policy source</a>
-          <a class="btn btn-ghost" href="https://github.com/TheDarkLightX/AlignmentTheorem/tree/main/research/data_center_social_contract">Research packet</a>
+          <a class="btn btn-primary" href="#policy">Read the 14 policy moves</a>
+          <a class="btn btn-ghost" href="local-government-policy-playbook.html">Standalone playbook</a>
         </div>
       </div>
 
@@ -701,6 +700,7 @@
         <div class="section-kicker">Why the full version requires Tau Language</div>
         <h2 class="section-h">The constitution must be able to reason about changes to itself.</h2>
         <p class="lede">A conventional chain can hold money. A legal document can state duties. Lean can prove theorems. Ordinary software can execute a rule. The full Alignment Theorem needs all of those functions tied to one live semantic constitution: the rules must be formal, decidable, executable, inspectable, and safely revisable under higher-order requirements.</p>
+        <div class="table-scroll" role="region" aria-label="Layer comparison" tabindex="0">
         <table>
           <thead><tr><th>Layer</th><th>What it does well</th><th>What stays external</th></tr></thead>
           <tbody>
@@ -711,6 +711,7 @@
             <tr><td><strong>Tau Language</strong></td><td>Decidable, executable specifications that can represent and reason over Tau specifications, including controlled pointwise revision</td><td>Physical truth, legal authority, identity, meters, custody, and production hardening still require external systems</td></tr>
           </tbody>
         </table>
+        </div>
         <div class="callout"><strong>The exclusivity claim is architectural, not mystical.</strong> Pieces of this system can be approximated elsewhere. The full self-amending version requires a live language in which the constitution is itself a native logical object, proposed updates can be checked against &ldquo;requirements for the requirements,&rdquo; and accepted rules remain executable. Tau is the current language at the center of this project that is designed around that combination.</div>
 
         <h3 style="margin-top:36px;font-family:var(--font-display);font-size:1.3rem">The ten-fact local constitutional gate</h3>
@@ -757,6 +758,7 @@
           <div class="section-num">07</div>
           <div class="section-kicker">What has actually been established</div>
           <h2 class="section-h">Strong conditional mathematics, bounded execution, explicit deployment boundaries.</h2>
+          <div class="table-scroll" role="region" aria-label="Evidence summary" tabindex="0">
           <table>
             <thead><tr><th>Evidence lane</th><th>Result</th><th>Safe interpretation</th></tr></thead>
             <tbody>
@@ -768,6 +770,7 @@
               <tr><td>Tau Testnet</td><td>Alpha system with explicit limitations</td><td>Useful for testing architecture; not production authority or a safe home for real public funds</td></tr>
             </tbody>
           </table>
+          </div>
           <div class="callout warning">A theorem over authenticated facts does not authenticate the world. A production pilot still needs lawful authority, independent measurement, causation methods, identity and appeals, secure custody, exact interpreter provenance, security review, and empirical welfare evaluation.</div>
         </div>
       </section>
