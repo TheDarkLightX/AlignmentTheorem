@@ -1,5 +1,5 @@
 {
-  "artifact_revision": "751abb4e9c3a9d14b0faf72c862ec5bdd0e15216",
+  "artifact_revision": "6dd1a6d3efc22013459a29ccf4c378f16abd00f5",
   "assumptions": [
     "Welfare is separable weighted harmonic utility with marginal weight divided by baseline plus allocation plus one.",
     "All allocation atoms are indivisible and all comparisons are exact.",
@@ -26,7 +26,7 @@
         {
           "path": "verification/receipts/compute_dividend_campaign.json",
           "role": "Source-bound finite campaign counts, parameter domain, and zero-mismatch result.",
-          "sha256": "8ebc2d734d6277825455912e4447078805ddb3e20a5092d7c30939e3e4176694"
+          "sha256": "11c8c335cc76be0c768d461672b2db775fddf0971fa46e292a04d706f83f596d"
         }
       ],
       "id": "E-CD01-REFERENCE-01",
@@ -49,7 +49,7 @@
         "exit_code": 0
       },
       "status": "passed",
-      "tool_revision": "CPython 3.12.13"
+      "tool_revision": "CPython 3.12"
     }
   ],
   "conclusion": "The greedy allocation has welfare at least that of every feasible integral allocation under the quantified assumptions.",
@@ -134,7 +134,7 @@
       {
         "path": "verification/receipts/compute_dividend_campaign.json",
         "role": "Source-bound finite campaign counts, parameter domain, and zero-mismatch result.",
-        "sha256": "8ebc2d734d6277825455912e4447078805ddb3e20a5092d7c30939e3e4176694"
+        "sha256": "11c8c335cc76be0c768d461672b2db775fddf0971fa46e292a04d706f83f596d"
       }
     ],
     "claim_mapping": [
