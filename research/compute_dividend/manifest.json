@@ -1,5 +1,5 @@
 {
-  "artifact_revision": "8479254933cebe597d7bbf2912d0a86a354f295e",
+  "artifact_revision": "d091691df5ed38f22ae8a8ad4b61c331a9f62370",
   "authority_status": "RESEARCH_REFERENCE_ONLY_NO_FINANCIAL_OR_VALUE_AUTHORITY",
   "base_revision": "b44540b69231a8dbadaaf86cb507220465c06ca0",
   "claim_status": "SUPPORTED_BOUNDED_WITH_OPEN_EMPIRICAL_AND_TAU_REPLAY_GATES",
@@ -11,8 +11,8 @@
     "version": "Tau Language Framework version 0.7.0-alpha (fd137e8)"
   },
   "files_sha256": {
-    "README.md": "6b2500338d4ef2e447c6a5cf78c31ef7a4c9cf3b09cf45dfbf505757586e9c07",
-    "TOOLCHAINS.md": "99d0d80cd815e1d31dad834dea687827a64ba95b6c7d07760fe7112ee5f2dde6",
+    "README.md": "01ca12e9eb0ecf4331938f8297e34c14b8421ccaae83f6c2b1dd524e4394e72c",
+    "TOOLCHAINS.md": "e6774672f3f2bc71acf52c59c765c1e0980b3b4baea95c6549418a5a6aa692e8",
     "docs/THREAT_MODEL.md": "8a4ff4ac6669b98871e65e2d7baf2b73b2ce748dc890fc0130e4d026dfd1adfa",
     "proofs/compute_dividend/AxiomAudit.lean": "90d78c45b1e164057e3e7e46291fc20c07f59e21512369acc149fd9b6b652db9",
     "proofs/compute_dividend/ComputeDividend.lean": "ab4b3fa5eb877440c4433517b38ead1a39f7d7d4c72237cd1284e47f22fb7706",

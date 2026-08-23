@@ -1,5 +1,5 @@
 {
-  "artifact_revision": "8479254933cebe597d7bbf2912d0a86a354f295e",
+  "artifact_revision": "d091691df5ed38f22ae8a8ad4b61c331a9f62370",
   "assumptions": [
     "Welfare is separable weighted harmonic utility with marginal weight divided by baseline plus allocation plus one.",
     "All allocation atoms are indivisible and all comparisons are exact.",
