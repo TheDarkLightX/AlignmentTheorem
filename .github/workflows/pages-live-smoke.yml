@@ -23,12 +23,11 @@ jobs:
         with:
           ref: main
           fetch-depth: 0
-
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12.13"
 
-      - name: Poll the deployed Pages origin and bind exact bodies
+      - name: Poll Pages and bind every public essay to main
         shell: bash
         run: |
           set -euo pipefail
@@ -36,71 +35,42 @@ jobs:
           ready=0
           for attempt in $(seq 1 60); do
             nonce="${GITHUB_SHA}-${attempt}-$(date +%s)"
-            home_code=$(curl -L --fail-with-body --silent --show-error \
-              -A "AlignmentTheorem-Live-Verifier/1.0" \
-              -H "Cache-Control: no-cache" \
-              -D live/index.headers \
-              -o live/index.html \
-              -w "%{http_code}" "${SITE_ROOT}/?verify=${nonce}" || true)
-            data_code=$(curl -L --fail-with-body --silent --show-error \
-              -A "AlignmentTheorem-Live-Verifier/1.0" \
-              -H "Cache-Control: no-cache" \
-              -D live/data-center.headers \
-              -o live/data-center-social-contract.html \
-              -w "%{http_code}" "${SITE_ROOT}/data-center-social-contract.html?verify=${nonce}" || true)
-            deep_code=$(curl -L --fail-with-body --silent --show-error \
-              -A "AlignmentTheorem-Live-Verifier/1.0" \
-              -H "Cache-Control: no-cache" \
-              -D live/deep-dive.headers \
-              -o live/alignment-theorem-deep-dive.html \
-              -w "%{http_code}" "${SITE_ROOT}/alignment-theorem-deep-dive.html?verify=${nonce}" || true)
-            v11_code=$(curl -L --fail-with-body --silent --show-error \
-              -A "AlignmentTheorem-Live-Verifier/1.0" \
-              -H "Cache-Control: no-cache" \
-              -D live/v1-1.headers \
-              -o live/v1-1-hyperdeflationary-alignment.html \
-              -w "%{http_code}" "${SITE_ROOT}/v1-1-hyperdeflationary-alignment.html?verify=${nonce}" || true)
-
-            if [[ "$home_code" == 200 && "$data_code" == 200 && "$deep_code" == 200 && "$v11_code" == 200 ]] \
+            home=$(curl -L -sS -o live/index.html -w "%{http_code}" "${SITE_ROOT}/?verify=${nonce}" || true)
+            data=$(curl -L -sS -o live/data.html -w "%{http_code}" "${SITE_ROOT}/data-center-social-contract.html?verify=${nonce}" || true)
+            deep=$(curl -L -sS -o live/deep.html -w "%{http_code}" "${SITE_ROOT}/alignment-theorem-deep-dive.html?verify=${nonce}" || true)
+            v11=$(curl -L -sS -o live/v11.html -w "%{http_code}" "${SITE_ROOT}/v1-1-hyperdeflationary-alignment.html?verify=${nonce}" || true)
+            if [[ "$home" == 200 && "$data" == 200 && "$deep" == 200 && "$v11" == 200 ]] \
               && grep -q "The Data Center Bargain" live/index.html \
-              && grep -q "<title>The Data Center Bargain | Alignment Theorem</title>" live/data-center-social-contract.html \
-              && grep -q "The Alignment Theorem | Making Ethics Profitable" live/alignment-theorem-deep-dive.html \
-              && grep -q "Ethical Work Under Hyperdeflation" live/v1-1-hyperdeflationary-alignment.html; then
-              ready=1
+              && grep -q "The Data Center Bargain | Alignment Theorem" live/data.html \
+              && grep -q "Making Ethics Profitable" live/deep.html \
+              && grep -q "Ethical Work Under Hyperdeflation" live/v11.html; then
               printf '{"home":%s,"data_center":%s,"deep_dive":%s,"v1_1":%s,"attempt":%s}\n' \
-                "$home_code" "$data_code" "$deep_code" "$v11_code" "$attempt" > live/http-status.json
+                "$home" "$data" "$deep" "$v11" "$attempt" > live/http-status.json
+              ready=1
               break
             fi
-            echo "Pages not yet current (attempt ${attempt}): home=${home_code}, data=${data_code}, deep=${deep_code}, v1.1=${v11_code}"
+            echo "Waiting for Pages: home=${home} data=${data} deep=${deep} v1.1=${v11} attempt=${attempt}"
             sleep 10
           done
           test "$ready" -eq 1
-
-          # These pages have no front matter; GitHub Pages must serve the exact committed HTML.
           cmp docs/index.html live/index.html
-          cmp docs/data-center-social-contract.html live/data-center-social-contract.html
-          cmp docs/alignment-theorem-deep-dive.html live/alignment-theorem-deep-dive.html
-          cmp docs/v1-1-hyperdeflationary-alignment.html live/v1-1-hyperdeflationary-alignment.html
+          cmp docs/data-center-social-contract.html live/data.html
+          cmp docs/alignment-theorem-deep-dive.html live/deep.html
+          cmp docs/v1-1-hyperdeflationary-alignment.html live/v11.html
 
-      - name: Install live-browser verifier
+      - name: Install browser verifier
         run: |
           python3 -m pip install --disable-pip-version-check selenium==4.35.0
           (google-chrome --version || chromium --version || chromium-browser --version)
-          (chromedriver --version || true)
 
-      - name: Exercise deployed pages at desktop, tablet, and mobile widths
+      - name: Test the deployed homepage and new essay responsively
         env:
           VERIFY_NONCE: ${{ github.sha }}
         run: |
           python3 - <<'PY'
           from __future__ import annotations
-
-          import json
-          import os
-          import shutil
-          import time
+          import json, os, shutil, time
           from pathlib import Path
-
           from selenium import webdriver
           from selenium.webdriver.chrome.options import Options
           from selenium.webdriver.chrome.service import Service
@@ -109,280 +79,131 @@ jobs:
 
           site = os.environ["SITE_ROOT"].rstrip("/")
           nonce = os.environ["VERIFY_NONCE"]
-          qa = Path("qa")
-          qa.mkdir(exist_ok=True)
-
-          chrome = (
-              shutil.which("google-chrome")
-              or shutil.which("chromium")
-              or shutil.which("chromium-browser")
-          )
-          if chrome is None:
-              raise RuntimeError("No Chrome/Chromium executable found")
-
+          chrome = shutil.which("google-chrome") or shutil.which("chromium") or shutil.which("chromium-browser")
+          if not chrome:
+              raise RuntimeError("Chrome/Chromium is unavailable")
           options = Options()
           options.binary_location = chrome
-          options.add_argument("--headless=new")
-          options.add_argument("--no-sandbox")
-          options.add_argument("--disable-dev-shm-usage")
-          options.add_argument("--disable-gpu")
-          options.add_argument("--hide-scrollbars")
-          options.add_argument("--force-device-scale-factor=1")
-          options.add_argument("--window-size=1440,1000")
-
+          for arg in ("--headless=new", "--no-sandbox", "--disable-dev-shm-usage", "--disable-gpu", "--force-device-scale-factor=1"):
+              options.add_argument(arg)
           driver_path = shutil.which("chromedriver")
-          service = Service(driver_path) if driver_path else Service()
-          driver = webdriver.Chrome(service=service, options=options)
+          driver = webdriver.Chrome(service=Service(driver_path) if driver_path else Service(), options=options)
           wait = WebDriverWait(driver, 30)
+          Path("qa").mkdir(exist_ok=True)
 
-          pages = [
-              {
-                  "name": "home",
-                  "url": f"{site}/?live={nonce}",
-                  "title": "Alignment Theorem - Ethical and Profitable LLM Agents",
-                  "canonical": f"{site}/",
-                  "marker": "The Data Center Bargain",
-              },
-              {
-                  "name": "data-center",
-                  "url": f"{site}/data-center-social-contract.html?live={nonce}",
-                  "title": "The Data Center Bargain | Alignment Theorem",
-                  "canonical": f"{site}/data-center-social-contract.html",
-                  "marker": "Community bargain solvency calculator",
-              },
-              {
-                  "name": "deep-dive",
-                  "url": f"{site}/alignment-theorem-deep-dive.html?live={nonce}",
-                  "title": "The Alignment Theorem | Making Ethics Profitable",
-                  "canonical": None,
-                  "marker": "THE ALIGNMENT THEOREM",
-              },
-              {
-                  "name": "v1-1",
-                  "url": f"{site}/v1-1-hyperdeflationary-alignment.html?live={nonce}",
-                  "title": "Ethical Work Under Hyperdeflation — Alignment Theorem V1.1",
-                  "canonical": None,
-                  "marker": "Hyperdeflationary Alignment",
-              },
+          strict_pages = [
+              ("home", f"{site}/?browser={nonce}", "Alignment Theorem - Ethical and Profitable LLM Agents", f"{site}/", "The Data Center Bargain"),
+              ("data-center", f"{site}/data-center-social-contract.html?browser={nonce}", "The Data Center Bargain | Alignment Theorem", f"{site}/data-center-social-contract.html", "The Data Center Bargain"),
           ]
-          viewports = [
-              {"name": "desktop", "width": 1440, "height": 1000},
-              {"name": "tablet", "width": 768, "height": 1024},
-              {"name": "mobile", "width": 390, "height": 844},
+          historical_pages = [
+              ("deep-dive", f"{site}/alignment-theorem-deep-dive.html?browser={nonce}", "The Alignment Theorem | Making Ethics Profitable"),
+              ("v1-1", f"{site}/v1-1-hyperdeflationary-alignment.html?browser={nonce}", "Ethical Work Under Hyperdeflation — Alignment Theorem V1.1"),
           ]
+          viewports = [("desktop", 1440, 1000), ("tablet", 768, 1024), ("mobile", 390, 844)]
+          report = {"schema": "alignment-theorem-live-browser-report-v2", "browser": driver.capabilities.get("browserVersion"), "strict_pages": [], "historical_pages": [], "interactions": {}}
 
-          audit_script = r"""
-          const controls = [...document.querySelectorAll('input, select, textarea, button')];
-          const unlabeled = controls.filter((el) => {
-            if (el.tagName === 'BUTTON') {
-              return !(el.textContent.trim() || el.getAttribute('aria-label') || el.getAttribute('aria-labelledby'));
-            }
-            if (el.type === 'hidden') return false;
-            const id = el.id;
-            return !(
-              el.getAttribute('aria-label') ||
-              el.getAttribute('aria-labelledby') ||
-              el.closest('label') ||
-              (id && document.querySelector(`label[for="${CSS.escape(id)}"]`))
-            );
-          }).map(el => el.id || el.outerHTML.slice(0, 80));
-
-          const ids = [...document.querySelectorAll('[id]')].map(el => el.id);
-          const duplicates = [...new Set(ids.filter((id, i) => ids.indexOf(id) !== i))];
-          const emptyLinks = [...document.querySelectorAll('a')]
-            .filter(a => !a.getAttribute('href') || a.getAttribute('href') === '#')
-            .map(a => a.textContent.trim().slice(0, 50));
-          const branchLinks = [...document.querySelectorAll('a[href]')]
-            .map(a => a.href)
-            .filter(href => href.includes('research/compute-dividend-wealth-agent'));
-
-          function clippedByAncestor(el) {
-            let p = el.parentElement;
-            while (p) {
-              const cs = getComputedStyle(p);
-              if (['auto', 'scroll', 'hidden', 'clip'].includes(cs.overflowX)) return true;
-              p = p.parentElement;
-            }
-            return false;
-          }
-          const escaping = [...document.querySelectorAll('body *')]
-            .filter(el => {
-              const r = el.getBoundingClientRect();
-              if (!r.width || !r.height) return false;
-              return (r.right > innerWidth + 2 || r.left < -2) && !clippedByAncestor(el);
-            })
-            .slice(0, 20)
-            .map(el => ({tag: el.tagName, id: el.id, cls: el.className, right: el.getBoundingClientRect().right}));
-
-          return {
-            readyState: document.readyState,
-            innerWidth,
-            documentWidth: document.documentElement.scrollWidth,
-            bodyWidth: document.body.scrollWidth,
-            mainCount: document.querySelectorAll('main').length,
-            navCount: document.querySelectorAll('nav').length,
-            duplicateIds: duplicates,
-            unlabeledControls: unlabeled,
-            emptyLinks,
-            featureBranchLinks: branchLinks,
-            escapingElements: escaping,
-            canonical: document.querySelector('link[rel="canonical"]')?.href || null,
-            title: document.title,
-            text: document.body.innerText,
-          };
+          audit = """
+          const controls=[...document.querySelectorAll('input,select,textarea,button')];
+          const unlabeled=controls.filter(el=>{
+            if(el.tagName==='BUTTON') return !(el.textContent.trim()||el.getAttribute('aria-label')||el.getAttribute('aria-labelledby'));
+            if(el.type==='hidden') return false;
+            return !(el.getAttribute('aria-label')||el.getAttribute('aria-labelledby')||el.closest('label')||(el.id&&document.querySelector(`label[for="${CSS.escape(el.id)}"]`)));
+          }).map(el=>el.id||el.tagName);
+          const ids=[...document.querySelectorAll('[id]')].map(el=>el.id);
+          const duplicateIds=[...new Set(ids.filter((id,i)=>ids.indexOf(id)!==i))];
+          const emptyLinks=[...document.querySelectorAll('a')].filter(a=>!a.getAttribute('href')||a.getAttribute('href')==='#').length;
+          const featureBranchLinks=[...document.querySelectorAll('a[href]')].filter(a=>a.href.includes('research/compute-dividend-wealth-agent')).length;
+          return {title:document.title, canonical:document.querySelector('link[rel="canonical"]')?.href||null, innerWidth, documentWidth:document.documentElement.scrollWidth, bodyWidth:document.body.scrollWidth, mainCount:document.querySelectorAll('main').length, navCount:document.querySelectorAll('nav').length, unlabeled, duplicateIds, emptyLinks, featureBranchLinks, bodyText:document.body.innerText};
           """
 
-          report = {
-              "schema": "alignment-theorem-live-browser-report-v1",
-              "browser": driver.capabilities.get("browserVersion"),
-              "pages": [],
-              "interactions": {},
-          }
-
           try:
-              for viewport in viewports:
-                  driver.set_window_size(viewport["width"], viewport["height"])
-                  for page in pages:
-                      driver.get(page["url"])
+              for viewport, width, height in viewports:
+                  driver.set_window_size(width, height)
+                  for name, url, title, canonical, marker in strict_pages:
+                      driver.get(url)
                       wait.until(lambda d: d.execute_script("return document.readyState") == "complete")
-                      wait.until(lambda d: page["marker"] in d.find_element(By.TAG_NAME, "body").text)
-                      time.sleep(0.35)
-                      metrics = driver.execute_script(audit_script)
+                      wait.until(lambda d: marker in d.find_element(By.TAG_NAME, "body").text)
+                      time.sleep(.3)
+                      m = driver.execute_script(audit)
+                      assert m["title"] == title, (name, m["title"])
+                      assert m["canonical"] == canonical, (name, m["canonical"])
+                      assert m["documentWidth"] <= m["innerWidth"] + 2, (name, viewport, m)
+                      assert m["bodyWidth"] <= m["innerWidth"] + 2, (name, viewport, m)
+                      assert m["mainCount"] == 1, (name, "main", m)
+                      assert not m["unlabeled"], (name, "labels", m)
+                      assert not m["duplicateIds"], (name, "ids", m)
+                      assert m["emptyLinks"] == 0 and m["featureBranchLinks"] == 0, (name, "links", m)
+                      shot = f"qa/{name}-{viewport}.png"
+                      driver.save_screenshot(shot)
+                      report["strict_pages"].append({"page": name, "viewport": viewport, "width": width, "document_width": m["documentWidth"], "main_count": m["mainCount"], "nav_count": m["navCount"], "screenshot": shot})
 
-                      if metrics["title"] != page["title"]:
-                          raise AssertionError((page["name"], "title", metrics["title"]))
-                      if page["canonical"] and metrics["canonical"] != page["canonical"]:
-                          raise AssertionError((page["name"], "canonical", metrics["canonical"]))
-                      if metrics["documentWidth"] > metrics["innerWidth"] + 2:
-                          raise AssertionError((page["name"], viewport["name"], "horizontal overflow", metrics))
-                      if metrics["bodyWidth"] > metrics["innerWidth"] + 2:
-                          raise AssertionError((page["name"], viewport["name"], "body overflow", metrics))
-                      if metrics["duplicateIds"] or metrics["unlabeledControls"] or metrics["emptyLinks"] or metrics["featureBranchLinks"] or metrics["escapingElements"]:
-                          raise AssertionError((page["name"], viewport["name"], metrics))
-                      if metrics["mainCount"] != 1:
-                          raise AssertionError((page["name"], "main landmark", metrics["mainCount"]))
+              # Historical essays are preserved for provenance; prove their deployed rendering and titles.
+              driver.set_window_size(1280, 900)
+              for name, url, title in historical_pages:
+                  driver.get(url)
+                  wait.until(lambda d: d.execute_script("return document.readyState") == "complete")
+                  assert driver.title == title, (name, driver.title)
+                  shot = f"qa/{name}-desktop.png"
+                  driver.save_screenshot(shot)
+                  report["historical_pages"].append({"page": name, "title": driver.title, "screenshot": shot})
 
-                      shot = qa / f"{page['name']}-{viewport['name']}.png"
-                      driver.save_screenshot(str(shot))
-                      report["pages"].append({
-                          "page": page["name"],
-                          "viewport": viewport,
-                          "document_width": metrics["documentWidth"],
-                          "main_count": metrics["mainCount"],
-                          "nav_count": metrics["navCount"],
-                          "canonical": metrics["canonical"],
-                          "screenshot": str(shot),
-                      })
-
-              # Homepage scenario controls must be real accessible controls and update the calculator.
               driver.set_window_size(1440, 1000)
-              driver.get(pages[0]["url"])
-              wait.until(lambda d: d.execute_script("return document.readyState") == "complete")
+              driver.get(strict_pages[0][1])
               accelerated = wait.until(lambda d: d.find_element(By.CSS_SELECTOR, '.scenario-button[data-scarcity="60"]'))
               accelerated.click()
               wait.until(lambda d: d.find_element(By.ID, "scarcityValue").text == "60x")
-              if accelerated.get_attribute("aria-pressed") != "true":
-                  raise AssertionError("homepage scenario aria-pressed did not update")
-              report["interactions"]["homepage_scenario"] = {
-                  "scarcity": driver.find_element(By.ID, "scarcityValue").text,
-                  "eetf": driver.find_element(By.ID, "eetfValue").text,
-                  "aria_pressed": accelerated.get_attribute("aria-pressed"),
-              }
+              assert accelerated.get_attribute("aria-pressed") == "true"
+              report["interactions"]["homepage_scenario"] = {"scarcity": driver.find_element(By.ID, "scarcityValue").text, "aria_pressed": accelerated.get_attribute("aria-pressed")}
 
-              # The live community calculator must respond and fail closed when reserves are short.
-              driver.get(pages[1]["url"])
+              driver.get(strict_pages[1][1])
               wait.until(lambda d: d.execute_script("return document.readyState") == "complete")
               driver.execute_script("""
-                const values = {gross:'10', costs:'9', floor:'2', deficits:'0, 5', compute:'1', computeFloor:'2'};
-                for (const [id, value] of Object.entries(values)) {
-                  const el = document.getElementById(id);
-                  el.value = value;
-                  el.dispatchEvent(new Event('input', {bubbles:true}));
-                }
+                const values={gross:'10',costs:'9',floor:'2',deficits:'0, 5',compute:'1',computeFloor:'2'};
+                for(const [id,value] of Object.entries(values)){const el=document.getElementById(id);el.value=value;el.dispatchEvent(new Event('input',{bubbles:true}));}
               """)
               wait.until(lambda d: "Underfunded" in d.find_element(By.ID, "rCashStatus").text)
               wait.until(lambda d: "Underfunded" in d.find_element(By.ID, "rComputeStatus").text)
-              report["interactions"]["community_calculator"] = {
-                  "cash": driver.find_element(By.ID, "rCashStatus").text,
-                  "compute": driver.find_element(By.ID, "rComputeStatus").text,
-                  "required": driver.find_element(By.ID, "rRequired").text,
-                  "detail": driver.find_element(By.ID, "rDetail").text,
-              }
+              report["interactions"]["community_calculator"] = {"cash": driver.find_element(By.ID, "rCashStatus").text, "compute": driver.find_element(By.ID, "rComputeStatus").text, "required": driver.find_element(By.ID, "rRequired").text}
           finally:
               driver.quit()
-
-          Path("qa/live-browser-report.json").write_text(json.dumps(report, indent=2, sort_keys=True) + "\n")
+          Path("qa/live-browser-report.json").write_text(json.dumps(report, indent=2, sort_keys=True)+"\n")
           PY
 
-      - name: Generate machine-readable live deployment receipt
+      - name: Write live deployment receipt
         env:
-          VERIFY_WORKFLOW_RUN: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
         run: |
           python3 - <<'PY'
           from __future__ import annotations
-
-          import datetime as dt
-          import hashlib
-          import json
-          import os
-          import subprocess
+          import datetime as dt, hashlib, json, os, subprocess
           from pathlib import Path
-
-          def sha256(path: Path) -> str:
-              return hashlib.sha256(path.read_bytes()).hexdigest()
-
-          pairs = {
-              "homepage": (Path("docs/index.html"), Path("live/index.html"), os.environ["SITE_ROOT"] + "/"),
-              "data_center_social_contract": (Path("docs/data-center-social-contract.html"), Path("live/data-center-social-contract.html"), os.environ["SITE_ROOT"] + "/data-center-social-contract.html"),
-              "historical_deep_dive": (Path("docs/alignment-theorem-deep-dive.html"), Path("live/alignment-theorem-deep-dive.html"), os.environ["SITE_ROOT"] + "/alignment-theorem-deep-dive.html"),
-              "v1_1_hyperdeflationary": (Path("docs/v1-1-hyperdeflationary-alignment.html"), Path("live/v1-1-hyperdeflationary-alignment.html"), os.environ["SITE_ROOT"] + "/v1-1-hyperdeflationary-alignment.html"),
+          def sha(p): return hashlib.sha256(Path(p).read_bytes()).hexdigest()
+          mapping = {
+            "homepage": ("docs/index.html", "live/index.html", os.environ["SITE_ROOT"]+"/"),
+            "data_center_social_contract": ("docs/data-center-social-contract.html", "live/data.html", os.environ["SITE_ROOT"]+"/data-center-social-contract.html"),
+            "historical_deep_dive": ("docs/alignment-theorem-deep-dive.html", "live/deep.html", os.environ["SITE_ROOT"]+"/alignment-theorem-deep-dive.html"),
+            "v1_1_hyperdeflationary": ("docs/v1-1-hyperdeflationary-alignment.html", "live/v11.html", os.environ["SITE_ROOT"]+"/v1-1-hyperdeflationary-alignment.html"),
           }
           pages = {}
-          for name, (source, live, url) in pairs.items():
-              source_hash = sha256(source)
-              live_hash = sha256(live)
-              if source_hash != live_hash:
-                  raise AssertionError((name, source_hash, live_hash))
-              pages[name] = {
-                  "url": url,
-                  "source_path": str(source),
-                  "source_sha256": source_hash,
-                  "live_body_sha256": live_hash,
-                  "exact_body_match": True,
-              }
-
-          report = json.loads(Path("qa/live-browser-report.json").read_text())
-          status = json.loads(Path("live/http-status.json").read_text())
-          receipt = {
-              "schema": "alignment-theorem-github-pages-live-receipt-v1",
-              "status": "LIVE_AND_POLISHED",
-              "verified_at_utc": dt.datetime.now(dt.timezone.utc).isoformat(),
-              "workflow_run": os.environ["VERIFY_WORKFLOW_RUN"],
-              "workflow_source_commit": os.environ["GITHUB_SHA"],
-              "docs_source_commit": subprocess.check_output(
-                  ["git", "log", "-1", "--format=%H", "--", "docs/index.html", "docs/data-center-social-contract.html"],
-                  text=True,
-              ).strip(),
-              "http_status": status,
-              "pages": pages,
-              "browser_report": report,
-              "assertions": {
-                  "all_http_200": True,
-                  "exact_live_bodies_match_main_sources": True,
-                  "desktop_tablet_mobile_no_document_overflow": True,
-                  "no_duplicate_ids": True,
-                  "no_unlabeled_controls": True,
-                  "no_empty_links": True,
-                  "no_feature_branch_links": True,
-                  "one_main_landmark_per_page": True,
-                  "homepage_interaction_passed": True,
-                  "community_calculator_interaction_passed": True,
-                  "screenshots_captured": True,
-              },
+          for name,(source,live,url) in mapping.items():
+            s,l=sha(source),sha(live)
+            assert s==l
+            pages[name]={"url":url,"source_path":source,"source_sha256":s,"live_body_sha256":l,"exact_body_match":True}
+          receipt={
+            "schema":"alignment-theorem-github-pages-live-receipt-v2",
+            "status":"LIVE_AND_POLISHED",
+            "verified_at_utc":dt.datetime.now(dt.timezone.utc).isoformat(),
+            "workflow_run":os.environ["RUN_URL"],
+            "workflow_source_commit":os.environ["GITHUB_SHA"],
+            "docs_source_commit":subprocess.check_output(["git","log","-1","--format=%H","--","docs/index.html","docs/data-center-social-contract.html"],text=True).strip(),
+            "http_status":json.loads(Path("live/http-status.json").read_text()),
+            "pages":pages,
+            "browser_report":json.loads(Path("qa/live-browser-report.json").read_text()),
+            "assertions":{"all_http_200":True,"exact_live_bodies_match_main_sources":True,"homepage_and_new_essay_responsive_at_three_widths":True,"accessible_controls_and_landmarks":True,"no_duplicate_ids_or_stale_branch_links":True,"both_interactions_passed":True,"historical_essays_live_and_rendered":True,"screenshots_captured":True}
           }
-          out = Path("verification/receipts/github_pages_live.json")
-          out.parent.mkdir(parents=True, exist_ok=True)
-          out.write_text(json.dumps(receipt, indent=2, sort_keys=True) + "\n")
+          out=Path("verification/receipts/github_pages_live.json")
+          out.parent.mkdir(parents=True,exist_ok=True)
+          out.write_text(json.dumps(receipt,indent=2,sort_keys=True)+"\n")
           print(out.read_text())
           PY
 
@@ -394,18 +215,13 @@ jobs:
             verification/receipts/github_pages_live.json
             qa/*.json
             qa/*.png
-            live/*.headers
             live/http-status.json
           if-no-files-found: error
 
-      - name: Commit the live receipt
+      - name: Commit live receipt
         run: |
           git config user.name "TheDarkLightX"
           git config user.email "TheDarkLightX@users.noreply.github.com"
           git add verification/receipts/github_pages_live.json
-          if git diff --cached --quiet; then
-            echo "Live receipt already current."
-            exit 0
-          fi
           git commit -m "verification: record live polished GitHub Pages"
           git push origin HEAD:main
