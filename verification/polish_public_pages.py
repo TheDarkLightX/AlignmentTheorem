@@ -39,6 +39,9 @@ class _StructureParser(HTMLParser):
         self.ids: list[str] = []
         self.hrefs: list[str] = []
         self.blank_targets_without_noopener: list[str] = []
+        self.label_targets: set[str] = set()
+        self.controls: list[tuple[str | None, bool]] = []
+        self._label_depth = 0
 
     def handle_starttag(
         self, tag: str, attrs: list[tuple[str, str | None]]
@@ -47,6 +50,18 @@ class _StructureParser(HTMLParser):
         element_id = values.get("id")
         if element_id:
             self.ids.append(element_id)
+        if tag == "label":
+            self._label_depth += 1
+            label_target = values.get("for")
+            if label_target:
+                self.label_targets.add(label_target)
+        if tag in {"input", "select", "textarea"} and values.get("type") != "hidden":
+            directly_named = bool(
+                values.get("aria-label")
+                or values.get("aria-labelledby")
+                or self._label_depth
+            )
+            self.controls.append((element_id, directly_named))
         if tag != "a":
             return
         href = values.get("href")
@@ -56,6 +71,10 @@ class _StructureParser(HTMLParser):
             rel = set((values.get("rel") or "").split())
             if "noopener" not in rel:
                 self.blank_targets_without_noopener.append(href or "<empty>")
+
+    def handle_endtag(self, tag: str) -> None:
+        if tag == "label":
+            self._label_depth = max(0, self._label_depth - 1)
 
 
 def _structure_checks(
@@ -88,6 +107,12 @@ def _structure_checks(
         for target, fragment in local_targets
         if target.is_file() and target.suffix.lower() == ".html"
     )
+    unlabeled_controls = [
+        element_id or "<missing-id>"
+        for element_id, directly_named in parser.controls
+        if not directly_named
+        and (element_id is None or element_id not in parser.label_targets)
+    ]
 
     return {
         f"{name} has unique element IDs": len(parser.ids) == len(ids),
@@ -101,6 +126,7 @@ def _structure_checks(
         ),
         f"{name} cross-page fragments resolve": local_fragments_resolve,
         f"{name} blank targets use noopener": not parser.blank_targets_without_noopener,
+        f"{name} form controls have accessible names": not unlabeled_controls,
     }
 
 
