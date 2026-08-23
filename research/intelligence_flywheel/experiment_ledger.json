@@ -1,0 +1,68 @@
+{
+  "schema": "alignment-theorem-experiment-ledger-v1",
+  "experiments": [
+    {
+      "id": "E-IF-PYTHON-01",
+      "kind": "exact_finite_model",
+      "status": "passed_bounded",
+      "artifact": "verification/receipts/intelligence_flywheel_campaign.json",
+      "result": "544 exact bridge cases; zero floor/identity failures; full-bridge crossing at epoch 4; partial-bridge, logistic, and rebound countermodels retained."
+    },
+    {
+      "id": "E-IF-LEAN-01",
+      "kind": "formal_proof",
+      "status": "passed",
+      "artifact": "verification/receipts/lean_intelligence_flywheel_v4.33.0.json",
+      "result": "Lean 4.33.0 build and axiom audit passed with no placeholders; geometric crossing, fixed-deviation witness, bounded-reward impossibility, strict equality, gate, and sender-scope theorems checked."
+    },
+    {
+      "id": "E-IF-LEAN-COUNTERMODEL-02",
+      "kind": "formal_countermodel",
+      "status": "refuted",
+      "artifact": "proofs/intelligence_flywheel/IntelligenceFlywheel.lean",
+      "result": "For every arbitrary intelligence path, M=K=1 and B=2 is not aligned."
+    },
+    {
+      "id": "E-IF-PYTHON-COUNTERMODEL-03",
+      "kind": "executable_countermodels",
+      "status": "passed_bounded",
+      "artifact": "verification/receipts/intelligence_flywheel_campaign.json",
+      "result": "Incomplete pass-through bounds M below 5/2, logistic capability stays below 8, and a rebound surcharge keeps adjusted price at one in the declared finite domains."
+    },
+    {
+      "id": "E-IF-TAU-CANDIDATE-04",
+      "kind": "actual_tau_candidate_execution",
+      "status": "passed_bounded_candidate",
+      "artifact": "research/intelligence_flywheel/tau_candidate_probe.json",
+      "result": "Clean fd137e8/5dd036 source pins and candidate b2699306 produced 512 canonical rows with accepted row [0]; candidate identity differs from the reviewed binary."
+    },
+    {
+      "id": "E-IF-TAU-NET-NATIVE-05",
+      "kind": "actual_tau_testnet_native_abi_execution",
+      "status": "passed_bounded_native_abi",
+      "artifact": "research/intelligence_flywheel/tau_net_native_probe.json",
+      "result": "Pinned Tau Testnet 9f9240 and source-pinned native module matched 12 sender/all-true/single-fault/missing-input cases; no node or external-fact authentication claim."
+    },
+    {
+      "id": "E-IF-TAU-REVIEWED-PENDING-06",
+      "kind": "reviewed_binary_replay",
+      "status": "blocked_missing_reviewed_binary",
+      "artifact": "research/intelligence_flywheel/TAU_NET_REPLAY.md",
+      "result": "Strict runner prepared for c4926740; local candidate is rejected before execution and cannot satisfy the reviewed identity."
+    },
+    {
+      "id": "E-IF-TAU-NET-SYNTAX-NEGATIVE-07",
+      "kind": "actual_tau_negative_result",
+      "status": "negative_result_resolved",
+      "artifact": "tau/intelligence_flywheel/tau_net/dac_treasury_o5.tau",
+      "result": "Nested ternary form produced an unexpected-EOF syntax error and three top-level always formulas produced a multiple-main-formulas error; one always formula containing three implications compiled and executed."
+    },
+    {
+      "id": "E-IF-TAU-BINDING-BUILD-NEGATIVE-08",
+      "kind": "build_negative_result",
+      "status": "negative_result_resolved_nonhermetically",
+      "artifact": "research/intelligence_flywheel/TAU_NET_REPLAY.md",
+      "result": "Default read-only /root/.tau prefix and missing nanobind blocked the first builds; an explicit workspace dependency prefix and pinned nanobind checkout produced the local module, without hermetic provenance."
+    }
+  ]
+}

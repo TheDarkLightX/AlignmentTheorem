@@ -1,0 +1,94 @@
+{
+  "schema": "alignment-theorem-source-ledger-v1",
+  "accessed_on": "2026-08-23",
+  "sources": [
+    {
+      "id": "SRC-IF-MOORE-1965",
+      "kind": "primary_historical_paper",
+      "title": "Cramming More Components onto Integrated Circuits",
+      "uri": "https://evervault.com/papers/cramming-more-components-onto-integrated-circuits-gordon-moore.pdf",
+      "use": "Historical analogy for exponential semiconductor-component trends.",
+      "nonclaim": "The paper does not establish an intelligence-doubling law, AGI timeline, price law, or welfare result."
+    },
+    {
+      "id": "SRC-IF-HOFFMANN-2022",
+      "kind": "primary_research_paper",
+      "title": "Training Compute-Optimal Large Language Models",
+      "uri": "https://arxiv.org/abs/2203.15556",
+      "use": "Evidence that measured model loss can exhibit compute/data/model scaling relationships.",
+      "nonclaim": "Loss scaling on the studied tasks is not a law of general intelligence, autonomous returns, prices, or alignment."
+    },
+    {
+      "id": "SRC-IF-BLS-CPI",
+      "kind": "official_statistical_methodology",
+      "title": "Consumer Price Index Handbook of Methods",
+      "uri": "https://www.bls.gov/opub/hom/cpi/",
+      "use": "Boundary that a price index is a defined basket/weight construction rather than a synonym for all prices.",
+      "nonclaim": "The research basket is not represented as the official CPI."
+    },
+    {
+      "id": "SRC-IF-ACEMOGLU-RESTREPO-2019",
+      "kind": "primary_research_paper",
+      "title": "Automation and New Tasks: How Technology Displaces and Reinstates Labor",
+      "uri": "https://www.aeaweb.org/articles?id=10.1257/jep.33.2.3",
+      "use": "Task-based boundary between productivity, displacement, new tasks, wages, and distribution.",
+      "nonclaim": "Productivity growth is not treated as automatic household pass-through or universal benefit."
+    },
+    {
+      "id": "SRC-IF-FISHER-1933",
+      "kind": "primary_research_paper",
+      "title": "The Debt-Deflation Theory of Great Depressions",
+      "uri": "https://fraser.stlouisfed.org/title/debt-deflation-theory-great-depressions-3596",
+      "use": "Motivation for an explicit nominal-debt guardrail when discussing deflation.",
+      "nonclaim": "The historical theory is not asserted to identify the net effect of this hypothetical mechanism."
+    },
+    {
+      "id": "SRC-IF-TAU-LANG-FD137E8",
+      "kind": "source_repository_revision",
+      "title": "Tau Language source revision fd137e8",
+      "uri": "https://github.com/IDNI/tau-lang/commit/fd137e860b60083b36f9159ec8090cb1a3c3cb5a",
+      "use": "Pinned Tau language/parser semantics for the CLI and native-binding probes.",
+      "nonclaim": "The source revision is not proven to have produced the reviewed binary or local native module."
+    },
+    {
+      "id": "SRC-IF-TAU-LANG-README",
+      "kind": "official_project_documentation",
+      "title": "Tau Language",
+      "uri": "https://github.com/IDNI/tau-lang",
+      "use": "Project description of decidable executable specifications, synthesis, reasoning over specifications, revision, and alpha status.",
+      "nonclaim": "Project documentation is not independent verification of correctness, uniqueness, or production readiness."
+    },
+    {
+      "id": "SRC-IF-TAU-TESTNET-9F9240",
+      "kind": "source_repository_revision",
+      "title": "Tau Testnet source revision 9f9240",
+      "uri": "https://github.com/IDNI/tau-testnet/commit/9f9240ded9fd7ff246f4bbd45343c64eef9a1751",
+      "use": "Pinned current alpha o5/native ABI and documented consensus/host boundary.",
+      "nonclaim": "A source checkout is not evidence that a public network runs those exact bytes or that alpha risks are resolved."
+    },
+    {
+      "id": "SRC-IF-TAU-NET-SITE",
+      "kind": "official_project_site",
+      "title": "Tau Net",
+      "uri": "https://tau.net/",
+      "use": "Project's stated goals for self-reference, adaptive governance, agents, and knowledge/compute markets.",
+      "nonclaim": "Roadmap or marketing statements are not treated as deployment or economic evidence."
+    },
+    {
+      "id": "SRC-IF-TAU-WHITEPAPER-2020",
+      "kind": "official_historical_whitepaper",
+      "title": "Tau and Agoras Whitepaper",
+      "uri": "https://tau.net/Whitepaper.pdf",
+      "use": "Historical architecture for self-amendment, social choice, knowledge/compute markets, and an automatic-businessman concept.",
+      "nonclaim": "The 2020 design paper is not evidence of current implementation or production deployment."
+    },
+    {
+      "id": "SRC-IF-COMPUTE-DIVIDEND-LEDGER",
+      "kind": "inherited_local_source_ledger",
+      "title": "Compute-dividend source ledger",
+      "uri": "repo://research/compute_dividend/source_ledger.json",
+      "use": "Carries forward official LBNL, FERC, GAO, SEC, NIST and primary welfare/risk sources without duplicating their claims.",
+      "nonclaim": "Inheritance does not strengthen any source beyond its recorded use and nonclaim."
+    }
+  ]
+}

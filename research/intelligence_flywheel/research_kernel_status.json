@@ -1,0 +1,34 @@
+{
+  "schema": "alignment-theorem-local-research-kernel-status-v1",
+  "status": "PROTOCOL_SHAPED_LOCAL_PACKET_NOT_MCP_RECEIPT",
+  "research_kernel_mcp": "UNAVAILABLE_IN_SESSION",
+  "leap_adapter": "UNAVAILABLE_IN_SESSION",
+  "esso_adapter": "UNAVAILABLE_IN_SESSION",
+  "morph_adapter": "UNAVAILABLE_IN_SESSION",
+  "sage_adapter": "UNAVAILABLE_IN_SESSION",
+  "executed_lanes": [
+    "lean",
+    "exact-reference-model",
+    "complete-boolean-vectors",
+    "actual-tau-candidate-native-execution",
+    "actual-tau-testnet-direct-native-abi-execution",
+    "strict-reviewed-binary-preflight-negative"
+  ],
+  "promotion_invoked": false,
+  "mcp_run_started": false,
+  "nonclaims": [
+    "This file is not a Research Kernel run receipt.",
+    "No LEAP synthesis or independent review result exists.",
+    "No ESSO or Morph refinement lane is represented as completed.",
+    "No SAGE causal/economic computation or certificate exists.",
+    "Local evidence status does not imply Research Kernel promotion.",
+    "The direct Tau Testnet ABI probe is not an end-to-end network run."
+  ],
+  "next_actions": [
+    "Import the source, hypothesis, experiment, and graph ledgers into an available Research Kernel MCP run without rewriting IDs or evidence statuses.",
+    "Use SAGE or an equivalent causal/econometric lane to identify the capability-productivity-price-access bridge and uncertainty.",
+    "Use ESSO plus Lean for refinement from authenticated receipt schema to the nine Tau facts.",
+    "Run a full Tau Testnet node admission/block-apply/multi-node replay with authenticated receipts.",
+    "Run the strict packet only on the exact reviewed c4926740 executable."
+  ]
+}
