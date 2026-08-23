@@ -1,0 +1,1 @@
+Render QA receipt is generated for desktop and mobile viewports before publication.
