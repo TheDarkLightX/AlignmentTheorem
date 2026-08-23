@@ -1,0 +1,43 @@
+name: Data-center social-contract research
+
+on:
+  push:
+    branches:
+      - research/compute-dividend-wealth-agent
+    paths:
+      - "proofs/compute_dividend/DataCenter*.lean"
+      - "verification/data_center_social_contract.py"
+      - "verification/run_data_center_social_contract_campaign.py"
+      - "verification/generate_tau_data_center_social_contract_packet.py"
+      - "tests/test_data_center_social_contract.py"
+      - ".github/workflows/data-center-social-contract.yml"
+  pull_request:
+    paths:
+      - "proofs/compute_dividend/DataCenter*.lean"
+      - "verification/data_center_social_contract.py"
+      - "verification/run_data_center_social_contract_campaign.py"
+      - "verification/generate_tau_data_center_social_contract_packet.py"
+      - "tests/test_data_center_social_contract.py"
+  workflow_dispatch:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Lean toolchain manager
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Replay Lean 4.33 proofs and axiom audit
+        working-directory: proofs/compute_dividend
+        run: |
+          lake env lean DataCenterSocialContract.lean
+          lake env lean DataCenterAxiomAudit.lean
+      - name: Run exact Python unit tests
+        run: python3 -m unittest discover -s tests -v
+      - name: Run bounded assurance campaign
+        run: python3 verification/run_data_center_social_contract_campaign.py
+      - name: Regenerate Tau truth packet
+        run: python3 verification/generate_tau_data_center_social_contract_packet.py
