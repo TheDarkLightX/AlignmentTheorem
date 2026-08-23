@@ -9,6 +9,7 @@ on:
       - "verification/data_center_social_contract.py"
       - "verification/run_data_center_social_contract_campaign.py"
       - "verification/generate_tau_data_center_social_contract_packet.py"
+      - "verification/polish_public_pages.py"
       - "research/data_center_social_contract/**"
       - "tau/data_center_social_contract/**"
       - "docs/index.html"
@@ -22,6 +23,7 @@ on:
       - "verification/data_center_social_contract.py"
       - "verification/run_data_center_social_contract_campaign.py"
       - "verification/generate_tau_data_center_social_contract_packet.py"
+      - "verification/polish_public_pages.py"
       - "research/data_center_social_contract/**"
       - "tau/data_center_social_contract/**"
       - "docs/index.html"
@@ -52,6 +54,10 @@ jobs:
           lake build
           lake env lean -o .lake/build/lib/lean/DataCenterSocialContract.olean DataCenterSocialContract.lean
           lake env lean DataCenterAxiomAudit.lean
+      - name: Verify Pages polish is idempotent
+        run: |
+          python3 verification/polish_public_pages.py
+          git diff --exit-code -- docs/index.html docs/data-center-social-contract.html
       - name: Run exact Python and publication tests
         run: python3 -m unittest discover -s tests -v
       - name: Run bounded assurance campaign
