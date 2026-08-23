@@ -463,10 +463,22 @@
         .verification-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
         .verification-card {
             background: var(--paper); border: 1px solid var(--line);
+            border-left: 4px solid var(--muted);
             border-radius: 12px; padding: 22px;
             box-shadow: 0 1px 3px rgba(0,0,0,.04); transition: border-color .15s ease;
         }
         .verification-card:hover { border-color: var(--accent); }
+        .verification-card.status-checked { border-left-color: var(--ok); }
+        .verification-card.status-current { border-left-color: var(--accent); }
+        .verification-card.status-open { border-left-color: var(--warn); }
+        .verification-status {
+            font-family: var(--font-ui); font-size: .68rem; font-weight: 600;
+            text-transform: uppercase; letter-spacing: .1em;
+            color: var(--muted); margin-bottom: 6px;
+        }
+        .verification-card.status-checked .verification-status { color: var(--ok); }
+        .verification-card.status-current .verification-status { color: var(--accent); }
+        .verification-card.status-open .verification-status { color: var(--warn); }
         .verification-card h3 { font-family: var(--font-ui); font-size: 1rem; margin-bottom: 8px; color: var(--accent-ink); }
         .verification-card p { color: var(--body); font-size: .9rem; }
         code { font-family: var(--mono); background: var(--bg); padding: 1px 5px; border-radius: 4px; font-size: .86em; }
@@ -761,33 +773,10 @@
                 </div>
             </section>
 
-            <!-- 05: Virtuous cycle -->
-            <section class="section">
-                <div class="section-num">05</div>
-                <div class="section-kicker">Reinforcement</div>
-                <h2 class="section-h">The virtuous cycle</h2>
-                <div class="pipeline-container">
-                    <div class="flow-diagram" id="flowDiagram">
-                        <div class="flow-node highlight" id="node1">POLICY-COMPLIANT WORK</div>
-                        <div class="flow-arrow">&darr;</div>
-                        <div class="flow-node" id="node2">FUNDED REWARD</div>
-                        <div class="flow-arrow">&darr;</div>
-                        <div class="flow-node" id="node3">PROFITABLE REINFORCEMENT</div>
-                        <div class="flow-arrow">&darr;</div>
-                        <div class="flow-node" id="node4">MORE AGENT SEARCH</div>
-                        <div class="flow-arrow">&darr;</div>
-                        <div class="flow-node" id="node5">MORE USEFUL WORK</div>
-                        <div class="flow-arrow">&darr;</div>
-                        <div class="flow-node" id="node6">POLICY REVIEW</div>
-                        <div class="flow-arrow">&#8635;</div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- 06: Proof (dark contrast) -->
+            <!-- 05: Proof (dark contrast) -->
             <section class="dark-section" id="proof">
                 <div class="inner">
-                    <div class="section-num">06</div>
+                    <div class="section-num">05</div>
                     <div class="section-kicker">Formal proof</div>
                     <h2 class="section-h">The finite incentive argument</h2>
                     <div class="proof-container" style="background:rgba(255,255,255,.04);border-color:var(--dark-line);border-left-color:var(--accent-bright)">
@@ -804,36 +793,37 @@
                 </div>
             </section>
 
-            <!-- 07: Why this works -->
+            <!-- 06: Why this works -->
             <section class="section">
-                <div class="section-num">07</div>
+                <div class="section-num">06</div>
                 <div class="section-kicker">Why this works for AI</div>
                 <h2 class="section-h">Feasible today, bounded by design.</h2>
+                <p class="section-intro">The theorem does not require a hypothetical future agent. It requires four properties that are individually present today, combined with explicit boundaries on what is not proven.</p>
                 <div class="card-grid">
                     <div class="card"><h3>Feasible joint behavior</h3><p>Present-day assistants show that an agent can pursue a task while following ethical and safety constraints. This establishes behavioral feasibility.</p></div>
                     <div class="card"><h3>Economic reinforcement</h3><p>When compliant work pays best, training and profit seeking point agents toward the same observable behavior.</p></div>
-                    <div class="card"><h3>Verifier-conditioned</h3><p>The model proposes actions. Authenticated evidence and deterministic policy checks decide what the network can publish and reward.</p></div>
+                    <div class="card"><h3>Verifier-conditioned</h3><p>The agent proposes actions. Authenticated evidence and deterministic policy checks decide what the network can publish and reward.</p></div>
                     <div class="card"><h3>Explicit limits</h3><p>The result does not prove universal generalization, objective ethics, honest sensors, coalition safety, or bounds outside the modeled action class.</p></div>
                 </div>
             </section>
 
-            <!-- 08: Verification -->
+            <!-- 07: Verification -->
             <section class="section" id="verifications">
-                <div class="section-num">08</div>
+                <div class="section-num">07</div>
                 <div class="section-kicker">Verification</div>
                 <h2 class="section-h">Claim-scoped verification evidence</h2>
                 <p class="section-intro">The <a class="inline-link" href="https://github.com/TheDarkLightX/AlignmentTheorem" target="_blank" rel="noopener">repository</a> binds the bounded claims to current Lean and Tau artifacts. This evidence does not establish deployment or production readiness.</p>
                 <div class="verification-grid">
-                    <div class="verification-card"><h3>Lean 4 Proof</h3><p>Lean 4.33.0, no <code>sorry</code>, <code>admit</code>, or user-added axioms. The receipt records exact standard <code>propext</code> and <code>Quot.sound</code> dependencies.</p></div>
-                    <div class="verification-card"><h3>Current Tau Execution</h3><p>A source-pinned local candidate at <code>9b191af</code> matched the complete V1, V1.1, V2, and flywheel packets byte-for-byte. The three-profile native router matched 27 / 27 bounded ABI cases.</p></div>
-                    <div class="verification-card"><h3>Adversarial Reference Tests</h3><p>Tests retain strict-boundary counterexamples, zero detection, BVA, exact-type rejection, deterministic ties, and exhaustive small-domain parity.</p></div>
-                    <div class="verification-card"><h3>Source-Bound Receipts</h3><p>V1, V1.1, and V2 have separate Lean and semantic artifacts. Current candidate receipts keep public-node deployment, authenticated facts, settlement authority, and production readiness explicitly open.</p></div>
+                    <div class="verification-card status-checked"><div class="verification-status">Machine-checked</div><h3>Lean 4 Proof</h3><p>Lean 4.33.0, no <code>sorry</code>, <code>admit</code>, or user-added axioms. The receipt records exact standard <code>propext</code> and <code>Quot.sound</code> dependencies.</p></div>
+                    <div class="verification-card status-current"><div class="verification-status">Current candidate</div><h3>Tau Execution</h3><p>A source-pinned local candidate at <code>9b191af</code> matched the complete V1, V1.1, V2, and flywheel packets byte-for-byte. The three-profile native router matched 27 / 27 bounded ABI cases.</p></div>
+                    <div class="verification-card status-checked"><div class="verification-status">Reference tests</div><h3>Adversarial Reference Tests</h3><p>Tests retain strict-boundary counterexamples, zero detection, BVA, exact-type rejection, deterministic ties, and exhaustive small-domain parity.</p></div>
+                    <div class="verification-card status-open"><div class="verification-status">Explicitly open</div><h3>Source-Bound Receipts</h3><p>V1, V1.1, and V2 have separate Lean and semantic artifacts. Current candidate receipts keep public-node deployment, authenticated facts, settlement authority, and production readiness explicitly open.</p></div>
                 </div>
             </section>
 
-            <!-- 09: Data packs -->
+            <!-- 08: Data packs -->
             <section class="section" id="data">
-                <div class="section-num">09</div>
+                <div class="section-num">08</div>
                 <div class="section-kicker">Artifacts</div>
                 <h2 class="section-h">Data packs &amp; downloads</h2>
                 <p class="section-intro">V1, V1.1, and V2 remain distinct profiles. The original paper is preserved unchanged for provenance beside the current claim boundary and reconstructed proof.</p>

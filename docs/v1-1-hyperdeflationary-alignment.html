@@ -193,13 +193,15 @@
     .equation {
       margin: 24px 0; padding: 22px 26px;
       background: var(--paper); border: 1px solid var(--line);
+      border-left: 3px solid var(--accent);
       border-radius: 12px; font-family: var(--mono);
       font-size: .92rem; color: var(--ink);
       text-align: center; white-space: pre-wrap; overflow-x: auto;
       box-shadow: 0 1px 3px rgba(0,0,0,.04);
     }
     .dark-section .equation {
-      background: rgba(255,255,255,.04); border-color: var(--dark-line); color: #fff;
+      background: rgba(255,255,255,.04); border-color: var(--dark-line);
+      border-left-color: var(--accent-bright); color: #fff;
     }
 
     .theorem {

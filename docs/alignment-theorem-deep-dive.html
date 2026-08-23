@@ -350,15 +350,21 @@
         .verification-card {
             background: var(--paper); border: 1px solid var(--line);
             border-radius: 12px; padding: 20px;
-            border-left: 4px solid var(--ok);
+            border-left: 4px solid var(--muted);
             transition: border-color .15s ease;
         }
         .verification-card:hover { border-color: var(--accent); }
+        .verification-card.status-checked { border-left-color: var(--ok); }
+        .verification-card.status-current { border-left-color: var(--accent); }
+        .verification-card.status-historical { border-left-color: var(--muted); }
         .verification-status {
             font-family: var(--font-ui); font-size: .68rem; font-weight: 600;
             text-transform: uppercase; letter-spacing: .1em;
-            color: var(--ok); margin-bottom: 6px;
+            color: var(--muted); margin-bottom: 6px;
         }
+        .verification-card.status-checked .verification-status { color: var(--ok); }
+        .verification-card.status-current .verification-status { color: var(--accent); }
+        .verification-card.status-historical .verification-status { color: var(--muted); }
         .verification-title {
             font-family: var(--font-ui); font-weight: 600; color: var(--ink);
             margin-bottom: 4px;
@@ -366,8 +372,10 @@
         .verification-desc { font-size: .88rem; color: var(--muted); margin: 0; }
         .dark-section .verification-card {
             background: rgba(255,255,255,.04); border-color: var(--dark-line);
-            border-left-color: var(--ok);
+            border-left-color: var(--muted);
         }
+        .dark-section .verification-card.status-checked { border-left-color: var(--ok); }
+        .dark-section .verification-card.status-current { border-left-color: var(--accent-bright); }
         .dark-section .verification-title { color: #fff; }
         .dark-section .verification-desc { color: var(--dark-body); }
 
@@ -543,7 +551,7 @@
                 <h3>Deflation creates scarcity</h3>
                 <p>Version 1 assumes a shrinking spendable supply and an unbounded purchasing-power multiplier. Version 1.1 treats that path as an external economic scenario. Finite supply rules alone do not prove purchasing power diverges.</p>
                 <h3>Pressure makes ethics profitable</h3>
-                <p>Write <code>R</code> for direct reward exposure, <code>L</code> for scarcity upside protected by eligibility, and <code>G</code> for the complete bounded deviation gain. The historical negative &ldquo;penalty&rdquo; term is exactly the upside missed through exclusion. Moving that opportunity cost to the eligible side preserves the ordering and creates no punitive transfer.</p>
+                <p>Define <code>R</code> for direct reward exposure, <code>L</code> for scarcity upside protected by eligibility, and <code>G</code> for the complete bounded deviation gain. The historical negative &ldquo;penalty&rdquo; term is exactly the upside missed through exclusion. Moving that opportunity cost to the eligible side preserves the ordering and creates no punitive transfer.</p>
             </section>
 
             <section class="dark-section" id="theorem">
@@ -653,32 +661,32 @@
                     <div class="section-kicker">Historical evidence and current checked artifacts</div>
                     <h2 class="section-h">The original experiments remain exploratory; V1, V1.1, and V2 now have separate checked profiles.</h2>
                     <div class="verification-grid">
-                        <div class="verification-card">
+                        <div class="verification-card status-historical">
                             <div class="verification-status">Historical</div>
                             <div class="verification-title">Z3 Experiments</div>
                             <p class="verification-desc">Bounded legacy checks; no universal theorem claim.</p>
                         </div>
-                        <div class="verification-card">
+                        <div class="verification-card status-historical">
                             <div class="verification-status">Historical</div>
                             <div class="verification-title">Tau Scenarios</div>
                             <p class="verification-desc">Legacy scenarios remain exploratory. The current source candidate separately matched the V1, V1.1, and V2 packets; public-node deployment remains pending.</p>
                         </div>
-                        <div class="verification-card">
+                        <div class="verification-card status-historical">
                             <div class="verification-status">Historical</div>
                             <div class="verification-title">691K+ Stress Tests</div>
                             <p class="verification-desc">Zero failures across 691,000 randomized iterations</p>
                         </div>
-                        <div class="verification-card">
+                        <div class="verification-card status-historical">
                             <div class="verification-status">Historical</div>
                             <div class="verification-title">FSM Coverage</div>
                             <p class="verification-desc">100% state coverage, no deadlocks detected</p>
                         </div>
-                        <div class="verification-card">
+                        <div class="verification-card status-checked">
                             <div class="verification-status">V1 Checked</div>
                             <div class="verification-title">Lean 4.33.0</div>
                             <p class="verification-desc">EETF tiers, opportunity-cost normalization, exact threshold, exact choice, unbounded-scarcity implication, and common-upside cancellation.</p>
                         </div>
-                        <div class="verification-card">
+                        <div class="verification-card status-current">
                             <div class="verification-status">Current Tau Candidate</div>
                             <div class="verification-title">128 V1 Rows</div>
                             <p class="verification-desc">The source-pinned <code>9b191af</code> candidate matched all rows; only the all-true row is accepted. Facts remain externally supplied.</p>
