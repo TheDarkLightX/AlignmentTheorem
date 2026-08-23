@@ -42,7 +42,7 @@ class DataCenterPolicyPublicationTests(unittest.TestCase):
         self.assertIn("The Data Center Bargain", text)
         self.assertIn("Community bargain solvency calculator", text)
         self.assertIn("Why the full version requires Tau Language", text)
-        self.assertIn("The exclusivity claim is established by patent", text)
+        self.assertIn("The exclusivity claim is established by Ohad Asor", text)
         self.assertIn("LOCAL_GOVERNMENT_POLICY_PLAYBOOK.md", text)
         self.assertIn("United States Data Center Energy Usage Report: 2025 Update", text)
         self.assertIn("ferc-launches-aggressive-targeted-action", text)
