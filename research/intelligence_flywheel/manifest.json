@@ -1,5 +1,5 @@
 {
-  "artifact_revision": "04274f9522c3ac8b5e84d46b04f9a678c2ef2792",
+  "artifact_revision": "d672082374012fd72b35dd491db695197f1b93c2",
   "authority_status": "RESEARCH_REFERENCE_ONLY_NO_MACROECONOMIC_TAU_NET_OR_VALUE_AUTHORITY",
   "base_revision": "44c14df0a9b3f74d7cceb7f122176c84374faf1e",
   "claim_status": "SUPPORTED_BOUNDED_WITH_OPEN_CAUSAL_ORACLE_NODE_AND_REVIEWED_REPLAY_GATES",
@@ -22,7 +22,7 @@
   "files_sha256": {
     "README.md": "52c9431868358e6f2152c8af47de9d49ab6ef42219aab9892cfd5dc68477231f",
     "TOOLCHAINS.md": "ff5f5b84311fec0a8ebf8720f1c27403df9a2302296be8c9259f9ce32c32ac79",
-    "docs/alignment-theorem-deep-dive.html": "3053a071f68056b6f6e6ddc21b454faeeaeb967a92342626831004482a2b10be",
+    "docs/alignment-theorem-deep-dive.html": "e4974da2bee42bc28613cd3c25e18db70628b4256933bcad397c2452e4966ae4",
     "docs/index.html": "6489173acfde45bbe9bffc8a7db17d1bbd2f36bc3f4434fdd07e6c96de02de05",
     "docs/intelligence-hyperdeflation-flywheel.html": "c977383f235a2ab9d6f30703c2138f5235136f2a3345e37cf3de87effd12ed34",
     "proofs/intelligence_flywheel/AxiomAudit.lean": "24faf12b750b813a5c358189a6b02f5520d12ead5669fb691ab74003fcc0ba67",
