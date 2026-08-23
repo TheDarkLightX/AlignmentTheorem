@@ -183,7 +183,7 @@ def _requirements(pages: dict[str, str]) -> dict[str, bool]:
         "essay title": "The Data Center Bargain" in essay,
         "essay calculator heading": "Community bargain solvency calculator" in essay,
         "essay Tau section": "Why the full version requires Tau Language" in essay,
-        "essay exclusivity claim": "The exclusivity claim is architectural, not mystical" in essay,
+        "essay exclusivity claim": "The exclusivity claim is established by patent" in essay,
         "essay canonical formula R": "R=(G-C)_+" in essay,
         "essay canonical formula d": "d_i=(L_i-B_i)_+" in essay,
         "essay canonical formula h": "h_i=\\max\\{m,d_i\\}" in essay,
