@@ -18,6 +18,7 @@ on:
       - "verification/run_data_center_social_contract_campaign.py"
       - "verification/generate_tau_data_center_social_contract_packet.py"
       - "tests/test_data_center_social_contract.py"
+      - ".github/workflows/data-center-social-contract.yml"
   workflow_dispatch:
 
 jobs:
@@ -33,6 +34,7 @@ jobs:
       - name: Replay Lean 4.33 proofs and axiom audit
         working-directory: proofs/compute_dividend
         run: |
+          lake build
           lake env lean DataCenterSocialContract.lean
           lake env lean DataCenterAxiomAudit.lean
       - name: Run exact Python unit tests
@@ -41,3 +43,12 @@ jobs:
         run: python3 verification/run_data_center_social_contract_campaign.py
       - name: Regenerate Tau truth packet
         run: python3 verification/generate_tau_data_center_social_contract_packet.py
+      - name: Upload bounded receipts and generated Tau packet
+        uses: actions/upload-artifact@v4
+        with:
+          name: data-center-social-contract-receipts
+          path: |
+            research/data_center_social_contract/campaign_receipt.json
+            tau/data_center_social_contract/inputs
+            tau/data_center_social_contract/expected
+          if-no-files-found: error
