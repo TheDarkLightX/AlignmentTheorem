@@ -29,27 +29,17 @@ def minimalNoHarmFloorTransfer
   else
     floor
 
-theorem minimal_no_harm_transfer_eq_max
-    (floor loss directBenefit : Nat) :
-    minimalNoHarmFloorTransfer floor loss directBenefit =
-      max floor (uncompensatedDeficit loss directBenefit) := by
-  by_cases h : floor ≤ uncompensatedDeficit loss directBenefit
-  · simp [minimalNoHarmFloorTransfer, h, max_eq_right h]
-  · have hDeficit : uncompensatedDeficit loss directBenefit ≤ floor := by
-      omega
-    simp [minimalNoHarmFloorTransfer, h, max_eq_left hDeficit]
-
 theorem minimal_no_harm_transfer_meets_floor
     (floor loss directBenefit : Nat) :
     floor ≤ minimalNoHarmFloorTransfer floor loss directBenefit := by
   by_cases h : floor ≤ uncompensatedDeficit loss directBenefit
-  · simp [minimalNoHarmFloorTransfer, h, h]
+  · simpa [minimalNoHarmFloorTransfer, h] using h
   · simp [minimalNoHarmFloorTransfer, h]
 
 theorem loss_le_direct_benefit_plus_deficit
     (loss directBenefit : Nat) :
     loss ≤ directBenefit + uncompensatedDeficit loss directBenefit := by
-  simp [uncompensatedDeficit]
+  unfold uncompensatedDeficit
   omega
 
 theorem deficit_le_minimal_no_harm_transfer
@@ -60,7 +50,7 @@ theorem deficit_le_minimal_no_harm_transfer
   · simp [minimalNoHarmFloorTransfer, h]
   · have hDeficit : uncompensatedDeficit loss directBenefit ≤ floor := by
       omega
-    simp [minimalNoHarmFloorTransfer, h, hDeficit]
+    simpa [minimalNoHarmFloorTransfer, h] using hDeficit
 
 theorem minimal_no_harm_transfer_prevents_modeled_harm
     (floor loss directBenefit : Nat) :
@@ -79,7 +69,7 @@ theorem minimal_no_harm_transfer_is_pointwise_least
     minimalNoHarmFloorTransfer floor loss directBenefit ≤ transfer := by
   by_cases h : floor ≤ uncompensatedDeficit loss directBenefit
   · simp [minimalNoHarmFloorTransfer, h]
-    simp [uncompensatedDeficit]
+    unfold uncompensatedDeficit
     omega
   · simpa [minimalNoHarmFloorTransfer, h] using hFloor
 
@@ -96,18 +86,21 @@ theorem minimal_no_harm_transfer_base_plus_topup
 
 /-- Pointwise minimal transfers for a finite household list. -/
 def requiredNoHarmTransfers
-    (floor : Nat) (impacts : List HouseholdImpactAtoms) : List Nat :=
-  impacts.map fun impact =>
-    minimalNoHarmFloorTransfer floor impact.loss impact.directBenefit
+    (floor : Nat) : List HouseholdImpactAtoms → List Nat
+  | [] => []
+  | impact :: impacts =>
+      minimalNoHarmFloorTransfer floor impact.loss impact.directBenefit ::
+        requiredNoHarmTransfers floor impacts
 
 /-- Every paired transfer satisfies the universal base and modeled no-harm. -/
 def HasFloorAndNoHarm
-    (floor : Nat) (impacts : List HouseholdImpactAtoms)
-    (transfers : List Nat) : Prop :=
-  List.Forall₂
-    (fun impact transfer =>
-      floor ≤ transfer ∧ impact.loss ≤ impact.directBenefit + transfer)
-    impacts transfers
+    (floor : Nat) : List HouseholdImpactAtoms → List Nat → Prop
+  | [], [] => True
+  | impact :: impacts, transfer :: transfers =>
+      floor ≤ transfer ∧
+      impact.loss ≤ impact.directBenefit + transfer ∧
+      HasFloorAndNoHarm floor impacts transfers
+  | _, _ => False
 
 /-- Aggregate least cost of the hybrid universal-base/top-up schedule. -/
 def minimalHybridCost
@@ -119,49 +112,38 @@ theorem required_no_harm_transfers_are_admissible
     HasFloorAndNoHarm floor impacts (requiredNoHarmTransfers floor impacts) := by
   induction impacts with
   | nil =>
-      simp [HasFloorAndNoHarm, requiredNoHarmTransfers]
+      simp [requiredNoHarmTransfers, HasFloorAndNoHarm]
   | cons impact rest ih =>
-      apply List.Forall₂.cons
-      · exact ⟨
-          minimal_no_harm_transfer_meets_floor
-            floor impact.loss impact.directBenefit,
-          minimal_no_harm_transfer_prevents_modeled_harm
-            floor impact.loss impact.directBenefit
-        ⟩
-      · exact ih
+      simp only [requiredNoHarmTransfers, HasFloorAndNoHarm]
+      exact ⟨
+        minimal_no_harm_transfer_meets_floor
+          floor impact.loss impact.directBenefit,
+        minimal_no_harm_transfer_prevents_modeled_harm
+          floor impact.loss impact.directBenefit,
+        ih
+      ⟩
 
-theorem required_no_harm_transfers_are_pointwise_least
+/-- Any admissible finite transfer vector costs at least the hybrid schedule. -/
+theorem admissible_transfer_cost_lower_bound
     (floor : Nat) (impacts : List HouseholdImpactAtoms)
     (transfers : List Nat)
     (h : HasFloorAndNoHarm floor impacts transfers) :
-    List.Forall₂ (fun required transfer => required ≤ transfer)
-      (requiredNoHarmTransfers floor impacts) transfers := by
-  unfold HasFloorAndNoHarm at h
+    minimalHybridCost floor impacts ≤ transfers.sum := by
   induction impacts generalizing transfers with
   | nil =>
-      cases h
-      exact .nil
+      cases transfers with
+      | nil => simp [minimalHybridCost, requiredNoHarmTransfers]
+      | cons transfer tail => simp [HasFloorAndNoHarm] at h
   | cons impact rest ih =>
       cases transfers with
-      | nil => cases h
+      | nil => simp [HasFloorAndNoHarm] at h
       | cons transfer tail =>
-          cases h with
-          | cons hHead hTail =>
-              apply List.Forall₂.cons
-              · exact minimal_no_harm_transfer_is_pointwise_least
-                  floor impact.loss impact.directBenefit transfer
-                  hHead.1 hHead.2
-              · exact ih tail hTail
-
-theorem list_sum_le_of_pointwise_le
-    (required transfers : List Nat)
-    (h : List.Forall₂ (fun x y => x ≤ y) required transfers) :
-    required.sum ≤ transfers.sum := by
-  induction h with
-  | nil => simp
-  | cons hHead hTail ih =>
-      simp only [List.sum_cons]
-      omega
+          simp only [HasFloorAndNoHarm] at h
+          have hHead := minimal_no_harm_transfer_is_pointwise_least
+            floor impact.loss impact.directBenefit transfer h.1 h.2.1
+          have hTail := ih tail h.2.2
+          simpa [minimalHybridCost, requiredNoHarmTransfers] using
+            Nat.add_le_add hHead hTail
 
 /-- Existence of any admissible schedule within the cash reserve. -/
 def HybridCashFeasible
@@ -176,11 +158,9 @@ theorem hybrid_cash_feasible_iff_minimal_cost_funded
       minimalHybridCost floor impacts ≤ budget := by
   constructor
   · rintro ⟨transfers, hAdmissible, hBudget⟩
-    have hPointwise := required_no_harm_transfers_are_pointwise_least
+    have hCost := admissible_transfer_cost_lower_bound
       floor impacts transfers hAdmissible
-    have hSum := list_sum_le_of_pointwise_le
-      (requiredNoHarmTransfers floor impacts) transfers hPointwise
-    exact Nat.le_trans hSum hBudget
+    exact Nat.le_trans hCost hBudget
   · intro hBudget
     refine ⟨requiredNoHarmTransfers floor impacts, ?_, ?_⟩
     · exact required_no_harm_transfers_are_admissible floor impacts
@@ -214,12 +194,14 @@ theorem modeled_no_harm_preserves_household_baseline
 
 /-- Concavity is unnecessary for this no-harm implication; monotonicity suffices. -/
 theorem monotone_utility_weakly_improves_under_modeled_no_harm
-    (utility : Nat → Nat) (hMonotone : Monotone utility)
+    (utility : Nat → Nat)
+    (hMonotone : ∀ x y, x ≤ y → utility x ≤ utility y)
     (baseline directBenefit transfer loss : Nat)
     (hNoHarm : loss ≤ directBenefit + transfer) :
     utility baseline ≤
       utility (postProjectResources baseline directBenefit transfer loss) := by
-  exact hMonotone
+  exact hMonotone baseline
+    (postProjectResources baseline directBenefit transfer loss)
     (modeled_no_harm_preserves_household_baseline
       baseline directBenefit transfer loss hNoHarm)
 
