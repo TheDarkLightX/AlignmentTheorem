@@ -31,7 +31,7 @@ except ModuleNotFoundError:
     )
 
 ROOT = Path(__file__).resolve().parents[1]
-BASE_REVISION = "0f68357535c299de799976a67410f97367ed87c1"
+BASE_REVISION = "44c14df0a9b3f74d7cceb7f122176c84374faf1e"
 SHA1 = re.compile(r"[0-9a-f]{40}\Z")
 ARTIFACTS = (
     ("proofs/intelligence_flywheel/IntelligenceFlywheel.lean", "Formal nine-fact conjunction and conditional margin theorems."),

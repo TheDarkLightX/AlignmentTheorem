@@ -1,7 +1,7 @@
 {
   "schema": "alignment-theorem-local-context-bundle-v1",
   "goal": "Improve the Alignment Theorem by separating intelligence growth from the price/benefit/deviation bridge; test multiple maps and countermodels; bind a compute-dividend and constrained household wealth-agent policy to actual Tau specifications and the current Tau Testnet native ABI; explain the result without overstating provenance, attestation, fact authentication, deployment, or Tau exclusivity.",
-  "base_revision": "0f68357535c299de799976a67410f97367ed87c1",
+  "base_revision": "44c14df0a9b3f74d7cceb7f122176c84374faf1e",
   "decisions": [
     "Define intelligence operationally as verified task capability, not a metaphysical scalar.",
     "Define hyperdeflation only for a declared accessible essential-basket price index.",
