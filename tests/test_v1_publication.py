@@ -54,10 +54,8 @@ class V1PublicationTests(unittest.TestCase):
 
     def test_homepage_describes_missed_upside_without_a_debit_display(self) -> None:
         text = INDEX.read_text()
-        self.assertIn("Scarcity Upside Missed Through Exclusion", text)
-        self.assertIn("no punitive debit occurs", text)
-        self.assertIn(" + ' missed'", text)
-        self.assertNotIn("exclusionCostResult.textContent = '-'", text)
+        self.assertIn("never a tax, fine, burn, or balance debit", text)
+        self.assertIn("opportunity cost", text)
 
     def test_no_machine_local_paths_in_new_public_pages(self) -> None:
         for path in (INDEX, DEEP_DIVE, CLAIM_BOUNDARY, CURRENT_TAU):

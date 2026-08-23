@@ -27,25 +27,14 @@
             --accent-ink: #0b5563;
             --accent-soft: #ecfeff;
             --accent-bright: #06b6d4;
-            --ok: #15803d;
-            --ok-soft: #f0fdf4;
-            --bad: #b91c1c;
-            --bad-soft: #fef2f2;
-            --warn: #b45309;
-            --warn-soft: #fffbeb;
-            --dark: #0d1526;
-            --dark-2: #1e293b;
             --dark-line: rgba(255,255,255,.1);
             --dark-body: #94a3b8;
             --dark-muted: #64748b;
-            --gold: #f59e0b;
             --font-display: "Fraunces", Georgia, serif;
             --font-ui: "Space Grotesk", system-ui, sans-serif;
             --font-body: "Inter", system-ui, sans-serif;
             --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-            --maxw: 1280px;
-            --content-w: 820px;
-            --sidebar-w: 220px;
+            --maxw: 820px;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -72,7 +61,6 @@
         }
         .skip-link:focus { transform: translateY(0); color: #fff; text-decoration: none; }
 
-        /* ── Top nav ── */
         .topbar {
             position: sticky; top: 0; z-index: 100;
             background: var(--ink);
@@ -80,16 +68,15 @@
         }
         .topbar-inner {
             max-width: var(--maxw); margin: 0 auto;
-            display: flex; align-items: center; gap: 20px;
-            padding: 12px 24px;
+            display: flex; align-items: center; gap: 16px; padding: 12px 24px;
         }
         .brand {
             font-family: var(--font-ui); font-weight: 700; font-size: .95rem;
-            color: #fff; letter-spacing: -.01em; white-space: nowrap;
+            color: #fff; white-space: nowrap;
         }
         .brand span { color: var(--accent-bright); }
         .brand:hover { text-decoration: none; color: var(--accent-bright); }
-        .topbar-links { display: flex; gap: 16px; margin-left: auto; flex-wrap: wrap; }
+        .topbar-links { display: flex; gap: 14px; margin-left: auto; flex-wrap: wrap; }
         .topbar-links a {
             color: var(--dark-body); font-family: var(--font-ui);
             font-size: .8rem; font-weight: 500; white-space: nowrap;
@@ -97,22 +84,11 @@
         .topbar-links a:hover { color: #fff; text-decoration: none; }
         .mobile-nav-hint { display: none; color: var(--dark-muted); font-family: var(--font-ui); font-size: .66rem; letter-spacing: .08em; text-transform: uppercase; }
 
-        /* ── Hero (asymmetric split with V1 calculator) ── */
         .hero {
-            background: var(--ink);
-            color: #fff;
-            overflow: hidden;
+            background: var(--ink); color: #fff;
+            padding: 80px 24px 72px; text-align: center;
         }
-        .hero-grid {
-            max-width: var(--maxw); margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1.1fr .9fr;
-            min-height: 560px;
-        }
-        .hero-text {
-            padding: 64px 48px 56px;
-            display: flex; flex-direction: column; justify-content: center;
-        }
+        .hero-inner { max-width: 640px; margin: 0 auto; }
         .hero-kicker {
             display: inline-flex; align-items: center; gap: 8px;
             padding: 6px 14px; border-radius: 999px;
@@ -120,24 +96,24 @@
             color: var(--accent-bright);
             font-family: var(--font-ui); font-size: .72rem; font-weight: 600;
             letter-spacing: .12em; text-transform: uppercase;
-            width: fit-content; margin-bottom: 24px;
+            margin-bottom: 24px;
         }
         .hero h1 {
             font-family: var(--font-display); font-weight: 700;
-            font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+            font-size: clamp(2.4rem, 6vw, 4rem);
             line-height: 1.05; letter-spacing: -.03em;
             color: #fff; margin: 0 0 20px;
         }
         .hero h1 em { font-style: italic; color: var(--accent-bright); font-weight: 600; }
         .hero-sub {
-            font-size: 1.18rem; color: var(--dark-body);
-            max-width: 48ch; margin: 0 0 28px; line-height: 1.5;
+            font-size: 1.15rem; color: var(--dark-body);
+            margin: 0 0 32px; line-height: 1.6;
         }
-        .hero-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+        .hero-actions { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
         .btn {
             display: inline-flex; align-items: center;
-            padding: 11px 20px; border-radius: 8px;
-            font-family: var(--font-ui); font-size: .86rem; font-weight: 600;
+            padding: 12px 22px; border-radius: 8px;
+            font-family: var(--font-ui); font-size: .88rem; font-weight: 600;
             transition: transform .15s ease, background .15s ease;
         }
         .btn:hover { transform: translateY(-1px); text-decoration: none; }
@@ -146,377 +122,76 @@
         .btn-ghost { background: rgba(255,255,255,.06); color: #fff; border: 1px solid var(--dark-line); }
         .btn-ghost:hover { background: rgba(255,255,255,.1); color: #fff; }
 
-        /* V1 Calculator in hero */
-        .hero-calc {
-            background: linear-gradient(160deg, var(--dark-2), var(--ink));
-            padding: 36px 36px;
-            display: flex; flex-direction: column; justify-content: center;
-            border-left: 1px solid var(--dark-line);
-        }
-        .hero-calc h2 {
-            font-family: var(--font-ui); font-size: .82rem; font-weight: 600;
-            letter-spacing: .12em; text-transform: uppercase;
-            color: var(--accent-bright); margin: 0 0 6px;
-        }
-        .calc-sub { font-size: .85rem; color: var(--dark-muted); margin: 0 0 20px; }
-        .scenario-buttons { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
-        .scenario-button {
-            flex: 1; appearance: none; background: rgba(255,255,255,.04);
-            font: inherit; font-family: var(--font-ui); font-size: .78rem; font-weight: 600;
-            min-width: 90px; text-align: center; padding: 8px;
-            border-radius: 8px; border: 1px solid var(--dark-line);
-            cursor: pointer; color: var(--dark-body);
-            transition: all .15s ease;
-        }
-        .scenario-button.active, .scenario-button:hover {
-            border-color: var(--accent-bright); color: var(--accent-bright);
-            background: rgba(6,182,212,.1);
-        }
-        .slider-container { margin: 18px 0; }
-        .slider-label {
-            display: flex; justify-content: space-between; margin-bottom: 8px;
-            font-family: var(--font-ui); font-size: .82rem; color: #cbd5e1;
-        }
-        .slider-value { color: var(--accent-bright); font-weight: 700; }
-        input[type="range"] {
-            width: 100%; height: 5px; border-radius: 3px;
-            background: var(--dark-line); outline: none; -webkit-appearance: none;
-        }
-        input[type="range"]::-webkit-slider-thumb {
-            -webkit-appearance: none; width: 20px; height: 20px; border-radius: 50%;
-            background: var(--accent-bright); cursor: pointer; border: 3px solid var(--ink);
-        }
-        input[type="range"]::-moz-range-thumb {
-            width: 20px; height: 20px; border-radius: 50%;
-            background: var(--accent-bright); cursor: pointer; border: 3px solid var(--ink);
-        }
-        .result-display {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 16px;
-        }
-        .result-item {
-            background: rgba(0,0,0,.25); border: 1px solid var(--dark-line);
-            border-radius: 10px; padding: 10px 12px; text-align: center;
-        }
-        .result-label {
-            font-size: .66rem; color: var(--dark-muted); margin-bottom: 8px;
-            text-transform: uppercase; letter-spacing: .08em;
-            font-family: var(--font-ui); font-weight: 600;
-        }
-        .result-value {
-            font-family: var(--font-ui); font-size: 1.5rem; font-weight: 700; color: #fff;
-        }
-        .result-value.positive { color: #4ade80; }
-        .result-value.negative { color: #fca5a5; }
-        .result-value.neutral { color: var(--accent-bright); }
+        .main { max-width: var(--maxw); margin: 0 auto; padding: 56px 24px 80px; }
 
-        /* ── Body layout: sidebar + content ── */
-        .body-wrap {
-            max-width: var(--maxw); margin: 0 auto;
-            display: grid;
-            grid-template-columns: var(--sidebar-w) 1fr;
-            gap: 0;
-        }
-        .toc {
-            position: sticky; top: 50px; align-self: start;
-            padding: 40px 20px 40px 24px;
-            max-height: calc(100vh - 50px); overflow-y: auto;
-        }
-        .toc-title {
-            font-family: var(--font-ui); font-size: .68rem; font-weight: 600;
-            letter-spacing: .12em; text-transform: uppercase;
-            color: var(--muted); margin-bottom: 14px;
-        }
-        .toc ul { list-style: none; padding: 0; margin: 0; counter-reset: toc; }
-        .toc li { counter-increment: toc; margin-bottom: 2px; }
-        .toc li a {
-            display: block; padding: 7px 10px; border-radius: 6px;
-            color: var(--body); font-family: var(--font-ui);
-            font-size: .82rem; font-weight: 500; line-height: 1.3;
-        }
-        .toc li a::before {
-            content: counter(toc, decimal-leading-zero);
-            color: var(--muted); font-size: .72rem; margin-right: 8px;
-        }
-        .toc li a:hover { background: var(--accent-soft); color: var(--accent-ink); text-decoration: none; }
-
-        .content { padding: 0 48px 80px 0; max-width: var(--content-w); }
-
-        /* ── Section patterns ── */
-        .section { padding: 56px 0; }
-        .section-num {
-            font-family: var(--font-display); font-size: 3.5rem; font-weight: 700;
-            color: var(--line); line-height: 1; margin-bottom: -8px;
-        }
-        .section-kicker {
-            font-family: var(--font-ui); font-size: .74rem; font-weight: 600;
-            letter-spacing: .14em; text-transform: uppercase;
-            color: var(--accent); margin-bottom: 8px;
-        }
-        h2.section-h {
-            font-family: var(--font-display); font-weight: 700;
-            font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-            line-height: 1.15; letter-spacing: -.02em;
-            color: var(--ink); margin: 4px 0 20px;
-        }
-        h3 {
-            font-family: var(--font-ui); font-size: 1.05rem; font-weight: 600;
-            color: var(--ink); margin: 0 0 8px;
-        }
-        .section-intro { color: var(--ink-2); margin-bottom: 26px; max-width: 65ch; }
-
-        /* Full-bleed dark contrast section */
-        .dark-section {
-            background: var(--ink); color: #fff;
-            padding: 64px 0; margin: 0;
-        }
-        .dark-section .inner { max-width: var(--content-w); margin: 0 auto; padding: 0 48px 0 24px; }
-        .dark-section .section-kicker { color: var(--accent-bright); }
-        .dark-section .section-h { color: #fff; }
-        .dark-section .section-num { color: rgba(255,255,255,.08); }
-        .dark-section .section-intro { color: var(--dark-body); }
-        .dark-section p { color: var(--dark-body); }
-        .dark-section a { color: var(--accent-bright); }
-
-        /* Theorem box */
-        .theorem-box {
-            background: var(--paper); border: 1px solid var(--line);
-            border-left: 4px solid var(--accent);
-            border-radius: 14px; padding: 36px;
-            margin: 32px 0; text-align: center;
-            box-shadow: 0 1px 3px rgba(0,0,0,.04);
-        }
-        .theorem-text {
-            font-family: var(--font-display); font-weight: 600;
-            font-size: clamp(1.1rem, 2.5vw, 1.6rem);
-            color: var(--ink); line-height: 1.5;
-        }
-        .dark-section .theorem-box {
-            background: rgba(255,255,255,.04); border-color: var(--dark-line);
-            border-left-color: var(--accent-bright);
-        }
-        .dark-section .theorem-text { color: #fff; }
-
-        /* Featured essay card */
-        .featured-essay {
-            position: relative; overflow: hidden;
-            margin: 40px 0; padding: clamp(28px, 4vw, 44px);
+        .featured {
+            margin: 0 0 48px; padding: clamp(28px, 4vw, 44px);
             border: 1px solid var(--line); border-radius: 20px;
             background: var(--paper); box-shadow: 0 1px 3px rgba(0,0,0,.04);
         }
-        .featured-essay::after {
-            content: ''; position: absolute; width: 260px; height: 260px;
-            right: -90px; bottom: -120px; border-radius: 50%;
-            background: var(--accent-soft); pointer-events: none;
+        .featured-kicker {
+            font-family: var(--font-ui); font-size: .72rem; font-weight: 600;
+            letter-spacing: .12em; text-transform: uppercase;
+            color: var(--accent); margin-bottom: 12px;
         }
-        .featured-grid {
-            position: relative; z-index: 1;
-            display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(220px, .75fr);
-            gap: 30px; align-items: center;
+        .featured h2 {
+            font-family: var(--font-display); font-weight: 700;
+            font-size: clamp(1.6rem, 3vw, 2.2rem); color: var(--ink);
+            margin: 0 0 16px; letter-spacing: -.02em;
         }
-        .featured-essay h2 { margin: 14px 0 12px; font-family: var(--font-display); font-size: clamp(1.6rem, 3vw, 2.4rem); color: var(--ink); }
-        .featured-essay p { max-width: 700px; color: var(--body); }
+        .featured p { color: var(--body); margin-bottom: 20px; }
         .featured-equation {
-            margin: 20px 0 0; padding: 14px 18px;
-            border-left: 3px solid var(--accent); background: var(--accent-soft);
-            color: var(--accent-ink); font-family: var(--mono);
-            font-size: .92rem; overflow-x: auto; border-radius: 0 8px 8px 0;
+            padding: 14px 18px; border-left: 3px solid var(--accent);
+            background: var(--accent-soft); color: var(--accent-ink);
+            font-family: var(--mono); font-size: .92rem;
+            border-radius: 0 8px 8px 0; margin-bottom: 24px;
         }
-        .featured-stats { display: grid; gap: 10px; }
-        .featured-stat {
-            padding: 16px; border: 1px solid var(--line); border-radius: 12px;
-            background: var(--bg);
+        .featured-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+        .featured-actions .btn-primary { background: var(--accent); color: #fff; }
+        .featured-actions .btn-primary:hover { background: var(--accent-ink); color: #fff; }
+        .featured-actions .btn-ghost { background: var(--paper); color: var(--ink); border: 1px solid var(--line); }
+        .featured-actions .btn-ghost:hover { background: var(--accent-soft); color: var(--accent-ink); }
+
+        .stats {
+            display: flex; gap: 32px; margin-top: 28px;
+            padding-top: 28px; border-top: 1px solid var(--line);
         }
-        .featured-stat strong {
+        .stat strong {
             display: block; font-family: var(--font-display);
-            color: var(--accent-ink); font-size: 1.5rem;
+            font-size: 1.4rem; color: var(--accent-ink); font-weight: 700;
         }
-        .featured-stat span { color: var(--muted); font-size: .88rem; line-height: 1.3; }
+        .stat span { font-size: .82rem; color: var(--muted); }
 
-        /* Card grid */
-        .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
-        .card {
-            background: var(--paper); border: 1px solid var(--line);
-            border-radius: 14px; padding: 24px;
-            box-shadow: 0 1px 3px rgba(0,0,0,.04);
-            transition: transform .15s ease, box-shadow .15s ease;
+        .summary {
+            font-size: 1.1rem; color: var(--ink-2); line-height: 1.7;
+            max-width: 62ch; margin: 0 0 48px;
         }
-        .card:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,.06); }
-        .card .tag {
-            display: inline-block; font-family: var(--font-ui);
-            font-size: .68rem; font-weight: 600; color: var(--accent);
-            letter-spacing: .08em; text-transform: uppercase; margin-bottom: 8px;
-        }
-        .card h3 { color: var(--accent-ink); }
-        .card p { color: var(--body); font-size: .94rem; }
 
-        /* Callout */
-        .callout {
-            margin: 24px 0; padding: 20px 24px; border-radius: 12px;
-            background: var(--accent-soft); border: 1px solid #cffafe; color: var(--ink);
+        .link-list { display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+        .link-item {
+            display: block; padding: 20px 24px;
+            background: var(--paper); transition: background .15s ease;
         }
-        .callout strong { color: var(--accent-ink); }
-        .dark-section .callout { background: rgba(6,182,212,.08); border-color: rgba(6,182,212,.2); color: #fff; }
-        .dark-section .callout strong { color: var(--accent-bright); }
-
-        a.inline-link { color: var(--accent); border-bottom: 1px dashed var(--accent); }
-        a.inline-link:hover { color: var(--accent-ink); border-bottom-color: var(--accent-ink); text-decoration: none; }
-
-        /* Progressive disclosure */
-        details.disclosure {
-            margin: 24px 0; border: 1px solid var(--line); border-radius: 12px;
-            background: var(--paper); overflow: hidden;
+        .link-item:hover { background: var(--accent-soft); text-decoration: none; }
+        .link-title {
+            display: block; font-family: var(--font-ui); font-weight: 600;
+            font-size: 1rem; color: var(--ink); margin-bottom: 4px;
         }
-        details.disclosure summary {
-            padding: 16px 20px; cursor: pointer; list-style: none;
-            font-family: var(--font-ui); font-weight: 600; font-size: .92rem;
-            color: var(--accent-ink); user-select: none;
-            display: flex; align-items: center; gap: 10px;
-            transition: background .15s ease;
-        }
-        details.disclosure summary::before {
-            content: ""; width: 8px; height: 8px;
-            border-right: 2px solid var(--accent); border-bottom: 2px solid var(--accent);
-            transform: rotate(45deg); transition: transform .2s ease;
-            flex-shrink: 0;
-        }
-        details.disclosure[open] summary::before { transform: rotate(135deg); }
-        details.disclosure summary:hover { background: var(--accent-soft); }
-        details.disclosure summary::-webkit-details-marker { display: none; }
-        details.disclosure .disclosure-body {
-            padding: 0 20px 20px; border-top: 1px solid var(--line);
-        }
-        .dark-section details.disclosure {
-            background: rgba(255,255,255,.04); border-color: var(--dark-line);
-        }
-        .dark-section details.disclosure summary { color: var(--accent-bright); }
-        .dark-section details.disclosure summary::before { border-color: var(--accent-bright); }
-        .dark-section details.disclosure summary:hover { background: rgba(6,182,212,.08); }
-        .dark-section details.disclosure .disclosure-body { border-color: var(--dark-line); }
-
-        /* Pipeline */
-        .pipeline-container {
-            margin-top: 26px; background: var(--paper);
-            border: 1px solid var(--line); border-radius: 18px;
-            padding: 32px 26px; box-shadow: 0 1px 3px rgba(0,0,0,.04);
-        }
-        .pipeline-grid { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: stretch; gap: 0; }
-        .pipeline-node {
-            flex: 1; min-width: 150px; background: var(--bg);
-            border: 1px solid var(--line); border-right: 0;
-            border-radius: 0; padding: 18px; text-align: center;
-            transition: all .15s ease;
-        }
-        .pipeline-node:last-child { border-right: 1px solid var(--line); border-radius: 0 12px 12px 0; }
-        .pipeline-node:first-child { border-radius: 12px 0 0 12px; }
-        .pipeline-node h3 { color: var(--ink); font-size: .95rem; }
-        .pipeline-node p { color: var(--muted); font-size: .82rem; }
-        .pipeline-node.highlight { border-color: var(--accent); background: var(--accent-soft); }
-        .pipeline-node.highlight h3 { color: var(--accent-ink); }
-        .pipeline-arrow { font-size: 1.4rem; color: var(--accent); flex-basis: 30px; text-align: center; align-self: center; }
-        .pipeline-caption { margin-top: 20px; color: var(--muted); text-align: center; line-height: 1.5; font-size: .9rem; }
-
-        /* Loop */
-        .loop-container {
-            background: var(--paper); border: 1px solid var(--line);
-            border-radius: 18px; padding: 28px; margin-top: 24px;
-            display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;
-            box-shadow: 0 1px 3px rgba(0,0,0,.04);
-        }
-        .loop-node {
-            min-width: 150px; border-radius: 12px; padding: 14px;
-            border: 1px solid var(--line); background: var(--bg);
-            text-align: center; font-family: var(--font-ui);
-            font-weight: 600; font-size: .84rem; color: var(--ink);
-        }
-        .loop-node.burn { color: var(--warn); border-color: #fde68a; background: var(--warn-soft); }
-        .loop-node.reward { color: var(--accent-ink); border-color: #cffafe; background: var(--accent-soft); }
-        .loop-arrow { align-self: center; font-size: 1.4rem; color: var(--muted); }
-
-        /* Flow diagram */
-        .flow-diagram { display: flex; flex-direction: column; align-items: center; gap: 6px; }
-        .flow-node {
-            width: min(100%, 340px); padding: 14px 22px;
-            border: 1px solid var(--line); border-radius: 10px;
-            background: var(--bg); text-align: center;
-            font-family: var(--font-ui); font-weight: 600; font-size: .84rem;
-            color: var(--ink); transition: all .2s ease;
-        }
-        .flow-node.highlight { border-color: var(--accent); background: var(--accent-soft); color: var(--accent-ink); }
-        .flow-arrow { color: var(--accent); font-size: 1.2rem; }
-
-        /* Proof */
-        .proof-container {
-            background: var(--paper); border: 1px solid var(--line);
-            border-left: 4px solid var(--accent);
-            border-radius: 14px; padding: 32px;
-            box-shadow: 0 1px 3px rgba(0,0,0,.04);
-        }
-        .proof-step {
-            margin: 12px 0; padding: 14px 18px; background: var(--bg);
-            border-radius: 10px; font-family: var(--mono);
-            font-size: .9rem; color: var(--ink);
-        }
-        .proof-step .step-num { color: var(--accent-ink); font-weight: 700; }
-        .qed { text-align: center; font-family: var(--font-display); font-size: 1.5rem; color: var(--accent-ink); margin-top: 22px; }
-
-        /* Verification grid */
-        .verification-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
-        .verification-card {
-            background: var(--paper); border: 1px solid var(--line);
-            border-left: 4px solid var(--muted);
-            border-radius: 12px; padding: 22px;
-            box-shadow: 0 1px 3px rgba(0,0,0,.04); transition: border-color .15s ease;
-        }
-        .verification-card:hover { border-color: var(--accent); }
-        .verification-card.status-checked { border-left-color: var(--ok); }
-        .verification-card.status-current { border-left-color: var(--accent); }
-        .verification-card.status-open { border-left-color: var(--warn); }
-        .verification-status {
-            font-family: var(--font-ui); font-size: .68rem; font-weight: 600;
-            text-transform: uppercase; letter-spacing: .1em;
-            color: var(--muted); margin-bottom: 6px;
-        }
-        .verification-card.status-checked .verification-status { color: var(--ok); }
-        .verification-card.status-current .verification-status { color: var(--accent); }
-        .verification-card.status-open .verification-status { color: var(--warn); }
-        .verification-card h3 { font-family: var(--font-ui); font-size: 1rem; margin-bottom: 8px; color: var(--accent-ink); }
-        .verification-card p { color: var(--body); font-size: .9rem; }
-        code { font-family: var(--mono); background: var(--bg); padding: 1px 5px; border-radius: 4px; font-size: .86em; }
-
-        /* Data table */
-        .table-scroll {
-            max-width: 100%; overflow-x: auto; margin-top: 22px;
-            border: 1px solid var(--line); border-radius: 14px;
-            background: var(--paper); box-shadow: 0 1px 3px rgba(0,0,0,.04);
-        }
-        .table-scroll .data-table { min-width: 680px; margin-top: 0; }
-        .data-table { width: 100%; border-collapse: collapse; }
-        .data-table th, .data-table td { padding: 14px 16px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
-        .data-table tr:last-child td { border-bottom: 0; }
-        .data-table th { text-transform: uppercase; letter-spacing: .06em; color: var(--accent-ink); font-family: var(--font-ui); font-size: .72rem; font-weight: 600; }
-        .data-table td { color: var(--body); }
-        .data-table a { color: var(--accent); }
+        .link-desc { display: block; font-size: .88rem; color: var(--muted); }
 
         footer {
-            text-align: center; padding: 48px 24px;
-            color: var(--muted); border-top: 1px solid var(--line); margin-top: 64px;
+            text-align: center; padding: 40px 24px;
+            color: var(--muted); font-size: .88rem;
+            border-top: 1px solid var(--line);
         }
-        .footer-logo { font-family: var(--font-ui); font-size: 1.1rem; color: var(--ink); margin-bottom: 12px; }
+        footer strong { color: var(--ink); }
+        footer a { color: var(--accent); }
+        .footer-logo {
+            font-family: var(--font-ui); font-weight: 700; font-size: 1rem;
+            color: var(--ink); margin-bottom: 8px; letter-spacing: -.01em;
+        }
         .footer-logo span { color: var(--accent); }
-        footer p { margin: 6px 0; font-size: .9rem; }
 
-        /* ── Responsive ── */
-        @media (max-width: 980px) {
-            .hero-grid { grid-template-columns: 1fr; }
-            .hero-calc { border-left: 0; border-top: 1px solid var(--dark-line); }
-            .body-wrap { grid-template-columns: minmax(0, 1fr); }
-            .toc { display: none; }
-            .content { min-width: 0; width: 100%; padding: 0 24px 80px; max-width: 100%; }
-            .dark-section .inner { padding: 0 24px; }
-            .featured-grid { grid-template-columns: 1fr; }
-            .featured-stats { grid-template-columns: repeat(3, 1fr); }
-            .result-display { grid-template-columns: 1fr 1fr; }
-        }
         @media (max-width: 780px) {
             .topbar-links {
                 display: flex; width: 100%; flex-wrap: nowrap;
@@ -529,27 +204,15 @@
             .topbar-links a { flex: 0 0 auto; padding: 4px 2px; }
             .mobile-nav-hint { display: block; }
             .topbar-inner { flex-wrap: wrap; padding: 10px 16px; gap: 6px; }
-            .hero-text { padding: 48px 24px 36px; }
-            .hero-calc { padding: 36px 24px; }
-            .featured-stats { grid-template-columns: 1fr; }
-            .section { padding: 40px 0; }
-            .dark-section { padding: 48px 0; }
-            .section-num { font-size: 2.5rem; }
-            .pipeline-grid { flex-direction: column; }
-            .pipeline-node { border-right: 1px solid var(--line); border-radius: 12px !important; }
-            .pipeline-arrow { transform: rotate(90deg); }
-        }
-        @media (max-width: 520px) {
-            body { font-size: 16px; }
-            .hero h1 { font-size: clamp(1.8rem, 8vw, 2.6rem); }
+            .hero { padding: 56px 20px 48px; }
             .hero-actions .btn { width: 100%; justify-content: center; }
-            .result-display { grid-template-columns: 1fr; }
+            .stats { flex-direction: column; gap: 16px; }
+            .featured-actions .btn { width: 100%; justify-content: center; }
         }
         @media (prefers-reduced-motion: reduce) {
             html { scroll-behavior: auto; }
             *, *::before, *::after {
                 animation-duration: .01ms !important;
-                animation-iteration-count: 1 !important;
                 transition-duration: .01ms !important;
             }
         }
@@ -563,384 +226,94 @@
             <a class="brand" href="index.html">Alignment<span> Theorem</span></a>
             <span class="mobile-nav-hint" aria-hidden="true">Swipe for sections</span>
             <div class="topbar-links">
+                <a href="alignment-theorem-deep-dive.html">V1 Deep Dive</a>
+                <a href="v1-1-hyperdeflationary-alignment.html">V1.1 Paper</a>
                 <a href="data-center-social-contract.html">Data Center Bargain</a>
-                <a href="#core">Core Insight</a>
-                <a href="#hyperdeflation">V1 / V1.1</a>
-                <a href="#calculator">Calculator</a>
-                <a href="#pipeline">Pipeline</a>
-                <a href="#proof">Proof</a>
-                <a href="#verifications">Verification</a>
-                <a href="#data">Data Packs</a>
-                <a href="alignment-theorem-deep-dive.html">Version 1</a>
+                <a href="alignment-theorem-v1-archive-notice.html">V1 Claim Boundary</a>
+                <a href="https://github.com/TheDarkLightX/AlignmentTheorem" target="_blank" rel="noopener">GitHub</a>
             </div>
         </div>
     </nav>
 
-    <header class="hero" id="calculator">
-        <div class="hero-grid">
-            <div class="hero-text">
-                <span class="hero-kicker">Formal incentives · post-AGI economics · Tau Language</span>
-                <h1>The Alignment <em>Theorem</em></h1>
-                <p class="hero-sub">Three conditional incentive profiles for ethical, profit-seeking agents, including humans and AI. Version 1 is the concrete EETF/VCC exclusion mechanism; Versions 1.1 and 2 cover broader economic and protocol cases.</p>
-                <div class="hero-actions">
-                    <a class="btn btn-primary" href="Alignment_Theorem_V1_Original_2025.pdf" target="_blank" rel="noopener">Read the V1 Paper</a>
-                    <a class="btn btn-ghost" href="https://github.com/TheDarkLightX/AlignmentTheorem" target="_blank" rel="noopener">GitHub</a>
-                </div>
-            </div>
-
-            <div class="hero-calc">
-                <h2>Version 1 EETF/VCC calculator</h2>
-                <p class="calc-sub">Explore EETF tiers, VCC scarcity, eligible rewards, and upside missed through exclusion; no punitive debit occurs. This visualization is exploratory.</p>
-
-                <div class="scenario-buttons">
-                    <button type="button" class="scenario-button active" data-scarcity="10" data-eetf="10">Baseline</button>
-                    <button type="button" class="scenario-button" data-scarcity="60" data-eetf="15">Accelerated</button>
-                    <button type="button" class="scenario-button" data-scarcity="80" data-eetf="8">Adversarial</button>
-                </div>
-
-                <div class="slider-container">
-                    <div class="slider-label">
-                        <label for="scarcitySlider">Scarcity Multiplier</label>
-                        <span class="slider-value" id="scarcityValue">10x</span>
-                    </div>
-                    <input type="range" id="scarcitySlider" min="1" max="1000" value="10" step="1">
-                </div>
-
-                <div class="slider-container">
-                    <div class="slider-label">
-                        <label for="eetfSlider">Agent EETF Score</label>
-                        <span class="slider-value" id="eetfValue">1.0</span>
-                    </div>
-                    <input type="range" id="eetfSlider" min="0" max="30" value="10" step="1">
-                </div>
-
-                <div class="result-display" role="status" aria-live="polite" aria-atomic="true">
-                    <div class="result-item">
-                        <div class="result-label">Economic Pressure</div>
-                        <div class="result-value neutral" id="pressureResult">10</div>
-                    </div>
-                    <div class="result-item">
-                        <div class="result-label">Ethical Reward</div>
-                        <div class="result-value positive" id="rewardResult">+100</div>
-                    </div>
-                    <div class="result-item">
-                        <div class="result-label">Scarcity Upside Missed Through Exclusion</div>
-                        <div class="result-value negative" id="exclusionResult">50 missed</div>
-                    </div>
-                    <div class="result-item">
-                        <div class="result-label">Pressure Band</div>
-                        <div class="result-value" id="alignmentResult">LOW</div>
-                    </div>
-                </div>
+    <header class="hero">
+        <div class="hero-inner">
+            <span class="hero-kicker">Formal incentives · post-AGI economics · Tau Language</span>
+            <h1>The Alignment <em>Theorem</em></h1>
+            <p class="hero-sub">Three conditional incentive profiles for ethical, profit-seeking agents, including humans and AI. Version 1 is the concrete EETF/VCC exclusion mechanism; Versions 1.1 and 2 cover broader economic and protocol cases.</p>
+            <div class="hero-actions">
+                <a class="btn btn-primary" href="Alignment_Theorem_V1_Original_2025.pdf" target="_blank" rel="noopener">Read the V1 Paper</a>
+                <a class="btn btn-ghost" href="https://github.com/TheDarkLightX/AlignmentTheorem" target="_blank" rel="noopener">GitHub</a>
             </div>
         </div>
     </header>
 
-    <div class="body-wrap">
-        <aside class="toc" aria-label="Table of contents">
-            <div class="toc-title">Contents</div>
-            <ul>
-                <li><a href="#v1-paper">V1 Paper</a></li>
-                <li><a href="#data-center">Data Center Bargain</a></li>
-                <li><a href="#core">Core Insight</a></li>
-                <li><a href="#hyperdeflation">V1 / V1.1 Profiles</a></li>
-                <li><a href="#pipeline">Pipeline</a></li>
-                <li><a href="#vcc">V1 Feedback Loop</a></li>
-                <li><a href="#proof">Formal Proof</a></li>
-                <li><a href="#verifications">Verification</a></li>
-                <li><a href="#data">Data Packs</a></li>
-            </ul>
-        </aside>
+    <main id="main-content" class="main">
 
-        <main id="main-content" class="content">
-
-            <!-- Theorem box -->
-            <div class="theorem-box" style="margin-top:56px">
-                <p class="theorem-text">
-                    Compliant reward &minus; noncompliant reward + expected enforcement<br>
-                    &gt; deviation gain + compliance cost + optimizer error
-                </p>
+        <section class="featured" id="v1-paper">
+            <div class="featured-kicker">Original research · 16-page academic paper</div>
+            <h2>The Alignment Theorem, Version 1</h2>
+            <p>The original paper proposes that increasing monetary scarcity can make ethical work uniquely profitable through EETF-gated rewards and exclusion from exclusive scarcity upside. The negative &ldquo;penalty&rdquo; term is the opportunity cost of that missed upside, never a tax, fine, burn, or balance debit. The reconstructed proof formalizes the EETF/VCC exclusion comparison; V1.1 generalizes it.</p>
+            <div class="featured-equation">G(t) &lt; M(t) &times; [R(t) + L(t)]</div>
+            <div class="featured-actions">
+                <a class="btn btn-primary" href="Alignment_Theorem_V1_Original_2025.pdf" target="_blank" rel="noopener">Read the original paper (PDF)</a>
+                <a class="btn btn-ghost" href="alignment-theorem-deep-dive.html">V1 deep dive</a>
+                <a class="btn btn-ghost" href="alignment-theorem-v1-archive-notice.html">V1 claim boundary</a>
             </div>
+            <div class="stats">
+                <div class="stat"><strong>Lean 4.33</strong><span>machine-checked exclusion theorem</span></div>
+                <div class="stat"><strong>128 rows</strong><span>Tau semantic packet; only all-true admits</span></div>
+                <div class="stat"><strong>691K+</strong><span>stress tests with zero failures</span></div>
+            </div>
+        </section>
 
-            <!-- Featured: V1 Paper -->
-            <section class="featured-essay" id="v1-paper">
-                <div class="featured-grid">
-                    <div>
-                        <span class="hero-kicker" style="margin-bottom:16px">Original research · 16-page academic paper</span>
-                        <h2>The Alignment Theorem, Version 1</h2>
-                        <p>The original paper proposes that increasing monetary scarcity can make ethical work uniquely profitable through EETF-gated rewards and exclusion from scarcity-linked upside. The negative &ldquo;penalty&rdquo; term is the opportunity cost of that missed upside, never a tax, fine, burn, or balance debit. The reconstructed proof formalizes the EETF/VCC exclusion comparison; V1.1 generalizes it.</p>
-                        <div class="featured-equation">G(t) &lt; M(t) &times; [R(t) + L(t)]</div>
-                        <div class="hero-actions" style="margin-top:20px">
-                            <a class="btn btn-primary" href="Alignment_Theorem_V1_Original_2025.pdf" target="_blank" rel="noopener">Read the original paper (PDF)</a>
-                            <a class="btn btn-ghost" href="alignment-theorem-deep-dive.html">Read the V1 deep dive</a>
-                            <a class="btn btn-ghost" href="alignment-theorem-v1-archive-notice.html">V1 claim boundary</a>
-                        </div>
-                    </div>
-                    <div class="featured-stats" aria-label="V1 verification highlights">
-                        <div class="featured-stat"><strong>Lean 4.33</strong><span>machine-checked exclusion theorem</span></div>
-                        <div class="featured-stat"><strong>128 rows</strong><span>Tau semantic packet; only all-true admits</span></div>
-                        <div class="featured-stat"><strong>691K+</strong><span>stress tests with zero failures</span></div>
-                    </div>
-                </div>
-            </section>
+        <p class="summary">Version 1.1 generalizes the same ordering when costs, optimizer error, or relative growth must be explicit. Version 2 adds a policy-governed publication boundary. The Data Center Bargain applies the theorem to local government and AI infrastructure. The trust boundary is external: the gate enforces that rules were followed, but cannot verify that the facts fed into those rules were true.</p>
 
-            <!-- Secondary: Data Center Bargain -->
-            <section class="section" id="data-center">
-                <div class="section-kicker">Applied research · local government</div>
-                <h2 class="section-h" style="font-size:clamp(1.4rem,2.5vw,2rem)">The Data Center Bargain</h2>
-                <p>Local communities do not have to choose between rejecting AI infrastructure and subsidizing it. The social-contract theorem puts grid, water, safety, public-service, household-loss, audit, and decommissioning claims first. Only the authenticated residual is shared.</p>
-                <div class="featured-equation" style="max-width:500px">H(m) = &Sigma; max(m, (loss &minus; direct benefit)&#8314;)</div>
-                <div class="hero-actions" style="margin-top:16px">
-                    <a class="btn btn-primary" href="data-center-social-contract.html">Open the interactive essay</a>
-                    <a class="btn btn-ghost" href="local-government-policy-playbook.html">Policy playbook</a>
-                </div>
-            </section>
+        <div class="link-list">
+            <a class="link-item" href="v1-1-hyperdeflationary-alignment.html">
+                <span class="link-title">Version 1.1 Paper</span>
+                <span class="link-desc">Generalized hyperdeflationary threshold, AGI relative-growth model, and counterexamples</span>
+            </a>
+            <a class="link-item" href="Alignment_Theorem_V1_1_Hyperdeflationary.pdf" target="_blank" rel="noopener">
+                <span class="link-title">V1.1 Paper (PDF)</span>
+                <span class="link-desc">Download the hyperdeflationary alignment paper</span>
+            </a>
+            <a class="link-item" href="data-center-social-contract.html">
+                <span class="link-title">The Data Center Bargain</span>
+                <span class="link-desc">A local-government social contract for data centers, with an interactive solvency calculator</span>
+            </a>
+            <a class="link-item" href="local-government-policy-playbook.html">
+                <span class="link-title">Policy Playbook</span>
+                <span class="link-desc">A standalone implementation guide for cities, counties, and regional authorities</span>
+            </a>
+            <a class="link-item" href="alignment-theorem-deep-dive.html">
+                <span class="link-title">V1 Deep Dive</span>
+                <span class="link-desc">The EETF/VCC mechanism, scarcity upside, exclusion, and the reconstructed proof</span>
+            </a>
+            <a class="link-item" href="alignment-theorem-v1-archive-notice.html">
+                <span class="link-title">V1 Claim Boundary</span>
+                <span class="link-desc">Retained mechanism, exact corrections, and what the theorem does not claim &middot; <a href="Alignment_Theorem_Academic.pdf" target="_blank" rel="noopener">PDF</a></span>
+            </a>
+            <a class="link-item" href="current-tau-net-integration.html">
+                <span class="link-title">Current Tau Integration</span>
+                <span class="link-desc">Profile selection, source pins, bounded replays, and open authority layers</span>
+            </a>
+            <a class="link-item" href="intelligence-hyperdeflation-flywheel.html">
+                <span class="link-title">Intelligence Flywheel</span>
+                <span class="link-desc">Scarcity and reward feedback dynamics explored as a companion experiment</span>
+            </a>
+            <a class="link-item" href="https://github.com/TheDarkLightX/AlignmentTheorem" target="_blank" rel="noopener">
+                <span class="link-title">GitHub Repository</span>
+                <span class="link-desc">Lean proofs, Tau packets, Python reference model, test suite, and assurance receipts</span>
+            </a>
+        </div>
 
-            <!-- 01: Core Insight -->
-            <section class="section" id="core">
-                <div class="section-num">01</div>
-                <div class="section-kicker">The core insight</div>
-                <h2 class="section-h">Ethics and profit point the same way when the rules are funded.</h2>
-                <div class="card-grid">
-                    <div class="card"><span class="tag">Policy</span><h3>Explicit policy</h3><p>A versioned community policy defines acceptable observable actions. The theorem is policy-relative and does not claim objective moral truth.</p></div>
-                    <div class="card"><span class="tag">Agents</span><h3>Aligned agents</h3><p>Human and AI agents can follow ethical constraints while pursuing useful, profitable tasks. Any capable lab may train AI agents against the public policy interface.</p></div>
-                    <div class="card"><span class="tag">Incentives</span><h3>Finite incentives</h3><p>Funded rewards and conservative enforcement must exceed bounded deviation gains, compliance costs, and optimizer error by a strict margin.</p></div>
-                    <div class="card"><span class="tag">Gate</span><h3>Publication gate</h3><p>A deterministic Tau gate checks authenticated obligations. Rejection pays nothing and leaves the committed reserve unchanged.</p></div>
-                </div>
-            </section>
-
-            <!-- 02: V1 and V1.1 (dark contrast) -->
-            <section class="dark-section" id="hyperdeflation">
-                <div class="inner">
-                    <div class="section-num">02</div>
-                    <div class="section-kicker">Version 1 and Version 1.1</div>
-                    <h2 class="section-h">Use the concrete V1 mechanism when its premises fit.</h2>
-                    <p class="section-intro">V1 ties EETF eligibility to funded rewards and scarcity-linked upside that the excluded branch cannot obtain. The paper&rsquo;s negative &ldquo;penalty&rdquo; term represents that missed upside; it is an opportunity cost and never a tax, fine, burn, confiscation, or balance debit. V1.1 generalizes the same ordering when costs, optimizer error, or relative growth must be explicit.</p>
-                    <div class="theorem-box">
-                        <p class="theorem-text">
-                            G(t) &lt; M(t) &times; [R(t) + L(t)]<br>
-                            <span style="font-size:.62em;font-family:var(--font-body);font-weight:500">V1: L is scarcity upside available only to the eligible branch</span>
-                        </p>
-                    </div>
-                    <div class="card-grid" style="margin-top:24px">
-                        <div class="card"><h3>V1 exact threshold</h3><p>For R + L &gt; 0, the least strict integer multiplier is floor(G / (R + L)) + 1. If G = 0, every positive M suffices.</p></div>
-                        <div class="card"><h3>Exclusion is load-bearing</h3><p>L must be exclusive scarcity upside. If the excluded branch can obtain it, or the upside is common to both choices, L cancels and cannot establish V1.</p></div>
-                        <div class="card"><h3>V1.1 generalization</h3><p>Define K = R + L and include deviation gain, compliance cost, and optimizer error in B. The finite condition is M(t)K(t) &gt; B(t).</p></div>
-                        <div class="card"><h3>Relative growth</h3><p>Growing opposing opportunities are covered only when B(t) / K(t) eventually remains below M(t).</p></div>
-                    </div>
-                    <div class="hero-actions" style="margin-top:24px">
-                        <a class="btn btn-primary" href="alignment-theorem-v1-archive-notice.html">Read the V1 Claim Boundary</a>
-                        <a class="btn btn-ghost" href="Alignment_Theorem_V1_Original_2025.pdf" target="_blank" rel="noopener">Original 16-Page V1 Paper</a>
-                        <a class="btn btn-primary" href="v1-1-hyperdeflationary-alignment.html">Read the V1.1 Paper</a>
-                        <a class="btn btn-ghost" href="Alignment_Theorem_V1_1_Hyperdeflationary.pdf" target="_blank" rel="noopener">Download V1.1 PDF</a>
-                    </div>
-                </div>
-            </section>
-
-            <!-- 03: Pipeline -->
-            <section class="section" id="pipeline">
-                <div class="section-num">03</div>
-                <div class="section-kicker">Architecture</div>
-                <h2 class="section-h">Ethics-to-economics pipeline</h2>
-                <p class="section-intro">Governance selects an explicit policy. External evidence providers, including meters, oracles, and signed attestations, supply the facts the network cannot derive on its own. Tau checks the policy relationship against those facts, and reserve-backed settlement publishes eligible work.</p>
-                <div class="pipeline-container">
-                    <div class="pipeline-grid">
-                        <div class="pipeline-node"><h3>Governed Policy</h3><p>Versioned rules and constitutional bounds</p></div>
-                        <div class="pipeline-arrow">&rarr;</div>
-                        <div class="pipeline-node"><h3>External Evidence</h3><p>Meters, oracles, signed attestations</p></div>
-                        <div class="pipeline-arrow">&rarr;</div>
-                        <div class="pipeline-node highlight"><h3>Tau Policy Gate</h3><p>All obligations must pass</p></div>
-                        <div class="pipeline-arrow">&rarr;</div>
-                        <div class="pipeline-node"><h3>Funded Settlement</h3><p>Exact payout or rejected no-op</p></div>
-                        <div class="pipeline-arrow">&rarr;</div>
-                        <div class="pipeline-node"><h3>Network Publication</h3><p>Receipts inform review and revision</p></div>
-                    </div>
-                    <p class="pipeline-caption">The agent proposes an action and optimizes the task. External evidence providers, including meters, oracles, and signed attestations, supply the facts the network cannot observe on its own. Tau evaluates the declared relation. The settlement layer controls value and publication.</p>
-                </div>
-                <div class="callout"><strong>The trust boundary is external.</strong> The gate enforces that the rules were followed. It cannot verify that the facts fed into those rules were true. Meters can be miscalibrated, oracles can be bribed, and attestations can be forged; the chain faithfully executes on whatever validly-signed inputs it receives. A production system needs independent evidence providers, dispute mechanisms, and audit rotation. The theorem assumes honest authentication; it does not provide it.</div>
-            </section>
-
-            <!-- 04: V1 Feedback Loop -->
-            <section class="section" id="vcc">
-                <div class="section-num">04</div>
-                <div class="section-kicker">Companion experiment</div>
-                <h2 class="section-h">Version 1 feedback loop</h2>
-                <p class="section-intro">The <a class="inline-link" href="https://github.com/TheDarkLightX/VCC-concept-visualizer" target="_blank" rel="noopener">VCC concept visualizer</a> explores scarcity and reward feedback. The reconstructed V1 proof formalizes the EETF/VCC exclusion comparison; V1.1 abstracts it. The visualizer remains exploratory evidence.</p>
-                <div class="loop-container">
-                    <div class="loop-node">Ethical Behavior</div>
-                    <div class="loop-arrow">&rarr;</div>
-                    <div class="loop-node reward">Higher EETF</div>
-                    <div class="loop-arrow">&rarr;</div>
-                    <div class="loop-node reward">DBR + HCR Boosts</div>
-                    <div class="loop-arrow">&rarr;</div>
-                    <div class="loop-node burn">AEB Scarcity Reward</div>
-                    <div class="loop-arrow">&rarr;</div>
-                    <div class="loop-node">Higher Scarcity</div>
-                    <div class="loop-arrow">&rarr;</div>
-                    <div class="loop-node">Future Ethics Updates</div>
-                </div>
-                <div class="hero-actions" style="margin-top:24px">
-                    <a class="btn btn-primary" href="intelligence-hyperdeflation-flywheel.html">Explore the intelligence flywheel</a>
-                </div>
-            </section>
-
-            <!-- 05: Proof (dark contrast) -->
-            <section class="dark-section" id="proof">
-                <div class="inner">
-                    <div class="section-num">05</div>
-                    <div class="section-kicker">Formal proof</div>
-                    <h2 class="section-h">The finite incentive argument</h2>
-                    <div class="proof-container" style="background:rgba(255,255,255,.04);border-color:var(--dark-line);border-left-color:var(--accent-bright)">
-                        <div class="proof-step" style="background:rgba(0,0,0,.2);color:#e2e8f0"><span class="step-num" style="color:var(--accent-bright)">Step 1:</span> Fix a versioned policy and an authenticated evidence boundary.</div>
-                        <div class="proof-step" style="background:rgba(0,0,0,.2);color:#e2e8f0"><span class="step-num" style="color:var(--accent-bright)">Step 2:</span> Admit publication only when all seven policy obligations hold.</div>
-                        <div class="proof-step" style="background:rgba(0,0,0,.2);color:#e2e8f0"><span class="step-num" style="color:var(--accent-bright)">Step 3:</span> Prove that every rejected settlement has zero payout and no reserve effect.</div>
-                        <div class="proof-step" style="background:rgba(0,0,0,.2);color:#e2e8f0"><span class="step-num" style="color:var(--accent-bright)">Step 4:</span> Prove that every accepted payout is funded and conserves the reserve.</div>
-                        <div class="proof-step" style="background:rgba(0,0,0,.2);color:#e2e8f0"><span class="step-num" style="color:var(--accent-bright)">Step 5:</span> Bound private deviation gain, compliance cost, and optimizer error.</div>
-                        <div class="proof-step" style="background:rgba(0,0,0,.2);color:#e2e8f0"><span class="step-num" style="color:var(--accent-bright)">Step 6:</span> Require a strict finite incentive margin over those bounds.</div>
-                        <div class="proof-step" style="background:rgba(0,0,0,.2);color:#e2e8f0"><span class="step-num" style="color:var(--accent-bright)">Step 7:</span> Conclude that every epsilon-optimal modeled choice is policy compliant.</div>
-                        <div class="qed" style="color:var(--accent-bright)">&#8718; QED</div>
-                    </div>
-                    <p style="margin-top:20px">The exact statement is machine checked in <code>proofs/v2/AlignmentTheoremV2.lean</code>. The conclusion remains conditional on the declared bounds and authenticated facts.</p>
-                </div>
-            </section>
-
-            <!-- 06: Why this works -->
-            <section class="section">
-                <div class="section-num">06</div>
-                <div class="section-kicker">Why this works for AI</div>
-                <h2 class="section-h">Feasible today, bounded by design.</h2>
-                <p class="section-intro">The theorem does not require a hypothetical future agent. It requires four properties that are individually present today, combined with explicit boundaries on what is not proven.</p>
-                <div class="card-grid">
-                    <div class="card"><h3>Feasible joint behavior</h3><p>Present-day assistants show that an agent can pursue a task while following ethical and safety constraints. This establishes behavioral feasibility.</p></div>
-                    <div class="card"><h3>Economic reinforcement</h3><p>When compliant work pays best, training and profit seeking point agents toward the same observable behavior.</p></div>
-                    <div class="card"><h3>Verifier-conditioned</h3><p>The agent proposes actions. Authenticated evidence and deterministic policy checks decide what the network can publish and reward.</p></div>
-                    <div class="card"><h3>Explicit limits</h3><p>The result does not prove universal generalization, objective ethics, honest sensors, coalition safety, or bounds outside the modeled action class.</p></div>
-                </div>
-            </section>
-
-            <!-- 07: Verification -->
-            <section class="section" id="verifications">
-                <div class="section-num">07</div>
-                <div class="section-kicker">Verification</div>
-                <h2 class="section-h">Claim-scoped verification evidence</h2>
-                <p class="section-intro">The <a class="inline-link" href="https://github.com/TheDarkLightX/AlignmentTheorem" target="_blank" rel="noopener">repository</a> binds the bounded claims to current Lean and Tau artifacts. This evidence does not establish deployment or production readiness.</p>
-                <div class="verification-grid">
-                    <div class="verification-card status-checked"><div class="verification-status">Machine-checked</div><h3>Lean 4 Proof</h3><p>Lean 4.33.0, no <code>sorry</code>, <code>admit</code>, or user-added axioms. The receipt records exact standard <code>propext</code> and <code>Quot.sound</code> dependencies.</p></div>
-                    <div class="verification-card status-current"><div class="verification-status">Current candidate</div><h3>Tau Execution</h3><p>A source-pinned local candidate at <code>9b191af</code> matched the complete V1, V1.1, V2, and flywheel packets byte-for-byte. The three-profile native router matched 27 / 27 bounded ABI cases.</p></div>
-                    <div class="verification-card status-checked"><div class="verification-status">Reference tests</div><h3>Adversarial Reference Tests</h3><p>Tests retain strict-boundary counterexamples, zero detection, BVA, exact-type rejection, deterministic ties, and exhaustive small-domain parity.</p></div>
-                    <div class="verification-card status-open"><div class="verification-status">Explicitly open</div><h3>Source-Bound Receipts</h3><p>V1, V1.1, and V2 have separate Lean and semantic artifacts. Current candidate receipts keep public-node deployment, authenticated facts, settlement authority, and production readiness explicitly open.</p></div>
-                </div>
-            </section>
-
-            <!-- 08: Data packs -->
-            <section class="section" id="data">
-                <div class="section-num">08</div>
-                <div class="section-kicker">Artifacts</div>
-                <h2 class="section-h">Data packs &amp; downloads</h2>
-                <p class="section-intro">V1, V1.1, and V2 remain distinct profiles. The original paper is preserved unchanged for provenance beside the current claim boundary and reconstructed proof.</p>
-                <details class="disclosure">
-                    <summary>View all artifacts and download locations</summary>
-                    <div class="disclosure-body">
-                        <div class="table-scroll" role="region" aria-label="Data packs and downloads" tabindex="0">
-                        <table class="data-table">
-                            <thead><tr><th>Artifact</th><th>Description</th><th>Location</th></tr></thead>
-                            <tbody>
-                                <tr><td>Version 1 Paper</td><td>Uncorrected 16-page academic paper preserved for provenance</td><td><a href="Alignment_Theorem_V1_Original_2025.pdf">original PDF</a></td></tr>
-                                <tr><td>Version 1 Claim Boundary</td><td>Retained EETF/VCC exclusion theorem, exact corrections, and nonclaims</td><td><a href="alignment-theorem-v1-archive-notice.html">HTML</a> &middot; <a href="Alignment_Theorem_Academic.pdf">PDF</a></td></tr>
-                                <tr><td>Version 1 Lean + Tau</td><td>Reconstructed exclusion theorem and complete 128-row packet</td><td><code>proofs/v1/</code>, <code>tau/v1/</code></td></tr>
-                                <tr><td>Version 1.1 Paper</td><td>Abstract hyperdeflationary threshold, AGI relative-growth model, and counterexamples</td><td><code>docs/v1-1-hyperdeflationary-alignment.html</code></td></tr>
-                                <tr><td>Version 1.1 Lean</td><td>Finite, asymptotic, and relative-growth theorems</td><td><code>proofs/v1_1/AlignmentTheoremV1_1.lean</code></td></tr>
-                                <tr><td>Version 2 Paper</td><td>Finite theorem, architecture, assumptions, and nonclaims</td><td><code>paper/v2/alignment_theorem_v2.pdf</code></td></tr>
-                                <tr><td>Lean Proof</td><td>Current machine-checked finite result</td><td><code>proofs/v2/AlignmentTheoremV2.lean</code></td></tr>
-                                <tr><td>Tau Policy</td><td>Current-Tau fail-closed policy gate and replay packet</td><td><code>tau/v2/</code></td></tr>
-                                <tr><td>Current Tau Matrix</td><td>Profile selection, exact source pins, bounded replays, and open authority layers</td><td><a href="current-tau-net-integration.html">current integration</a></td></tr>
-                            </tbody>
-                        </table>
-                        </div>
-                    </div>
-                </details>
-            </section>
-
-        </main>
-    </div>
+    </main>
 
     <footer>
         <div class="footer-logo">TAUNET<span> ALIGNMENT</span></div>
         <p>Conditional exclusion, hyperdeflationary, and finite policy-relative theorems</p>
         <p>August 2026 &bull; Alignment Theorem Versions 1, 1.1, and 2 &bull; Data Center Social Contract</p>
-        <p><a class="inline-link" href="#top">Back to top</a></p>
+        <p><a href="#top">Back to top</a></p>
     </footer>
-
-    <script>
-        const scarcitySlider = document.getElementById('scarcitySlider');
-        const eetfSlider = document.getElementById('eetfSlider');
-        const scarcityValue = document.getElementById('scarcityValue');
-        const eetfValue = document.getElementById('eetfValue');
-        const pressureResult = document.getElementById('pressureResult');
-        const rewardResult = document.getElementById('rewardResult');
-        const exclusionResult = document.getElementById('exclusionResult');
-        const alignmentResult = document.getElementById('alignmentResult');
-        const scenarioButtons = document.querySelectorAll('.scenario-button');
-        scenarioButtons.forEach(btn => btn.setAttribute('aria-pressed', btn.classList.contains('active') ? 'true' : 'false'));
-
-        function updateCalculations() {
-            const scarcity = parseInt(scarcitySlider.value);
-            const eetf = parseInt(eetfSlider.value) / 10;
-
-            scarcityValue.textContent = scarcity + 'x';
-            eetfValue.textContent = eetf.toFixed(1);
-            scarcitySlider.setAttribute('aria-valuetext', scarcity + ' times');
-            eetfSlider.setAttribute('aria-valuetext', eetf.toFixed(1));
-
-            const pressure = Math.round(scarcity * eetf);
-            pressureResult.textContent = pressure.toLocaleString();
-
-            const tierMult = eetf >= 2.0 ? 5 : (eetf >= 1.5 ? 3 : (eetf >= 1.0 ? 1 : 0));
-            const reward = tierMult > 0 ? Math.round(100 * scarcity * tierMult / 10) : 0;
-            rewardResult.textContent = reward > 0 ? '+' + reward.toLocaleString() : '0';
-            rewardResult.className = reward > 0 ? 'result-value positive' : 'result-value neutral';
-
-            // Scarcity-linked upside unavailable to the excluded branch; no debit.
-            const missedUpside = Math.round(pressure * 5);
-            exclusionResult.textContent = missedUpside.toLocaleString() + ' missed';
-
-            let status, statusColor;
-            if (pressure < 10) { status = 'LOW'; statusColor = 'neutral'; }
-            else if (pressure < 100) { status = 'MEDIUM'; statusColor = 'neutral'; }
-            else if (pressure < 1000) { status = 'HIGH'; statusColor = 'positive'; }
-            else { status = 'VERY HIGH'; statusColor = 'positive'; }
-            alignmentResult.textContent = status;
-            alignmentResult.className = 'result-value ' + statusColor;
-        }
-
-        scarcitySlider.addEventListener('input', updateCalculations);
-        eetfSlider.addEventListener('input', updateCalculations);
-
-        scenarioButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                scenarioButtons.forEach(btn => {
-                    btn.classList.remove('active');
-                    btn.setAttribute('aria-pressed', 'false');
-                });
-                button.classList.add('active');
-                button.setAttribute('aria-pressed', 'true');
-                scarcitySlider.value = button.dataset.scarcity;
-                eetfSlider.value = button.dataset.eetf;
-                updateCalculations();
-            });
-        });
-
-        const nodes = document.querySelectorAll('.flow-node');
-        let currentNode = 0;
-        if (nodes.length && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-            setInterval(() => {
-                nodes.forEach(node => node.classList.remove('highlight'));
-                nodes[currentNode].classList.add('highlight');
-                currentNode = (currentNode + 1) % nodes.length;
-            }, 1500);
-        }
-
-        updateCalculations();
-    </script>
 </body>
 </html>
