@@ -33,6 +33,20 @@ jobs:
           set -euo pipefail
           mkdir -p live qa
           ready=0
+          matches_main() {
+            cmp -s docs/index.html live/index.html \
+              && cmp -s docs/data-center-social-contract.html live/data.html \
+              && cmp -s docs/alignment-theorem-deep-dive.html live/deep.html \
+              && cmp -s docs/v1-1-hyperdeflationary-alignment.html live/v11.html \
+              && cmp -s docs/local-government-policy-playbook.html live/playbook.html \
+              && cmp -s docs/current-tau-net-integration.html live/current.html \
+              && cmp -s docs/intelligence-hyperdeflation-flywheel.html live/flywheel.html \
+              && cmp -s docs/alignment-theorem-v1-archive-notice.html live/v1.html \
+              && cmp -s docs/Alignment_Theorem_V1_Original_2025.pdf live/v1-original.pdf \
+              && cmp -s docs/Alignment_Theorem_Academic.pdf live/v1-boundary.pdf \
+              && cmp -s docs/Alignment_Theorem_V1_1_Hyperdeflationary.pdf live/v1-1.pdf \
+              && cmp -s docs/Alignment_Theorem_V2.pdf live/v2.pdf
+          }
           for attempt in $(seq 1 60); do
             nonce="${GITHUB_SHA}-${attempt}-$(date +%s)"
             home=$(curl -L -sS -o live/index.html -w "%{http_code}" "${SITE_ROOT}/?verify=${nonce}" || true)
@@ -58,7 +72,8 @@ jobs:
               && grep -q "Make growth pay for growth" live/playbook.html \
               && grep -q "Three profiles" live/current.html \
               && grep -q "intelligence dividend" live/flywheel.html \
-              && grep -q "V1 mechanism remains" live/v1.html; then
+              && grep -q "V1 mechanism remains" live/v1.html \
+              && matches_main; then
               printf '{"home":%s,"data_center":%s,"deep_dive":%s,"v1_1":%s,"playbook":%s,"current_tau":%s,"flywheel":%s,"v1_boundary":%s,"v1_original_pdf":%s,"v1_boundary_pdf":%s,"v1_1_pdf":%s,"v2_pdf":%s,"attempt":%s}\n' \
                 "$home" "$data" "$deep" "$v11" "$playbook" "$current" "$flywheel" "$v1" "$original" "$v1_pdf" "$v11_pdf" "$v2_pdf" "$attempt" > live/http-status.json
               ready=1
