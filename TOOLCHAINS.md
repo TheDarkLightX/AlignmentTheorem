@@ -206,3 +206,56 @@ natively matched the V1.1 and both compute-dividend packets.  Because its hash
 and exact version differ from the reviewed identity, and because it executed
 with locally built cvc5 plus unpinned host libraries, this is candidate evidence
 only.  See `research/compute_dividend/tau_source_candidate_probe.json`.
+
+## Intelligence-flywheel research kernel
+
+### Lean and exact model
+
+- Lean release: `v4.33.0`
+- toolchain file: `proofs/intelligence_flywheel/lean-toolchain`
+- standard library only
+- exact model arithmetic: Python integers and `fractions.Fraction`
+
+Replay:
+
+```bash
+python3 verification/run_lean_intelligence_flywheel.py \
+  --output verification/receipts/lean_intelligence_flywheel_v4.33.0.json \
+  --json
+python3 -m verification.run_intelligence_flywheel_campaign --json
+```
+
+The same sandbox compatibility and non-attestation boundary described for the
+compute-dividend Lean run applies.  The receipt reports the loaded shim when
+used and does not attest the Lean executable's provenance or the host.
+
+### Tau CLI packet
+
+`tau/intelligence_flywheel/gate/` contains all 512 rows for nine obligations.
+The source-pinned local candidate `b2699306...` produced byte-identical output,
+but is not the reviewed identity.  Reviewed replay is fail-closed:
+
+```bash
+python3 verification/run_tau_intelligence_flywheel_reviewed.py \
+  --tau-bin /path/to/reviewed/tau \
+  --output verification/receipts/tau_intelligence_flywheel_fd137e8.json \
+  --json
+```
+
+Until an executable with exact SHA-256 `c4926740...` is supplied, the runner's
+candidate preflight remains a negative result, not an execution receipt.
+
+### Tau Testnet native ABI probe
+
+- Tau Testnet source commit:
+  `9f9240ded9fd7ff246f4bbd45343c64eef9a1751`
+- Tau source/parser commits: the `fd137e8` / `5dd036...` pins above
+- local native module SHA-256:
+  `882dbddb07e0277bf7172129c443c3c5def4423d2566773cd408b30b0a88d561`
+
+The direct `TauInterface` probe binds upstream source files, module bytes,
+application-rule bytes, semantic stream mapping, and case results.  The module
+was produced through a local non-hermetic build whose source-to-module relation
+is declared but not independently attested.  Direct binding execution is not a
+node/admission/block-apply/finality test, and custom input values do not
+authenticate economic facts.

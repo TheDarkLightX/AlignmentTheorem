@@ -120,6 +120,35 @@ Read the [research note](research/compute_dividend/README.md),
 [claim boundary](research/compute_dividend/CLAIM_BOUNDARY.md), and
 [Tau replay handoff](research/compute_dividend/TAU_REPLAY.md).
 
+## Intelligence-to-hyperdeflation flywheel research
+
+The follow-up packet separates a hypothetical capability-doubling law from the
+causal links it would need to affect the theorem.  Its normalized essential-
+basket map is `P(t) = 1 - a*rho + a*rho/I(t)^eta`, with purchasing power
+`M(t)=1/P(t)`.  If automation or pass-through is incomplete, the price floor is
+positive and `M` is bounded even when capability doubles forever.  The positive
+Lean theorem therefore requires explicit reward/deviation bounds and a strict
+crossing witness; intelligence growth alone is formally insufficient.
+
+The exact campaign tests direct doubling, compute-power scaling, logistic
+saturation, conditional DAC reinvestment, partial pass-through, and rebound.
+It checks 544 exact bridge cases, proves the key conditional and negative
+results in Lean, and binds the same nine-fact predicate to a complete 512-row
+Tau packet.  The source-pinned Tau candidate matched that packet.  A direct
+native `o5` ABI probe at Tau Testnet revision `9f9240...` also matched all 12
+all-true, single-fault, missing-input, and sender-isolation cases.
+
+That native result is not a node deployment, authenticated oracle path,
+consensus-finality test, or production claim.  Custom `i17..i25` values are
+submitter-supplied claims in the tested alpha.  Replay on the reviewed
+`c4926740...` Tau binary remains pending; the strict runner rejects the local
+candidate before execution.
+
+Read the [GitHub Pages explainer](docs/intelligence-hyperdeflation-flywheel.html),
+[mathematical model](research/intelligence_flywheel/MATHEMATICAL_MODEL.md),
+[Tau Net replay boundary](research/intelligence_flywheel/TAU_NET_REPLAY.md), and
+[claim boundary](research/intelligence_flywheel/CLAIM_BOUNDARY.md).
+
 ## Replay
 
 Python reference and packet tests:
@@ -134,6 +163,13 @@ Compute-dividend reference campaign:
 python3 -m verification.run_compute_dividend_campaign --json
 cd proofs/compute_dividend
 lake build
+```
+
+Intelligence-flywheel reference and Lean campaigns:
+
+```bash
+python3 -m verification.run_intelligence_flywheel_campaign --json
+python3 verification/run_lean_intelligence_flywheel.py --json
 ```
 
 Lean 4.33.0 proof:

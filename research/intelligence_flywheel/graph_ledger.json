@@ -1,0 +1,26 @@
+{
+  "schema": "alignment-theorem-graph-ledger-v1",
+  "nodes": [
+    {"id": "N-IF-COMPUTE", "label": "Compute and verified task capability"},
+    {"id": "N-IF-COST", "label": "Task productivity and unit cost"},
+    {"id": "N-IF-PRICE", "label": "Accessible essential-basket price"},
+    {"id": "N-IF-BENEFIT", "label": "Funded universal floor and compute entitlement"},
+    {"id": "N-IF-MARGIN", "label": "Strict B < M*K margin"},
+    {"id": "N-IF-DAC", "label": "Constrained autonomous DAC reinvestment"},
+    {"id": "N-IF-TAU", "label": "Tau sender-scoped policy predicate"},
+    {"id": "N-IF-ORACLE", "label": "Authenticated external receipts and measurements"},
+    {"id": "N-IF-OUTCOME", "label": "Prioritarian household welfare outcomes"}
+  ],
+  "edges": [
+    {"from": "N-IF-COMPUTE", "to": "N-IF-COST", "relation": "requires_measured_productivity_bridge"},
+    {"from": "N-IF-COST", "to": "N-IF-PRICE", "relation": "requires_competition_pass_through_access_and_quality_adjustment"},
+    {"from": "N-IF-PRICE", "to": "N-IF-MARGIN", "relation": "defines_purchasing_power_M"},
+    {"from": "N-IF-BENEFIT", "to": "N-IF-MARGIN", "relation": "defines_protected_benefit_K"},
+    {"from": "N-IF-DAC", "to": "N-IF-COMPUTE", "relation": "conditionally_reinvests_positive_net_return"},
+    {"from": "N-IF-ORACLE", "to": "N-IF-TAU", "relation": "must_authenticate_policy_facts"},
+    {"from": "N-IF-MARGIN", "to": "N-IF-TAU", "relation": "supplies_strict_margin_claim"},
+    {"from": "N-IF-TAU", "to": "N-IF-DAC", "relation": "admits_treasury_action_only_if_all_claims_true"},
+    {"from": "N-IF-BENEFIT", "to": "N-IF-OUTCOME", "relation": "requires_empirical_evaluation"},
+    {"from": "N-IF-DAC", "to": "N-IF-OUTCOME", "relation": "requires_empirical_evaluation"}
+  ]
+}

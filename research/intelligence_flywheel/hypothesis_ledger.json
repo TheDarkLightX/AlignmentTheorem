@@ -1,0 +1,105 @@
+{
+  "schema": "alignment-theorem-hypothesis-ledger-v1",
+  "base_revision": "0f68357535c299de799976a67410f97367ed87c1",
+  "hypotheses": [
+    {
+      "id": "H-IF-01",
+      "status": "source_supported_boundary",
+      "statement": "Moore's 1965 semiconductor observation is an analogy, not evidence that a scalar general-intelligence measure doubles on a stable schedule.",
+      "assumptions": ["The historical source is used for its stated semiconductor context."],
+      "falsifiers": ["The source itself establishes the stronger intelligence law attributed here."],
+      "source_ids": ["SRC-IF-MOORE-1965", "SRC-IF-HOFFMANN-2022"],
+      "evidence_ids": []
+    },
+    {
+      "id": "H-IF-02",
+      "status": "supported_bounded",
+      "statement": "A supplied geometric reward crossing over a supplied geometric deviation bound implies the strict V1.1 alignment margin at the witness epoch.",
+      "assumptions": ["All quantities are natural numbers.", "The supplied bounds and strict crossing are true."],
+      "falsifiers": ["A Lean counterexample under the quantified premises.", "A placeholder or unreviewed axiom."],
+      "source_ids": [],
+      "evidence_ids": ["E-IF-LEAN-01"]
+    },
+    {
+      "id": "H-IF-03",
+      "status": "refuted",
+      "statement": "Capability doubling alone is sufficient for hyperdeflation and alignment.",
+      "assumptions": ["No bridge from capability to prices, protected benefit, or deviation benefit is supplied."],
+      "falsifiers": ["One growing capability path paired with bounded M=K=1 and B=2."],
+      "source_ids": [],
+      "evidence_ids": ["E-IF-LEAN-COUNTERMODEL-02", "E-IF-PYTHON-COUNTERMODEL-03"]
+    },
+    {
+      "id": "H-IF-04",
+      "status": "supported_bounded",
+      "statement": "In the declared basket equation, incomplete automation or pass-through creates a positive price floor and a bounded purchasing-power multiplier.",
+      "assumptions": ["The declared normalized basket equation holds.", "Capability is positive."],
+      "falsifiers": ["A checked exact case with price below 1-a*rho.", "An algebraic counterexample."],
+      "source_ids": ["SRC-IF-BLS-CPI"],
+      "evidence_ids": ["E-IF-PYTHON-01"]
+    },
+    {
+      "id": "H-IF-05",
+      "status": "under_test",
+      "statement": "Operational AI capability gains cause durable essential-basket price declines with sufficient automation, competition/pass-through, household access, and bounded rebound.",
+      "assumptions": ["Capability, task productivity, unit costs, prices, quality, access, and externalities can be measured on a preregistered bridge."],
+      "falsifiers": ["No cost effect.", "Weak pass-through.", "Nonautomatable floors.", "Quality-adjusted price reversal.", "Rebound or grid/environmental costs cancel savings.", "Exclusion from household access."],
+      "source_ids": ["SRC-IF-HOFFMANN-2022", "SRC-IF-BLS-CPI", "SRC-IF-ACEMOGLU-RESTREPO-2019"],
+      "evidence_ids": []
+    },
+    {
+      "id": "H-IF-06",
+      "status": "supported_bounded_candidate",
+      "statement": "The source-pinned local Tau candidate executes the 512-row conjunction packet canonically.",
+      "assumptions": ["The observed candidate bytes and source worktrees are the files hashed in the receipt."],
+      "falsifiers": ["Hash drift.", "Wrong row count.", "Any accepted row other than row 0.", "Output mismatch or execution failure."],
+      "source_ids": ["SRC-IF-TAU-LANG-FD137E8"],
+      "evidence_ids": ["E-IF-TAU-CANDIDATE-04"]
+    },
+    {
+      "id": "H-IF-07",
+      "status": "supported_bounded_native_abi",
+      "statement": "At the pinned local Tau Testnet and Tau revisions, the direct native o5 ABI enforces the sender-scoped nine-fact rule for the tested positive, mutation, scope, and missing-input cases.",
+      "assumptions": ["Direct TauInterface behavior represents only the tested native ABI.", "Custom values are supplied claims."],
+      "falsifiers": ["Any recorded case mismatch.", "Revision or file-hash drift.", "The direct binding fails to instantiate or communicate."],
+      "source_ids": ["SRC-IF-TAU-TESTNET-9F9240", "SRC-IF-TAU-LANG-FD137E8"],
+      "evidence_ids": ["E-IF-TAU-NET-NATIVE-05"]
+    },
+    {
+      "id": "H-IF-08",
+      "status": "under_test",
+      "statement": "The reviewed c4926740 Tau Linux binary executes the V1.1, compute-dividend, wealth, and intelligence-flywheel packets canonically.",
+      "assumptions": ["The supplied executable has the exact reviewed SHA-256 and version string."],
+      "falsifiers": ["Preflight identity mismatch.", "Crash or timeout.", "Noncanonical output.", "Semantic mismatch."],
+      "source_ids": ["SRC-IF-TAU-LANG-FD137E8"],
+      "evidence_ids": ["E-IF-TAU-REVIEWED-PENDING-06"]
+    },
+    {
+      "id": "H-IF-09",
+      "status": "refuted",
+      "statement": "A true custom input in the current Tau Testnet o5 ABI is, by itself, an authenticated economic fact.",
+      "assumptions": ["No consensus-recognized oracle or receipt verifier binds the custom value."],
+      "falsifiers": ["The pinned protocol cryptographically derives or authenticates i17..i25 rather than accepting transaction-supplied values."],
+      "source_ids": ["SRC-IF-TAU-TESTNET-9F9240"],
+      "evidence_ids": ["E-IF-TAU-NET-NATIVE-05"]
+    },
+    {
+      "id": "H-IF-10",
+      "status": "under_test",
+      "statement": "Data-center rents can fund a universal floor and constrained household wealth copilot while improving prioritarian welfare under grid, environmental, debt, and concentration guardrails.",
+      "assumptions": ["A lawful full-cost-recovery rent and credible counterfactual exist.", "Identity, custody, advice, and benefits are independently governed."],
+      "falsifiers": ["Cost shifting.", "Floor failure.", "Benefit capture.", "Worse ratepayer or household outcomes.", "Reliability or environmental guardrail failure."],
+      "source_ids": ["SRC-IF-COMPUTE-DIVIDEND-LEDGER"],
+      "evidence_ids": []
+    },
+    {
+      "id": "H-IF-11",
+      "status": "supported_narrowly",
+      "statement": "The proposed o5 policy is Tau-native on the current Tau Net protocol path; universal exclusivity over all possible formal platforms is not established.",
+      "assumptions": ["The target system is the pinned current Tau Testnet protocol."],
+      "falsifiers": ["The pinned protocol does not use Tau to arbitrate o5.", "A claimed proof of universal exclusivity lacks quantified competitor semantics."],
+      "source_ids": ["SRC-IF-TAU-LANG-README", "SRC-IF-TAU-TESTNET-9F9240", "SRC-IF-TAU-NET-SITE"],
+      "evidence_ids": ["E-IF-TAU-NET-NATIVE-05"]
+    }
+  ]
+}

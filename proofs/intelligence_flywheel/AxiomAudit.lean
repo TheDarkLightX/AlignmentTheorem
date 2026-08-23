@@ -1,0 +1,10 @@
+import IntelligenceFlywheel
+
+#print axioms IntelligenceFlywheel.alignment_of_geometric_bounds
+#print axioms IntelligenceFlywheel.fixed_deviation_doubling_witness
+#print axioms IntelligenceFlywheel.intelligence_growth_alone_insufficient
+#print axioms IntelligenceFlywheel.bounded_reward_blocks_alignment
+#print axioms IntelligenceFlywheel.equality_is_not_strict_alignment
+#print axioms IntelligenceFlywheel.dac_admission_implies_every_fact
+#print axioms IntelligenceFlywheel.non_treasury_sender_is_unaffected
+#print axioms IntelligenceFlywheel.treasury_admission_implies_gate
