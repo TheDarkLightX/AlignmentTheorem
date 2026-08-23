@@ -375,9 +375,9 @@
       behavior and negative utility to non-ethical behavior at every positive
       scarcity level, producing a threshold of zero. Version 1.1 repairs that
       model while preserving its original hyperdeflationary idea. A finite
-      purchasing-power multiplier amplifies an ethical reward entitlement and an
-      optional non-ethical forfeiture. These effects compete against private
-      deviation gain, extra compliance cost, and optimizer error. The exact
+      purchasing-power multiplier amplifies the ethical reward and any
+      non-ethical forfeiture. Those gains compete against private deviation,
+      extra compliance cost, and optimizer error. The exact
       threshold is finite. Unbounded hyperdeflation crosses it eventually when
       the opposing opportunity remains bounded, or grows more slowly after
       normalization. Lean 4.33.0 checks the finite, asymptotic, and relative-growth
@@ -468,7 +468,7 @@ B(t) = G(t) + C(t) + epsilon(t)</div>
       <section class="section" id="theorem">
         <div class="section-num">03</div>
         <div class="section-kicker">Finite Hyperdeflationary Alignment Theorem</div>
-        <h2 class="section-h">The exact threshold is finite and computable.</h2>
+        <h2 class="section-h">A strict margin excludes every non-ethical epsilon-optimal choice.</h2>
         <div class="theorem">
           <span class="theorem-label">Theorem 1 &middot; Finite threshold</span>
           <p>
@@ -553,7 +553,7 @@ B(t) = G(t) + C(t) + epsilon(t)</div>
       <section class="section" id="bitcoin">
         <div class="section-num">06</div>
         <div class="section-kicker">Bitcoin-style scarcity</div>
-        <h2 class="section-h">Controlled issuance does not by itself prove purchasing power.</h2>
+        <h2 class="section-h">Purchasing power is a market outcome, not a consensus rule.</h2>
         <p>
           Bitcoin&rsquo;s block subsidy halves on a controlled schedule and its monetary
           supply approaches a finite cap. Outstanding supply does not follow Version
@@ -629,7 +629,7 @@ B(t) = G(t) + C(t) + epsilon(t)</div>
             Tau does not receive &ldquo;infinity.&rdquo; The host computes each finite integer
             margin with explicit no-overflow checks. Tau combines the derived strict
             margin with Boolean propositions supplied by its environment. The Python
-            evaluator and Tau packet do not authenticate those propositions and grant
+            evaluator and Tau packet do not authenticate those propositions. They grant
             no publication or value-moving authority. A production system would require
             signatures, replay protection, state roots, reserve settlement, and
             governance over the active EETF policy.
