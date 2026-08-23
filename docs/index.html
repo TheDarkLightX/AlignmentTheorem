@@ -465,9 +465,9 @@
         @media (max-width: 980px) {
             .hero-grid { grid-template-columns: 1fr; }
             .hero-calc { border-left: 0; border-top: 1px solid var(--dark-line); }
-            .body-wrap { grid-template-columns: 1fr; }
+            .body-wrap { grid-template-columns: minmax(0, 1fr); }
             .toc { display: none; }
-            .content { padding: 0 24px 80px; max-width: 100%; }
+            .content { min-width: 0; width: 100%; padding: 0 24px 80px; max-width: 100%; }
             .dark-section .inner { padding: 0 24px; }
             .featured-grid { grid-template-columns: 1fr; }
             .featured-stats { grid-template-columns: repeat(3, 1fr); }

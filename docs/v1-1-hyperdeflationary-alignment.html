@@ -241,6 +241,11 @@
     table {
       width: 100%; border-collapse: collapse; margin: 24px 0; font-size: .92rem;
     }
+    .table-scroll {
+      max-width: 100%; overflow-x: auto; overscroll-behavior-inline: contain;
+      margin: 24px 0;
+    }
+    .table-scroll table { min-width: 560px; margin: 0; }
     th, td { padding: 12px 14px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
     th { color: var(--accent-ink); font-family: var(--font-ui); font-size: .72rem; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; }
     td { color: var(--body); }
@@ -289,9 +294,9 @@
     }
 
     @media (max-width: 980px) {
-      .body-wrap { grid-template-columns: 1fr; }
+      .body-wrap { grid-template-columns: minmax(0, 1fr); }
       .toc { display: none; }
-      .content { padding: 0 24px 80px; max-width: 100%; }
+      .content { min-width: 0; width: 100%; padding: 0 24px 80px; max-width: 100%; }
       .dark-section .inner { padding: 0 24px; }
     }
     @media (max-width: 780px) {
@@ -599,6 +604,7 @@ B(t) = G(t) + C(t) + epsilon(t)</div>
           <div class="section-num">08</div>
           <div class="section-kicker">Executable and formal evidence</div>
           <h2 class="section-h">What has been checked and what remains pending.</h2>
+          <div class="table-scroll" role="region" aria-label="Executable and formal evidence" tabindex="0">
           <table>
             <thead><tr><th>Layer</th><th>Established scope</th><th>Status</th></tr></thead>
             <tbody>
@@ -624,6 +630,7 @@ B(t) = G(t) + C(t) + epsilon(t)</div>
               </tr>
             </tbody>
           </table>
+          </div>
           <p>
             Tau does not receive &ldquo;infinity.&rdquo; The host computes each finite integer
             margin with explicit no-overflow checks. Tau combines the derived strict
