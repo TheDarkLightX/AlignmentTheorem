@@ -1,0 +1,352 @@
+{
+  "assertions": {
+    "accessible_controls_and_landmarks": true,
+    "all_http_200": true,
+    "all_public_html_responsive_at_three_widths": true,
+    "all_public_pages_live_and_rendered": true,
+    "both_interactions_passed": true,
+    "exact_live_bodies_match_main_sources": true,
+    "no_duplicate_ids_or_stale_branch_links": true,
+    "screenshots_captured": true
+  },
+  "browser_report": {
+    "browser": "151.0.7922.137",
+    "interactions": {
+      "community_calculator": {
+        "cash": "Unfunded",
+        "compute": "Unfunded",
+        "required": "7"
+      },
+      "homepage_scenario": {
+        "aria_pressed": "true",
+        "scarcity": "60x"
+      }
+    },
+    "public_pages": [
+      {
+        "document_width": 1425,
+        "main_count": 1,
+        "nav_count": 1,
+        "page": "home",
+        "screenshot": "qa/home-desktop.png",
+        "viewport": "desktop",
+        "width": 1440
+      },
+      {
+        "document_width": 1425,
+        "main_count": 1,
+        "nav_count": 1,
+        "page": "data-center",
+        "screenshot": "qa/data-center-desktop.png",
+        "viewport": "desktop",
+        "width": 1440
+      },
+      {
+        "document_width": 1425,
+        "main_count": 1,
+        "nav_count": 1,
+        "page": "deep-dive",
+        "screenshot": "qa/deep-dive-desktop.png",
+        "viewport": "desktop",
+        "width": 1440
+      },
+      {
+        "document_width": 1425,
+        "main_count": 1,
+        "nav_count": 1,
+        "page": "v1-1",
+        "screenshot": "qa/v1-1-desktop.png",
+        "viewport": "desktop",
+        "width": 1440
+      },
+      {
+        "document_width": 1425,
+        "main_count": 1,
+        "nav_count": 1,
+        "page": "playbook",
+        "screenshot": "qa/playbook-desktop.png",
+        "viewport": "desktop",
+        "width": 1440
+      },
+      {
+        "document_width": 1425,
+        "main_count": 1,
+        "nav_count": 1,
+        "page": "current-tau",
+        "screenshot": "qa/current-tau-desktop.png",
+        "viewport": "desktop",
+        "width": 1440
+      },
+      {
+        "document_width": 1425,
+        "main_count": 1,
+        "nav_count": 1,
+        "page": "flywheel",
+        "screenshot": "qa/flywheel-desktop.png",
+        "viewport": "desktop",
+        "width": 1440
+      },
+      {
+        "document_width": 1425,
+        "main_count": 1,
+        "nav_count": 1,
+        "page": "v1-boundary",
+        "screenshot": "qa/v1-boundary-desktop.png",
+        "viewport": "desktop",
+        "width": 1440
+      },
+      {
+        "document_width": 753,
+        "main_count": 1,
+        "nav_count": 1,
+        "page": "home",
+        "screenshot": "qa/home-tablet.png",
+        "viewport": "tablet",
+        "width": 768
+      },
+      {
+        "document_width": 753,
+        "main_count": 1,
+        "nav_count": 1,
+        "page": "data-center",
+        "screenshot": "qa/data-center-tablet.png",
+        "viewport": "tablet",
+        "width": 768
+      },
+      {
+        "document_width": 753,
+        "main_count": 1,
+        "nav_count": 1,
+        "page": "deep-dive",
+        "screenshot": "qa/deep-dive-tablet.png",
+        "viewport": "tablet",
+        "width": 768
+      },
+      {
+        "document_width": 753,
+        "main_count": 1,
+        "nav_count": 1,
+        "page": "v1-1",
+        "screenshot": "qa/v1-1-tablet.png",
+        "viewport": "tablet",
+        "width": 768
+      },
+      {
+        "document_width": 753,
+        "main_count": 1,
+        "nav_count": 1,
+        "page": "playbook",
+        "screenshot": "qa/playbook-tablet.png",
+        "viewport": "tablet",
+        "width": 768
+      },
+      {
+        "document_width": 753,
+        "main_count": 1,
+        "nav_count": 1,
+        "page": "current-tau",
+        "screenshot": "qa/current-tau-tablet.png",
+        "viewport": "tablet",
+        "width": 768
+      },
+      {
+        "document_width": 753,
+        "main_count": 1,
+        "nav_count": 1,
+        "page": "flywheel",
+        "screenshot": "qa/flywheel-tablet.png",
+        "viewport": "tablet",
+        "width": 768
+      },
+      {
+        "document_width": 753,
+        "main_count": 1,
+        "nav_count": 1,
+        "page": "v1-boundary",
+        "screenshot": "qa/v1-boundary-tablet.png",
+        "viewport": "tablet",
+        "width": 768
+      },
+      {
+        "document_width": 375,
+        "main_count": 1,
+        "nav_count": 1,
+        "page": "home",
+        "screenshot": "qa/home-mobile.png",
+        "viewport": "mobile",
+        "width": 390
+      },
+      {
+        "document_width": 378,
+        "main_count": 1,
+        "nav_count": 1,
+        "page": "data-center",
+        "screenshot": "qa/data-center-mobile.png",
+        "viewport": "mobile",
+        "width": 390
+      },
+      {
+        "document_width": 375,
+        "main_count": 1,
+        "nav_count": 1,
+        "page": "deep-dive",
+        "screenshot": "qa/deep-dive-mobile.png",
+        "viewport": "mobile",
+        "width": 390
+      },
+      {
+        "document_width": 375,
+        "main_count": 1,
+        "nav_count": 1,
+        "page": "v1-1",
+        "screenshot": "qa/v1-1-mobile.png",
+        "viewport": "mobile",
+        "width": 390
+      },
+      {
+        "document_width": 375,
+        "main_count": 1,
+        "nav_count": 1,
+        "page": "playbook",
+        "screenshot": "qa/playbook-mobile.png",
+        "viewport": "mobile",
+        "width": 390
+      },
+      {
+        "document_width": 375,
+        "main_count": 1,
+        "nav_count": 1,
+        "page": "current-tau",
+        "screenshot": "qa/current-tau-mobile.png",
+        "viewport": "mobile",
+        "width": 390
+      },
+      {
+        "document_width": 375,
+        "main_count": 1,
+        "nav_count": 1,
+        "page": "flywheel",
+        "screenshot": "qa/flywheel-mobile.png",
+        "viewport": "mobile",
+        "width": 390
+      },
+      {
+        "document_width": 375,
+        "main_count": 1,
+        "nav_count": 1,
+        "page": "v1-boundary",
+        "screenshot": "qa/v1-boundary-mobile.png",
+        "viewport": "mobile",
+        "width": 390
+      }
+    ],
+    "schema": "alignment-theorem-live-browser-report-v3"
+  },
+  "docs_source_commit": "da7080f1d6366932a457e3e69da6aad88598809b",
+  "http_status": {
+    "attempt": 4,
+    "current_tau": 200,
+    "data_center": 200,
+    "deep_dive": 200,
+    "flywheel": 200,
+    "home": 200,
+    "playbook": 200,
+    "v1_1": 200,
+    "v1_1_pdf": 200,
+    "v1_boundary": 200,
+    "v1_boundary_pdf": 200,
+    "v1_original_pdf": 200,
+    "v2_pdf": 200
+  },
+  "pages": {
+    "current_tau_integration": {
+      "exact_body_match": true,
+      "live_body_sha256": "6580a04b19a755b0f7eeb46c3e590cd96df0b3b28d9f08a9e13f6645afb3a8b0",
+      "source_path": "docs/current-tau-net-integration.html",
+      "source_sha256": "6580a04b19a755b0f7eeb46c3e590cd96df0b3b28d9f08a9e13f6645afb3a8b0",
+      "url": "https://thedarklightx.github.io/AlignmentTheorem/current-tau-net-integration.html"
+    },
+    "data_center_social_contract": {
+      "exact_body_match": true,
+      "live_body_sha256": "728fb7894ea9b1579048df982de04847ba594a689f11cfe4248470dedac065b7",
+      "source_path": "docs/data-center-social-contract.html",
+      "source_sha256": "728fb7894ea9b1579048df982de04847ba594a689f11cfe4248470dedac065b7",
+      "url": "https://thedarklightx.github.io/AlignmentTheorem/data-center-social-contract.html"
+    },
+    "homepage": {
+      "exact_body_match": true,
+      "live_body_sha256": "f3cbb2671349218900cf517314844510306dab98836879a3d2765a07852b3938",
+      "source_path": "docs/index.html",
+      "source_sha256": "f3cbb2671349218900cf517314844510306dab98836879a3d2765a07852b3938",
+      "url": "https://thedarklightx.github.io/AlignmentTheorem/"
+    },
+    "intelligence_flywheel": {
+      "exact_body_match": true,
+      "live_body_sha256": "cf7a8a26bd0e446ff7ef1509b05da35953718e316c03332df61fbc92528c8c5d",
+      "source_path": "docs/intelligence-hyperdeflation-flywheel.html",
+      "source_sha256": "cf7a8a26bd0e446ff7ef1509b05da35953718e316c03332df61fbc92528c8c5d",
+      "url": "https://thedarklightx.github.io/AlignmentTheorem/intelligence-hyperdeflation-flywheel.html"
+    },
+    "local_government_policy_playbook": {
+      "exact_body_match": true,
+      "live_body_sha256": "01f002916c565ae631f859947c5f7c737de421f46794c89a27fad875c3b250df",
+      "source_path": "docs/local-government-policy-playbook.html",
+      "source_sha256": "01f002916c565ae631f859947c5f7c737de421f46794c89a27fad875c3b250df",
+      "url": "https://thedarklightx.github.io/AlignmentTheorem/local-government-policy-playbook.html"
+    },
+    "v1_1_hyperdeflationary": {
+      "exact_body_match": true,
+      "live_body_sha256": "cade6bbff84ec67f86333accbe113c5082ca24346f867fcc03ac50630edf1cc0",
+      "source_path": "docs/v1-1-hyperdeflationary-alignment.html",
+      "source_sha256": "cade6bbff84ec67f86333accbe113c5082ca24346f867fcc03ac50630edf1cc0",
+      "url": "https://thedarklightx.github.io/AlignmentTheorem/v1-1-hyperdeflationary-alignment.html"
+    },
+    "v1_1_pdf": {
+      "exact_body_match": true,
+      "live_body_sha256": "25104b35217ec1ad6caecc5b2710e36125c8a12d2d32ffbab6b396c37f8fe27e",
+      "source_path": "docs/Alignment_Theorem_V1_1_Hyperdeflationary.pdf",
+      "source_sha256": "25104b35217ec1ad6caecc5b2710e36125c8a12d2d32ffbab6b396c37f8fe27e",
+      "url": "https://thedarklightx.github.io/AlignmentTheorem/Alignment_Theorem_V1_1_Hyperdeflationary.pdf"
+    },
+    "v1_claim_boundary": {
+      "exact_body_match": true,
+      "live_body_sha256": "373bb501499d8cc7ebec51ca36a401f6cfad7acb2e745732711592beeee4ee31",
+      "source_path": "docs/alignment-theorem-v1-archive-notice.html",
+      "source_sha256": "373bb501499d8cc7ebec51ca36a401f6cfad7acb2e745732711592beeee4ee31",
+      "url": "https://thedarklightx.github.io/AlignmentTheorem/alignment-theorem-v1-archive-notice.html"
+    },
+    "v1_claim_boundary_pdf": {
+      "exact_body_match": true,
+      "live_body_sha256": "6f3a87eb6352b407cecc5fab579653ffee28aee0051c58e370207e84b4fabfc8",
+      "source_path": "docs/Alignment_Theorem_Academic.pdf",
+      "source_sha256": "6f3a87eb6352b407cecc5fab579653ffee28aee0051c58e370207e84b4fabfc8",
+      "url": "https://thedarklightx.github.io/AlignmentTheorem/Alignment_Theorem_Academic.pdf"
+    },
+    "v1_deep_dive": {
+      "exact_body_match": true,
+      "live_body_sha256": "7de3756bfd809f02b85379cee21a565bf08416d137a49828130ba08f0387f13c",
+      "source_path": "docs/alignment-theorem-deep-dive.html",
+      "source_sha256": "7de3756bfd809f02b85379cee21a565bf08416d137a49828130ba08f0387f13c",
+      "url": "https://thedarklightx.github.io/AlignmentTheorem/alignment-theorem-deep-dive.html"
+    },
+    "v1_original_pdf": {
+      "exact_body_match": true,
+      "live_body_sha256": "f5dca5a1e7bcd069441f16410664cdecac3eeebe4a5af8f128dd0efa7043c8bc",
+      "source_path": "docs/Alignment_Theorem_V1_Original_2025.pdf",
+      "source_sha256": "f5dca5a1e7bcd069441f16410664cdecac3eeebe4a5af8f128dd0efa7043c8bc",
+      "url": "https://thedarklightx.github.io/AlignmentTheorem/Alignment_Theorem_V1_Original_2025.pdf"
+    },
+    "v2_pdf": {
+      "exact_body_match": true,
+      "live_body_sha256": "75d149d5b76cfa953fc83097db75db16bd8ea74c17cd49c808da3d72ef367c64",
+      "source_path": "docs/Alignment_Theorem_V2.pdf",
+      "source_sha256": "75d149d5b76cfa953fc83097db75db16bd8ea74c17cd49c808da3d72ef367c64",
+      "url": "https://thedarklightx.github.io/AlignmentTheorem/Alignment_Theorem_V2.pdf"
+    }
+  },
+  "schema": "alignment-theorem-github-pages-live-receipt-v3",
+  "status": "LIVE_AND_POLISHED",
+  "verified_at_utc": "2026-08-23T13:18:31.257595+00:00",
+  "workflow_run": "https://github.com/TheDarkLightX/AlignmentTheorem/actions/runs/32641889110",
+  "workflow_source_commit": "da7080f1d6366932a457e3e69da6aad88598809b"
+}
