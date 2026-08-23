@@ -11,6 +11,7 @@ on:
       - "verification/generate_tau_data_center_social_contract_packet.py"
       - "research/data_center_social_contract/**"
       - "tau/data_center_social_contract/**"
+      - "docs/index.html"
       - "docs/data-center-social-contract.html"
       - "tests/test_data_center_social_contract.py"
       - "tests/test_data_center_policy_publication.py"
@@ -23,6 +24,7 @@ on:
       - "verification/generate_tau_data_center_social_contract_packet.py"
       - "research/data_center_social_contract/**"
       - "tau/data_center_social_contract/**"
+      - "docs/index.html"
       - "docs/data-center-social-contract.html"
       - "tests/test_data_center_social_contract.py"
       - "tests/test_data_center_policy_publication.py"
@@ -63,6 +65,7 @@ jobs:
           path: |
             research/data_center_social_contract/campaign_receipt.json
             research/data_center_social_contract/LOCAL_GOVERNMENT_POLICY_PLAYBOOK.md
+            docs/index.html
             docs/data-center-social-contract.html
             tau/data_center_social_contract/inputs
             tau/data_center_social_contract/expected
