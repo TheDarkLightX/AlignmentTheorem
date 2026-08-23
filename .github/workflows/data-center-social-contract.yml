@@ -9,7 +9,11 @@ on:
       - "verification/data_center_social_contract.py"
       - "verification/run_data_center_social_contract_campaign.py"
       - "verification/generate_tau_data_center_social_contract_packet.py"
+      - "research/data_center_social_contract/**"
+      - "tau/data_center_social_contract/**"
+      - "docs/data-center-social-contract.html"
       - "tests/test_data_center_social_contract.py"
+      - "tests/test_data_center_policy_publication.py"
       - ".github/workflows/data-center-social-contract.yml"
   pull_request:
     paths:
@@ -17,7 +21,11 @@ on:
       - "verification/data_center_social_contract.py"
       - "verification/run_data_center_social_contract_campaign.py"
       - "verification/generate_tau_data_center_social_contract_packet.py"
+      - "research/data_center_social_contract/**"
+      - "tau/data_center_social_contract/**"
+      - "docs/data-center-social-contract.html"
       - "tests/test_data_center_social_contract.py"
+      - "tests/test_data_center_policy_publication.py"
       - ".github/workflows/data-center-social-contract.yml"
   workflow_dispatch:
 
@@ -42,7 +50,7 @@ jobs:
           lake build
           lake env lean -o .lake/build/lib/lean/DataCenterSocialContract.olean DataCenterSocialContract.lean
           lake env lean DataCenterAxiomAudit.lean
-      - name: Run exact Python unit tests
+      - name: Run exact Python and publication tests
         run: python3 -m unittest discover -s tests -v
       - name: Run bounded assurance campaign
         run: python3 verification/run_data_center_social_contract_campaign.py
@@ -54,6 +62,8 @@ jobs:
           name: data-center-social-contract-receipts
           path: |
             research/data_center_social_contract/campaign_receipt.json
+            research/data_center_social_contract/LOCAL_GOVERNMENT_POLICY_PLAYBOOK.md
+            docs/data-center-social-contract.html
             tau/data_center_social_contract/inputs
             tau/data_center_social_contract/expected
           if-no-files-found: error
