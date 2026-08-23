@@ -10,7 +10,7 @@
     "docs/THREAT_MODEL.md": "2f9800d5a743925c6646f56b313e9e024d113e836ad9a31ea28597f32befde11",
     "docs/V1_TO_V2_CORRECTIONS.md": "38f27f2de59471d9a22167499a0006899ebc532b681c9276a4748f27183f989c",
     "docs/VERIFICATION_SUMMARY.md": "fd360d19d4646e159b787020908468a49b5fc1c610905dde3d1f576b31fb3f9a",
-    "docs/alignment-theorem-deep-dive.html": "3053a071f68056b6f6e6ddc21b454faeeaeb967a92342626831004482a2b10be",
+    "docs/alignment-theorem-deep-dive.html": "e4974da2bee42bc28613cd3c25e18db70628b4256933bcad397c2452e4966ae4",
     "docs/alignment-theorem-v1-archive-notice.html": "373bb501499d8cc7ebec51ca36a401f6cfad7acb2e745732711592beeee4ee31",
     "docs/current-tau-net-integration.html": "6580a04b19a755b0f7eeb46c3e590cd96df0b3b28d9f08a9e13f6645afb3a8b0",
     "docs/index.html": "6489173acfde45bbe9bffc8a7db17d1bbd2f36bc3f4434fdd07e6c96de02de05",
@@ -73,7 +73,7 @@
   "python_test_returncode": 0,
   "python_version": "3.12.3",
   "schema": "alignment-theorem-v1-1-assurance-v3",
-  "source_bundle_sha256": "c5dc033579090d3237e02da296a2131faa7445efc3c8a3f3b1d87570540bb9a3",
+  "source_bundle_sha256": "ccec415d49b6700dee13836befd9c45b6ccca2967a870e36b136b971fdc9f01a",
   "tau_interpreter_replay_status": "SUPPORTED_LOCAL_SOURCE_CANDIDATE_REVIEWED_BINARY_AND_PUBLIC_NODE_PENDING",
   "tau_semantic_packet_rows": 16
 }
