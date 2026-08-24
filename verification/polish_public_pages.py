@@ -202,7 +202,7 @@ def _requirements(pages: dict[str, str]) -> dict[str, bool]:
             for phrase in ("nonperformance consequences", "suspension and clawback")
         ),
         # Current Tau evidence and authority ceiling.
-        "current Tau reports three profiles": "Three profiles" in current_tau,
+        "current Tau reports three profiles": "Version 1, Version 1.1, and Version 2" in current_tau,
         "current Tau reports native router cases": "27 / 27" in current_tau,
         "current Tau marks supplied facts": "transaction-supplied claims" in current_tau,
     }
