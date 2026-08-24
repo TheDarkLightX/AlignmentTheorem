@@ -556,9 +556,9 @@
         <p class="calc-sub">Adjust the numbers to see whether a data center deal can protect every household and still pay its costs. Try the presets first, then change any value.</p>
 
         <div class="calc-presets">
-          <button type="button" class="preset-btn" data-preset="healthy">Healthy deal</button>
-          <button type="button" class="preset-btn" data-preset="tight">Tight deal</button>
-          <button type="button" class="preset-btn" data-preset="broken">Broken deal</button>
+          <button type="button" class="preset-btn" data-preset="healthy" aria-pressed="false">Healthy deal</button>
+          <button type="button" class="preset-btn" data-preset="tight" aria-pressed="false">Tight deal</button>
+          <button type="button" class="preset-btn" data-preset="broken" aria-pressed="false">Broken deal</button>
         </div>
 
         <div class="calc-group-title">Money in</div>
@@ -955,14 +955,15 @@
         document.getElementById('deficits').value = p.deficits;
         document.getElementById('compute').value = p.compute;
         document.getElementById('computeFloor').value = p.computeFloor;
-        document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.preset-btn').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-pressed','false'); });
         btn.classList.add('active');
+        btn.setAttribute('aria-pressed','true');
         recalc();
       });
     });
     ['gross','costs','floor','deficits','compute','computeFloor'].forEach(id => {
       document.getElementById(id).addEventListener('input', () => {
-        document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.preset-btn').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-pressed','false'); });
         recalc();
       });
     });

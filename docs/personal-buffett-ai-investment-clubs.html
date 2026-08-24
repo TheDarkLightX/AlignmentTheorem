@@ -281,7 +281,9 @@
         net.push(netVal); maxV=Math.max(maxV,netVal);
       }
       cv30.textContent=money(net[30]);cv180.textContent=money(net[180]);cv365.textContent=money(net[365]);
-      const c=cctx.canvas,w=c.width,h=c.height,pad=30;cctx.clearRect(0,0,w,h);
+      const c=cctx.canvas,rect=c.getBoundingClientRect(),dpr=window.devicePixelRatio||1;
+      c.width=rect.width*dpr;c.height=rect.height*dpr;cctx.scale(dpr,dpr);
+      const w=rect.width,h=rect.height,pad=30;cctx.clearRect(0,0,w,h);
       cctx.strokeStyle='#1d3630';cctx.lineWidth=1;
       for(let y=0;y<5;y++){const py=pad+(h-2*pad)*y/4;cctx.beginPath();cctx.moveTo(pad,py);cctx.lineTo(w-pad,py);cctx.stroke()}
       function drawLine(pts,color,fill){
