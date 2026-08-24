@@ -71,9 +71,9 @@ class IntelligenceFlywheelResearchPacketTests(unittest.TestCase):
         self.assertIn("https://github.com/IDNI/tau-testnet", parser.hrefs)
         lower = page.lower()
         self.assertIn("not the alignment theorem", lower)
-        self.assertIn("not yet a node deployment", lower)
+        self.assertIn("not yet a deployed node", lower)
         self.assertIn("only tau can do this", lower)
-        self.assertIn("reviewed <code>c4926740", lower)
+        self.assertIn("reviewed binary replay", lower)
         self.assertIn("intelligence-hyperdeflation-flywheel.html", (ROOT / "docs" / "index.html").read_text())
         self.assertIn("intelligence-hyperdeflation-flywheel.html", (ROOT / "docs" / "alignment-theorem-deep-dive.html").read_text())
 
