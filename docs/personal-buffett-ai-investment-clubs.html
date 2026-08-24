@@ -62,6 +62,7 @@
     .compound-legend .net:before{background:var(--rose)}
     .guardrails{background:var(--panel);border:1px solid rgba(255,205,112,.2);border-radius:16px;padding:1.6rem 1.8rem;margin:2.5rem 0}
     .guardrails h3{margin-top:0;color:var(--amber);font-size:1.15rem}
+    .guardrail-intro{color:var(--muted);font-size:.94rem;line-height:1.6;margin:0 0 1.2rem;padding-bottom:1rem;border-bottom:1px solid rgba(255,205,112,.1)}
     .guardrails ul{padding-left:1.2rem;color:var(--muted)}.guardrails li{margin-bottom:.6rem;line-height:1.6}.guardrails li strong{color:var(--ink)}
     .takeaways{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:1.6rem 1.8rem;margin:2.5rem 0}
     .takeaways h3{margin-top:0;color:var(--mint);font-size:1.15rem}
@@ -99,7 +100,7 @@
 
     <h2 id="dollar">The dollar that grew itself</h2>
 
-    <div class="story"><strong>Imagine:</strong> You hand an AI one dollar. Not a fortune. Not a portfolio. One dollar. The AI does not buy lottery tickets. It does not short Tesla. It finds a cheaper electricity supplier for your house. It spots a tax deduction your accountant missed. It refinances your mortgage at a quarter point lower. It rebalances your tiny portfolio to cut one basis point of fees. Each move is small. Each move is real. And each move earns a fraction of a cent that the next move compounds on top of.</div>
+    <div class="story"><strong>Imagine:</strong> You hand an AI one dollar. Not a fortune. Not a portfolio. One dollar. The AI finds a cheaper electricity supplier for your house. It spots a tax deduction your accountant missed. It refinances your mortgage at a quarter point lower. It rebalances your tiny portfolio to cut one basis point of fees. Each move is small. Each move is real. Each move creates value that was not there before. And each move earns a fraction of a cent that the next move compounds on top of.</div>
 
     <p>After one day, your dollar is worth $1.01. After thirty days, $1.16. After one hundred days, $1.65. After two hundred days, $2.71. After a full year, $6.18. You did nothing. The AI did nothing dramatic. Compound interest did the rest.</p>
 
@@ -208,13 +209,15 @@
     <h2 id="guardrails">The guardrails</h2>
 
     <div class="guardrails">
-      <h3>What the AI cannot do</h3>
+      <h3>What the AI cannot do, and why</h3>
+      <p class="guardrail-intro">The AI's edge is in finding real efficiencies: value that exists but has not been captured. A cheaper supplier, a missed deduction, a better rate. These are positive-sum: no one loses. Speculation is different. Shorting, options, and leverage are zero-sum games where your gain is someone else's loss, and that someone is often a hedge fund with better information than you. The guardrails keep the AI where its edge is structural, not where it is competing against smarter counterparties.</p>
       <ul>
         <li><strong>The AI never has the final say.</strong> It can suggest plans, but a fixed rule sheet decides what is allowed. The rules are the authority, not the AI's judgment.</li>
         <li><strong>Each action requires fresh owner consent.</strong> Funds stay in an account the owner controls. The AI cannot move money without permission for each action.</li>
-        <li><strong>No borrowing.</strong> No leverage, no margin, no loans against the portfolio. The AI cannot amplify risk.</li>
-        <li><strong>No short-selling.</strong> The AI cannot bet against assets. It can only find long positions that improve efficiency.</li>
-        <li><strong>No concentrated bets.</strong> Diversification is enforced by the rules, not by the AI's confidence in a single position.</li>
+        <li><strong>No borrowing.</strong> No leverage, no margin, no loans against the portfolio. Leverage amplifies losses as well as gains, and margin calls can force liquidation at the worst moment: exactly when the market is irrational and the AI's probability assessment matters most.</li>
+        <li><strong>No short-selling.</strong> Shorting has unlimited downside and capped upside. Even if the AI correctly identifies an overvalued asset, timing risk and short squeezes can wipe out the position before the market agrees. The AI's edge is in finding real efficiencies, not in outguessing other traders.</li>
+        <li><strong>No options trading.</strong> Most options strategies are zero-sum. The counterparty is often a sophisticated institutional trader pricing the same probabilities. Time decay works against the position every day. The AI's edge in finding efficiencies does not transfer to an edge in speculation.</li>
+        <li><strong>No concentrated bets.</strong> Even 99% confidence leaves 1% tail risk that can wipe out the portfolio. Diversification is enforced by the rules, not by the AI's confidence in a single position.</li>
         <li><strong>Loss limits, fee caps, and turnover limits.</strong> The rules cap how much can be lost, how much can be paid in fees, and how often the portfolio can be traded. The AI cannot churn the account to generate fees.</li>
         <li><strong>When in doubt, do nothing.</strong> If the rules cannot clearly approve an action, the default is to hold or fall back to a simple index fund. The agent never gambles by default.</li>
       </ul>
@@ -242,7 +245,7 @@
       <ol>
         <li><strong>Compound interest works on small balances only when fees are small.</strong> Traditional finance charges $5 to $10 per trade. DeFi charges fractions of a cent. The fee wall is the entire reason this concept was impossible until now.</li>
         <li><strong>The AI does not need to beat the market.</strong> It needs to find small, real efficiencies and compound them. A cheaper supplier, a missed deduction, a better rate, a fee-reducing rebalance.</li>
-        <li><strong>The guardrails travel with every dollar.</strong> No borrowing, no short-selling, no concentrated bets, loss limits, fee caps, turnover limits. The rules are the authority, not the AI's judgment.</li>
+        <li><strong>The guardrails travel with every dollar.</strong> No borrowing, no short-selling, no options, no concentrated bets, loss limits, fee caps, turnover limits. Each restriction exists because the AI's edge is in finding real efficiencies, not in outguessing other traders in zero-sum games. The rules are the authority, not the AI's judgment.</li>
         <li><strong>DAOs scale the concept from solo agent to investment club.</strong> Households pool capital, the AI researches, the rules enforce guardrails on-chain, each member keeps their proportional share.</li>
         <li><strong>Tau is the only platform that can enforce and revise the rules safely.</strong> A language that can rewrite its own rules and reason about the changes is what makes a living rulebook possible.</li>
         <li><strong>This is not investment advice.</strong> It is a constrained automation concept. Whether the efficiencies are large enough to matter in practice is an empirical question, not a mathematical one.</li>
