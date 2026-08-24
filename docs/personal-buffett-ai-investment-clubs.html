@@ -26,7 +26,7 @@
     body:before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(circle at 12% 8%,rgba(101,242,183,.08),transparent 28%),radial-gradient(circle at 88% 20%,rgba(117,188,255,.06),transparent 25%)}
     a{color:var(--mint);cursor:pointer} a:hover{color:var(--lime)}
     .button{cursor:pointer}
-    .skip-link{position:absolute;left:-9999px;top:0;padding:.8rem 1.2rem;background:var(--mint);color:#04251a;font-weight:700;border-radius:0 0 8px 0;z-index:100}
+    .skip-link{position:absolute;left:-9999px;top:0;padding:.8rem 1.2rem;background:var(--mint);color:#04251a;font-weight:700;border-radius:0 0 8px 0;z-index:9999}
     .skip-link:focus{left:0}
     .progress-bar{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--mint),var(--lime));z-index:30;width:0;transition:width .1s linear}
     nav{position:sticky;top:0;z-index:20;border-bottom:1px solid var(--line);background:rgba(7,17,15,.88);backdrop-filter:blur(16px)}
@@ -90,6 +90,7 @@
       <li><a href="#guardrails">Guardrails</a></li>
       <li><a href="#partnership">The partnership</a></li>
       <li><a href="#tau">Why Tau</a></li>
+      <li><a href="#takeaways">Key takeaways</a></li>
     </ul>
   </div>
 
@@ -106,7 +107,7 @@
 
     <p>After one day, your dollar is worth $1.01. After thirty days, $1.16. After one hundred days, $1.65. After two hundred days, $2.71. After a full year, $6.18. You did nothing. The AI did nothing dramatic. Compound interest did the rest.</p>
 
-    <div class="ladder"><div class="rung"><div class="rung-day">Day 1</div><div class="rung-val">$1.01</div><div class="rung-gain">+$0.01</div></div><div class="rung"><div class="rung-day">Day 30</div><div class="rung-val">$1.16</div><div class="rung-gain">+$0.16</div></div><div class="rung"><div class="rung-day">Day 100</div><div class="rung-val">$1.65</div><div class="rung-gain">+$0.65</div></div><div class="rung"><div class="rung-day">Day 200</div><div class="rung-val">$2.71</div><div class="rung-gain">+$1.71</div></div><div class="rung"><div class="rung-day">Day 365</div><div class="rung-val">$6.18</div><div class="rung-gain">+$5.18</div></div></div>
+    <div class="ladder"><div class="rung"><div class="rung-day">Day 1</div><div class="rung-val">$1.01</div><div class="rung-gain">+1%</div></div><div class="rung"><div class="rung-day">Day 30</div><div class="rung-val">$1.16</div><div class="rung-gain">+16%</div></div><div class="rung"><div class="rung-day">Day 100</div><div class="rung-val">$1.65</div><div class="rung-gain">+65%</div></div><div class="rung"><div class="rung-day">Day 200</div><div class="rung-val">$2.71</div><div class="rung-gain">+171%</div></div><div class="rung"><div class="rung-day">Day 365</div><div class="rung-val">$6.18</div><div class="rung-gain">+518%</div></div></div>
 
     <p>The curve starts flat and then bends upward. That is the compounding effect: each day's gain earns its own gain the next day. In the beginning, the AI does not need to beat the market. It needs to find small, real efficiencies and compound them. Once those run out, it needs something harder: trading. And here the AI has real advantages. It can read every public filing, news feed, and price tick simultaneously. It can value a company by analyzing thousands of data points in seconds. It can execute trades in milliseconds. It can calculate a margin of safety with precision and refuse to buy above it. Most humans cannot do any of this. The AI can do all of it, without sleep, without emotion, and without forgetting a single position.</p>
 
@@ -140,7 +141,7 @@
 
     <p>None of these returns are promised. None of them are guaranteed. The point is that the math works when fees are fractions of a cent. The math dies when fees are $5 to $10 per trade. DeFi is what makes the difference.</p>
 
-    <div class="compound-lab"><h4>Try it yourself</h4><p style="color:var(--dim);font-size:.84rem;margin:0 0 1rem">Adjust the sliders to see how principal, return rate, and fees change the outcome. The gross line shows compounding without fees. The net line shows what survives after per-transaction fees.</p><div class="compound-controls"><div class="control"><label for="cp">Principal $<output id="cpOut">1</output></label><input id="cp" type="range" min="1" max="1000" value="1" step="1"></div><div class="control"><label for="cr">Daily return %<output id="crOut">0.50</output></label><input id="cr" type="range" min="1" max="200" value="50" step="1"></div><div class="control"><label for="cf">Fee per trade $<output id="cfOut">0.01</output></label><input id="cf" type="range" min="0" max="1000" value="1" step="1"></div></div><canvas id="compoundChart" class="compound-chart" width="680" height="220" role="img" aria-label="Compound interest growth chart showing gross and net returns"></canvas><div class="compound-legend"><span class="gross">Gross (no fees)</span><span class="net">Net (after fees)</span></div><div class="compound-readout"><div class="metric"><span>After 30 days (net)</span><strong id="cv30">$1.16</strong></div><div class="metric"><span>After 180 days (net)</span><strong id="cv180">$2.45</strong></div><div class="metric fee-impact"><span>After 365 days (net)</span><strong id="cv365">$6.18</strong></div></div></div>
+    <div class="compound-lab"><h3>Try it yourself</h3><p style="color:var(--dim);font-size:.84rem;margin:0 0 1rem">Adjust the sliders to see how principal, return rate, and fees change the outcome. The gross line shows compounding without fees. The net line shows what survives after one trade per day.</p><div class="compound-controls"><div class="control"><label for="cp">Principal $<output id="cpOut">1</output></label><input id="cp" type="range" min="1" max="1000" value="1" step="1"></div><div class="control"><label for="cr">Daily return %<output id="crOut">0.50</output></label><input id="cr" type="range" min="1" max="200" value="50" step="1"></div><div class="control"><label for="cf">Daily fee $<output id="cfOut">0.01</output></label><input id="cf" type="range" min="0" max="1000" value="1" step="1"></div></div><canvas id="compoundChart" class="compound-chart" width="680" height="220" role="img" aria-label="Compound interest growth chart showing gross and net returns">Chart showing compound interest growth over 365 days. Gross line (no fees) and net line (after daily fees).</canvas><div class="compound-legend"><span class="gross">Gross (no fees)</span><span class="net">Net (after fees)</span></div><div class="compound-readout"><div class="metric"><span>After 30 days (net)</span><strong id="cv30">$1.16</strong></div><div class="metric"><span>After 180 days (net)</span><strong id="cv180">$2.45</strong></div><div class="metric"><span>After 365 days (net)</span><strong id="cv365">$6.18</strong></div></div></div>
 
     <hr class="divider">
     <h2 id="club">From solo agent to investment club</h2>
@@ -150,6 +151,8 @@
     <p>A single household AI agent is the simplest case. But the same guardrails scale to groups. Households pool capital into a DAO. The AI researches and proposes moves for the pool. The DAO's rules enforce the same limits on-chain: no borrowing, no concentrated bets, loss limits, fee caps. Each member keeps their proportional share. The DAO votes on rule changes, not on individual trades. The AI never gets the keys; the rules do.</p>
 
     <div class="dao-diagram"><svg viewBox="0 0 680 420" class="dao-svg" role="img" aria-label="From solo agent to DAO investment club: households pool capital, AI researches, rules enforce guardrails, proportional returns flow back">
+      <title>Solo Agent vs DAO Investment Club</title>
+      <desc>Diagram showing how individual households can pool capital into a DAO, with AI research and rule-based guardrails, returning proportional shares to each member.</desc>
       <defs>
         <marker id="dao-arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L6,3 L0,6 Z" fill="#65f2b7"/></marker>
         <marker id="dao-arrow-blue" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L6,3 L0,6 Z" fill="#75bcff"/></marker>
@@ -243,7 +246,7 @@
 
     <hr class="divider">
     <div class="takeaways">
-      <h3>Key takeaways</h3>
+      <h2 id="takeaways">Key takeaways</h2>
       <ol>
         <li><strong>Compound interest works on small balances only when fees are small.</strong> Traditional finance charges $5 to $10 per trade. DeFi charges fractions of a cent. The fee wall is the entire reason this concept was impossible until now.</li>
         <li><strong>Efficiencies first, then trading.</strong> The AI starts with positive-sum wins: a cheaper supplier, a missed deduction, a better rate, a fee-reducing rebalance. When those run out, it trades. It can value companies, short overpriced assets, use options, employ leverage, and execute at high frequency. Its edge is real: more information, faster execution, deeper analysis, and a margin of safety it never violates.</li>
@@ -266,8 +269,8 @@
     const cctx=document.getElementById('compoundChart').getContext('2d');
     const progressBar=document.getElementById('progressBar');
     const tocLinks=document.querySelectorAll('.toc-list a');
-    const sectionIds=['dollar','impossible','math','club','guardrails','partnership','tau'];
-    function money(v){return '$'+(v>=1000?v.toExponential(2):v.toFixed(v<10?2:0))}
+    const sectionIds=['dollar','impossible','math','club','guardrails','partnership','tau','takeaways'];
+    function money(v){return '$'+(v>=1000?v.toLocaleString(undefined,{maximumFractionDigits:0}):v.toFixed(2))}
     function drawCompound(){
       const P=Number(cpEl.value), r=Number(crEl.value)/10000, fee=Number(cfEl.value)/100;
       cpOut.textContent=P; crOut.textContent=(Number(crEl.value)/100).toFixed(2); cfOut.textContent=fee.toFixed(2);

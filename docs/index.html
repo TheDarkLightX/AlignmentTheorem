@@ -53,7 +53,7 @@
         :focus-visible { outline: 3px solid var(--accent-bright); outline-offset: 3px; border-radius: 4px; }
 
         .skip-link {
-            position: fixed; top: 12px; left: 12px; z-index: 200;
+            position: fixed; top: 12px; left: 12px; z-index: 9999;
             padding: 10px 16px; border-radius: 8px;
             background: var(--ink); color: #fff;
             font-family: var(--font-ui); font-weight: 600; font-size: .88rem;
@@ -223,7 +223,7 @@
 
     <nav class="topbar" aria-label="Main navigation">
         <div class="topbar-inner">
-            <a class="brand" href="index.html">Alignment<span> Theorem</span></a>
+            <a class="brand" href="index.html" aria-current="page">Alignment<span> Theorem</span></a>
             <span class="mobile-nav-hint" aria-hidden="true">Swipe for sections</span>
             <div class="topbar-links">
                 <a href="alignment-theorem-deep-dive.html">V1 Deep Dive</a>
@@ -240,8 +240,8 @@
             <h1>The Alignment <em>Theorem</em></h1>
             <p class="hero-sub">Formal proofs that scarcity can make ethical work more profitable than unethical work. Version 1 proves the core mechanism. Version 1.1 generalizes it with explicit costs and error bounds. The Data Center Bargain, Intelligence Flywheel, and Personal Buffett apply it to real problems.</p>
             <div class="hero-actions">
-                <a class="btn btn-primary" href="Alignment_Theorem_V1_Original_2025.pdf" target="_blank" rel="noopener">Read the V1 Paper</a>
-                <a class="btn btn-ghost" href="https://github.com/TheDarkLightX/AlignmentTheorem" target="_blank" rel="noopener">GitHub</a>
+                <a class="btn btn-primary" href="Alignment_Theorem_V1_Original_2025.pdf" target="_blank" rel="noopener">Read the V1 Paper ↗</a>
+                <a class="btn btn-ghost" href="https://github.com/TheDarkLightX/AlignmentTheorem" target="_blank" rel="noopener">GitHub ↗</a>
             </div>
         </div>
     </header>
@@ -254,9 +254,9 @@
             <p>The original paper shows that if ethical work is rewarded with scarce, valuable tokens and unethical work is excluded from that upside, then ethical work becomes the most profitable choice. This exclusion mechanism is the core of Version 1. The penalty is not a tax or fine. It is the opportunity cost of missing the scarce upside. The reconstructed proof formalizes this comparison; Version 1.1 generalizes it.</p>
             <div class="featured-equation">G(t) &lt; M(t) &times; [R(t) + L(t)]</div>
             <div class="featured-actions">
-                <a class="btn btn-primary" href="Alignment_Theorem_V1_Original_2025.pdf" target="_blank" rel="noopener">Read the original paper (PDF)</a>
-                <a class="btn btn-ghost" href="alignment-theorem-deep-dive.html">V1 deep dive</a>
-                <a class="btn btn-ghost" href="alignment-theorem-v1-archive-notice.html">What V1 proves and does not</a>
+                <a class="btn btn-primary" href="alignment-theorem-deep-dive.html">Read the V1 deep dive</a>
+                <a class="btn btn-ghost" href="Alignment_Theorem_V1_Original_2025.pdf" target="_blank" rel="noopener">Original paper (PDF) ↗</a>
+                <a class="btn btn-ghost" href="alignment-theorem-v1-archive-notice.html">What V1 proves and does not claim</a>
             </div>
             <div class="stats">
                 <div class="stat"><strong>Lean 4.33</strong><span>machine-checked proof</span></div>
@@ -273,7 +273,7 @@
                 <span class="link-desc">A formal proof that scarcity can make ethical work the most profitable strategy, with explicit costs, error bounds, and counterexamples</span>
             </a>
             <a class="link-item" href="Alignment_Theorem_V1_1_Hyperdeflationary.pdf" target="_blank" rel="noopener">
-                <span class="link-title">V1.1 Paper (PDF)</span>
+                <span class="link-title">V1.1 Paper (PDF) ↗</span>
                 <span class="link-desc">Download the Version 1.1 paper (PDF)</span>
             </a>
             <a class="link-item" href="data-center-social-contract.html">
@@ -293,7 +293,7 @@
                 <span class="link-desc">The core mechanism, exact corrections to the original paper, and what is proven versus what is not</span>
             </a>
             <a class="link-item" href="Alignment_Theorem_Academic.pdf" target="_blank" rel="noopener">
-                <span class="link-title">Academic Paper (PDF)</span>
+                <span class="link-title">Academic Paper (PDF) ↗</span>
                 <span class="link-desc">Download the corrected academic paper with full proofs and claim boundaries</span>
             </a>
             <a class="link-item" href="current-tau-net-integration.html">
@@ -309,7 +309,7 @@
                 <span class="link-desc">How AI agents, DeFi micro-transactions, and DAO investment clubs can give every household a personal Warren Buffett</span>
             </a>
             <a class="link-item" href="https://github.com/TheDarkLightX/AlignmentTheorem" target="_blank" rel="noopener">
-                <span class="link-title">GitHub Repository</span>
+                <span class="link-title">GitHub Repository ↗</span>
                 <span class="link-desc">Lean proofs, Tau packets, Python reference model, test suite, and assurance receipts</span>
             </a>
         </div>
@@ -320,7 +320,7 @@
         <div class="footer-logo">TAUNET<span> ALIGNMENT</span></div>
         <p>Formal proofs that scarcity can make ethical work the most profitable strategy</p>
         <p>August 2026 &bull; Alignment Theorem Versions 1, 1.1, and 2 &bull; Data Center Social Contract</p>
-        <p><a href="#top">Back to top</a></p>
+        <p><a href="#top">↑ Back to top</a></p>
     </footer>
 </body>
 </html>

@@ -61,13 +61,14 @@
         :focus-visible { outline: 3px solid var(--accent-bright); outline-offset: 3px; border-radius: 4px; }
 
         .skip-link {
-            position: fixed; top: 12px; left: 12px; z-index: 200;
+            position: fixed; top: 12px; left: 12px; z-index: 9999;
             padding: 10px 16px; border-radius: 8px;
             background: var(--ink); color: #fff;
             font-family: var(--font-ui); font-weight: 600; font-size: .88rem;
             transform: translateY(-180%); transition: transform .18s ease;
         }
         .skip-link:focus { transform: translateY(0); color: #fff; text-decoration: none; }
+        .visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 
         .claim-banner {
             background: #78350f; border-bottom: 2px solid #f59e0b;
@@ -167,6 +168,7 @@
         .toc-mobile summary::-webkit-details-marker { display: none; }
         .toc-mobile summary::after { content: '+'; font-size: 1.2rem; color: var(--muted); }
         .toc-mobile[open] summary::after { content: '\2212'; }
+    .toc-hint { color: var(--muted); font-size: .78rem; font-weight: 400; }
         .toc-mobile summary:hover { background: var(--accent-soft); }
         .toc-mobile ul { list-style: none; padding: 8px 0 0; margin: 0; counter-reset: mtoc; }
         .toc-mobile li { counter-increment: mtoc; }
@@ -512,7 +514,7 @@
 
     <div class="body-wrap">
         <details class="toc-mobile" aria-label="Table of contents">
-            <summary>Contents</summary>
+            <summary>Contents <span class="toc-hint" aria-hidden="true">(tap to expand)</span></summary>
             <ul>
                 <li><a href="#idea">The core insight</a></li>
                 <li><a href="#challenge">The challenge</a></li>
@@ -539,6 +541,7 @@
         <main id="main-content" class="content">
 
             <section class="section big-idea" id="idea">
+                <h2 class="visually-hidden">The core insight</h2>
                 <div class="section-kicker">The core insight</div>
                 <p class="big-idea-text">
                     Version 1 makes ethical work more profitable by combining funded rewards with scarce, valuable upside that unethical work cannot access. <strong>The exact condition is G &lt; M(R+L): the deviation gain must be less than the scarcity multiplier times the total ethical benefit.</strong>
@@ -748,7 +751,7 @@
         <a href="https://github.com/IDNI/tau-lang">Tau Language</a> &middot;
         <a href="https://github.com/TheDarkLightX/AlignmentTheorem">View on GitHub</a> &middot;
         <a href="https://thedarklightx.github.io/VCC-concept-visualizer/">Interactive feedback loop visualizer</a><br>
-        Independent research contribution. Not an official statement from the Tau core team. <a href="#top">Back to top</a>
+        Independent research contribution. Not an official statement from the Tau core team. <a href="#top">↑ Back to top</a>
     </footer>
 </body>
 </html>
