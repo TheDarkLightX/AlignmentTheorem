@@ -10,8 +10,8 @@
     "docs/THREAT_MODEL.md": "2f9800d5a743925c6646f56b313e9e024d113e836ad9a31ea28597f32befde11",
     "docs/V1_TO_V2_CORRECTIONS.md": "38f27f2de59471d9a22167499a0006899ebc532b681c9276a4748f27183f989c",
     "docs/VERIFICATION_SUMMARY.md": "fd360d19d4646e159b787020908468a49b5fc1c610905dde3d1f576b31fb3f9a",
-    "docs/alignment-theorem-deep-dive.html": "51f0a1826763408aba04aa93b08ab264b74f11b075cd19ae1045799c7f2d9f0f",
-    "docs/alignment-theorem-v1-archive-notice.html": "373bb501499d8cc7ebec51ca36a401f6cfad7acb2e745732711592beeee4ee31",
+    "docs/alignment-theorem-deep-dive.html": "d609c48bccc698391addbd57dda3aadd9386690c6797009f234e05c0041f20b0",
+    "docs/alignment-theorem-v1-archive-notice.html": "afbc34688c504b3f41700356df76e6d25fc835cfa0d71125b57f2f5060d38ace",
     "docs/current-tau-net-integration.html": "acafaaaaf1c27309ee97e03c8007e5c36279b4212eee588a63d46fd75da9cf09",
     "docs/index.html": "6feca00f5a452716bd1fd3582fbd4b181b45a9d054809727f32832da28b5094b",
     "docs/v1-1-hyperdeflationary-alignment.html": "dfe9a36dcff599631da80e79bef5029c7ce0466922a43a1caa89509dcd8111d1",
@@ -73,7 +73,7 @@
   "python_test_returncode": 0,
   "python_version": "3.12.3",
   "schema": "alignment-theorem-v1-1-assurance-v3",
-  "source_bundle_sha256": "93e532d56ec6247b970375798e5a77075b75f4a651cef2eb3f17a16ae602e3be",
+  "source_bundle_sha256": "c3046635bb88d709c78ef2de4400434cd01a3accd0725bfde2668ee8a0161fe6",
   "tau_interpreter_replay_status": "SUPPORTED_LOCAL_SOURCE_CANDIDATE_REVIEWED_BINARY_AND_PUBLIC_NODE_PENDING",
   "tau_semantic_packet_rows": 16
 }
