@@ -13,7 +13,7 @@
     "docs/alignment-theorem-deep-dive.html": "371210f24da467f4b36a5038b62ae71f647ea581c67de163ec1f182190a2c801",
     "docs/alignment-theorem-v1-archive-notice.html": "afbc34688c504b3f41700356df76e6d25fc835cfa0d71125b57f2f5060d38ace",
     "docs/current-tau-net-integration.html": "acafaaaaf1c27309ee97e03c8007e5c36279b4212eee588a63d46fd75da9cf09",
-    "docs/index.html": "bf06594b26aa0903e64cd4796787081ad3b9d69bb32356f3adcfa9f94c065f64",
+    "docs/index.html": "1332fc5858bda2ad47662121c3a035efa0aaac6ddacca5655ba52a2c287d9ccb",
     "docs/v1-1-hyperdeflationary-alignment.html": "ff3ba1073db979c10e6e1eb2f8a45b52fda1d84961316c7db6d04ee527c246e3",
     "proofs/v1_1/AlignmentTheoremV1_1.lean": "4e15a1081ca4497156355cc8b9f47d4e332762c6dc73e41bef18f2c17555bfe6",
     "proofs/v1_1/AxiomAudit.lean": "851ee34a5470d6d1bf6c62d434d6614c96332c27cbf412f85841e125d6fd9801",
@@ -73,7 +73,7 @@
   "python_test_returncode": 0,
   "python_version": "3.12.3",
   "schema": "alignment-theorem-v1-1-assurance-v3",
-  "source_bundle_sha256": "a5ef78f37c2c23ed5e1eab951623b0cf09f34c4598aa0ced7ffa896271ca136a",
+  "source_bundle_sha256": "69c7c1d9231d4c95a51cd2983657f0ecd322f65e997cdede82cc0657ef02749f",
   "tau_interpreter_replay_status": "SUPPORTED_LOCAL_SOURCE_CANDIDATE_REVIEWED_BINARY_AND_PUBLIC_NODE_PENDING",
   "tau_semantic_packet_rows": 16
 }

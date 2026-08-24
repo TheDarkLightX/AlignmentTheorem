@@ -22,6 +22,7 @@ PUBLIC_PAGES = {
     "playbook": ROOT / "docs" / "local-government-policy-playbook.html",
     "current_tau": ROOT / "docs" / "current-tau-net-integration.html",
     "flywheel": ROOT / "docs" / "intelligence-hyperdeflation-flywheel.html",
+    "buffett": ROOT / "docs" / "personal-buffett-ai-investment-clubs.html",
 }
 CANONICALS = {
     "index": "https://thedarklightx.github.io/AlignmentTheorem/",
