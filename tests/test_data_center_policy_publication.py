@@ -40,7 +40,7 @@ class DataCenterPolicyPublicationTests(unittest.TestCase):
     def test_public_blog_is_complete_and_links_research(self) -> None:
         text = BLOG.read_text()
         self.assertIn("The Data Center Bargain", text)
-        self.assertIn("Community bargain solvency calculator", text)
+        self.assertIn("Is the bargain funded?", text)
         self.assertIn("Why the full version requires Tau Language", text)
         self.assertIn("Only Tau can do this, and the mechanism is patented by Ohad Asor", text)
         self.assertIn("LOCAL_GOVERNMENT_POLICY_PLAYBOOK.md", text)

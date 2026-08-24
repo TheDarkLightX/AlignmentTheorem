@@ -182,7 +182,7 @@ def _requirements(pages: dict[str, str]) -> dict[str, bool]:
         # Data-center essay and restored public playbook.
         "essay canonical": 'rel="canonical" href="https://thedarklightx.github.io/AlignmentTheorem/data-center-social-contract.html"' in essay,
         "essay title": "The Data Center Bargain" in essay,
-        "essay calculator heading": "Community bargain solvency calculator" in essay,
+        "essay calculator heading": "Is the bargain funded?" in essay,
         "essay Tau section": "Why the full version requires Tau Language" in essay,
         "essay exclusivity claim": "Only Tau can do this, and the mechanism is patented by Ohad Asor" in essay,
         "essay canonical formula R": "R=(G-C)_+" in essay,

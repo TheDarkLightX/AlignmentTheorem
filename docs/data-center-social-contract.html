@@ -176,10 +176,24 @@
       color: var(--dark-muted); margin: 18px 0 10px;
       padding-bottom: 6px; border-bottom: 1px solid var(--dark-line);
     }
+    .calc-presets { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+    .preset-btn {
+      padding: 7px 14px; border-radius: 999px;
+      background: rgba(6,182,212,.08); border: 1px solid rgba(6,182,212,.25);
+      color: var(--accent-bright); font-family: var(--font-ui);
+      font-size: .76rem; font-weight: 600; cursor: pointer;
+      transition: background .15s ease, border-color .15s ease;
+    }
+    .preset-btn:hover { background: rgba(6,182,212,.16); border-color: rgba(6,182,212,.4); }
+    .preset-btn.active { background: rgba(6,182,212,.2); border-color: var(--accent-bright); }
     .calc-form { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
     .calc-form label {
       display: block; color: #cbd5e1;
       font-family: var(--font-ui); font-size: .76rem; font-weight: 500;
+    }
+    .field-hint {
+      display: block; color: var(--dark-muted);
+      font-size: .68rem; line-height: 1.3; margin-top: 2px;
     }
     .calc-form input {
       width: 100%; margin-top: 5px; padding: 9px 11px;
@@ -192,33 +206,38 @@
       box-shadow: 0 0 0 2px rgba(6,182,212,.2); outline: none;
     }
     .field-help { display: block; margin-top: 5px; color: var(--dark-muted); font-size: .72rem; line-height: 1.3; }
-    .calc-results {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 16px;
+    .calc-flow {
+      margin-top: 20px; display: flex; flex-direction: column; gap: 10px;
     }
-    .calc-result {
+    .calc-flow-row, .calc-flow-vs {
+      display: flex; align-items: center; gap: 10px;
       padding: 10px 12px; border-radius: 10px;
       background: rgba(0,0,0,.25); border: 1px solid var(--dark-line);
     }
-    .calc-result span {
+    .calc-flow-step { flex: 1; text-align: center; }
+    .calc-flow-step span.calc-flow-label {
       display: block; color: var(--dark-muted);
-      font-family: var(--font-ui); font-size: .64rem; font-weight: 600;
+      font-family: var(--font-ui); font-size: .62rem; font-weight: 600;
       letter-spacing: .08em; text-transform: uppercase;
     }
-    .calc-result strong {
-      display: block; margin-top: 6px;
-      font-family: var(--font-ui); font-size: 1.4rem; color: #fff;
+    .calc-flow-step strong {
+      display: block; margin-top: 4px;
+      font-family: var(--font-ui); font-size: 1.15rem; color: #fff;
     }
+    .calc-flow-arrow { color: var(--dark-muted); font-size: 1rem; flex-shrink: 0; }
+    .calc-flow-step.fail { border: 1px solid rgba(252,165,165,.3); border-radius: 8px; padding: 4px 8px; }
+    .calc-flow-step.pass { border: 1px solid rgba(74,222,128,.3); border-radius: 8px; padding: 4px 8px; }
     .badge {
-      display: inline-block; margin-top: 6px; padding: 3px 10px;
+      display: inline-block; margin-top: 4px; padding: 3px 10px;
       border-radius: 999px; font-family: var(--font-ui);
       font-size: .72rem; font-weight: 600;
     }
     .badge.pass { background: rgba(21,128,61,.2); color: #4ade80; border: 1px solid rgba(74,222,128,.3); }
     .badge.fail { background: rgba(185,28,28,.2); color: #fca5a5; border: 1px solid rgba(252,165,165,.3); }
-    #rDetail {
-      margin-top: 16px; padding: 12px 14px; border-radius: 8px;
+    .calc-detail {
+      margin-top: 14px; padding: 12px 14px; border-radius: 8px;
       background: rgba(0,0,0,.2); font-family: var(--mono);
-      font-size: .76rem; color: var(--dark-body); line-height: 1.5;
+      font-size: .74rem; color: var(--dark-body); line-height: 1.5;
       margin-bottom: 0;
     }
 
@@ -537,49 +556,99 @@
       </div>
 
       <div class="hero-calc">
-        <h2>Community bargain solvency calculator</h2>
-        <p class="calc-sub">Enter one settlement epoch. Deficits are the authenticated household values \(d_i=(L_i-B_i)_+\), separated by commas.</p>
+        <h2>Is the bargain funded?</h2>
+        <p class="calc-sub">Adjust the numbers to see whether a data center deal can protect every household and still pay its costs. Try the presets first, then change any value.</p>
 
-        <div class="calc-group-title">Cash bargain</div>
+        <div class="calc-presets">
+          <button type="button" class="preset-btn" data-preset="healthy">Healthy deal</button>
+          <button type="button" class="preset-btn" data-preset="tight">Tight deal</button>
+          <button type="button" class="preset-btn" data-preset="broken">Broken deal</button>
+        </div>
+
+        <div class="calc-group-title">Money in</div>
         <div class="calc-form">
           <div>
-            <label for="gross">Gross committed value G</label>
+            <label for="gross">Total committed value</label>
+            <span class="field-hint">What the data center promises the community</span>
             <input id="gross" type="number" min="0" step="1" value="30" inputmode="decimal">
           </div>
           <div>
-            <label for="costs">Senior project claims C</label>
+            <label for="costs">Infrastructure costs to recover first</label>
+            <span class="field-hint">Grid, roads, water, public safety</span>
             <input id="costs" type="number" min="0" step="1" value="12" inputmode="decimal">
-          </div>
-          <div>
-            <label for="floor">Universal household floor m</label>
-            <input id="floor" type="number" min="0" step="1" value="2" inputmode="decimal">
-          </div>
-          <div>
-            <label for="deficits">Household deficits</label>
-            <input id="deficits" type="text" value="0, 1, 5, 2" inputmode="decimal" aria-describedby="deficits-help">
-            <span class="field-help" id="deficits-help">Comma-separated nonnegative values, one per household.</span>
           </div>
         </div>
 
-        <div class="calc-group-title">Compute bargain (separate)</div>
+        <div class="calc-group-title">Household protection</div>
         <div class="calc-form">
           <div>
-            <label for="compute">Available compute reserve Q</label>
+            <label for="floor">Minimum benefit per household</label>
+            <span class="field-hint">Everyone gets at least this much</span>
+            <input id="floor" type="number" min="0" step="1" value="2" inputmode="decimal">
+          </div>
+          <div>
+            <label for="deficits">Household need levels</label>
+            <span class="field-hint">One number per household, separated by commas</span>
+            <input id="deficits" type="text" value="0, 1, 5, 2" inputmode="decimal" aria-describedby="deficits-help">
+            <span class="field-help" id="deficits-help">Example: 0, 1, 5, 2 means four households with need levels of 0, 1, 5, and 2.</span>
+          </div>
+        </div>
+
+        <div class="calc-group-title">Compute access (separate)</div>
+        <div class="calc-form">
+          <div>
+            <label for="compute">Available compute reserve</label>
+            <span class="field-hint">Compute credits or access to distribute</span>
             <input id="compute" type="number" min="0" step="1" value="12" inputmode="decimal">
           </div>
           <div>
-            <label for="computeFloor">Compute floor per household c</label>
+            <label for="computeFloor">Compute floor per household</label>
+            <span class="field-hint">Minimum compute access for each household</span>
             <input id="computeFloor" type="number" min="0" step="1" value="2" inputmode="decimal">
           </div>
         </div>
 
-        <div class="calc-results" role="status" aria-live="polite" aria-atomic="true">
-          <div class="calc-result"><span>Distributable cash R</span><strong id="rCash">18</strong></div>
-          <div class="calc-result"><span>Required reserve H(m)</span><strong id="rRequired">11</strong></div>
-          <div class="calc-result"><span>Cash result</span><strong id="rCashStatus" class="badge pass">Funded</strong></div>
-          <div class="calc-result"><span>Compute result</span><strong id="rComputeStatus" class="badge pass">Funded</strong></div>
+        <div class="calc-flow" role="status" aria-live="polite" aria-atomic="true">
+          <div class="calc-flow-row">
+            <div class="calc-flow-step">
+              <span class="calc-flow-label">Committed</span>
+              <strong id="fGross">$30</strong>
+            </div>
+            <div class="calc-flow-arrow">&rarr;</div>
+            <div class="calc-flow-step">
+              <span class="calc-flow-label">Minus costs</span>
+              <strong id="fCosts">$12</strong>
+            </div>
+            <div class="calc-flow-arrow">&rarr;</div>
+            <div class="calc-flow-step">
+              <span class="calc-flow-label">Available to share</span>
+              <strong id="fReserve">$18</strong>
+            </div>
+          </div>
+          <div class="calc-flow-vs">
+            <div class="calc-flow-step">
+              <span class="calc-flow-label">Households need</span>
+              <strong id="fRequired">$11</strong>
+            </div>
+            <div class="calc-flow-arrow">&rarr;</div>
+            <div class="calc-flow-step" id="fResultWrap">
+              <span class="calc-flow-label">Cash result</span>
+              <strong id="rCashStatus" class="badge pass">Funded</strong>
+            </div>
+          </div>
+          <div class="calc-flow-vs">
+            <div class="calc-flow-step">
+              <span class="calc-flow-label">Compute needed</span>
+              <strong id="fComputeReq">$8</strong>
+            </div>
+            <div class="calc-flow-arrow">&rarr;</div>
+            <div class="calc-flow-step" id="fComputeResultWrap">
+              <span class="calc-flow-label">Compute result</span>
+              <strong id="rComputeStatus" class="badge pass">Funded</strong>
+            </div>
+          </div>
         </div>
-        <p id="rDetail" class="mono" aria-live="polite"></p>
+        <p id="rDetail" class="calc-detail" aria-live="polite"></p>
       </div>
     </div>
   </header>
@@ -851,24 +920,54 @@
       const computeRequired = households * computeFloor;
       const cashOk = reserve >= required;
       const computeOk = compute >= computeRequired;
-      document.getElementById('rCash').textContent = reserve.toLocaleString();
-      document.getElementById('rRequired').textContent = required.toLocaleString();
+      function money(v){return '$'+v.toLocaleString();}
+      document.getElementById('fGross').textContent = money(gross);
+      document.getElementById('fCosts').textContent = money(costs);
+      document.getElementById('fReserve').textContent = money(reserve);
+      document.getElementById('fRequired').textContent = money(required);
+      document.getElementById('fComputeReq').textContent = money(computeRequired);
       const cashStatus = document.getElementById('rCashStatus');
       cashStatus.textContent = cashOk ? 'Funded' : 'Unfunded';
       cashStatus.className = cashOk ? 'badge pass' : 'badge fail';
+      document.getElementById('fResultWrap').className = cashOk ? 'calc-flow-step pass' : 'calc-flow-step fail';
       const computeStatus = document.getElementById('rComputeStatus');
       computeStatus.textContent = computeOk ? 'Funded' : 'Unfunded';
       computeStatus.className = computeOk ? 'badge pass' : 'badge fail';
+      document.getElementById('fComputeResultWrap').className = computeOk ? 'calc-flow-step pass' : 'calc-flow-step fail';
       const surplus = reserve - required;
       const cashShortfall = Math.max(required - reserve, 0);
       const computeShortfall = Math.max(computeRequired - compute, 0);
-      document.getElementById('rDetail').textContent =
-        `households=${households}; transfers=[${transfers.join(', ')}]; ` +
-        `cash surplus after floor=${surplus}; cash shortfall=${cashShortfall}; ` +
-        `compute required=${computeRequired}; compute shortfall=${computeShortfall}.`;
+      const parts = [households + ' households modeled'];
+      parts.push('each gets at least ' + money(floor));
+      parts.push(cashOk ? 'cash surplus: ' + money(surplus) : 'cash shortfall: ' + money(cashShortfall));
+      parts.push(computeOk ? 'compute fully funded' : 'compute shortfall: ' + money(computeShortfall));
+      document.getElementById('rDetail').textContent = parts.join(' · ');
     }
+    const presets = {
+      healthy: { gross: 40, costs: 12, floor: 2, deficits: '0, 1, 5, 2', compute: 12, computeFloor: 2 },
+      tight:   { gross: 20, costs: 12, floor: 2, deficits: '0, 1, 5, 2', compute: 8,  computeFloor: 2 },
+      broken:  { gross: 10, costs: 12, floor: 2, deficits: '0, 1, 5, 2', compute: 4,  computeFloor: 2 }
+    };
+    document.querySelectorAll('.preset-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const p = presets[btn.dataset.preset];
+        if (!p) return;
+        document.getElementById('gross').value = p.gross;
+        document.getElementById('costs').value = p.costs;
+        document.getElementById('floor').value = p.floor;
+        document.getElementById('deficits').value = p.deficits;
+        document.getElementById('compute').value = p.compute;
+        document.getElementById('computeFloor').value = p.computeFloor;
+        document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        recalc();
+      });
+    });
     ['gross','costs','floor','deficits','compute','computeFloor'].forEach(id => {
-      document.getElementById(id).addEventListener('input', recalc);
+      document.getElementById(id).addEventListener('input', () => {
+        document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+        recalc();
+      });
     });
     recalc();
   </script>
