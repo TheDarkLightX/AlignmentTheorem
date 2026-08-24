@@ -55,7 +55,7 @@
   <header class="shell">
     <span class="stamp">Current-source review · 2026-08-23</span>
     <h1>Where each version<br>fits on current Tau.</h1>
-    <p class="lead">Version 1, Version 1.1, and Version 2 solve different incentive problems. This page shows where each theorem runs on the current Tau Language and Tau Net Alpha, what has been tested, and what external authority is still missing.</p>
+    <p class="lead">Version 1, Version 1.1, and Version 2 solve different incentive problems. This page shows where each theorem runs on the current Tau Language and Tau Net Alpha, what has been tested, and what external authority is required for production.</p>
     <div class="pin">Tau <strong>9b191af689ab…</strong> · parser <strong>5dd036358e19…</strong> · Tau Testnet <strong>9f9240ded9fd…</strong></div>
   </header>
 
@@ -78,16 +78,16 @@
         <div class="metric"><strong>128 / [0]</strong><span>V2 rows / accepted rows</span></div>
         <div class="metric"><strong>512 / [0]</strong><span>Flywheel rows / accepted rows</span></div>
       </div>
-      <div class="composition"><strong>Native profile router:</strong> 27 / 27 cases matched: all-true and every single-false fact for V1, V1.1, and V2, plus unknown-profile, absent-input, and other-sender controls. The profile and fact streams are transaction-supplied claims.</div>
+      <div class="composition"><strong>Native profile router:</strong> 27 / 27 cases matched: all-true and every single-false fact for V1, V1.1, and V2, plus unknown-profile, absent-input, and other-sender controls. The profile and fact streams remain transaction-supplied claims.</div>
       <div class="route"><a class="button primary" href="https://github.com/TheDarkLightX/AlignmentTheorem/blob/main/research/current_tau/current_tau_packet_probe.json" rel="noopener">Inspect packet receipt</a><a class="button" href="https://github.com/TheDarkLightX/AlignmentTheorem/blob/main/research/current_tau/profile_router_native_probe.json" rel="noopener">Inspect router receipt</a><a class="button" href="https://github.com/TheDarkLightX/AlignmentTheorem/blob/main/docs/V1_TO_V2_CORRECTIONS.md" rel="noopener">Defects and scope changes</a></div>
     </div></section>
 
     <section id="authority"><div class="shell">
-      <div class="section-head"><div class="kicker">03 / Authority path</div><div><h2>Tau owns the verdict.<br>Evidence comes first.</h2><p>The Alpha can run a policy scoped to each sender. The tested custom streams remain transaction-supplied claims, so a safe value-moving design needs a consensus-recognized verifier and a settlement layer that applies effects atomically. For V1, the settlement layer must also prevent an excluded branch from claiming the protected reward or scarce upside; upside shared by both branches cancels.</p></div></div>
+      <div class="section-head"><div class="kicker">03 / Authority path</div><div><h2>Tau owns the verdict.<br>Evidence comes first.</h2><p>The Alpha can run a policy scoped to each sender. The tested custom streams remain transaction-supplied claims, so a safe value-moving design needs a consensus-recognized verifier and a settlement layer that applies effects atomically.</p><p>For V1, the settlement layer must also prevent an excluded branch from claiming the protected reward or scarce upside. Upside shared by both branches cancels.</p></div></div>
       <div class="flow" aria-label="Required authoritative dataflow"><div>Verified evidence</div><div>Consensus-recognized verifier</div><div>Typed, context-bound facts</div><div>Tau policy verdict</div><div>Reserve + replay checker</div><div>Atomic effects + receipt</div></div>
       <div class="boundary">
         <article><h3>Established locally</h3><ul><li>Current Tau syntax and interpreter execution</li><li>Complete Boolean packets and single-fault rows</li><li>Three-profile native router across 27 / 27 cases</li><li>Flywheel native rule across 12 / 12 cases</li><li>Lean proofs for each restricted theorem profile</li></ul></article>
-        <article class="closed"><h3>Still open</h3><ul><li>Verified economic and policy facts</li><li>Consensus inputs from trusted verifiers</li><li>Funded reserve, replay prevention, double-spend protection, and recovery paths</li><li>Multi-node admission and settlement consistency</li><li>Public deployment and production readiness</li></ul></article>
+        <article class="closed"><h3>Required for production</h3><ul><li>Verified economic and policy facts</li><li>Consensus inputs from trusted verifiers</li><li>Funded reserve, replay prevention, double-spend protection, and recovery paths</li><li>Multi-node admission and settlement consistency</li><li>Public deployment and production readiness</li></ul></article>
       </div>
       <div class="route"><a class="button primary" href="https://github.com/TheDarkLightX/AlignmentTheorem/blob/main/docs/CURRENT_TAU_NET_INTEGRATION.md" rel="noopener">Read the exact integration note</a><a class="button" href="intelligence-hyperdeflation-flywheel.html">Intelligence flywheel</a></div>
     </div></section>

@@ -64,7 +64,7 @@ class DataCenterPolicyPublicationTests(unittest.TestCase):
             with self.subTest(fragment=formula_fragment):
                 self.assertIn(formula_fragment, text)
         self.assertIn("Tau does not authenticate the facts", text)
-        self.assertIn("Native replay remains pending", text)
+        self.assertIn("Native replay in development", text)
         self.assertIn("not production authority", text)
 
     def test_playbook_has_local_instruments_and_model_resolution(self) -> None:
@@ -91,7 +91,7 @@ class DataCenterPolicyPublicationTests(unittest.TestCase):
         self.assertIn("Local Data-Center Policy Playbook", page)
         self.assertIn("The fourteen-part local package", page)
         self.assertIn("Make growth pay for growth", page)
-        self.assertIn("not jurisdiction-specific legal advice", page)
+        self.assertIn("policy-design template for local adaptation", page)
         self.assertIn('href="local-government-policy-playbook.html"', index)
         for forbidden in ("file://", "/tmp/", "/home/", "localhost"):
             self.assertNotIn(forbidden, page)
