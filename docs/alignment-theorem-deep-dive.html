@@ -52,7 +52,7 @@
             line-height: 1.7;
             -webkit-font-smoothing: antialiased;
         }
-        a { color: var(--accent); text-decoration: none; }
+        a { color: var(--accent); text-decoration: none; cursor: pointer; }
         a:hover { color: var(--accent-ink); text-decoration: underline; }
         :focus-visible { outline: 3px solid var(--accent-bright); outline-offset: 3px; border-radius: 4px; }
 
@@ -297,7 +297,6 @@
             border-radius: 14px; border-left: 4px solid var(--accent);
             transition: transform .15s ease;
         }
-        .proof-step:hover { transform: translateX(4px); }
         .proof-step-num {
             flex-shrink: 0; width: 44px; height: 44px;
             display: flex; align-items: center; justify-content: center;
@@ -328,9 +327,8 @@
             width: 130px; height: 130px;
             display: flex; flex-direction: column; align-items: center; justify-content: center;
             text-align: center; background: var(--bg); border-radius: 50%;
-            border: 2px solid; transition: transform .2s ease;
+            border: 2px solid;
         }
-        .vcc-node:hover { transform: scale(1.05); }
         .vcc-node-1 { border-color: var(--accent); }
         .vcc-node-2 { border-color: var(--ok); }
         .vcc-node-3 { border-color: var(--warn); }
@@ -351,9 +349,7 @@
             background: var(--paper); border: 1px solid var(--line);
             border-radius: 12px; padding: 20px;
             border-left: 4px solid var(--muted);
-            transition: border-color .15s ease;
         }
-        .verification-card:hover { border-color: var(--accent); }
         .verification-card.status-checked { border-left-color: var(--ok); }
         .verification-card.status-current { border-left-color: var(--accent); }
         .verification-card.status-historical { border-left-color: var(--muted); }
@@ -465,6 +461,7 @@
                 <a href="#vcc">Virtuous cycle</a>
                 <a href="#evidence">Evidence</a>
                 <a href="v1-1-hyperdeflationary-alignment.html">Version 1.1</a>
+                <a href="intelligence-hyperdeflation-flywheel.html">Flywheel</a>
             </div>
         </div>
     </nav>
