@@ -34,7 +34,7 @@
     "tests/test_tau_v1_1_candidate_manifest.py": "5f1da199e02c559ffaab8443f17aaddac3dcbf8b2de9ab16395c94ee63554f74",
     "tests/test_tau_v1_1_runner.py": "0e88e7d0b6b0f71559f929d645d905cfffa5b26b762538e819b4ca452fa9456c",
     "tests/test_v1_1_assurance_receipt.py": "4888b83b35c958067c7b43461669dd2bc280962e41efd6a262e1e7171d8618a8",
-    "tests/test_v1_1_publication.py": "2c68503f2a52912da28b08768906e9dbccac373b8eb42d8e7446a124cf2e9a6c",
+    "tests/test_v1_1_publication.py": "1ed6217fa725b71dd84c655af5224e4eaeb64e5a9095d72577b5636c4913ddf3",
     "verification/alignment_v1_1_model.py": "145d57f696c7dab18a57e595e37c367281765583aeabee1831cf8cfd63a7c543",
     "verification/capture_tau_v1_1_candidate.py": "efcc84e78dd9ef672de83dec45fba1457c6492253bc7168ca742cb5e3bf5349a",
     "verification/current_tau_baseline.py": "edf95ba2c86d5a3901ba3508bb62ea810322a5c1e7061f6c331cb74c649fe24f",
@@ -73,7 +73,7 @@
   "python_test_returncode": 0,
   "python_version": "3.12.3",
   "schema": "alignment-theorem-v1-1-assurance-v3",
-  "source_bundle_sha256": "e72ac101800da90d6564778736f36e70a24a7c1040c8c2a3d4915b7a3734d3d1",
+  "source_bundle_sha256": "a27fe84e188ce1d567c16fdf1b1ba2091bd1523e5b6f146af105454e8c21554e",
   "tau_interpreter_replay_status": "SUPPORTED_LOCAL_SOURCE_CANDIDATE_REVIEWED_BINARY_AND_PUBLIC_NODE_PENDING",
   "tau_semantic_packet_rows": 16
 }

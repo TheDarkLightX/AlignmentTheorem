@@ -37,7 +37,7 @@ class V1_1PublicationTests(unittest.TestCase):
 
         # Assert
         self.assertIn("core mechanism is retained", normalized_notice_lower)
-        self.assertIn("no tax or fine", normalized_notice_lower)
+        self.assertIn("not a tax or fine", normalized_notice_lower)
         self.assertIn("G &lt; M(R+L)", normalized_notice)
         self.assertIn("M(t)K(t) &gt; B(t)", normalized_notice)
         self.assertIn("a28695f", normalized_notice)

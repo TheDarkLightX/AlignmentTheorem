@@ -34,7 +34,7 @@ class V1PublicationTests(unittest.TestCase):
                 self.assertNotIn("v1 sign-separated", text)
                 self.assertNotIn("semantic claim superseded", text)
         index = INDEX.read_text()
-        self.assertIn("exclusive scarcity upside", index)
+        self.assertIn("scarce, valuable tokens", index)
         self.assertIn("does not impose a tax", README.read_text())
 
     def test_v1_claim_boundary_distinguishes_opportunity_cost_from_debit(self) -> None:
