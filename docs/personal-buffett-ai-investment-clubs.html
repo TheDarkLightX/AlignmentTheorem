@@ -29,25 +29,28 @@
     h1{font-size:clamp(2.4rem,6vw,4.2rem);line-height:1;letter-spacing:-.045em;margin:1rem 0 1.5rem}
     .gradient{background:linear-gradient(100deg,var(--mint),var(--lime) 45%,var(--blue));-webkit-background-clip:text;color:transparent}
     .lede{font-size:clamp(1.08rem,2.2vw,1.35rem);color:var(--muted);max-width:680px;margin-bottom:2rem}
-    h2{font-size:clamp(1.6rem,4vw,2.4rem);line-height:1.1;letter-spacing:-.03em;margin:3rem 0 1rem}
+    h2{font-size:clamp(1.6rem,4vw,2.4rem);line-height:1.1;letter-spacing:-.03em;margin:3.5rem 0 1.2rem;position:relative}
+    h2:before{content:"";position:absolute;left:-1.5rem;top:.3rem;bottom:.3rem;width:3px;border-radius:2px;background:linear-gradient(180deg,var(--mint),var(--blue))}
     h3{font-size:1.2rem;margin:2rem 0 .8rem;color:var(--lime)}
     p{margin:0 0 1.2rem;color:var(--ink)}
-    .story{border-left:3px solid var(--blue);padding:.5rem 1.2rem;margin:2rem 0;background:rgba(117,188,255,.05);font-style:italic;color:var(--muted)}
-    .story strong{font-style:normal;color:var(--ink)}
-    .callout{border-left:3px solid var(--amber);padding:1rem 1.2rem;margin:2rem 0;background:rgba(255,205,112,.07);color:#f9e3b9}
+    .story{position:relative;border:1px solid rgba(117,188,255,.2);border-radius:16px;padding:1.8rem 1.8rem 1.8rem 3.2rem;margin:2.5rem 0;background:linear-gradient(135deg,rgba(117,188,255,.06),rgba(117,188,255,.02));font-style:italic;color:var(--muted);font-size:1.05rem;line-height:1.7}
+    .story:before{content:'\201C';position:absolute;left:.8rem;top:.2rem;font-family:Georgia,serif;font-size:3.5rem;color:rgba(117,188,255,.35);font-style:normal;line-height:1}
+    .story strong{font-style:normal;color:var(--ink);font-weight:700}
+    .callout{border:1px solid rgba(255,205,112,.25);border-radius:16px;padding:1.4rem 1.6rem;margin:2.5rem 0;background:linear-gradient(135deg,rgba(255,205,112,.08),rgba(255,205,112,.02));color:#f9e3b9}
     .callout strong{color:var(--amber)}
     .formula{border:1px solid var(--line);border-radius:14px;background:linear-gradient(135deg,rgba(101,242,183,.06),rgba(117,188,255,.03));padding:1.5rem;text-align:center;font-size:clamp(.95rem,2.2vw,1.25rem);overflow:auto;margin:1.5rem 0}
-    .ladder{display:grid;grid-template-columns:repeat(5,1fr);gap:.5rem;margin:1.5rem 0}.rung{padding:.8rem .5rem;border:1px solid var(--line);border-radius:10px;background:var(--panel);text-align:center}.rung-day{font:500 .65rem DM Mono,monospace;color:var(--mint);text-transform:uppercase;margin-bottom:.2rem}.rung-val{font-size:1.1rem;font-weight:700;color:var(--lime)}.rung-gain{font:400 .62rem DM Mono,monospace;color:var(--dim);margin-top:.15rem}
+    .ladder{display:grid;grid-template-columns:repeat(5,1fr);gap:.5rem;margin:1.5rem 0}.rung{padding:.8rem .5rem;border:1px solid var(--line);border-radius:10px;background:var(--panel);text-align:center;transition:border-color .2s}.rung:hover{border-color:var(--mint)}.rung-day{font:500 .65rem DM Mono,monospace;color:var(--mint);text-transform:uppercase;margin-bottom:.2rem}.rung-val{font-size:1.1rem;font-weight:700;color:var(--lime)}.rung-gain{font:400 .62rem DM Mono,monospace;color:var(--dim);margin-top:.15rem}
     .dao-diagram{margin:2rem 0}.dao-svg{display:block;width:100%;max-width:680px;height:auto;margin:0 auto}
     .compound-lab{margin:2rem 0;padding:1.4rem;border:1px solid var(--line);border-radius:14px;background:var(--panel)}.compound-lab h4{margin:0 0 .8rem;font-size:1rem;color:var(--ink)}.compound-controls{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}.compound-controls .control{margin:0}.control label{display:flex;justify-content:space-between;font:500 .78rem DM Mono,monospace;color:var(--muted)}input[type=range]{width:100%;accent-color:var(--mint)}
     .compound-chart{width:100%;height:220px;display:block;border-radius:10px;background:#081411}.compound-readout{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem;margin-top:1rem}.compound-readout .metric{padding:.7rem;border-radius:8px;background:#081411}.compound-readout .metric span{display:block;color:var(--dim);font:500 .65rem DM Mono,monospace;text-transform:uppercase}.compound-readout .metric strong{font-size:1.05rem}
-    .guardrails{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:1.4rem;margin:2rem 0}
-    .guardrails h3{margin-top:0;color:var(--amber)}
-    .guardrails ul{padding-left:1.2rem;color:var(--muted)}.guardrails li{margin-bottom:.5rem}
+    .guardrails{background:var(--panel);border:1px solid rgba(255,205,112,.2);border-radius:16px;padding:1.6rem 1.8rem;margin:2.5rem 0}
+    .guardrails h3{margin-top:0;color:var(--amber);font-size:1.15rem}
+    .guardrails ul{padding-left:1.2rem;color:var(--muted)}.guardrails li{margin-bottom:.6rem;line-height:1.6}.guardrails li strong{color:var(--ink)}
+    .divider{height:1px;background:linear-gradient(90deg,transparent,var(--line),transparent);margin:3rem 0;border:none}
     code{font-family:DM Mono,monospace;color:var(--lime);font-size:.88em}
     .actions{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:2rem}.button{padding:.72rem 1rem;border:1px solid var(--line);border-radius:999px;text-decoration:none;font-weight:700;color:var(--ink);background:var(--panel)}.button.primary{background:var(--mint);color:#04251a;border-color:var(--mint)}
     footer{max-width:var(--max);margin:auto;padding:3rem 1.5rem 5rem;border-top:1px solid var(--line);color:var(--dim);font-size:.86rem}
-    @media(max-width:560px){.ladder{grid-template-columns:1fr 1fr}.compound-controls{grid-template-columns:1fr}.compound-readout{grid-template-columns:1fr}}
+    @media(max-width:560px){.ladder{grid-template-columns:1fr 1fr}.compound-controls{grid-template-columns:1fr}.compound-readout{grid-template-columns:1fr}.story{padding-left:2.5rem;font-size:1rem}.story:before{font-size:2.8rem;left:.5rem}}
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
   </style>
 </head>
@@ -69,6 +72,7 @@
 
     <p>The curve starts flat and then bends upward. That is the compounding effect: each day's gain earns its own gain the next day. The AI does not need to beat the market. It needs to find small, real efficiencies and compound them.</p>
 
+    <hr class="divider">
     <h2>Why this was impossible until now</h2>
 
     <p>Warren Buffett started his partnership in 1956 with $105,100 from seven investors. He had an edge: he could research companies full-time, and his investors trusted him. But his edge was human. It did not scale to every household in the world.</p>
@@ -79,6 +83,7 @@
 
     <p>DeFi changes the economics. Transaction costs on a decentralized exchange can be fractions of a cent. A rebalance that costs $7 at a brokerage costs $0.0007 on-chain. The fee is smaller than the gain. The math survives. The compounding continues.</p>
 
+    <hr class="divider">
     <h2>The math, in plain English</h2>
 
     <p>Compound interest is the oldest force in finance. Einstein did not call it the eighth wonder of the world (that quote is apocryphal), but the math is real and simple:</p>
@@ -99,6 +104,7 @@
 
     <div class="compound-lab"><h4>Try it yourself</h4><div class="compound-controls"><div class="control"><label for="cp">Principal $<output id="cpOut">1</output></label><input id="cp" type="range" min="1" max="1000" value="1" step="1"></div><div class="control"><label for="cr">Daily return %<output id="crOut">0.50</output></label><input id="cr" type="range" min="1" max="200" value="50" step="1"></div></div><canvas id="compoundChart" class="compound-chart" width="680" height="220" role="img" aria-label="Compound interest growth chart"></canvas><div class="compound-readout"><div class="metric"><span>After 30 days</span><strong id="cv30">$1.16</strong></div><div class="metric"><span>After 180 days</span><strong id="cv180">$2.45</strong></div><div class="metric"><span>After 365 days</span><strong id="cv365">$6.18</strong></div></div></div>
 
+    <hr class="divider">
     <h2>From solo agent to investment club</h2>
 
     <div class="story"><strong>Buffett did not invest alone.</strong> He ran a partnership. Seven investors pooled $105,100. Buffett did the research. The partnership rules governed what he could and could not do. Each partner kept their proportional share. The structure worked because the rules were clear, the accounting was transparent, and the researcher was talented.</div>
@@ -163,6 +169,7 @@
 
     <p>The DAO is the DeFi-native version of Buffett's partnership. The rules are public. The accounting is on-chain. The AI does the research that a human analyst team would otherwise cost. Pooled capital reaches opportunities that $1 alone cannot access: larger liquidity pools, higher-yield staking positions, diversified lending positions that require minimum deposits. But the guardrails travel with every dollar.</p>
 
+    <hr class="divider">
     <h2>The guardrails</h2>
 
     <div class="guardrails">
@@ -178,6 +185,7 @@
       </ul>
     </div>
 
+    <hr class="divider">
     <h2>The Buffett partnership, translated</h2>
 
     <p>Buffett's partnership agreement had rules. He could not invest more than 40% of capital in a single security. He could not use leverage. He could not invest in speculative or "hot" issues. He had to explain every position to his partners. The rules made the partnership safe enough that seven investors trusted a 25-year-old with $105,100.</p>
@@ -186,6 +194,7 @@
 
     <div class="callout"><strong>What this is not.</strong> This does not promise investment returns, early retirement, financial advice, fiduciary duty, or generational wealth. It is a constrained automation tool, not a financial advisor. The AI finds efficiencies. The rules enforce safety. Compound interest does the rest. Whether the efficiencies are large enough to matter in practice is an empirical question, not a mathematical one.</div>
 
+    <hr class="divider">
     <h2>Why Tau matters here</h2>
 
     <p>The spending rule, the guardrails, and the DAO constitution all need to be executable. A PDF rule sheet that a human reads is not enforced. A smart contract that a human writes is enforced, but it cannot be revised safely. The rules need to be both executable and self-amending: the DAO needs to be able to vote on a rule change, check that the change does not violate the constitution, and adopt it without breaking the guardrails.</p>
