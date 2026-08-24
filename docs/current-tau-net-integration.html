@@ -57,13 +57,13 @@
 
   <main id="main">
     <section id="profiles"><div class="shell">
-      <div class="section-head"><div class="kicker">01 / Select by premise</div><div><h2>A version is a profile,<br>not a rank.</h2><p>Use the smallest theorem whose premises match the mechanism. V2 can provide the outer publication and settlement envelope around either earlier incentive profile.</p></div></div>
+      <div class="section-head"><div class="kicker">01 / Select by premise</div><div><h2>A version is a profile,<br>not a rank.</h2><p>Use the smallest theorem whose premises match the mechanism. V2 can provide the outer publication and settlement layer around either earlier version.</p></div></div>
       <div class="profiles">
         <article class="profile v1" data-version="1"><span class="label">Version 1 · concrete mechanism</span><h3>Scarcity-upside exclusion</h3><p>Ethical work gets funded rewards plus scarce upside. Unethical work is excluded from that upside. No tax or fine is applied.</p><div class="formula">G(t) &lt; M(t) × [R(t) + L(t)]</div><p class="use"><strong>Use when:</strong> ethics scores and scarcity facts are verified, rewards are funded, the excluded branch genuinely cannot access the scarce upside, and the agent exactly maximizes payoff.</p></article>
         <article class="profile v11" data-version="1.1"><span class="label">Version 1.1 · generalized version</span><h3>Hyperdeflationary margin</h3><p>Scarcity amplifies the ethical reward plus exclusive upside against the complete gain from cheating.</p><div class="formula">B(t) &lt; M(t) × K(t)</div><p class="use"><strong>Use when:</strong> compliance cost, optimizer error, or time-varying relative growth must be modeled. Every runtime value remains finite and K(t) stays positive.</p></article>
         <article class="profile v2" data-version="2"><span class="label">Version 2 · finite protocol</span><h3>Policy and settlement</h3><p>A finite advantage makes every near-optimal choice policy-compliant, with publication and reserve checks.</p><div class="formula">R<sub>c</sub> − R<sub>n</sub> + enforcement &gt; G + C + ε</div><p class="use"><strong>Use when:</strong> a protocol needs observable actions, verified evidence, replay prevention, funded rewards, and reject-without-effect settlement.</p></article>
       </div>
-      <div class="composition"><strong>Useful composition:</strong> V2 admission + reserve-safe settlement outside; V1 or V1.1 selected inside as the declared incentive profile.</div>
+      <div class="composition"><strong>Useful composition:</strong> V2 admission + reserve-safe settlement outside; V1 or V1.1 selected inside as the declared incentive mechanism.</div>
     </div></section>
 
     <section id="evidence"><div class="shell">
@@ -79,15 +79,15 @@
     </div></section>
 
     <section id="authority"><div class="shell">
-      <div class="section-head"><div class="kicker">03 / Authority path</div><div><h2>Tau owns the verdict.<br>Evidence comes first.</h2><p>The Alpha can run a policy scoped to each sender. The tested custom streams remain transaction-supplied claims, so a safe value-moving design needs a consensus-recognized verifier and a settlement layer that applies effects atomically. For V1, the settlement layer must also prevent an excluded branch from claiming the protected reward or scarcity-sensitive entitlement; upside shared by both branches cancels.</p></div></div>
+      <div class="section-head"><div class="kicker">03 / Authority path</div><div><h2>Tau owns the verdict.<br>Evidence comes first.</h2><p>The Alpha can run a policy scoped to each sender. The tested custom streams remain transaction-supplied claims, so a safe value-moving design needs a consensus-recognized verifier and a settlement layer that applies effects atomically. For V1, the settlement layer must also prevent an excluded branch from claiming the protected reward or scarce upside; upside shared by both branches cancels.</p></div></div>
       <div class="flow" aria-label="Required authoritative dataflow"><div>Verified evidence</div><div>Consensus-recognized verifier</div><div>Typed, context-bound facts</div><div>Tau policy verdict</div><div>Reserve + replay checker</div><div>Atomic effects + receipt</div></div>
       <div class="boundary">
         <article><h3>Established locally</h3><ul><li>Current Tau syntax and interpreter execution</li><li>Complete Boolean packets and single-fault rows</li><li>Three-profile native router across 27 / 27 cases</li><li>Flywheel native rule across 12 / 12 cases</li><li>Lean proofs for each restricted theorem profile</li></ul></article>
-        <article class="closed"><h3>Still open</h3><ul><li>Authenticated economic and policy facts</li><li>Reserved verifier-derived consensus inputs</li><li>Funded reserve, replay prevention, double-spend protection, and recovery paths</li><li>Multi-node admission and settlement consistency</li><li>Public deployment and production readiness</li></ul></article>
+        <article class="closed"><h3>Still open</h3><ul><li>Verified economic and policy facts</li><li>Consensus inputs from trusted verifiers</li><li>Funded reserve, replay prevention, double-spend protection, and recovery paths</li><li>Multi-node admission and settlement consistency</li><li>Public deployment and production readiness</li></ul></article>
       </div>
       <div class="route"><a class="button primary" href="https://github.com/TheDarkLightX/AlignmentTheorem/blob/main/docs/CURRENT_TAU_NET_INTEGRATION.md" rel="noopener">Read the exact integration note</a><a class="button" href="intelligence-hyperdeflation-flywheel.html">Intelligence flywheel</a></div>
     </div></section>
   </main>
-  <footer><div class="shell">Local source-candidate evidence · no Tau Net publication, settlement, value, legal, or production authority · Alignment Theorem research</div></footer>
+  <footer><div class="shell">Tested on a local Tau build · no Tau Net publication, settlement, value, legal, or production authority · Alignment Theorem research</div></footer>
 </body>
 </html>
