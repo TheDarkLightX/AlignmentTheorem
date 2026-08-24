@@ -1,5 +1,5 @@
 {
-  "artifact_revision": "72a34297216a11ad0ea237d8ceeb738927151e30",
+  "artifact_revision": "d63ead7c6e7a027cd5a42fd9999f9a4ad6750ca5",
   "authority_status": "RESEARCH_REFERENCE_ONLY_NO_MACROECONOMIC_TAU_NET_OR_VALUE_AUTHORITY",
   "base_revision": "44c14df0a9b3f74d7cceb7f122176c84374faf1e",
   "claim_status": "SUPPORTED_BOUNDED_WITH_OPEN_CAUSAL_ORACLE_NODE_AND_REVIEWED_REPLAY_GATES",
@@ -22,9 +22,9 @@
   "files_sha256": {
     "README.md": "52c9431868358e6f2152c8af47de9d49ab6ef42219aab9892cfd5dc68477231f",
     "TOOLCHAINS.md": "ff5f5b84311fec0a8ebf8720f1c27403df9a2302296be8c9259f9ce32c32ac79",
-    "docs/alignment-theorem-deep-dive.html": "d609c48bccc698391addbd57dda3aadd9386690c6797009f234e05c0041f20b0",
-    "docs/index.html": "6feca00f5a452716bd1fd3582fbd4b181b45a9d054809727f32832da28b5094b",
-    "docs/intelligence-hyperdeflation-flywheel.html": "e993e872734564609a07bf5fc4949349c0dc9c36fec825d9e673f5286ef1dbc9",
+    "docs/alignment-theorem-deep-dive.html": "371210f24da467f4b36a5038b62ae71f647ea581c67de163ec1f182190a2c801",
+    "docs/index.html": "bf06594b26aa0903e64cd4796787081ad3b9d69bb32356f3adcfa9f94c065f64",
+    "docs/intelligence-hyperdeflation-flywheel.html": "b041110ee56490113525abababa53cf774e33da85cb6ad4f563133839053ad2e",
     "proofs/intelligence_flywheel/AxiomAudit.lean": "24faf12b750b813a5c358189a6b02f5520d12ead5669fb691ab74003fcc0ba67",
     "proofs/intelligence_flywheel/IntelligenceFlywheel.lean": "99e13c02d478d512499c27d01b1bbd88caea96c38ab7c3808415fc7731d60297",
     "proofs/intelligence_flywheel/lake-manifest.json": "6370649ac34e2271938bd7df795b0e8c4677b0304c66c51c437a422af61d5df8",
@@ -49,7 +49,7 @@
     "tests/test_intelligence_flywheel_manifest.py": "bce23c2d982cc44889679f0f0b9008745620b6a4ebad07a74fd8edf5fdd48d86",
     "tests/test_intelligence_flywheel_model.py": "4afc462eef042fb469d3aea8bd02db7c997de669d866a69dbb0a0d0af5744a1b",
     "tests/test_intelligence_flywheel_proof_obligation.py": "efc85f05e6248528f38a496af44eb0c37e286cc2c529d4d4a3aeeadfebac0c9e",
-    "tests/test_intelligence_flywheel_research_packet.py": "e1517e90028da4e9aa9ffa6b0a795cfd41decd9cfd1bfa51d9510ac87a0f8232",
+    "tests/test_intelligence_flywheel_research_packet.py": "c6262449d7823d5c0cc210e697eccb4b3a545fe5fb001a179a96a8b6c8b26afd",
     "tests/test_lean_intelligence_flywheel_receipt.py": "2b88688e5ae94dec37d8723d3e2aba85292d20eecae638c12bdb8c20015f600f",
     "tests/test_tau_intelligence_flywheel.py": "e7b0037be8c5b05c87bca7c03f162667fdd679b71a15a9341879986062b2456c",
     "tests/test_tau_intelligence_flywheel_candidate_probe.py": "feacbb41259f9ba1f760eefe82073af0d6c218c2f9d17d6b24090a108e21a1a9",
