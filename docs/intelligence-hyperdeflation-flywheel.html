@@ -59,7 +59,7 @@
     <div class="eyebrow">Research packet · August 2026 · proof-bounded</div>
     <h1>The <span class="gradient">intelligence dividend</span></h1>
     <p class="lede">Data centers can be more than private infrastructure. Verified AI productivity can lower essential costs, fund a public compute dividend, and power constrained personal wealth agents. Tau makes the spending rule executable and revisable without breaking the guarantees.</p>
-    <div class="truth"><strong>Key distinction:</strong> "intelligence doubles" is not the Alignment Theorem. The theorem requires protected real benefit to strictly exceed the benefit of deviation.</div>
+    <div class="truth"><strong>Key distinction:</strong> "intelligence doubles" is not the Alignment Theorem. The theorem requires that the benefit of ethical behavior exceeds the benefit of cheating, with a strict margin.</div>
     <div class="actions"><a class="button primary" href="#concept">See the concept</a><a class="button" href="#math">See the math</a><a class="button" href="https://github.com/TheDarkLightX/AlignmentTheorem/tree/main/research/intelligence_flywheel">Research packet</a><a class="button" href="alignment-theorem-deep-dive.html">Original deep dive</a></div>
   </header>
 
@@ -151,7 +151,7 @@
       <div class="bridge" style="margin-top:1rem"><div class="node"><strong>1 · Capability</strong>verified task completion</div><div class="node"><strong>2 · Productivity</strong>measured causal effect</div><div class="node"><strong>3 · Unit cost</strong>quality adjusted</div><div class="node"><strong>4 · Price & access</strong>competition + pass-through</div><div class="node"><strong>5 · Protected reward</strong>floor + dividend + compute</div></div>
       <p>Two parameters control whether the flywheel actually reaches households: <code>a</code>, the share of the essential basket that can be automated, and <code>ρ</code>, the share of savings passed through to consumers. If either is less than 1, the model has a floor <code>δ=1−aρ&gt;0</code>, hence <code>M&lt;=1/δ</code>. Capability may double forever while household purchasing power remains bounded.</p>
       <div class="grid">
-        <div class="card"><div class="tag">Sufficient map</div><h3>Full bridge + slower deviation</h3><p>If <code>I=2^t</code>, <code>a=ρ=η=1</code>, and protected reward grows faster than deviation, a strict crossing follows.</p></div>
+        <div class="card"><div class="tag">Best case</div><h3>Full pass-through + slower deviation</h3><p>If <code>I=2^t</code>, <code>a=ρ=η=1</code>, and protected reward grows faster than deviation, a strict crossing follows.</p></div>
         <div class="card bad"><div class="tag">Countermodel</div><h3>Partial transmission</h3><p>With <code>a=3/4</code> and <code>ρ=4/5</code>, price stays above <code>2/5</code> and purchasing power below <code>5/2</code>.</p></div>
         <div class="card bad"><div class="tag">Countermodel</div><h3>Rebound cancels savings</h3><p>A growing grid or resource surcharge can exactly offset declining automated cost. If the savings from automation are eaten by rising infrastructure costs, households see no net benefit.</p></div>
       </div>
@@ -249,10 +249,10 @@
     </section>
 
     <section id="tau">
-      <div class="section-head"><div class="kicker">05 · Tau Net</div><div><h2>Why Tau, and why<br>only Tau can do this.</h2><p>The spending rule has to be written in Tau because Tau is what enforces it. No other platform can replicate this design: Ohad Asor's patent on Tau covers the core mechanism, a formal language that can rewrite its own rules and reason about the changes before adopting them. That self-amending property is what makes Tau the only platform that can serve as a live economic constitution.</p></div></div>
+      <div class="section-head"><div class="kicker">05 · Tau Net</div><div><h2>Why Tau, and why<br>only Tau can do this.</h2><p>The spending rule has to be written in Tau because Tau is what enforces it. No other platform can replicate this design: Ohad Asor's patent on Tau covers the core mechanism, a formal language that can rewrite its own rules and reason about the changes before adopting them. That property is what makes Tau the only platform that can serve as a living economic rulebook.</p></div></div>
       <div class="grid">
         <div class="card"><div class="tag">Native policy</div><h3>Executable specification</h3><p>The same decidable rule is the artifact reviewed by humans and evaluated by the protocol. The protocol commits rule text into state.</p></div>
-        <div class="card"><div class="tag">Revision</div><h3>Governed policy change</h3><p>Tau is designed for specifications that can reason about and revise specifications. That is unusually aligned with a living economic constitution.</p></div>
+        <div class="card"><div class="tag">Revision</div><h3>Governed policy change</h3><p>Tau is designed for specifications that can reason about and revise specifications. That is unusually aligned with a living economic rulebook.</p></div>
         <div class="card bad"><div class="tag">Trust boundary</div><h3>Facts stay external</h3><p>Tau can reject a false Boolean. It cannot know that a price index, grid reserve, identity, signature, or welfare claim is true unless a trusted verifier binds it.</p></div>
       </div>
       <table style="margin-top:1rem"><thead><tr><th>Layer</th><th>What was checked</th></tr></thead><tbody><tr><td>Lean</td><td>Conditional crossing, impossibility theorems, and gate implications</td></tr><tr><td>Tau CLI</td><td>512-row truth table matched on a local build pinned to a specific source commit</td></tr><tr><td>Tau Testnet</td><td>Sender-scoped native rule for 12 mutation and scope cases</td></tr><tr><td>World</td><td>No causal result yet</td></tr></tbody></table>

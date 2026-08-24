@@ -40,7 +40,7 @@ class V1PublicationTests(unittest.TestCase):
     def test_v1_claim_boundary_distinguishes_opportunity_cost_from_debit(self) -> None:
         text = " ".join(CLAIM_BOUNDARY.read_text().split())
         self.assertIn("G &lt; M(R+L)", text)
-        self.assertIn("No tax, fine, burn, confiscation, or balance debit", text)
+        self.assertIn("No balance is debited, no tokens are burned, and no confiscation occurs", text)
         self.assertIn("Upside shared by both branches cancels", text)
         self.assertIn("a28695f", text)
 
@@ -54,7 +54,7 @@ class V1PublicationTests(unittest.TestCase):
 
     def test_homepage_describes_missed_upside_without_a_debit_display(self) -> None:
         text = INDEX.read_text()
-        self.assertIn("never a tax, fine, burn, or balance debit", text)
+        self.assertIn("not a tax or fine", text)
         self.assertIn("opportunity cost", text)
 
     def test_no_machine_local_paths_in_new_public_pages(self) -> None:

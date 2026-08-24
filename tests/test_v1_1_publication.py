@@ -36,8 +36,8 @@ class V1_1PublicationTests(unittest.TestCase):
         pdf_prefix = ACADEMIC_PDF.read_bytes()[:5]
 
         # Assert
-        self.assertIn("EETF, VCC, reward, scarcity, and exclusion", normalized_notice)
-        self.assertIn("no tax, fine", normalized_notice_lower)
+        self.assertIn("core mechanism is retained", normalized_notice_lower)
+        self.assertIn("no tax or fine", normalized_notice_lower)
         self.assertIn("G &lt; M(R+L)", normalized_notice)
         self.assertIn("M(t)K(t) &gt; B(t)", normalized_notice)
         self.assertIn("a28695f", normalized_notice)

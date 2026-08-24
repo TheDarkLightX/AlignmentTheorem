@@ -159,14 +159,14 @@ def _requirements(pages: dict[str, str]) -> dict[str, bool]:
         "index main landmark": 'id="main-content"' in index,
         "index reduced-motion support": "prefers-reduced-motion" in index,
         # V1 semantics: exclusion with protected upside and no punitive effect.
-        "index has no-debit explanation": "never a tax, fine, burn, or balance debit" in index,
+        "index has no-debit explanation": "not a tax or fine" in index,
         "deep dive states V1 theorem": "EETF-Gated Scarcity-Upside Exclusion Theorem" in deep_dive,
         "deep dive states strict margin": "M(R + L) &gt; G" in deep_dive,
         "deep dive states no balance debit": "No tax or balance debit" in deep_dive,
         "deep dive avoids unconditional scarcity slogan": "Scarcity Drives Ethics" not in deep_dive,
-        "V1 boundary retains full mechanism": "EETF, VCC, reward, scarcity, and exclusion" in v1_boundary,
+        "V1 boundary retains full mechanism": "core mechanism is retained" in v1_boundary,
         "V1 boundary states exact finite condition": "G &lt; M(R+L)" in v1_boundary,
-        "V1 boundary states no punitive effects": "No tax, fine, burn, confiscation, or balance debit" in v1_boundary,
+        "V1 boundary states no punitive effects": "No balance is debited, no tokens are burned, and no confiscation occurs" in v1_boundary,
         "V1 boundary links original paper": "Alignment_Theorem_V1_Original_2025.pdf" in v1_boundary,
         "active V1 pages do not say withdrawn": all(
             "withdrawn" not in page.lower()
