@@ -156,7 +156,30 @@
             color: var(--muted); font-size: .72rem; margin-right: 8px;
         }
         .toc li a:hover { background: var(--accent-soft); color: var(--accent-ink); text-decoration: none; }
-
+        .toc-mobile { display: none; }
+        .toc-mobile summary {
+            cursor: pointer; list-style: none;
+            padding: 12px 16px; border: 1px solid var(--line); border-radius: 8px;
+            font-family: var(--font-ui); font-size: .82rem; font-weight: 600;
+            color: var(--ink); background: var(--paper);
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .toc-mobile summary::-webkit-details-marker { display: none; }
+        .toc-mobile summary::after { content: '+'; font-size: 1.2rem; color: var(--muted); }
+        .toc-mobile[open] summary::after { content: '\2212'; }
+        .toc-mobile summary:hover { background: var(--accent-soft); }
+        .toc-mobile ul { list-style: none; padding: 8px 0 0; margin: 0; counter-reset: mtoc; }
+        .toc-mobile li { counter-increment: mtoc; }
+        .toc-mobile li a {
+            display: block; padding: 8px 16px; border-radius: 6px;
+            color: var(--body); font-family: var(--font-ui);
+            font-size: .82rem; font-weight: 500;
+        }
+        .toc-mobile li a::before {
+            content: counter(mtoc, decimal-leading-zero);
+            color: var(--muted); font-size: .72rem; margin-right: 8px;
+        }
+        .toc-mobile li a:hover { background: var(--accent-soft); color: var(--accent-ink); text-decoration: none; }
         .content { padding: 0 48px 80px 0; max-width: var(--content-w); }
 
         .section { padding: 56px 0; }
@@ -404,6 +427,7 @@
             .hero-grid { grid-template-columns: 1fr; }
             .body-wrap { grid-template-columns: 1fr; }
             .toc { display: none; }
+            .toc-mobile { display: block; margin: 0 24px 24px; }
             .content { padding: 0 24px 80px; max-width: 100%; }
             .dark-section .inner { padding: 0 24px; }
             .problem-solution { grid-template-columns: 1fr; }
@@ -487,6 +511,18 @@
     </header>
 
     <div class="body-wrap">
+        <details class="toc-mobile" aria-label="Table of contents">
+            <summary>Contents</summary>
+            <ul>
+                <li><a href="#idea">The core insight</a></li>
+                <li><a href="#challenge">The challenge</a></li>
+                <li><a href="#mechanism">How it works</a></li>
+                <li><a href="#theorem">The theorem</a></li>
+                <li><a href="#proof">The proof</a></li>
+                <li><a href="#vcc">The feedback loop</a></li>
+                <li><a href="#evidence">Evidence &amp; limits</a></li>
+            </ul>
+        </details>
         <aside class="toc" aria-label="Table of contents">
             <div class="toc-title">Contents</div>
             <ul>
@@ -712,7 +748,7 @@
         <a href="https://github.com/IDNI/tau-lang">Tau Language</a> &middot;
         <a href="https://github.com/TheDarkLightX/AlignmentTheorem">View on GitHub</a> &middot;
         <a href="https://thedarklightx.github.io/VCC-concept-visualizer/">Interactive feedback loop visualizer</a><br>
-        Independent research contribution. Not an official statement from the Tau core team.
+        Independent research contribution. Not an official statement from the Tau core team. <a href="#top">Back to top</a>
     </footer>
 </body>
 </html>

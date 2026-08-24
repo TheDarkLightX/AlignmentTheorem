@@ -270,7 +270,30 @@
       color: var(--muted); font-size: .72rem; margin-right: 8px;
     }
     .toc li a:hover { background: var(--accent-soft); color: var(--accent-ink); text-decoration: none; }
-
+    .toc-mobile { display: none; }
+    .toc-mobile summary {
+      cursor: pointer; list-style: none;
+      padding: 12px 16px; border: 1px solid var(--line); border-radius: 8px;
+      font-family: var(--font-ui); font-size: .82rem; font-weight: 600;
+      color: var(--ink); background: var(--paper);
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .toc-mobile summary::-webkit-details-marker { display: none; }
+    .toc-mobile summary::after { content: '+'; font-size: 1.2rem; color: var(--muted); }
+    .toc-mobile[open] summary::after { content: '\2212'; }
+    .toc-mobile summary:hover { background: var(--accent-soft); }
+    .toc-mobile ol { list-style: none; padding: 8px 0 0; margin: 0; counter-reset: mtoc; }
+    .toc-mobile li { counter-increment: mtoc; }
+    .toc-mobile li a {
+      display: block; padding: 8px 16px; border-radius: 6px;
+      color: var(--body); font-family: var(--font-ui);
+      font-size: .82rem; font-weight: 500;
+    }
+    .toc-mobile li a::before {
+      content: counter(mtoc, decimal-leading-zero);
+      color: var(--muted); font-size: .72rem; margin-right: 8px;
+    }
+    .toc-mobile li a:hover { background: var(--accent-soft); color: var(--accent-ink); text-decoration: none; }
     .content { padding: 0 48px 80px 0; max-width: var(--content-w); }
 
     /* ── Section patterns ── */
@@ -479,6 +502,7 @@
       .hero-calc { border-left: 0; border-top: 1px solid var(--dark-line); }
       .body-wrap { grid-template-columns: minmax(0, 1fr); }
       .toc { display: none; }
+      .toc-mobile { display: block; margin: 0 24px 24px; }
       .content { padding: 0 24px 80px; max-width: 100%; min-width: 0; width: 100%; }
       .dark-section .inner { padding: 0 24px; }
       .stat-trio { grid-template-columns: 1fr; }
@@ -650,6 +674,20 @@
   </header>
 
   <div class="body-wrap">
+    <details class="toc-mobile" aria-label="Table of contents">
+      <summary>Contents</summary>
+      <ol>
+        <li><a href="#problem">The problem</a></li>
+        <li><a href="#theorem">The math</a></li>
+        <li><a href="#floor-policy">Why the floor matters</a></li>
+        <li><a href="#policy">14 policy moves</a></li>
+        <li><a href="#economics">Post-AGI economics</a></li>
+        <li><a href="#tau">Why Tau</a></li>
+        <li><a href="#evidence">Evidence</a></li>
+        <li><a href="#path">A practical path</a></li>
+        <li><a href="#sources">Sources</a></li>
+      </ol>
+    </details>
     <aside class="toc" aria-label="Table of contents">
       <div class="toc-title">Contents</div>
       <ol>
