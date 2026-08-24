@@ -22,15 +22,23 @@
     body:before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(circle at 12% 8%,rgba(101,242,183,.08),transparent 28%),radial-gradient(circle at 88% 20%,rgba(117,188,255,.06),transparent 25%)}
     a{color:var(--mint);cursor:pointer} a:hover{color:var(--lime)}
     .button{cursor:pointer}
+    .skip-link{position:absolute;left:-9999px;top:0;padding:.8rem 1.2rem;background:var(--mint);color:#04251a;font-weight:700;border-radius:0 0 8px 0;z-index:100}
+    .skip-link:focus{left:0}
+    .progress-bar{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--mint),var(--lime));z-index:30;width:0;transition:width .1s linear}
     nav{position:sticky;top:0;z-index:20;border-bottom:1px solid var(--line);background:rgba(7,17,15,.88);backdrop-filter:blur(16px)}
     .navin{max-width:var(--max);margin:auto;padding:.8rem 1.25rem;display:flex;gap:1.2rem;align-items:center;overflow:auto;white-space:nowrap;font:500 .76rem DM Mono,monospace;text-transform:uppercase;letter-spacing:.06em}
     .brand{color:var(--lime);margin-right:auto;text-decoration:none;font-weight:700}.navin a:not(.brand){color:var(--muted);text-decoration:none}
-    article{max-width:var(--max);margin:auto;padding:4rem 1.5rem 2rem}
+    .toc{max-width:var(--max);margin:0 auto 1rem;padding:1.2rem 1.5rem;border-bottom:1px solid var(--line)}
+    .toc-label{font:500 .7rem DM Mono,monospace;color:var(--dim);text-transform:uppercase;letter-spacing:.08em;margin:0 0 .6rem}
+    .toc-list{display:flex;flex-wrap:wrap;gap:.4rem .8rem;list-style:none;padding:0;margin:0}
+    .toc-list a{font:500 .76rem DM Mono,monospace;color:var(--muted);text-decoration:none;padding:.2rem .6rem;border-radius:6px;transition:color .15s,background .15s}
+    .toc-list a:hover,.toc-list a.active{color:var(--mint);background:rgba(101,242,183,.08)}
+    article{max-width:var(--max);margin:auto;padding:3rem 1.5rem 2rem}
     .eyebrow{font:500 .78rem DM Mono,monospace;color:var(--mint);text-transform:uppercase;letter-spacing:.13em}
     h1{font-size:clamp(2.4rem,6vw,4.2rem);line-height:1;letter-spacing:-.045em;margin:1rem 0 1.5rem}
     .gradient{background:linear-gradient(100deg,var(--mint),var(--lime) 45%,var(--blue));-webkit-background-clip:text;color:transparent}
     .lede{font-size:clamp(1.08rem,2.2vw,1.35rem);color:var(--muted);max-width:680px;margin-bottom:2rem}
-    h2{font-size:clamp(1.6rem,4vw,2.4rem);line-height:1.1;letter-spacing:-.03em;margin:3.5rem 0 1.2rem;position:relative}
+    h2{font-size:clamp(1.6rem,4vw,2.4rem);line-height:1.1;letter-spacing:-.03em;margin:3.5rem 0 1.2rem;position:relative;scroll-margin-top:5rem}
     h2:before{content:"";position:absolute;left:-1.5rem;top:.3rem;bottom:.3rem;width:3px;border-radius:2px;background:linear-gradient(180deg,var(--mint),var(--blue))}
     h3{font-size:1.2rem;margin:2rem 0 .8rem;color:var(--lime)}
     p{margin:0 0 1.2rem;color:var(--ink)}
@@ -42,28 +50,50 @@
     .formula{border:1px solid var(--line);border-radius:14px;background:linear-gradient(135deg,rgba(101,242,183,.06),rgba(117,188,255,.03));padding:1.5rem;text-align:center;font-size:clamp(.95rem,2.2vw,1.25rem);overflow:auto;margin:1.5rem 0}
     .ladder{display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin:1.5rem 0;border:1px solid var(--line);border-radius:12px;overflow:hidden}.rung{padding:.8rem .5rem;background:var(--panel);text-align:center;border-right:1px solid var(--line)}.rung:last-child{border-right:none}.rung-day{font:500 .65rem DM Mono,monospace;color:var(--mint);text-transform:uppercase;margin-bottom:.2rem}.rung-val{font-size:1.1rem;font-weight:700;color:var(--lime)}.rung-gain{font:400 .62rem DM Mono,monospace;color:var(--dim);margin-top:.15rem}
     .dao-diagram{margin:2rem 0}.dao-svg{display:block;width:100%;max-width:680px;height:auto;margin:0 auto}
-    .compound-lab{margin:2rem 0;padding:1.4rem;border:1px solid var(--line);border-radius:14px;background:var(--panel)}.compound-lab h4{margin:0 0 .8rem;font-size:1rem;color:var(--ink)}.compound-controls{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}.compound-controls .control{margin:0}.control label{display:flex;justify-content:space-between;font:500 .78rem DM Mono,monospace;color:var(--muted)}input[type=range]{width:100%;accent-color:var(--mint)}
-    .compound-chart{width:100%;height:220px;display:block;border-radius:10px;background:#081411}.compound-readout{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem;margin-top:1rem}.compound-readout .metric{padding:.7rem;border-radius:8px;background:#081411}.compound-readout .metric span{display:block;color:var(--dim);font:500 .65rem DM Mono,monospace;text-transform:uppercase}.compound-readout .metric strong{font-size:1.05rem}
+    .compound-lab{margin:2rem 0;padding:1.4rem;border:1px solid var(--line);border-radius:14px;background:var(--panel)}.compound-lab h4{margin:0 0 .8rem;font-size:1rem;color:var(--ink)}.compound-controls{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;margin-bottom:1rem}.compound-controls .control{margin:0}.control label{display:flex;justify-content:space-between;font:500 .76rem DM Mono,monospace;color:var(--muted)}input[type=range]{width:100%;accent-color:var(--mint)}
+    .compound-chart{width:100%;height:220px;display:block;border-radius:10px;background:#081411}.compound-readout{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem;margin-top:1rem}.compound-readout .metric{padding:.7rem;border-radius:8px;background:#081411}.compound-readout .metric span{display:block;color:var(--dim);font:500 .65rem DM Mono,monospace;text-transform:uppercase}.compound-readout .metric strong{font-size:1.05rem}.compound-readout .metric.fee-impact strong{color:var(--rose)}
+    .compound-legend{display:flex;gap:1.2rem;margin-top:.8rem;font:500 .68rem DM Mono,monospace;color:var(--dim);text-transform:uppercase}
+    .compound-legend span:before{content:"";display:inline-block;width:10px;height:2px;margin-right:.4rem;vertical-align:middle}
+    .compound-legend .gross:before{background:var(--mint)}
+    .compound-legend .net:before{background:var(--rose)}
     .guardrails{background:var(--panel);border:1px solid rgba(255,205,112,.2);border-radius:16px;padding:1.6rem 1.8rem;margin:2.5rem 0}
     .guardrails h3{margin-top:0;color:var(--amber);font-size:1.15rem}
     .guardrails ul{padding-left:1.2rem;color:var(--muted)}.guardrails li{margin-bottom:.6rem;line-height:1.6}.guardrails li strong{color:var(--ink)}
+    .takeaways{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:1.6rem 1.8rem;margin:2.5rem 0}
+    .takeaways h3{margin-top:0;color:var(--mint);font-size:1.15rem}
+    .takeaways ol{padding-left:1.4rem;color:var(--muted)}.takeaways li{margin-bottom:.6rem;line-height:1.6}.takeaways li strong{color:var(--ink)}
     .divider{height:1px;background:linear-gradient(90deg,transparent,var(--line),transparent);margin:3rem 0;border:none}
     code{font-family:DM Mono,monospace;color:var(--lime);font-size:.88em}
     .actions{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:2rem}.button{padding:.72rem 1rem;border:1px solid var(--line);border-radius:999px;text-decoration:none;font-weight:700;color:var(--ink);background:var(--panel)}.button.primary{background:var(--mint);color:#04251a;border-color:var(--mint)}
     footer{max-width:var(--max);margin:auto;padding:3rem 1.5rem 5rem;border-top:1px solid var(--line);color:var(--dim);font-size:.86rem}
-    @media(max-width:560px){.ladder{grid-template-columns:1fr 1fr}.compound-controls{grid-template-columns:1fr}.compound-readout{grid-template-columns:1fr}.story{padding-left:2.5rem;font-size:1rem}.story:before{font-size:2.8rem;left:.5rem}}
-    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+    @media(max-width:560px){.ladder{grid-template-columns:1fr 1fr}.compound-controls{grid-template-columns:1fr}.compound-readout{grid-template-columns:1fr}.story{padding-left:2.5rem;font-size:1rem}.story:before{font-size:2.8rem;left:.5rem}.toc-list{flex-direction:column;gap:.3rem}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.progress-bar{transition:none}}
   </style>
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="progress-bar" id="progressBar" aria-hidden="true"></div>
   <nav><div class="navin"><a class="brand" href="index.html">Alignment Theorem</a><a href="intelligence-hyperdeflation-flywheel.html">Flywheel</a><a href="data-center-social-contract.html">Data Center</a><a href="index.html">Home</a></div></nav>
 
-  <article>
+  <div class="toc" id="toc">
+    <p class="toc-label">Contents</p>
+    <ul class="toc-list">
+      <li><a href="#dollar">The dollar that grew itself</a></li>
+      <li><a href="#impossible">Why it was impossible</a></li>
+      <li><a href="#math">The math</a></li>
+      <li><a href="#club">Investment clubs</a></li>
+      <li><a href="#guardrails">Guardrails</a></li>
+      <li><a href="#partnership">The partnership</a></li>
+      <li><a href="#tau">Why Tau</a></li>
+    </ul>
+  </div>
+
+  <article id="main">
     <div class="eyebrow">Blog · August 2026 · proof-bounded</div>
     <h1>The <span class="gradient">Personal Buffett</span></h1>
     <p class="lede">What if every household had an AI agent that grew their savings the way Warren Buffett grew Berkshire? Not by gambling. By finding genuine efficiencies, compounding them, and never once breaking the guardrails. This is the story of how DeFi micro-transactions make that possible, how DAOs scale it to investment clubs, and why the math works even when you start with one dollar.</p>
 
-    <h2>The dollar that grew itself</h2>
+    <h2 id="dollar">The dollar that grew itself</h2>
 
     <div class="story"><strong>Imagine:</strong> You hand an AI one dollar. Not a fortune. Not a portfolio. One dollar. The AI does not buy lottery tickets. It does not short Tesla. It finds a cheaper electricity supplier for your house. It spots a tax deduction your accountant missed. It refinances your mortgage at a quarter point lower. It rebalances your tiny portfolio to cut one basis point of fees. Each move is small. Each move is real. And each move earns a fraction of a cent that the next move compounds on top of.</div>
 
@@ -74,7 +104,7 @@
     <p>The curve starts flat and then bends upward. That is the compounding effect: each day's gain earns its own gain the next day. The AI does not need to beat the market. It needs to find small, real efficiencies and compound them.</p>
 
     <hr class="divider">
-    <h2>Why this was impossible until now</h2>
+    <h2 id="impossible">Why this was impossible until now</h2>
 
     <p>Warren Buffett started his partnership in 1956 with $105,100 from seven investors. He had an edge: he could research companies full-time, and his investors trusted him. But his edge was human. It did not scale to every household in the world.</p>
 
@@ -85,7 +115,7 @@
     <p>DeFi changes the economics. Transaction costs on a decentralized exchange can be fractions of a cent. A rebalance that costs $7 at a brokerage costs $0.0007 on-chain. The fee is smaller than the gain. The math survives. The compounding continues.</p>
 
     <hr class="divider">
-    <h2>The math, in plain English</h2>
+    <h2 id="math">The math, in plain English</h2>
 
     <p>Compound interest is the oldest force in finance. Einstein did not call it the eighth wonder of the world (that quote is apocryphal), but the math is real and simple:</p>
 
@@ -103,10 +133,10 @@
 
     <p>None of these returns are promised. None of them are guaranteed. The point is that the math works when fees are fractions of a cent. The math dies when fees are $5 to $10 per trade. DeFi is what makes the difference.</p>
 
-    <div class="compound-lab"><h4>Try it yourself</h4><div class="compound-controls"><div class="control"><label for="cp">Principal $<output id="cpOut">1</output></label><input id="cp" type="range" min="1" max="1000" value="1" step="1"></div><div class="control"><label for="cr">Daily return %<output id="crOut">0.50</output></label><input id="cr" type="range" min="1" max="200" value="50" step="1"></div></div><canvas id="compoundChart" class="compound-chart" width="680" height="220" role="img" aria-label="Compound interest growth chart"></canvas><div class="compound-readout"><div class="metric"><span>After 30 days</span><strong id="cv30">$1.16</strong></div><div class="metric"><span>After 180 days</span><strong id="cv180">$2.45</strong></div><div class="metric"><span>After 365 days</span><strong id="cv365">$6.18</strong></div></div></div>
+    <div class="compound-lab"><h4>Try it yourself</h4><p style="color:var(--dim);font-size:.84rem;margin:0 0 1rem">Adjust the sliders to see how principal, return rate, and fees change the outcome. The gross line shows compounding without fees. The net line shows what survives after per-transaction fees.</p><div class="compound-controls"><div class="control"><label for="cp">Principal $<output id="cpOut">1</output></label><input id="cp" type="range" min="1" max="1000" value="1" step="1"></div><div class="control"><label for="cr">Daily return %<output id="crOut">0.50</output></label><input id="cr" type="range" min="1" max="200" value="50" step="1"></div><div class="control"><label for="cf">Fee per trade $<output id="cfOut">0.01</output></label><input id="cf" type="range" min="0" max="1000" value="1" step="1"></div></div><canvas id="compoundChart" class="compound-chart" width="680" height="220" role="img" aria-label="Compound interest growth chart showing gross and net returns"></canvas><div class="compound-legend"><span class="gross">Gross (no fees)</span><span class="net">Net (after fees)</span></div><div class="compound-readout"><div class="metric"><span>After 30 days (net)</span><strong id="cv30">$1.16</strong></div><div class="metric"><span>After 180 days (net)</span><strong id="cv180">$2.45</strong></div><div class="metric fee-impact"><span>After 365 days (net)</span><strong id="cv365">$6.18</strong></div></div></div>
 
     <hr class="divider">
-    <h2>From solo agent to investment club</h2>
+    <h2 id="club">From solo agent to investment club</h2>
 
     <div class="story"><strong>Buffett did not invest alone.</strong> He ran a partnership. Seven investors pooled $105,100. Buffett did the research. The partnership rules governed what he could and could not do. Each partner kept their proportional share. The structure worked because the rules were clear, the accounting was transparent, and the researcher was talented.</div>
 
@@ -171,7 +201,7 @@
     <p>The DAO is the DeFi-native version of Buffett's partnership. The rules are public. The accounting is on-chain. The AI does the research that a human analyst team would otherwise cost. Pooled capital reaches opportunities that $1 alone cannot access: larger liquidity pools, higher-yield staking positions, diversified lending positions that require minimum deposits. But the guardrails travel with every dollar.</p>
 
     <hr class="divider">
-    <h2>The guardrails</h2>
+    <h2 id="guardrails">The guardrails</h2>
 
     <div class="guardrails">
       <h3>What the AI cannot do</h3>
@@ -187,7 +217,7 @@
     </div>
 
     <hr class="divider">
-    <h2>The Buffett partnership, translated</h2>
+    <h2 id="partnership">The Buffett partnership, translated</h2>
 
     <p>Buffett's partnership agreement had rules. He could not invest more than 40% of capital in a single security. He could not use leverage. He could not invest in speculative or "hot" issues. He had to explain every position to his partners. The rules made the partnership safe enough that seven investors trusted a 25-year-old with $105,100.</p>
 
@@ -196,11 +226,24 @@
     <div class="callout"><strong>What this is not.</strong> This does not promise investment returns, early retirement, financial advice, fiduciary duty, or generational wealth. It is a constrained automation tool, not a financial advisor. The AI finds efficiencies. The rules enforce safety. Compound interest does the rest. Whether the efficiencies are large enough to matter in practice is an empirical question, not a mathematical one.</div>
 
     <hr class="divider">
-    <h2>Why Tau matters here</h2>
+    <h2 id="tau">Why Tau matters here</h2>
 
     <p>The spending rule, the guardrails, and the DAO constitution all need to be executable. A PDF rule sheet that a human reads is not enforced. A smart contract that a human writes is enforced, but it cannot be revised safely. The rules need to be both executable and self-amending: the DAO needs to be able to vote on a rule change, check that the change does not violate the constitution, and adopt it without breaking the guardrails.</p>
 
     <p>Tau is the only platform that can do this. The spending rule has to be written in Tau because Tau is what enforces it. No other platform can replicate this design: Ohad Asor's patent on Tau covers the core mechanism, a formal language that can rewrite its own rules and reason about the changes before adopting them. That self-amending property is what makes Tau the only platform that can serve as a live economic constitution for a DAO investment club.</p>
+
+    <hr class="divider">
+    <div class="takeaways">
+      <h3>Key takeaways</h3>
+      <ol>
+        <li><strong>Compound interest works on small balances only when fees are small.</strong> Traditional finance charges $5 to $10 per trade. DeFi charges fractions of a cent. The fee wall is the entire reason this concept was impossible until now.</li>
+        <li><strong>The AI does not need to beat the market.</strong> It needs to find small, real efficiencies and compound them. A cheaper supplier, a missed deduction, a better rate, a fee-reducing rebalance.</li>
+        <li><strong>The guardrails travel with every dollar.</strong> No borrowing, no short-selling, no concentrated bets, loss limits, fee caps, turnover limits. The rules are the authority, not the AI's judgment.</li>
+        <li><strong>DAOs scale the concept from solo agent to investment club.</strong> Households pool capital, the AI researches, the rules enforce guardrails on-chain, each member keeps their proportional share.</li>
+        <li><strong>Tau is the only platform that can enforce and amend the rules safely.</strong> A self-amending formal language is what makes a live economic constitution possible.</li>
+        <li><strong>This is not investment advice.</strong> It is a constrained automation concept. Whether the efficiencies are large enough to matter in practice is an empirical question, not a mathematical one.</li>
+      </ol>
+    </div>
 
     <div class="actions"><a class="button primary" href="intelligence-hyperdeflation-flywheel.html">Read the intelligence flywheel</a><a class="button" href="data-center-social-contract.html">The Data Center Bargain</a><a class="button" href="index.html">Home</a></div>
   </article>
@@ -208,31 +251,52 @@
   <footer>Independent research by Dana Edwards / DarkLightX. This page describes a conditional concept, not investment, legal, or financial advice. The compound interest examples are illustrative and do not promise returns. <a href="index.html">Home</a> &#183; <a href="https://github.com/TheDarkLightX/AlignmentTheorem">GitHub</a></footer>
 
   <script>
-    const cpEl=document.getElementById('cp'), crEl=document.getElementById('cr');
-    const cpOut=document.getElementById('cpOut'), crOut=document.getElementById('crOut');
+    const cpEl=document.getElementById('cp'), crEl=document.getElementById('cr'), cfEl=document.getElementById('cf');
+    const cpOut=document.getElementById('cpOut'), crOut=document.getElementById('crOut'), cfOut=document.getElementById('cfOut');
     const cv30=document.getElementById('cv30'), cv180=document.getElementById('cv180'), cv365=document.getElementById('cv365');
     const cctx=document.getElementById('compoundChart').getContext('2d');
+    const progressBar=document.getElementById('progressBar');
+    const tocLinks=document.querySelectorAll('.toc-list a');
+    const sectionIds=['dollar','impossible','math','club','guardrails','partnership','tau'];
     function money(v){return '$'+(v>=1000?v.toExponential(2):v.toFixed(v<10?2:0))}
     function drawCompound(){
-      const P=Number(cpEl.value), r=Number(crEl.value)/10000;
-      cpOut.textContent=P; crOut.textContent=(Number(crEl.value)/100).toFixed(2);
-      const pts=[]; let maxV=P;
-      for(let d=0;d<=365;d++){const v=P*Math.pow(1+r,d);pts.push(v);maxV=Math.max(maxV,v)}
-      cv30.textContent=money(pts[30]);cv180.textContent=money(pts[180]);cv365.textContent=money(pts[365]);
+      const P=Number(cpEl.value), r=Number(crEl.value)/10000, fee=Number(cfEl.value)/100;
+      cpOut.textContent=P; crOut.textContent=(Number(crEl.value)/100).toFixed(2); cfOut.textContent=fee.toFixed(2);
+      const gross=[], net=[]; let maxV=P;
+      let netVal=P;
+      for(let d=0;d<=365;d++){
+        const g=P*Math.pow(1+r,d);
+        gross.push(g); maxV=Math.max(maxV,g);
+        netVal=netVal*(1+r)-fee;
+        if(netVal<0)netVal=0;
+        net.push(netVal); maxV=Math.max(maxV,netVal);
+      }
+      cv30.textContent=money(net[30]);cv180.textContent=money(net[180]);cv365.textContent=money(net[365]);
       const c=cctx.canvas,w=c.width,h=c.height,pad=30;cctx.clearRect(0,0,w,h);
       cctx.strokeStyle='#1d3630';cctx.lineWidth=1;
       for(let y=0;y<5;y++){const py=pad+(h-2*pad)*y/4;cctx.beginPath();cctx.moveTo(pad,py);cctx.lineTo(w-pad,py);cctx.stroke()}
-      cctx.fillStyle='#65f2b7';cctx.beginPath();
-      pts.forEach((v,i)=>{const x=pad+(w-2*pad)*i/365,y=h-pad-(h-2*pad)*v/maxV;(i?cctx.lineTo(x,y):cctx.moveTo(x,y))});
-      cctx.lineTo(w-pad,h-pad);cctx.lineTo(pad,h-pad);cctx.closePath();cctx.globalAlpha=0.15;cctx.fill();cctx.globalAlpha=1;
-      cctx.strokeStyle='#65f2b7';cctx.lineWidth=2.5;cctx.beginPath();
-      pts.forEach((v,i)=>{const x=pad+(w-2*pad)*i/365,y=h-pad-(h-2*pad)*v/maxV;(i?cctx.lineTo(x,y):cctx.moveTo(x,y))});
-      cctx.stroke();
+      function drawLine(pts,color,fill){
+        if(fill){cctx.fillStyle=fill;cctx.beginPath();pts.forEach((v,i)=>{const x=pad+(w-2*pad)*i/365,y=h-pad-(h-2*pad)*v/maxV;(i?cctx.lineTo(x,y):cctx.moveTo(x,y))});cctx.lineTo(w-pad,h-pad);cctx.lineTo(pad,h-pad);cctx.closePath();cctx.globalAlpha=0.1;cctx.fill();cctx.globalAlpha=1}
+        cctx.strokeStyle=color;cctx.lineWidth=2.5;cctx.beginPath();pts.forEach((v,i)=>{const x=pad+(w-2*pad)*i/365,y=h-pad-(h-2*pad)*v/maxV;(i?cctx.lineTo(x,y):cctx.moveTo(x,y))});cctx.stroke();
+      }
+      drawLine(gross,'#65f2b7','rgba(101,242,183,0.1)');
+      drawLine(net,'#ff7d8d','rgba(255,125,141,0.08)');
       cctx.fillStyle='#9bb1ab';cctx.font='12px DM Mono';
       cctx.fillText('Day 0',pad-2,h-8);cctx.fillText('Day 365',w-pad-45,h-8);
       cctx.fillText('$'+P,pad+4,pad+12);cctx.fillText(money(maxV),w-pad-55,pad+12);
     }
-    cpEl.addEventListener('input',drawCompound);crEl.addEventListener('input',drawCompound);drawCompound();
+    function updateProgress(){
+      const st=document.documentElement.scrollTop||document.body.scrollTop;
+      const sh=(document.documentElement.scrollHeight||document.body.scrollHeight)-window.innerHeight;
+      const pct=sh>0?(st/sh)*100:0;
+      progressBar.style.width=pct+'%';
+      let activeIdx=0;
+      for(let i=0;i<sectionIds.length;i++){const el=document.getElementById(sectionIds[i]);if(el&&el.getBoundingClientRect().top<120)activeIdx=i}
+      tocLinks.forEach((link,i)=>link.classList.toggle('active',i===activeIdx));
+    }
+    cpEl.addEventListener('input',drawCompound);crEl.addEventListener('input',drawCompound);cfEl.addEventListener('input',drawCompound);
+    window.addEventListener('scroll',updateProgress,{passive:true});
+    drawCompound();updateProgress();
   </script>
 </body>
 </html>
