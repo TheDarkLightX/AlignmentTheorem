@@ -73,7 +73,7 @@ class IntelligenceFlywheelResearchPacketTests(unittest.TestCase):
         self.assertIn("not the alignment theorem", lower)
         self.assertIn("not yet a deployed node", lower)
         self.assertIn("only tau can do this", lower)
-        self.assertIn("reviewed binary replay", lower)
+        self.assertIn("bottom line", lower)
         self.assertIn("intelligence-hyperdeflation-flywheel.html", (ROOT / "docs" / "index.html").read_text())
         self.assertIn("intelligence-hyperdeflation-flywheel.html", (ROOT / "docs" / "alignment-theorem-deep-dive.html").read_text())
 
