@@ -1,5 +1,5 @@
 {
-  "artifact_revision": "a3aa5d0f6546d5b81f0f8976e0571b5cbdac97a2",
+  "artifact_revision": "3cdf8258cd9434a5f877480b04525fc6a2101fb3",
   "assumptions": [
     "Canonical receipt encoding and domain separation are specified.",
     "Signer/oracle authorization and threshold policy are consensus state.",
